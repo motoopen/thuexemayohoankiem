@@ -1,40 +1,30 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test MotoAI v11</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: linear-gradient(135deg, #f7faff, #e8f0ff);
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    h1 {
-      color: #007aff;
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-    p {
-      color: #333;
-      font-size: 16px;
-      text-align: center;
-      max-width: 420px;
-      line-height: 1.5;
-    }
-  </style>
-</head>
-<body>
-  <h1>Test MotoAI v11 🤖</h1>
-  <p>Nếu bạn thấy bong bóng AI 🤖 ở góc trái dưới, nghĩa là script đã hoạt động đúng!</p>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test MotoAI</title>
 
-  <!-- 🔽 Thay link này bằng link GitHub Pages của bạn -->
-  <script src="https://motoopen.github.io/thuexemayohoankiem/motoai_embed_v11_5_3_selflearn_full_left_safe_ui_patch.js"></script>
+<!-- Kiểm tra lỗi trên iPhone -->
+<script>
+window.onerror = function (msg, url, line, col, error) {
+  alert("⚠️ Lỗi JS:\n" + msg + "\n(" + line + ":" + col + ")");
+};
+console.log = function(...a){ try{alert(a.join(' '));}catch(e){} };
+</script>
+
+<!-- Chạy MotoAI sau khi trang tải xong -->
+<script defer src="https://motoopen.github.io/thuexemayohoankiem/motoai_embed_v11_5_3_selflearn_full_left_safe_ui_patch.js?v=1153"></script>
+
+<style>
+body { font-family: sans-serif; padding: 20px; }
+h1 { color: #007aff; }
+</style>
+</head>
+
+<body>
+  <h1>Test MotoAI v11.5.3</h1>
+  <p>Nếu AI hoạt động, bạn sẽ thấy icon 🤖 ở góc trái màn hình.</p>
+  <p>Nếu không, một thông báo lỗi (alert) sẽ bật lên.</p>
 </body>
 </html>
