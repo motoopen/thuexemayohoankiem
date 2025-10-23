@@ -95,7 +95,9 @@
     width: min(920px, calc(100% - 36px)); max-width: 920px;
     /* iOS Viewport Height Fix */
     height: calc(var(--m10-vh, 1vh) * 72);
-    max-height: 760px; min-height: 320px;
+    max-height: 760px;
+    max-height: calc(100 * var(--m10-vh));
+    min-height: 320px;
     border-radius: var(--m10-card-radius) var(--m10-card-radius) 12px 12px;
     background: var(--m10-card-bg); backdrop-filter: var(--m10-blur); -webkit-backdrop-filter: var(--m10-blur);
     box-shadow: 0 -18px 60px rgba(0,0,0,.22);
@@ -128,7 +130,7 @@
   #motoai-typing{ min-width:48px; height:20px; display:flex; align-items:center; justify-content:center; font-size:14px; color: rgba(0,0,0,0.5); }
   #motoai-typing span{ width:6px; height:6px; background:rgba(0,0,0,0.3); border-radius:50%; margin:0 2px; animation: m10-dot-pulse 1.4s infinite ease-in-out both; }
   #motoai-typing span:nth-child(1){ animation-delay: -0.32s; }
-  #motoai-typing span:nth-C-hild(2){ animation-delay: -0.16s; }
+  #motoai-typing span:nth-child(2){ animation-delay: -0.16s; }
   @keyframes m10-dot-pulse {
     0%, 80%, 100% { transform: scale(0); }
     40% { transform: scale(1.0); }
@@ -358,7 +360,7 @@
     }));
     
     try {
-      localStorage.setItem(CFG.corpusKey, JSON.stringify(corpus));
+      localStorage.setItem(CFG.corpusKey, JSON.stringify(corpus.map(c => ({ text: c.text }))));
       console.log(`MotoAI: Corpus built and saved (${corpus.length} items).`);
     } catch(e) {
       console.error('MotoAI: Error saving corpus', e);
@@ -470,4 +472,5 @@
   }
 
 })();
+
 
