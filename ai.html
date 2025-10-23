@@ -3,10 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Test MotoAI</title>
+<title>Test MotoAI v11.5.3</title>
+
+<!-- ✅ Script kiểm tra lỗi trên iPhone -->
+<script>
+window.onerror = function (msg, url, line, col, error) {
+  alert("⚠️ Lỗi JS:\n" + msg + "\n(" + line + ":" + col + ")");
+};
+console.log = function(...a){ try{alert(a.join(' '));}catch(e){} }; // Hiển thị log MotoAI
+</script>
+
+<!-- ✅ Đảm bảo script MotoAI chỉ chạy khi body đã sẵn sàng -->
+<script defer src="https://motoopen.github.io/thuexemayohoankiem/motoai_embed_v11_5_3_selflearn_full_left_safe_ui_patch.js?v=1153"></script>
+
+<style>
+body {
+  font-family: sans-serif;
+  padding: 20px;
+}
+h1 {
+  color: #007aff;
+}
+</style>
 </head>
+
 <body>
-<h1>Test MotoAI v11.5.3</h1>
-<script src="https://motoopen.github.io/thuexemayohoankiem/motoai_embed_v11_5_3_selflearn_full_left_safe_ui_patch.js?v=1153"></script>
+  <h1>Test MotoAI v11.5.3</h1>
+  <p>Nếu AI hiển thị đúng, bạn sẽ thấy icon 🤖 ở góc trái màn hình.</p>
+  <p>Nếu không thấy, bạn sẽ nhận được thông báo lỗi (alert) ngay trên màn hình.</p>
 </body>
 </html>
