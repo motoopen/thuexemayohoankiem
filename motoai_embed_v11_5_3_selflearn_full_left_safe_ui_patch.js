@@ -127,7 +127,7 @@
     function safeRemoveItem(k){ try{ localStorage.removeItem(k);}catch(e){} }
 
     /* END OF PART 1/3 - continue with PART 2/3 (AI logic, embeddings, corpus build, external fetch) */
-})();
+
 /* PART 2/3 of 3 — motoai_embed_v11_5_3_selflearn_full_left_safe_ui_patch.js (compact, ready-to-run)
    Paste this directly after PART 1/3. Do NOT add or remove braces — PART 3/3 will finish the file.
 */
