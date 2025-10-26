@@ -2,246 +2,194 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cho thuê xe máy Hoàn Kiếm | Giá rẻ, Giao tận nơi</title>
-  <meta name="description" content="Thuê xe máy Hoàn Kiếm: xe số, xe ga, xe điện. Thuê ngày/tuần/tháng, cọc nhẹ, giao tận nơi. Gọi 0942467674 hoặc chat nhanh." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cho thuê xe máy Hoàn Kiếm | Giá rẻ, giao tận nơi</title>
+  <meta name="description" content="Thuê xe máy Hoàn Kiếm (Phố Cổ) – xe số, xe ga, thuê ngày/tuần/tháng, cọc nhẹ, giao tận nơi. Gọi 0942467674 để được báo giá nhanh." />
   <link rel="icon" href="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_5245.jpeg" />
-
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_5245.jpeg" />
   <style>
     :root{
-      --bg:#ffffff; --text:#0b1220; --muted:#60646c;
-      --brand:#da251d; /* Honda red */
-      --brand-ink:#000000; --link:#da251d;
-      --card:#f7f7f8; --line:#e6e8eb;
-      --radius:12px; --maxw:1100px;
-      --z-nav:9999; --z-btm:9998;
-      font-family: -apple-system, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+      --primary:#d0021b; --text:#111; --bg:#fff; --muted:#666; --line:#eaeaea;
+      --appbar-h:64px; --maxw:1100px;
+      font-family:-apple-system,system-ui,Segoe UI,Roboto,Arial,sans-serif;
     }
-    [data-theme="dark"]{
-      --bg:#0e1116; --text:#f5f7fb; --muted:#c0c4ce;
-      --card:#11151c; --line:#202734;
-      --link:#ff5a52;
-    }
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);}
-    a{color:var(--link);text-decoration:none} a:hover{opacity:.9}
+    .theme-dark{ --bg:#101113; --text:#fafafa; --muted:#b6b6b6; --line:#2a2b2e; --primary:#ff2d55; }
+    body{margin:0;background:var(--bg);color:var(--text)}
+    .container{max-width:var(--maxw);margin:auto;padding:0 16px}
 
-    /* ===== NAV (Apple-ish) ===== */
-    .nav{
-      position:sticky; top:0; z-index:var(--z-nav);
-      backdrop-filter:saturate(140%) blur(8px);
-      background:color-mix(in srgb, var(--bg) 88%, transparent);
-      border-bottom:1px solid var(--line);
-    }
-    .nav .bar{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 14px}
-    .nav .logo{display:flex;align-items:center;gap:10px;margin-left:auto}
-    .nav .logo img{width:28px;height:28px;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
-    .brand-name{font-weight:800;letter-spacing:.2px}
-    .navlinks{display:flex;gap:16px;align-items:center}
-    .navlinks a{padding:8px 10px;border-radius:8px;color:var(--text)}
-    .navlinks a:is(:hover,:focus){background:var(--card)}
-    .hamb{display:none;background:none;border:none;font-size:0;line-height:0;margin-right:auto}
-    .hamb svg{width:26px;height:26px;color:var(--text)}
+    /* Top bar (hamburger + toggle + logo) */
+    .topbar{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+    .topbar .row{display:flex;align-items:center;gap:10px;padding:10px 14px}
+    .btn-ico{width:40px;height:40px;border:1px solid var(--line);border-radius:10px;background:transparent;
+      display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text)}
+    .brand-toggle{margin-left:auto;margin-right:auto}
+    .logo{height:34px;width:auto;display:block}
 
-    /* Drawer (mobile menu) */
-    .drawer{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35)}
-    .drawer.open{display:block}
-    .drawer .sheet{
-      position:absolute;left:10px;right:10px;top:10px;border-radius:14px;
-      background:var(--bg);border:1px solid var(--line);padding:12px;
-      display:flex;flex-direction:column;gap:10px
-    }
-    .drawer a{padding:12px;border-radius:10px;background:var(--card);color:var(--text);border:1px solid var(--line)}
+    /* Drawer */
+    .drawer-mask{position:fixed;inset:0;background:rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:.2s;z-index:60}
+    .drawer-mask.show{opacity:1;pointer-events:auto}
+    .drawer{position:fixed;left:0;top:0;bottom:0;width:min(92vw,360px);background:var(--bg);
+      border-right:1px solid var(--line);transform:translateX(-102%);transition:.22s ease-out;z-index:61}
+    .drawer.open{transform:translateX(0)}
+    .drawer .hd{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--line)}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:14px}
+    .grid a{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:12px;text-decoration:none;color:var(--text)}
+    .grid a b{font-size:14px} .grid a span{font-size:12px;color:var(--muted)}
+    .i{width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(208,2,27,.1);color:var(--primary);font-weight:700}
 
-    /* Theme toggle */
-    .toggle{
-      display:inline-flex;align-items:center;gap:6px;
-      background:var(--card);border:1px solid var(--line);
-      border-radius:999px;padding:6px 10px;cursor:pointer;
-    }
+    /* Bottom app bar (mobile) */
+    .appbar{position:fixed;left:0;right:0;bottom:0;z-index:55;background:var(--bg);border-top:1px solid var(--line);
+      display:flex;justify-content:space-around;gap:6px;padding:8px 6px}
+    .appbar a{flex:1;max-width:120px;text-decoration:none;color:var(--text);
+      display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px}
+    .appbar .ico{font-size:18px;line-height:1}
+    .appbar a.cta{color:#fff;background:var(--primary);border-radius:12px;padding:8px 10px}
+    .appbar a.active{color:var(--primary);font-weight:700}
+    @media(min-width:900px){ .appbar{display:none} }
+    @media(max-width:899px){ body{padding-bottom:calc(var(--appbar-h) + env(safe-area-inset-bottom,0))} }
 
-    /* ===== HERO ===== */
-    .wrap{max-width:var(--maxw);margin:0 auto;padding:18px}
-    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:center}
-    .hero h1{font-size:clamp(26px,4vw,40px);margin:.2rem 0}
-    .lead{color:var(--muted);font-size:clamp(15px,2.2vw,18px);margin:8px 0 14px}
-    .grid-img{display:grid;gap:12px}
-    .grid-img img{width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:var(--card)}
-
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;border:1px solid var(--brand);background:var(--brand);color:#fff;font-weight:700}
-    .btn.ghost{background:transparent;color:var(--brand)}
-    .btn + .btn{margin-left:8px}
-
-    /* ===== TABLE (Prices) ===== */
-    section{margin:22px 0}
-    h2{margin:6px 0 12px}
-    .tbl{overflow:auto;border:1px solid var(--line);border-radius:12px}
-    table{border-collapse:collapse;width:100%;min-width:680px}
-    th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:center}
-    thead th{background:var(--card);color:var(--text)}
-    tbody tr:hover{background:color-mix(in srgb, var(--card) 70%, transparent)}
-
-    /* ===== MINI FOOTER QUICK CALL ===== */
-    .mini{position:sticky;bottom:0;z-index:var(--z-btm);background:var(--bg);
-      border-top:1px solid var(--line);padding:8px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-    .btn-icon{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;text-decoration:none;border:1px solid var(--line);color:var(--text);background:var(--card)}
-    .btn-icon:hover{filter:brightness(1.03)}
-    .is-zalo{color:#0068ff} .is-wa{color:#25D366} .is-phone{color:#e53935} .is-map{color:#0f9d58}
+    /* Sections */
+    section{padding:24px 0;border-bottom:1px solid var(--line)}
+    h1,h2{margin:0 0 10px}
+    .lead{color:var(--muted)}
+    .hero{display:grid;grid-template-columns:1fr;gap:16px}
+    .hero .imgs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .hero img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line)}
+    @media(min-width:800px){ .hero{grid-template-columns:1.1fr .9fr} }
 
     /* Footer */
-    footer{padding:24px 14px;border-top:1px solid var(--line);text-align:center;color:var(--muted)}
+    footer{padding:24px 0;text-align:center;color:var(--muted)}
+    footer a{color:var(--primary);text-decoration:none}
 
-    /* Icons size helpers */
-    .ic16{width:16px;height:16px} .ic20{width:20px;height:20px} .ic24{width:24px;height:24px}
-
-    @media (max-width:960px){
-      .navlinks{display:none}
-      .hamb{display:inline-flex}
-      .hero{grid-template-columns:1fr}
-      .btn + .btn{margin-left:0;margin-top:8px}
-    }
+    /* Bump MotoAI bubble above appbar on mobile */
+    @media(max-width:899px){ #mta-root{ bottom: calc(64px + 18px + env(safe-area-inset-bottom,0)) !important; } }
   </style>
 </head>
+
 <body>
-
-  <!-- ===== NAV ===== -->
-  <div class="nav">
-    <div class="bar">
-      <button class="hamb" id="hamb" aria-label="Menu">
-        <svg viewBox="0 0 24 24"><use href="#ic-menu"/></svg>
-      </button>
-      <nav class="navlinks" aria-label="Chính">
-        <a href="index.html"><svg class="ic16"><use href="#ic-home"/></svg> Trang chủ</a>
-        <a href="gioithieu.html"><svg class="ic16"><use href="#ic-info"/></svg> Giới thiệu</a>
-        <a href="banggia.html"><svg class="ic16"><use href="#ic-price"/></svg> Bảng giá</a>
-        <a href="faq.html"><svg class="ic16"><use href="#ic-faq"/></svg> FAQ</a>
-        <a href="dieukhoansudung.html"><svg class="ic16"><use href="#ic-terms"/></svg> Điều khoản</a>
-        <a href="chinhsachbaomat.html"><svg class="ic16"><use href="#ic-privacy"/></svg> Chính sách</a>
-        <a href="lienhe.html"><svg class="ic16"><use href="#ic-mail"/></svg> Liên hệ</a>
-      </nav>
-      <div class="logo">
-        <img src="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_5245.jpeg" alt="Logo">
-        <strong class="brand-name">Thuê xe máy Hoàn Kiếm</strong>
-        <button class="toggle" id="themeToggle" aria-label="Chuyển giao diện">
-          <svg class="ic20" viewBox="0 0 24 24"><use href="#ic-sun"/></svg>
-          <span id="themeLabel">Light</span>
-        </button>
+  <!-- Topbar -->
+  <header class="topbar" role="banner">
+    <div class="container row">
+      <button id="btnMenu" class="btn-ico" aria-label="Mở menu">☰</button>
+      <div class="brand-toggle">
+        <button id="btnTheme" class="btn-ico" aria-label="Đổi giao diện">🌞</button>
       </div>
+      <a href="#trangchu" title="Trang chủ">
+        <img class="logo" src="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_5245.jpeg" alt="Cho thuê xe máy Hoàn Kiếm">
+      </a>
     </div>
-  </div>
+  </header>
 
-  <!-- Drawer -->
-  <div class="drawer" id="drawer" aria-hidden="true">
-    <div class="sheet">
-      <a href="index.html"><svg class="ic16"><use href="#ic-home"/></svg> Trang chủ</a>
-      <a href="gioithieu.html"><svg class="ic16"><use href="#ic-info"/></svg> Giới thiệu</a>
-      <a href="banggia.html"><svg class="ic16"><use href="#ic-price"/></svg> Bảng giá</a>
-      <a href="faq.html"><svg class="ic16"><use href="#ic-faq"/></svg> FAQ</a>
-      <a href="dieukhoansudung.html"><svg class="ic16"><use href="#ic-terms"/></svg> Điều khoản</a>
-      <a href="chinhsachbaomat.html"><svg class="ic16"><use href="#ic-privacy"/></svg> Chính sách</a>
-      <a href="lienhe.html"><svg class="ic16"><use href="#ic-mail"/></svg> Liên hệ</a>
+  <!-- Drawer (App Menu) -->
+  <div id="drawerMask" class="drawer-mask" aria-hidden="true"></div>
+  <aside id="drawer" class="drawer" role="dialog" aria-label="Menu ứng dụng" aria-modal="true">
+    <div class="hd">
+      <strong>Menu</strong>
+      <button id="btnCloseDrawer" class="btn-ico" aria-label="Đóng">✕</button>
     </div>
-  </div>
+    <nav class="grid" aria-label="Điều hướng">
+      <a href="#trangchu"><span class="i">🏠</span><div><b>Trang chủ</b><span>Về dịch vụ</span></div></a>
+      <a href="#gioithieu"><span class="i">📄</span><div><b>Giới thiệu</b><span>Thông tin nhanh</span></div></a>
+      <a href="#gia"><span class="i">🏷️</span><div><b>Bảng giá</b><span>Ngày/tuần/tháng</span></div></a>
+      <a href="Faq.html"><span class="i">❓</span><div><b>FAQ</b><span>Câu hỏi thường gặp</span></div></a>
+      <a href="Dieukhoansudung.html"><span class="i">📜</span><div><b>Điều khoản</b><span>Điều kiện thuê</span></div></a>
+      <a href="Chinhsachbaomat.html"><span class="i">🔐</span><div><b>Chính sách</b><span>Bảo mật</span></div></a>
+      <a href="Lienhe.html"><span class="i">☎️</span><div><b>Liên hệ</b><span>Tư vấn nhanh</span></div></a>
+      <a href="https://maps.app.goo.gl/2icTBTxAToyvKTE78" target="_blank" rel="noopener"><span class="i">📍</span><div><b>Bản đồ</b><span>Gần Phố Cổ</span></div></a>
+    </nav>
+  </aside>
 
-  <!-- ===== HERO ===== -->
-  <div class="wrap">
-    <section class="hero">
-      <div>
-        <h1>Cho thuê xe máy Hoàn Kiếm</h1>
-        <p class="lead">Xe số • Xe ga • Xe điện — thuê ngày/tuần/tháng, <b>cọc nhẹ</b>, <b>giao tận nơi</b> khu Phố Cổ. Cần nhanh gọi <a href="tel:0942467674"><b>0942467674</b></a> hoặc chat Zalo/WhatsApp.</p>
+  <!-- Content -->
+  <main class="container">
+    <section id="trangchu">
+      <h1>Cho thuê xe máy Hoàn Kiếm (Phố Cổ)</h1>
+      <p class="lead">Xe số · Xe ga · Thuê ngày/tuần/tháng · Cọc nhẹ · Giao tận nơi (có phí). Gọi <b>0942467674</b> để nhận báo giá nhanh.</p>
+      <div class="hero">
+        <div class="imgs">
+          <img src="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_5245.jpeg" alt="Xe cho thuê khu vực Hoàn Kiếm">
+          <img src="https://thuexemaynguyentu.com/wp-content/uploads/2025/10/Chi-phi-thue-xe-may-Ha-Noi.jpeg" alt="Bảng giá thuê xe máy tham khảo">
+        </div>
         <div>
-          <a class="btn" href="tel:0942467674"><svg class="ic20"><use href="#ic-phone"/></svg> Gọi ngay</a>
-          <a class="btn ghost" href="banggia.html"><svg class="ic20"><use href="#ic-price"/></svg> Xem bảng giá</a>
+          <p><b>Dịch vụ nhanh</b>: giấy tờ đơn giản, xe bảo dưỡng định kỳ, hỗ trợ mũ bảo hiểm – áo mưa cơ bản.</p>
+          <p><b>Phù hợp</b>: khách du lịch Phố Cổ, đi công tác ngắn ngày, thuê tháng tiết kiệm.</p>
+          <p><b>Hotline/Zalo</b>: <a href="tel:0942467674">0942467674</a> – <a href="https://zalo.me/0942467674" target="_blank" rel="noopener">Nhắn Zalo</a>.</p>
         </div>
       </div>
-      <div class="grid-img">
-        <img src="https://thuexemaynguyentu.com/wp-content/uploads/2025/10/Chi-phi-thue-xe-may-Ha-Noi.jpeg" alt="Bảng giá thuê xe máy Hà Nội">
-        <img src="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_5245.jpeg" alt="Xe máy cho thuê tại Hoàn Kiếm">
-      </div>
+    </section>
+
+    <section id="gioithieu">
+      <h2>Giới thiệu nhanh</h2>
+      <p>Chúng tôi cho thuê xe máy tại Hoàn Kiếm, gần khu đi bộ Phố Cổ – linh hoạt theo ngày/tuần/tháng. Có giao/nhận tại nơi khách yêu cầu trong nội thành (phí tuỳ khu vực, đơn ngắn ngày có thể phụ thu).</p>
     </section>
 
     <section id="gia">
-      <h2>📋 Bảng giá tham khảo</h2>
-      <div class="tbl">
-        <table>
-          <thead><tr><th>Loại xe</th><th>Ngày</th><th>Tuần</th><th>Tháng</th><th>Cọc</th></tr></thead>
-          <tbody>
-            <tr><td>Honda Wave (số)</td><td>150k</td><td>600–700k</td><td>1.200k</td><td>2–3 triệu</td></tr>
-            <tr><td>Honda Vision (ga)</td><td>200k</td><td>800–1.000k</td><td>1.800–2.000k</td><td>4–5 triệu</td></tr>
-            <tr><td>Air Blade (ga)</td><td>200k</td><td>800k</td><td>1.400k</td><td>3 triệu</td></tr>
-            <tr><td>Ga giá rẻ (Click/Mio)</td><td>150k</td><td>600–700k</td><td>1.000–1.200k</td><td>2 triệu</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p style="color:var(--muted)">Giao tận nơi trong Phố Cổ có thể tính phí nếu thuê ít ngày.</p>
+      <h2>Bảng giá tham khảo</h2>
+      <ul>
+        <li>Xe số (Wave/Blade…): từ <b>150k/ngày</b>, thuê tuần từ 600k–700k, thuê tháng từ 1.2tr.</li>
+        <li>Xe ga (Vision/AB…): từ <b>200k/ngày</b>, thuê tuần 800k–1tr, thuê tháng từ 1.4tr–2tr.</li>
+        <li>Cọc: 2–5 triệu (tuỳ xe/giấy tờ), có phương án giảm cọc khi đủ giấy tờ.</li>
+      </ul>
+      <p>Gọi <a href="tel:0942467674">0942467674</a> để chốt giá theo nhu cầu (số ngày, loại xe, địa điểm nhận/trả).</p>
     </section>
 
-    <section>
-      <h2>🔗 Liên kết hữu ích</h2>
-      <p><a href="https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html" target="_blank" rel="noopener">Tripadvisor: Nguyen Tu Motorbike Rental</a></p>
-      <p><a href="https://motoopen.github.io/chothuexemayhanoi/" target="_blank" rel="noopener">Trang thông tin khác</a> • <a href="https://m.facebook.com/chothuexemayhoankiem/" target="_blank" rel="noopener">Facebook Page</a></p>
-      <p>Địa chỉ: gần khu Phố Cổ đi bộ — Hoàn Kiếm, Hà Nội, Việt Nam.</p>
+    <section id="lienhe">
+      <h2>Liên hệ</h2>
+      <p>Hotline/Zalo: <a href="tel:0942467674">0942467674</a> – <a href="https://zalo.me/0942467674" target="_blank" rel="noopener">zalo.me/0942467674</a></p>
+      <p>WhatsApp: <a href="https://wa.me/84942467674" target="_blank" rel="noopener">wa.me/84942467674</a></p>
+      <p>Địa chỉ gần: Khu Phố Cổ – Hoàn Kiếm, Hà Nội (<a href="https://maps.app.goo.gl/2icTBTxAToyvKTE78" target="_blank" rel="noopener">xem bản đồ</a>)</p>
+      <p>Tham khảo thêm: 
+        <a href="https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html" target="_blank" rel="noopener">TripAdvisor</a> · 
+        <a href="https://motoopen.github.io/chothuexemayhanoi/" target="_blank" rel="noopener">Trang Hà Nội</a> · 
+        <a href="https://m.facebook.com/chothuexemayhoankiem/" target="_blank" rel="noopener">Facebook Page</a>
+      </p>
     </section>
-  </div>
-
-  <!-- ===== MINI-FOOTER QUICK CALL ===== -->
-  <div class="mini">
-    <a class="btn-icon is-phone" href="tel:0942467674"><svg class="ic20"><use href="#ic-phone"/></svg>Gọi</a>
-    <a class="btn-icon is-zalo" href="https://zalo.me/0942467674" target="_blank" rel="noopener"><svg class="ic20"><use href="#ic-zalo"/></svg>Zalo</a>
-    <a class="btn-icon is-wa" href="https://wa.me/84942467674" target="_blank" rel="noopener"><svg class="ic20"><use href="#ic-wa"/></svg>WhatsApp</a>
-    <a class="btn-icon is-map" href="https://maps.app.goo.gl/2icTBTxAToyvKTE78" target="_blank" rel="noopener"><svg class="ic20"><use href="#ic-map"/></svg>Map</a>
-  </div>
+  </main>
 
   <footer>
-    © 2025 Cho thuê xe máy Hoàn Kiếm — All rights reserved.
+    © 2025 Cho thuê xe máy Hoàn Kiếm
   </footer>
 
-  <!-- ===== ICON SPRITE (dùng toàn site) ===== -->
-  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden">
-    <symbol id="ic-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
-    <symbol id="ic-close" viewBox="0 0 24 24"><path d="M6 6l12 12M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
-    <symbol id="ic-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v8a2 2 0 0 1-2 2h-4v-6H9v6H5a2 2 0 0 1-2-2z" fill="currentColor"/></symbol>
-    <symbol id="ic-info" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 15h-2v-6h2v6Zm0-8h-2V7h2v2Z" fill="currentColor"/></symbol>
-    <symbol id="ic-price" viewBox="0 0 24 24"><path d="M20.59 13.41 11 3.83V3H3v8h.83l9.59 9.59a2 2 0 0 0 2.83 0l4.34-4.34a2 2 0 0 0 0-2.83ZM6 9a2 2 0 1 1 2-2 2 2 0 0 1-2 2Z" fill="currentColor"/></symbol>
-    <symbol id="ic-faq" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 15h-2v-2h2Zm1.07-7.75-.9.92A2.5 2.5 0 0 0 12 15h-1.5v-1a3.5 3.5 0 0 1 1.03-2.47l1.2-1.2a1.5 1.5 0 1 0-2.12-2.12A1.52 1.52 0 0 0 10.17 9H8.5A3.5 3.5 0 0 1 12 5a3.5 3.5 0 0 1 2.07 6.25Z" fill="currentColor"/></symbol>
-    <symbol id="ic-terms" viewBox="0 0 24 24"><path d="M7 2h8l4 4v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm8 0v4h4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 10h8M8 14h8M8 18h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
-    <symbol id="ic-privacy" viewBox="0 0 24 24"><path d="M12 2 4 6v6c0 5 3.5 9.74 8 10 4.5-.26 8-5 8-10V6Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.5 12.5 11 14l3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="ic-mail" viewBox="0 0 24 24"><path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="m22 8-10 6L2 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="ic-phone" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.11-.24 11.36 11.36 0 0 0 3.55.57 1 1 0 0 1 1 1v3.61a1 1 0 0 1-1 1A18 18 0 0 1 3 6a1 1 0 0 1 1-1h3.61a1 1 0 0 1 1 1 11.36 11.36 0 0 0 .57 3.55 1 1 0 0 1-.24 1.11Z" fill="currentColor"/></symbol>
-    <symbol id="ic-map" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 14.5 9 2.5 2.5 0 0 1 12 11.5Z" fill="currentColor"/></symbol>
-    <symbol id="ic-zalo" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4" ry="4" fill="currentColor" opacity=".08"/><path d="M7 7h10L7 17h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="ic-wa" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.77 13.5L3 21l4.67-1.23A9 9 0 1 0 12 3Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.5 10.5c.3 1.7 2.3 3.6 3.9 4l1.4-1.2a1 1 0 0 1 1-.2l1.6.5a.8.8 0 0 0 .9-.3l.6-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
-    <symbol id="ic-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
-    <symbol id="ic-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79Z" fill="currentColor"/></symbol>
-  </svg>
+  <!-- Bottom App Bar (mobile) -->
+  <nav class="appbar" role="navigation" aria-label="Thanh điều hướng nhanh">
+    <a href="#trangchu"><div class="ico">🏠</div><span>Home</span></a>
+    <a href="#gia"><div class="ico">🏷️</div><span>Giá</span></a>
+    <a href="#gioithieu"><div class="ico">🏍️</div><span>Dịch vụ</span></a>
+    <a class="cta" href="tel:0942467674" aria-label="Gọi 0942467674"><div class="ico">📞</div><span>Gọi</span></a>
+    <a href="https://zalo.me/0942467674" target="_blank" rel="noopener" aria-label="Zalo"><div class="ico">💬</div><span>Zalo</span></a>
+  </nav>
 
-  <!-- ===== JS: theme + drawer ===== -->
+  <!-- App-menu logic + theme toggle -->
   <script>
+  (function(){
+    const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+    // Theme
+    const KEY='theme-mode-v1', btnTheme=$('#btnTheme');
+    function apply(m){ if(m==='dark'){document.documentElement.classList.add('theme-dark');btnTheme.textContent='🌙';}else{document.documentElement.classList.remove('theme-dark');btnTheme.textContent='🌞';} }
+    apply(localStorage.getItem(KEY)||'light');
+    btnTheme.addEventListener('click',()=>{ const cur=localStorage.getItem(KEY)||'light'; const n=cur==='light'?'dark':'light'; localStorage.setItem(KEY,n); apply(n); });
     // Drawer
-    const hamb = document.getElementById('hamb');
-    const drawer = document.getElementById('drawer');
-    hamb?.addEventListener('click', ()=>{ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); });
-    drawer?.addEventListener('click', (e)=>{ if(e.target===drawer) { drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); } });
-
-    // Theme toggle (persist)
-    const html = document.documentElement;
-    const themeToggle = document.getElementById('themeToggle');
-    const themeLabel = document.getElementById('themeLabel');
-    const saved = localStorage.getItem('theme');
-    if(saved) { html.setAttribute('data-theme', saved); themeLabel.textContent = saved==='dark'?'Dark':'Light';
-      themeToggle.querySelector('use').setAttribute('href', saved==='dark' ? '#ic-moon' : '#ic-sun'); }
-    themeToggle?.addEventListener('click', ()=>{
-      const cur = html.getAttribute('data-theme')==='dark' ? 'light':'dark';
-      html.setAttribute('data-theme', cur);
-      localStorage.setItem('theme', cur);
-      themeLabel.textContent = cur==='dark'?'Dark':'Light';
-      themeToggle.querySelector('use').setAttribute('href', cur==='dark' ? '#ic-moon' : '#ic-sun');
-    });
+    const d=$('#drawer'), msk=$('#drawerMask');
+    const open=()=>{d.classList.add('open');msk.classList.add('show');msk.setAttribute('aria-hidden','false');};
+    const close=()=>{d.classList.remove('open');msk.classList.remove('show');msk.setAttribute('aria-hidden','true');};
+    $('#btnMenu').addEventListener('click', open);
+    $('#btnCloseDrawer').addEventListener('click', close);
+    msk.addEventListener('click', close);
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
+    // Scroll spy
+    const appLinks = $$('.appbar a[href^="#"]');
+    const targets = appLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const spy=()=>{ let idx=0,y=scrollY+120; targets.forEach((s,i)=>{ if(s.offsetTop<=y) idx=i; }); appLinks.forEach(a=>a.classList.remove('active')); if(appLinks[idx]) appLinks[idx].classList.add('active'); };
+    spy(); document.addEventListener('scroll', spy, {passive:true});
+    // Bump MotoAI bubble above appbar
+    const bump=()=>{ const r=document.getElementById('mta-root'); if(r && innerWidth<900){ r.style.bottom='calc(64px + 18px + env(safe-area-inset-bottom,0))'; } };
+    bump(); addEventListener('resize', bump);
+  })();
   </script>
 
-  <!-- ===== MotoAI v19i (typing 2–5s) ===== -->
+  <!-- MotoAI v19i (typing 2–5s) -->
   <script>
     window.MotoAI_CONFIG = {
-      brand: "Cho thuê xe máy Hoàn Kiếm",
+      brand: "MS. Thu Hà",
       phone: "0942467674",
       zalo:  "https://zalo.me/0942467674",
       whatsapp: "https://wa.me/84942467674",
