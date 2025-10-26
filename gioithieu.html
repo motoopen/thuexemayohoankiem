@@ -13,18 +13,8 @@
       --primary:#d0021b; --text:#111; --bg:#fff; --muted:#666; --line:#eaeaea;
       --appbar-h:64px; --maxw:1100px;
       font-family:-apple-system,system-ui,Segoe UI,Roboto,Arial,sans-serif;
-
-      /* PRO+ */
-      --primary-2:#ff2d55;
-      --hero-grad1: rgba(208,2,27,.06);
-      --hero-grad2: rgba(208,2,27,.13);
     }
-    .theme-dark{
-      --bg:#101113; --text:#fafafa; --muted:#b6b6b6; --line:#2a2b2e; --primary:#ff2d55;
-      --hero-grad1: rgba(255,45,85,.12);
-      --hero-grad2: rgba(255,45,85,.22);
-    }
-
+    .theme-dark{ --bg:#101113; --text:#fafafa; --muted:#b6b6b6; --line:#2a2b2e; --primary:#ff2d55; }
     body{margin:0;background:var(--bg);color:var(--text)}
     .container{max-width:var(--maxw);margin:auto;padding:0 16px}
 
@@ -32,30 +22,25 @@
     .topbar{
       position:sticky;top:0;z-index:50;background:var(--bg);
       border-bottom:1px solid var(--line);
-      box-shadow:0 6px 18px rgba(0,0,0,.06);
-      transition: box-shadow .2s ease, border-color .2s ease, background .2s ease;
-    }
-    .topbar.scrolled{
-      box-shadow:0 10px 28px rgba(0,0,0,.12);
-      border-bottom-color: rgba(0,0,0,.08);
+      box-shadow:0 6px 16px rgba(0,0,0,.08);
+      backdrop-filter: saturate(140%) blur(2px);
     }
     .theme-dark .topbar{
-      background: linear-gradient(180deg, rgba(255,45,85,.10), rgba(0,0,0,0)) , var(--bg);
-      border-bottom-color:#26272a;
-      box-shadow:0 14px 34px rgba(0,0,0,.36);
-    }
-    .theme-dark .topbar.scrolled{
-      background: linear-gradient(180deg, rgba(255,45,85,.16), rgba(0,0,0,0)) , var(--bg);
+      background:
+        linear-gradient(180deg, rgba(255,45,85,.14), rgba(255,45,85,0)),
+        var(--bg);
+      border-color:#26272a;
+      box-shadow:0 12px 28px rgba(0,0,0,.35);
     }
     .topbar .row{display:flex;align-items:center;gap:10px;padding:10px 14px}
     .btn-ico{
-      width:40px;height:40px;border:1.5px solid var(--line);border-radius:10px;background:transparent;
-      display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text);font-weight:900;
-      transition: transform .08s ease, border-color .2s ease, background .2s ease;
+      width:40px;height:40px;border:1px solid var(--line);border-radius:10px;background:transparent;
+      display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text);
+      font-weight:800; transition:border-color .2s ease, transform .1s ease;
     }
-    .btn-ico:hover{ border-color: color-mix(in srgb, var(--primary) 40%, transparent); }
-    .btn-ico:active{ transform: scale(.96); }
-    .theme-dark .btn-ico:hover{ border-color: color-mix(in srgb, var(--primary-2) 45%, transparent); }
+    .btn-ico:hover{border-color:rgba(208,2,27,.35)}
+    .btn-ico:active{transform:scale(.98)}
+    .theme-dark .btn-ico:hover{border-color:rgba(255,45,85,.5)}
     .brand-toggle{margin-left:auto;margin-right:auto}
     .logo{height:34px;width:auto;display:block}
 
@@ -77,7 +62,7 @@
     .drawer.open{transform:translateX(0)}
     .drawer .hd{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--line)}
     .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:14px}
-    .grid a{display:flex;gap:10px;align-items:center;border:1.5px solid var(--line);border-radius:12px;padding:12px;text-decoration:none;color:var(--text)}
+    .grid a{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:12px;text-decoration:none;color:var(--text)}
     .grid a b{font-size:14px} .grid a span{font-size:12px;color:var(--muted)}
     .i{width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(208,2,27,.1);color:var(--primary);font-weight:700}
     .theme-dark .i{background:rgba(255,45,85,.12)}
@@ -85,105 +70,124 @@
     /* ===== Bottom app bar (mobile) ===== */
     .appbar{
       position:fixed;left:0;right:0;bottom:0;z-index:55;background:var(--bg);border-top:1px solid var(--line);
-      display:flex;justify-content:space-around;gap:6px;padding:8px 6px;box-shadow: 0 -10px 26px rgba(0,0,0,.10);
+      display:flex;justify-content:space-around;gap:6px;padding:8px 6px
     }
     .appbar a{flex:1;max-width:120px;text-decoration:none;color:var(--text);
       display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px}
     .appbar .ico{font-size:18px;line-height:1}
     .appbar a.cta{color:#fff;background:var(--primary);border-radius:12px;padding:8px 10px}
-    .appbar a.active{color:var(--primary);font-weight:700;text-shadow:0 0 .01px currentColor}
+    .appbar a.active{color:var(--primary);font-weight:700}
     @media(min-width:900px){ .appbar{display:none} }
     @media(max-width:899px){ body{padding-bottom:calc(var(--appbar-h) + env(safe-area-inset-bottom,0))} }
 
     /* ===== HERO X PRO (no-image, premium, dark-ready) ===== */
     .hero-x{
-      position: relative;
-      background: radial-gradient(1200px 420px at 10% -20%, var(--hero-grad2), transparent 60%),
-                  linear-gradient(135deg, var(--hero-grad1), var(--hero-grad2));
+      background: linear-gradient(135deg, rgba(208,2,27,.06), rgba(208,2,27,.12));
       border-bottom: 1px solid var(--line);
-      overflow: clip;
     }
-    .hero-x::after{
-      content:""; position:absolute; inset:-30% -30% auto auto; height:280px; width:420px;
-      background: radial-gradient(closest-side, color-mix(in srgb, var(--primary) 25%, transparent), transparent 70%);
-      filter: blur(40px); opacity:.28; pointer-events:none;
+    .theme-dark .hero-x{
+      background: linear-gradient(135deg, rgba(255,45,85,.10), rgba(255,45,85,.20));
+      border-color: #222;
     }
-    .theme-dark .hero-x::after{ opacity:.35; }
     .hero-wrap{
-      max-width: var(--maxw); margin: 0 auto; padding: 28px 16px 32px;
-      display: grid; grid-template-columns: 1.1fr .9fr; gap: 22px; align-items: center;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 28px 16px 32px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 22px;
+      align-items: center;
     }
-    @media (max-width: 900px){ .hero-wrap{ grid-template-columns: 1fr; gap: 16px; } }
+    @media (max-width: 900px){
+      .hero-wrap{ grid-template-columns: 1fr; gap: 16px; }
+    }
     .badge{
-      display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--primary);
-      border:1.5px solid color-mix(in srgb, var(--primary) 25%, transparent);
+      display:inline-flex;align-items:center;gap:8px;
+      background:#fff;color:var(--primary);
+      border:1px solid rgba(0,0,0,.06);
       padding:6px 10px;border-radius:999px;font-weight:800;font-size:13px;
     }
     .theme-dark .badge{ background:#141416; border-color:#2a2b2e; color:#fff; }
-    .hero-title{ margin:10px 0 8px; font-size:36px; line-height:1.2; letter-spacing:.2px; }
+    .hero-title{ margin:10px 0 8px; font-size:34px; line-height:1.2; }
     .hero-lead{ margin:0; color:var(--muted); font-size:16px; line-height:1.6; }
 
+    /* ===== CTA PRO ===== */
     .cta-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
     .cta{
-      display:inline-block; padding:12px 16px; border-radius:12px;
-      text-decoration:none; font-weight:800; border:2px solid var(--primary);
-      box-shadow: 0 8px 22px rgba(0,0,0,.06);
-      transition: transform .12s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+      --cta-bg: var(--primary);
+      --cta-text: #fff;
+      --cta-brd: var(--primary);
+      display:inline-flex; align-items:center; gap:10px;
+      padding:14px 18px; border-radius:14px; text-decoration:none;
+      font-weight:900; border:2px solid var(--cta-brd);
+      color:var(--cta-text);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--cta-bg) 88%, #fff 12%), var(--cta-bg));
+      box-shadow: 0 10px 24px rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.15);
+      transform: translateY(0);
+      transition: transform .12s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
     }
-    .cta.primary{
-      background: linear-gradient(180deg, color-mix(in srgb, var(--primary) 88%, #fff 12%), var(--primary));
-      color:#fff;
-    }
-    .cta:hover{ transform: translateY(-2px); box-shadow: 0 14px 28px rgba(0,0,0,.10); }
-    .cta:active{ transform: translateY(0); }
-    .cta.ghost{
+    .cta .ico{font-size:18px;line-height:0}
+    .cta:hover{ transform: translateY(-2px); box-shadow: 0 16px 34px rgba(0,0,0,.12); }
+    .cta:active{ transform: translateY(0); box-shadow: 0 8px 18px rgba(0,0,0,.10); }
+    .cta:focus-visible{
+      outline:none;
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 30%, transparent), 0 10px 24px rgba(0,0,0,.10);
       border-color: color-mix(in srgb, var(--primary) 60%, transparent);
-      color: var(--primary);
-      background: rgba(208,2,27,.04);
     }
-    .theme-dark .cta.ghost{ background: rgba(255,45,85,.08); }
+    .cta.lg{ padding:16px 20px; border-radius:16px; font-size:16px }
+    .cta.sm{ padding:10px 14px; border-radius:12px; font-size:14px }
+    .cta.primary{ --cta-bg: var(--primary); --cta-text:#fff; --cta-brd: var(--primary); }
+    .cta.secondary{
+      --cta-bg: transparent; --cta-text: var(--primary);
+      --cta-brd: color-mix(in srgb, var(--primary) 55%, transparent);
+      background: color-mix(in srgb, var(--primary) 6%, transparent);
+      box-shadow: 0 6px 18px rgba(0,0,0,.06);
+      color: var(--cta-text);
+    }
+    .cta.secondary:hover{
+      background: color-mix(in srgb, var(--primary) 10%, transparent);
+    }
+    .theme-dark .cta.secondary{
+      background: color-mix(in srgb, var(--primary) 12%, transparent);
+    }
+    @keyframes ctaPulse {
+      0%   { transform: translateY(0) scale(1);   box-shadow: 0 10px 24px rgba(0,0,0,.10); }
+      50%  { transform: translateY(-2px) scale(1.02); box-shadow: 0 18px 36px rgba(0,0,0,.16); }
+      100% { transform: translateY(0) scale(1);   box-shadow: 0 10px 24px rgba(0,0,0,.10); }
+    }
+    .cta.pulse{ animation: ctaPulse 900ms ease-out 1; }
 
+    /* ===== Chips, card, mini-app ===== */
     .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; padding:0; list-style:none; }
     .chip{
-      display:inline-flex; align-items:center; gap:8px; font-weight:800; font-size:13px;
-      border:1.5px solid var(--line); background:#fff; color:#111;
-      padding:7px 12px; border-radius:999px;
+      display:inline-flex; align-items:center; gap:8px; font-weight:700; font-size:13px;
+      border:1px solid var(--line); background:#fff; color:var(--text);
+      padding:8px 12px; border-radius:999px;
     }
     .theme-dark .chip{ background:#141416; border-color:#2a2b2e; color:#fafafa; }
-
     .card{
       border:1px solid var(--line); border-radius:16px; background:#fff; padding:14px;
       box-shadow: 0 10px 24px rgba(0,0,0,.06);
     }
     .theme-dark .card{ background:#121316; border-color:#222; box-shadow:none; }
-
     .mini-app{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
     @media (max-width: 520px){ .mini-app{ grid-template-columns:repeat(2,1fr); } }
     .tile{
       display:flex; flex-direction:column; align-items:center; gap:8px;
-      padding:12px; text-decoration:none; border:1.5px solid var(--line);
-      border-radius:12px; background:#fff; color:var(--text); font-weight:700; font-size:12px;
-      transition: transform .15s ease;
-      box-shadow: 0 6px 18px rgba(0,0,0,.05);
+      padding:12px; text-decoration:none; border:1px solid var(--line);
+      border-radius:12px; background:#fff; color:#111; font-weight:700; font-size:12px;
+      transition: transform .15s ease, box-shadow .2s ease;
     }
-    .tile .icon{ font-size:22px; line-height:1; }
-    .tile:hover{ transform: translateY(-3px); }
+    .tile .icon{ font-size:20px; line-height:1; }
+    .tile:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.08); }
     .theme-dark .tile{ background:#17181b; border-color:#2a2b2e; color:#fafafa; }
-
     .stat-row{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
-    .stat{
-      background: color-mix(in srgb, var(--primary) 9%, transparent);
-      border:1.5px solid color-mix(in srgb, var(--primary) 28%, transparent);
-      border-radius:12px; padding:10px; text-align:center;
-    }
-    .theme-dark .stat{
-      background: color-mix(in srgb, var(--primary-2) 13%, transparent);
-      border-color: color-mix(in srgb, var(--primary-2) 35%, transparent);
-    }
+    .stat{ background:rgba(208,2,27,.06); border:1px solid rgba(208,2,27,.15); border-radius:12px; padding:10px; text-align:center; }
+    .theme-dark .stat{ background:rgba(255,45,85,.10); border-color:rgba(255,45,85,.25); }
     .stat b{ display:block; font-size:18px; }
     .stat small{ font-size:12px; color:var(--muted); }
 
-    /* ===== Nội dung & footer ===== */
+    /* ===== Sections & footer ===== */
     section{padding:24px 0;border-bottom:1px solid var(--line)}
     h1,h2{margin:0 0 10px}
     .lead{color:var(--muted)}
@@ -192,17 +196,11 @@
 
     /* Bump MotoAI bubble above appbar on mobile */
     @media(max-width:899px){ #mta-root{ bottom: calc(64px + 18px + env(safe-area-inset-bottom,0)) !important; } }
-
-    /* Tôn trọng người dùng “giảm chuyển động” */
-    @media (prefers-reduced-motion: reduce){
-      .cta, .tile, .btn-ico{ transition:none }
-      .cta:hover, .tile:hover{ transform:none }
-    }
   </style>
 </head>
 
 <body>
-  <!-- Topbar -->
+  <!-- ===== Topbar ===== -->
   <header class="topbar" role="banner">
     <div class="container row">
       <button id="btnMenu" class="btn-ico" aria-label="Mở menu">☰</button>
@@ -215,7 +213,7 @@
     </div>
   </header>
 
-  <!-- Drawer -->
+  <!-- ===== Drawer (App Menu) ===== -->
   <div id="drawerMask" class="drawer-mask" aria-hidden="true"></div>
   <aside id="drawer" class="drawer" role="dialog" aria-label="Menu ứng dụng" aria-modal="true">
     <div class="hd">
@@ -234,9 +232,10 @@
     </nav>
   </aside>
 
-  <!-- HERO X PRO -->
+  <!-- ===== HERO X (nâng cấp + CTA pro) ===== -->
   <section class="hero-x" id="trangchu">
     <div class="hero-wrap">
+      <!-- Left -->
       <div>
         <span class="badge">🏍️ Thuê xe máy Hoàn Kiếm</span>
         <h1 class="hero-title">Giá rẻ • Giao tận nơi • Cọc nhẹ</h1>
@@ -244,10 +243,16 @@
           Xe số & xe ga, thuê ngày/tuần/tháng. Hotline <b>0942467674</b>.
           Khu Phố Cổ – Hoàn Kiếm, giao nhanh theo yêu cầu.
         </p>
+
         <div class="cta-row">
-          <a class="cta primary" href="banggia.html" aria-label="Xem bảng giá">📋 Bảng giá</a>
-          <a class="cta ghost" href="lienhe.html" aria-label="Zalo / Liên hệ">💬 Zalo / Liên hệ</a>
+          <a class="cta primary lg" href="banggia.html" aria-label="Xem bảng giá">
+            <span class="ico">📋</span> Bảng giá
+          </a>
+          <a class="cta secondary lg" href="lienhe.html" aria-label="Zalo / Liên hệ">
+            <span class="ico">💬</span> Zalo / Liên hệ
+          </a>
         </div>
+
         <ul class="chips">
           <li class="chip">⏱️ Giao nhanh 20’</li>
           <li class="chip">🪪 Thủ tục gọn</li>
@@ -256,6 +261,7 @@
         </ul>
       </div>
 
+      <!-- Right: mini app + trust -->
       <aside class="card" aria-label="Lối tắt nhanh">
         <div class="mini-app">
           <a class="tile" href="tel:0942467674" aria-label="Gọi ngay"><div class="icon">📞</div><span>Gọi</span></a>
@@ -271,7 +277,7 @@
     </div>
   </section>
 
-  <!-- Nội dung -->
+  <!-- ===== Nội dung ===== -->
   <main class="container">
     <section id="gioithieu">
       <h2>Giới thiệu nhanh</h2>
@@ -281,8 +287,8 @@
     <section id="gia">
       <h2>Bảng giá tham khảo</h2>
       <ul>
-        <li>Xe số (Wave/Blade…): từ <b>150k/ngày</b>, thuê tuần từ 600k–700k, thuê tháng từ 1.2tr.</li>
-        <li>Xe ga (Vision/AB…): từ <b>200k/ngày</b>, thuê tuần 800k–1tr, thuê tháng từ 1.4tr–2tr.</li>
+        <li>Xe số (Wave/Blade…): từ <b>150k/ngày</b>, thuê tuần 600k–700k, thuê tháng từ 1.2tr.</li>
+        <li>Xe ga (Vision/AB…): từ <b>200k/ngày</b>, thuê tuần 800k–1tr, thuê tháng 1.4tr–2tr.</li>
         <li>Cọc: 2–5 triệu (tuỳ xe/giấy tờ), có phương án giảm cọc khi đủ giấy tờ.</li>
       </ul>
       <p>Gọi <a href="tel:0942467674">0942467674</a> để chốt giá theo nhu cầu (số ngày, loại xe, địa điểm nhận/trả).</p>
@@ -305,7 +311,7 @@
     © 2025 Cho thuê xe máy Hoàn Kiếm
   </footer>
 
-  <!-- App bar (mobile) -->
+  <!-- ===== Bottom App Bar (mobile) ===== -->
   <nav class="appbar" role="navigation" aria-label="Thanh điều hướng nhanh">
     <a href="#trangchu"><div class="ico">🏠</div><span>Home</span></a>
     <a href="#gia"><div class="ico">🏷️</div><span>Giá</span></a>
@@ -314,7 +320,7 @@
     <a href="https://zalo.me/0942467674" target="_blank" rel="noopener" aria-label="Zalo"><div class="ico">💬</div><span>Zalo</span></a>
   </nav>
 
-  <!-- App-menu logic + theme toggle -->
+  <!-- ===== App logic: theme + drawer + spy + bump AI bubble ===== -->
   <script>
   (function(){
     const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
@@ -356,19 +362,36 @@
     const spy=()=>{ let idx=0,y=scrollY+120; targets.forEach((s,i)=>{ if(s.offsetTop<=y) idx=i; }); appLinks.forEach(a=>a.classList.remove('active')); if(appLinks[idx]) appLinks[idx].classList.add('active'); };
     spy(); document.addEventListener('scroll', spy, {passive:true});
 
-    // Topbar: đậm khi cuộn (PRO+)
-    const topbar = document.querySelector('.topbar');
-    const onTopbarScroll = () => { topbar.classList.toggle('scrolled', window.scrollY > 4); };
-    onTopbarScroll();
-    document.addEventListener('scroll', onTopbarScroll, {passive:true});
-
     // Bump MotoAI bubble above appbar
     const bump=()=>{ const r=document.getElementById('mta-root'); if(r && innerWidth<900){ r.style.bottom='calc(64px + 18px + env(safe-area-inset-bottom,0))'; } };
     bump(); addEventListener('resize', bump);
   })();
   </script>
 
-  <!-- MotoAI v19i (typing 2–5s) -->
+  <!-- ===== CTA pulse 1 lần sau 6s hoặc khi thấy hero ===== -->
+  <script>
+  (function(){
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (sessionStorage.getItem('cta-pulsed')) return;
+    const pulseOnce = ()=>{
+      const btn = document.querySelector('.cta.primary');
+      if(!btn) return;
+      btn.classList.add('pulse');
+      setTimeout(()=> btn.classList.remove('pulse'), 1200);
+      sessionStorage.setItem('cta-pulsed','1');
+    };
+    setTimeout(pulseOnce, 6000);
+    const hero = document.getElementById('trangchu');
+    if('IntersectionObserver' in window && hero){
+      const io = new IntersectionObserver(e=>{
+        if(e[0].isIntersecting){ pulseOnce(); io.disconnect(); }
+      }, {threshold:.6});
+      io.observe(hero);
+    }
+  })();
+  </script>
+
+  <!-- ===== MotoAI v19i (typing 2–5s) ===== -->
   <script>
     window.MotoAI_CONFIG = {
       brand: "MS. Thu Hà",
