@@ -7,85 +7,68 @@
   <meta name="description" content="Thuê xe máy Hoàn Kiếm (Phố Cổ) – xe số, xe ga, thuê ngày/tuần/tháng, cọc nhẹ, giao tận nơi. Gọi 0942467674 để được báo giá nhanh." />
   <link rel="icon" href="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_5245.jpeg" />
   <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_5245.jpeg" />
+
   <style>
     :root{
-      --primary:#d0021b;
-      --topbar-bg: #ffffff;                     /* Light mode topbar */
-      --topbar-line:#dcdcdc;
-      --text:#111; --bg:#fff; --muted:#666; --line:#eaeaea;
+      --primary:#d0021b; --text:#111; --bg:#fff; --muted:#666; --line:#eaeaea;
       --appbar-h:64px; --maxw:1100px;
-      --elev:0 6px 18px rgba(0,0,0,.08);
       font-family:-apple-system,system-ui,Segoe UI,Roboto,Arial,sans-serif;
     }
-    .theme-dark{
-      --bg:#0f1115; --text:#f7f7f7; --muted:#b6b6b6; --line:#26282d;
-      --primary:#ff2d55;
-      /* Dark gradient cho topbar */
-      --topbar-bg: linear-gradient(180deg, #0f1115 0%, #171a20 85%, rgba(23,26,32,0.0) 100%);
-      --topbar-line:#22252b;
-      --elev:0 8px 24px rgba(0,0,0,.35);
-    }
-
-    /* Global */
-    html,body{margin:0;background:var(--bg);color:var(--text)}
+    .theme-dark{ --bg:#101113; --text:#fafafa; --muted:#b6b6b6; --line:#2a2b2e; --primary:#ff2d55; }
+    body{margin:0;background:var(--bg);color:var(--text)}
     .container{max-width:var(--maxw);margin:auto;padding:0 16px}
 
-    /* === TOPBAR (đậm + gradient dark) === */
+    /* ===== Top bar (đậm + gradient trong dark mode) ===== */
     .topbar{
-      position:sticky; top:0; z-index:50;
-      background:var(--topbar-bg);
-      border-bottom:1px solid var(--topbar-line);
-      box-shadow: var(--elev);
-      backdrop-filter: saturate(135%);
+      position:sticky;top:0;z-index:50;background:var(--bg);
+      border-bottom:1px solid var(--line);
+      box-shadow:0 4px 14px rgba(0,0,0,.06);
+    }
+    .theme-dark .topbar{
+      background:
+        linear-gradient(180deg, rgba(255,45,85,.14), rgba(255,45,85,0)),
+        var(--bg);
+      border-color:#26272a;
+      box-shadow:0 10px 28px rgba(0,0,0,.35);
     }
     .topbar .row{display:flex;align-items:center;gap:10px;padding:10px 14px}
     .btn-ico{
-      width:42px;height:42px;border:1px solid var(--line);border-radius:11px;background:rgba(255,255,255,.65);
-      display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text);user-select:none;
-      transition:transform .08s ease, background .2s ease, border-color .2s ease;
+      width:40px;height:40px;border:1px solid var(--line);border-radius:10px;background:transparent;
+      display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text);
+      font-weight:800;
     }
-    .theme-dark .btn-ico{ background:rgba(255,255,255,.06); border-color:var(--topbar-line); }
-    .btn-ico:active{ transform:scale(.97); }
+    .btn-ico:hover{border-color:rgba(208,2,27,.35)}
+    .theme-dark .btn-ico:hover{border-color:rgba(255,45,85,.5)}
     .brand-toggle{margin-left:auto;margin-right:auto}
-    .logo{height:36px;width:auto;display:block; filter: drop-shadow(0 2px 8px rgba(0,0,0,.12));}
+    .logo{height:34px;width:auto;display:block}
 
-    /* Drawer mask (đÃ FIX) */
+    /* ===== Drawer mask (vá đóng/mở) ===== */
     .drawer-mask{
-      position:fixed;inset:0;background:rgba(0,0,0,.30);
+      position:fixed;inset:0;background:rgba(0,0,0,.25);
       opacity:0;visibility:hidden;pointer-events:none;
       transition:opacity .25s ease, visibility .25s ease;
       z-index:60;
     }
     .drawer-mask.show{opacity:1;visibility:visible;pointer-events:auto}
 
-    /* Drawer */
+    /* ===== Drawer ===== */
     .drawer{
-      position:fixed;left:0;top:0;bottom:0;width:min(92vw,360px);
-      background:var(--bg);
-      border-right:1px solid var(--line);
-      transform:translateX(-102%);transition:transform .22s cubic-bezier(.2,.9,.2,1);
-      z-index:61; will-change:transform;-webkit-overflow-scrolling:touch
+      position:fixed;left:0;top:0;bottom:0;width:min(92vw,360px);background:var(--bg);
+      border-right:1px solid var(--line);transform:translateX(-102%);transition:transform .22s ease-out;z-index:61;
+      will-change:transform;-webkit-overflow-scrolling:touch
     }
     .drawer.open{transform:translateX(0)}
     .drawer .hd{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--line)}
     .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:14px}
-    .grid a{
-      display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:12px;text-decoration:none;color:var(--text);
-      background: rgba(255,255,255,.7); transition: border .2s, background .2s, transform .06s;
-    }
-    .theme-dark .grid a{ background: rgba(255,255,255,.04); }
-    .grid a:hover{ border-color: var(--primary); }
-    .grid a:active{ transform: scale(.98); }
+    .grid a{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:12px;text-decoration:none;color:var(--text)}
     .grid a b{font-size:14px} .grid a span{font-size:12px;color:var(--muted)}
     .i{width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(208,2,27,.1);color:var(--primary);font-weight:700}
-    .theme-dark .i{ background: rgba(255,45,85,.12); }
+    .theme-dark .i{background:rgba(255,45,85,.12)}
 
-    /* Bottom app bar (mobile) */
+    /* ===== Bottom app bar (mobile) ===== */
     .appbar{
-      position:fixed;left:0;right:0;bottom:0;z-index:55;background:var(--bg);
-      border-top:1px solid var(--line);
-      display:flex;justify-content:space-around;gap:6px;padding:8px 6px;
-      box-shadow: 0 -6px 18px rgba(0,0,0,.06);
+      position:fixed;left:0;right:0;bottom:0;z-index:55;background:var(--bg);border-top:1px solid var(--line);
+      display:flex;justify-content:space-around;gap:6px;padding:8px 6px
     }
     .appbar a{flex:1;max-width:120px;text-decoration:none;color:var(--text);
       display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px}
@@ -95,16 +78,79 @@
     @media(min-width:900px){ .appbar{display:none} }
     @media(max-width:899px){ body{padding-bottom:calc(var(--appbar-h) + env(safe-area-inset-bottom,0))} }
 
-    /* Sections */
+    /* ===== HERO X PRO (no-image, premium, dark-ready) ===== */
+    .hero-x{
+      background: linear-gradient(135deg, rgba(208,2,27,.06), rgba(208,2,27,.12));
+      border-bottom: 1px solid var(--line);
+    }
+    .theme-dark .hero-x{
+      background: linear-gradient(135deg, rgba(255,45,85,.10), rgba(255,45,85,.20));
+      border-color: #222;
+    }
+    .hero-wrap{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 28px 16px 32px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 22px;
+      align-items: center;
+    }
+    @media (max-width: 900px){
+      .hero-wrap{ grid-template-columns: 1fr; gap: 16px; }
+    }
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;
+      background:#fff;color:var(--primary);
+      border:1px solid rgba(0,0,0,.06);
+      padding:6px 10px;border-radius:999px;font-weight:800;font-size:13px;
+    }
+    .theme-dark .badge{ background:#141416; border-color:#2a2b2e; color:#fff; }
+    .hero-title{ margin:10px 0 8px; font-size:34px; line-height:1.2; }
+    .hero-lead{ margin:0; color:var(--muted); font-size:16px; line-height:1.6; }
+    .cta-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+    .cta{
+      display:inline-block; padding:12px 16px; border-radius:12px;
+      text-decoration:none; font-weight:800; border:2px solid var(--primary);
+      box-shadow: 0 6px 16px rgba(0,0,0,.05);
+    }
+    .cta.primary{ background:var(--primary); color:#fff; }
+    .cta.ghost{ background:transparent; color:var(--primary); }
+    .cta.ghost:hover{ background:#fff; }
+    .theme-dark .cta.ghost:hover{ background:#1b1c20; }
+    .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; padding:0; list-style:none; }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px; font-weight:700; font-size:13px;
+      border:1px solid var(--line); background:#fff; color:var(--text);
+      padding:8px 12px; border-radius:999px;
+    }
+    .theme-dark .chip{ background:#141416; border-color:#2a2b2e; color:#fafafa; }
+    .card{
+      border:1px solid var(--line); border-radius:16px; background:#fff; padding:14px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.06);
+    }
+    .theme-dark .card{ background:#121316; border-color:#222; box-shadow:none; }
+    .mini-app{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+    @media (max-width: 520px){ .mini-app{ grid-template-columns:repeat(2,1fr); } }
+    .tile{
+      display:flex; flex-direction:column; align-items:center; gap:8px;
+      padding:12px; text-decoration:none; border:1px solid var(--line);
+      border-radius:12px; background:#fff; color:var(--text); font-weight:700; font-size:12px;
+      transition: transform .15s ease;
+    }
+    .tile .icon{ font-size:20px; line-height:1; }
+    .tile:hover{ transform: translateY(-2px); }
+    .theme-dark .tile{ background:#17181b; border-color:#2a2b2e; color:#fafafa; }
+    .stat-row{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
+    .stat{ background:rgba(208,2,27,.06); border:1px solid rgba(208,2,27,.15); border-radius:12px; padding:10px; text-align:center; }
+    .theme-dark .stat{ background:rgba(255,45,85,.10); border-color:rgba(255,45,85,.25); }
+    .stat b{ display:block; font-size:18px; }
+    .stat small{ font-size:12px; color:var(--muted); }
+
+    /* ===== Sections & footer ===== */
     section{padding:24px 0;border-bottom:1px solid var(--line)}
     h1,h2{margin:0 0 10px}
     .lead{color:var(--muted)}
-    .hero{display:grid;grid-template-columns:1fr;gap:16px}
-    .hero .imgs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .hero img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line)}
-    @media(min-width:800px){ .hero{grid-template-columns:1.1fr .9fr} }
-
-    /* Footer */
     footer{padding:24px 0;text-align:center;color:var(--muted)}
     footer a{color:var(--primary);text-decoration:none}
 
@@ -114,7 +160,7 @@
 </head>
 
 <body>
-  <!-- Topbar -->
+  <!-- ===== Topbar ===== -->
   <header class="topbar" role="banner">
     <div class="container row">
       <button id="btnMenu" class="btn-ico" aria-label="Mở menu">☰</button>
@@ -127,7 +173,7 @@
     </div>
   </header>
 
-  <!-- Drawer (App Menu) -->
+  <!-- ===== Drawer (App Menu) ===== -->
   <div id="drawerMask" class="drawer-mask" aria-hidden="true"></div>
   <aside id="drawer" class="drawer" role="dialog" aria-label="Menu ứng dụng" aria-modal="true">
     <div class="hd">
@@ -146,24 +192,49 @@
     </nav>
   </aside>
 
-  <!-- Content -->
-  <main class="container">
-    <section id="trangchu">
-      <h1>Cho thuê xe máy Hoàn Kiếm (Phố Cổ)</h1>
-      <p class="lead">Xe số · Xe ga · Thuê ngày/tuần/tháng · Cọc nhẹ · Giao tận nơi (có phí). Gọi <b>0942467674</b> để nhận báo giá nhanh.</p>
-      <div class="hero">
-        <div class="imgs">
-          <img src="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_5245.jpeg" alt="Xe cho thuê khu vực Hoàn Kiếm">
-          <img src="https://thuexemaynguyentu.com/wp-content/uploads/2025/10/Chi-phi-thue-xe-may-Ha-Noi.jpeg" alt="Bảng giá thuê xe máy tham khảo">
-        </div>
-        <div>
-          <p><b>Dịch vụ nhanh</b>: giấy tờ đơn giản, xe bảo dưỡng định kỳ, hỗ trợ mũ bảo hiểm – áo mưa cơ bản.</p>
-          <p><b>Phù hợp</b>: khách du lịch Phố Cổ, đi công tác ngắn ngày, thuê tháng tiết kiệm.</p>
-          <p><b>Hotline/Zalo</b>: <a href="tel:0942467674">0942467674</a> – <a href="https://zalo.me/0942467674" target="_blank" rel="noopener">Nhắn Zalo</a>.</p>
-        </div>
-      </div>
-    </section>
+  <!-- ===== HERO X (gộp mới) ===== -->
+  <section class="hero-x" id="trangchu">
+    <div class="hero-wrap">
+      <!-- Left -->
+      <div>
+        <span class="badge">🏍️ Thuê xe máy Hoàn Kiếm</span>
+        <h1 class="hero-title">Giá rẻ • Giao tận nơi • Cọc nhẹ</h1>
+        <p class="hero-lead">
+          Xe số & xe ga, thuê ngày/tuần/tháng. Hotline <b>0942467674</b>.
+          Khu Phố Cổ – Hoàn Kiếm, giao nhanh theo yêu cầu.
+        </p>
 
+        <div class="cta-row">
+          <a class="cta primary" href="banggia.html" aria-label="Xem bảng giá">📋 Bảng giá</a>
+          <a class="cta ghost" href="lienhe.html" aria-label="Zalo / Liên hệ">💬 Zalo / Liên hệ</a>
+        </div>
+
+        <ul class="chips">
+          <li class="chip">⏱️ Giao nhanh 20’</li>
+          <li class="chip">🪪 Thủ tục gọn</li>
+          <li class="chip">🛠️ Bảo dưỡng định kỳ</li>
+          <li class="chip">🛡️ Mũ + áo mưa</li>
+        </ul>
+      </div>
+
+      <!-- Right: mini app + trust -->
+      <aside class="card" aria-label="Lối tắt nhanh">
+        <div class="mini-app">
+          <a class="tile" href="tel:0942467674" aria-label="Gọi ngay"><div class="icon">📞</div><span>Gọi</span></a>
+          <a class="tile" href="https://zalo.me/0942467674" target="_blank" rel="noopener" aria-label="Chat Zalo"><div class="icon">💬</div><span>Zalo</span></a>
+          <a class="tile" href="https://wa.me/84942467674" target="_blank" rel="noopener" aria-label="WhatsApp"><div class="icon">🟢</div><span>WhatsApp</span></a>
+          <a class="tile" href="https://maps.app.goo.gl/2icTBTxAToyvKTE78" target="_blank" rel="noopener" aria-label="Bản đồ"><div class="icon">📍</div><span>Bản đồ</span></a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><b>4.8/5</b><small>Đánh giá khách</small></div>
+          <div class="stat"><b>8h–21h</b><small>Giờ phục vụ</small></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===== Nội dung còn lại ===== -->
+  <main class="container">
     <section id="gioithieu">
       <h2>Giới thiệu nhanh</h2>
       <p>Chúng tôi cho thuê xe máy tại Hoàn Kiếm, gần khu đi bộ Phố Cổ – linh hoạt theo ngày/tuần/tháng. Có giao/nhận tại nơi khách yêu cầu trong nội thành (phí tuỳ khu vực, đơn ngắn ngày có thể phụ thu).</p>
@@ -196,7 +267,7 @@
     © 2025 Cho thuê xe máy Hoàn Kiếm
   </footer>
 
-  <!-- Bottom App Bar (mobile) -->
+  <!-- ===== Bottom App Bar (mobile) ===== -->
   <nav class="appbar" role="navigation" aria-label="Thanh điều hướng nhanh">
     <a href="#trangchu"><div class="ico">🏠</div><span>Home</span></a>
     <a href="#gia"><div class="ico">🏷️</div><span>Giá</span></a>
@@ -205,11 +276,10 @@
     <a href="https://zalo.me/0942467674" target="_blank" rel="noopener" aria-label="Zalo"><div class="ico">💬</div><span>Zalo</span></a>
   </nav>
 
-  <!-- App-menu logic + theme toggle -->
+  <!-- ===== App-menu logic + theme toggle (đã vá đóng/mở) ===== -->
   <script>
   (function(){
     const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
-
     // Theme
     const KEY='theme-mode-v1', btnTheme=$('#btnTheme');
     function apply(m){
@@ -239,7 +309,9 @@
     $('#btnCloseDrawer').addEventListener('click', close);
     msk.addEventListener('click', close);
     document.addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
+    // Auto-close khi click link trong drawer
     $$('.drawer a').forEach(a=> a.addEventListener('click', close));
+    // Auto-close khi resize rộng (desktop)
     window.addEventListener('resize', ()=>{ if(innerWidth>=900) close(); });
 
     // Scroll spy
@@ -254,7 +326,7 @@
   })();
   </script>
 
-  <!-- MotoAI v19i (typing 2–5s) -->
+  <!-- ===== MotoAI v19i (typing 2–5s) ===== -->
   <script>
     window.MotoAI_CONFIG = {
       brand: "MS. Thu Hà",
