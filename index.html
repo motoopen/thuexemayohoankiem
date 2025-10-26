@@ -21,28 +21,26 @@
     /* ===== Top bar (đậm + gradient trong dark mode) ===== */
     .topbar{
       position:sticky;top:0;z-index:50;background:var(--bg);
-      border-bottom:1px solid var(--line);
-      box-shadow:0 6px 16px rgba(0,0,0,.08);
-      backdrop-filter: saturate(140%) blur(2px);
+      border-bottom:2px solid var(--line);
+      box-shadow:0 6px 18px rgba(0,0,0,.08);
     }
     .theme-dark .topbar{
       background:
         linear-gradient(180deg, rgba(255,45,85,.14), rgba(255,45,85,0)),
         var(--bg);
       border-color:#26272a;
-      box-shadow:0 12px 28px rgba(0,0,0,.35);
+      box-shadow:0 12px 30px rgba(0,0,0,.36);
     }
     .topbar .row{display:flex;align-items:center;gap:10px;padding:10px 14px}
     .btn-ico{
-      width:40px;height:40px;border:1px solid var(--line);border-radius:10px;background:transparent;
+      width:42px;height:42px;border:2px solid var(--line);border-radius:12px;background:transparent;
       display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text);
-      font-weight:800; transition:border-color .2s ease, transform .1s ease;
+      font-weight:800;
     }
     .btn-ico:hover{border-color:rgba(208,2,27,.35)}
-    .btn-ico:active{transform:scale(.98)}
     .theme-dark .btn-ico:hover{border-color:rgba(255,45,85,.5)}
     .brand-toggle{margin-left:auto;margin-right:auto}
-    .logo{height:34px;width:auto;display:block}
+    .logo{height:36px;width:auto;display:block}
 
     /* ===== Drawer mask (vá đóng/mở) ===== */
     .drawer-mask{
@@ -110,58 +108,20 @@
     .theme-dark .badge{ background:#141416; border-color:#2a2b2e; color:#fff; }
     .hero-title{ margin:10px 0 8px; font-size:34px; line-height:1.2; }
     .hero-lead{ margin:0; color:var(--muted); font-size:16px; line-height:1.6; }
-
-    /* ===== CTA PRO ===== */
     .cta-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
     .cta{
-      --cta-bg: var(--primary);
-      --cta-text: #fff;
-      --cta-brd: var(--primary);
-      display:inline-flex; align-items:center; gap:10px;
-      padding:14px 18px; border-radius:14px; text-decoration:none;
-      font-weight:900; border:2px solid var(--cta-brd);
-      color:var(--cta-text);
-      background: linear-gradient(180deg, color-mix(in srgb, var(--cta-bg) 88%, #fff 12%), var(--cta-bg));
-      box-shadow: 0 10px 24px rgba(0,0,0,.08), inset 0 1px 0 rgba(255,255,255,.15);
-      transform: translateY(0);
-      transition: transform .12s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
+      display:inline-block; padding:12px 16px; border-radius:12px;
+      text-decoration:none; font-weight:800; border:2px solid var(--primary);
+      box-shadow: 0 6px 16px rgba(0,0,0,.05);
     }
-    .cta .ico{font-size:18px;line-height:0}
-    .cta:hover{ transform: translateY(-2px); box-shadow: 0 16px 34px rgba(0,0,0,.12); }
-    .cta:active{ transform: translateY(0); box-shadow: 0 8px 18px rgba(0,0,0,.10); }
-    .cta:focus-visible{
-      outline:none;
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 30%, transparent), 0 10px 24px rgba(0,0,0,.10);
-      border-color: color-mix(in srgb, var(--primary) 60%, transparent);
-    }
-    .cta.lg{ padding:16px 20px; border-radius:16px; font-size:16px }
-    .cta.sm{ padding:10px 14px; border-radius:12px; font-size:14px }
-    .cta.primary{ --cta-bg: var(--primary); --cta-text:#fff; --cta-brd: var(--primary); }
-    .cta.secondary{
-      --cta-bg: transparent; --cta-text: var(--primary);
-      --cta-brd: color-mix(in srgb, var(--primary) 55%, transparent);
-      background: color-mix(in srgb, var(--primary) 6%, transparent);
-      box-shadow: 0 6px 18px rgba(0,0,0,.06);
-      color: var(--cta-text);
-    }
-    .cta.secondary:hover{
-      background: color-mix(in srgb, var(--primary) 10%, transparent);
-    }
-    .theme-dark .cta.secondary{
-      background: color-mix(in srgb, var(--primary) 12%, transparent);
-    }
-    @keyframes ctaPulse {
-      0%   { transform: translateY(0) scale(1);   box-shadow: 0 10px 24px rgba(0,0,0,.10); }
-      50%  { transform: translateY(-2px) scale(1.02); box-shadow: 0 18px 36px rgba(0,0,0,.16); }
-      100% { transform: translateY(0) scale(1);   box-shadow: 0 10px 24px rgba(0,0,0,.10); }
-    }
-    .cta.pulse{ animation: ctaPulse 900ms ease-out 1; }
-
-    /* ===== Chips, card, mini-app ===== */
+    .cta.primary{ background:var(--primary); color:#fff; }
+    .cta.ghost{ background:transparent; color:var(--primary); }
+    .cta.ghost:hover{ background:#fff; }
+    .theme-dark .cta.ghost:hover{ background:#1b1c20; }
     .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; padding:0; list-style:none; }
     .chip{
       display:inline-flex; align-items:center; gap:8px; font-weight:700; font-size:13px;
-      border:1px solid var(--line); background:#fff; color:var(--text);
+      border:1px solid var(--line); background:#fff; color:#000;
       padding:8px 12px; border-radius:999px;
     }
     .theme-dark .chip{ background:#141416; border-color:#2a2b2e; color:#fafafa; }
@@ -175,11 +135,11 @@
     .tile{
       display:flex; flex-direction:column; align-items:center; gap:8px;
       padding:12px; text-decoration:none; border:1px solid var(--line);
-      border-radius:12px; background:#fff; color:#111; font-weight:700; font-size:12px;
-      transition: transform .15s ease, box-shadow .2s ease;
+      border-radius:12px; background:#fff; color:#000; font-weight:700; font-size:12px;
+      transition: transform .15s ease;
     }
     .tile .icon{ font-size:20px; line-height:1; }
-    .tile:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,.08); }
+    .tile:hover{ transform: translateY(-2px); }
     .theme-dark .tile{ background:#17181b; border-color:#2a2b2e; color:#fafafa; }
     .stat-row{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
     .stat{ background:rgba(208,2,27,.06); border:1px solid rgba(208,2,27,.15); border-radius:12px; padding:10px; text-align:center; }
@@ -207,7 +167,7 @@
       <div class="brand-toggle">
         <button id="btnTheme" class="btn-ico" aria-label="Đổi giao diện">🌞</button>
       </div>
-      <a href="#trangchu" title="Trang chủ">
+      <a href="#sec-hero" title="Trang chủ">
         <img class="logo" src="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_5245.jpeg" alt="Cho thuê xe máy Hoàn Kiếm">
       </a>
     </div>
@@ -221,9 +181,9 @@
       <button id="btnCloseDrawer" class="btn-ico" aria-label="Đóng">✕</button>
     </div>
     <nav class="grid" aria-label="Điều hướng">
-      <a href="#trangchu"><span class="i">🏠</span><div><b>Trang chủ</b><span>Về dịch vụ</span></div></a>
-      <a href="#gioithieu"><span class="i">📄</span><div><b>Giới thiệu</b><span>Thông tin nhanh</span></div></a>
-      <a href="#gia"><span class="i">🏷️</span><div><b>Bảng giá</b><span>Ngày/tuần/tháng</span></div></a>
+      <a href="#sec-hero"><span class="i">🏠</span><div><b>Trang chủ</b><span>Về dịch vụ</span></div></a>
+      <a href="#sec-gioithieu"><span class="i">📄</span><div><b>Giới thiệu</b><span>Thông tin nhanh</span></div></a>
+      <a href="#sec-banggia"><span class="i">🏷️</span><div><b>Bảng giá</b><span>Ngày/tuần/tháng</span></div></a>
       <a href="Faq.html"><span class="i">❓</span><div><b>FAQ</b><span>Câu hỏi thường gặp</span></div></a>
       <a href="Dieukhoansudung.html"><span class="i">📜</span><div><b>Điều khoản</b><span>Điều kiện thuê</span></div></a>
       <a href="Chinhsachbaomat.html"><span class="i">🔐</span><div><b>Chính sách</b><span>Bảo mật</span></div></a>
@@ -232,8 +192,8 @@
     </nav>
   </aside>
 
-  <!-- ===== HERO X (nâng cấp + CTA pro) ===== -->
-  <section class="hero-x" id="trangchu">
+  <!-- ===== HERO X (gộp mới) ===== -->
+  <section class="hero-x" id="sec-hero">
     <div class="hero-wrap">
       <!-- Left -->
       <div>
@@ -245,12 +205,8 @@
         </p>
 
         <div class="cta-row">
-          <a class="cta primary lg" href="banggia.html" aria-label="Xem bảng giá">
-            <span class="ico">📋</span> Bảng giá
-          </a>
-          <a class="cta secondary lg" href="lienhe.html" aria-label="Zalo / Liên hệ">
-            <span class="ico">💬</span> Zalo / Liên hệ
-          </a>
+          <a class="cta primary" href="banggia.html" aria-label="Xem bảng giá">📋 Bảng giá</a>
+          <a class="cta ghost" href="lienhe.html" aria-label="Zalo / Liên hệ">💬 Zalo / Liên hệ</a>
         </div>
 
         <ul class="chips">
@@ -279,22 +235,22 @@
 
   <!-- ===== Nội dung ===== -->
   <main class="container">
-    <section id="gioithieu">
+    <section id="sec-gioithieu">
       <h2>Giới thiệu nhanh</h2>
       <p>Chúng tôi cho thuê xe máy tại Hoàn Kiếm, gần khu đi bộ Phố Cổ – linh hoạt theo ngày/tuần/tháng. Có giao/nhận tại nơi khách yêu cầu trong nội thành (phí tuỳ khu vực, đơn ngắn ngày có thể phụ thu).</p>
     </section>
 
-    <section id="gia">
+    <section id="sec-banggia">
       <h2>Bảng giá tham khảo</h2>
       <ul>
-        <li>Xe số (Wave/Blade…): từ <b>150k/ngày</b>, thuê tuần 600k–700k, thuê tháng từ 1.2tr.</li>
-        <li>Xe ga (Vision/AB…): từ <b>200k/ngày</b>, thuê tuần 800k–1tr, thuê tháng 1.4tr–2tr.</li>
+        <li>Xe số (Wave/Blade…): từ <b>150k/ngày</b>, thuê tuần từ 600k–700k, thuê tháng từ 1.2tr.</li>
+        <li>Xe ga (Vision/AB…): từ <b>200k/ngày</b>, thuê tuần 800k–1tr, thuê tháng từ 1.4tr–2tr.</li>
         <li>Cọc: 2–5 triệu (tuỳ xe/giấy tờ), có phương án giảm cọc khi đủ giấy tờ.</li>
       </ul>
       <p>Gọi <a href="tel:0942467674">0942467674</a> để chốt giá theo nhu cầu (số ngày, loại xe, địa điểm nhận/trả).</p>
     </section>
 
-    <section id="lienhe">
+    <section id="sec-lienhe">
       <h2>Liên hệ</h2>
       <p>Hotline/Zalo: <a href="tel:0942467674">0942467674</a> – <a href="https://zalo.me/0942467674" target="_blank" rel="noopener">zalo.me/0942467674</a></p>
       <p>WhatsApp: <a href="https://wa.me/84942467674" target="_blank" rel="noopener">wa.me/84942467674</a></p>
@@ -313,14 +269,14 @@
 
   <!-- ===== Bottom App Bar (mobile) ===== -->
   <nav class="appbar" role="navigation" aria-label="Thanh điều hướng nhanh">
-    <a href="#trangchu"><div class="ico">🏠</div><span>Home</span></a>
-    <a href="#gia"><div class="ico">🏷️</div><span>Giá</span></a>
-    <a href="#gioithieu"><div class="ico">🏍️</div><span>Dịch vụ</span></a>
+    <a href="#sec-hero"><div class="ico">🏠</div><span>Home</span></a>
+    <a href="#sec-banggia"><div class="ico">🏷️</div><span>Giá</span></a>
+    <a href="#sec-gioithieu"><div class="ico">📄</div><span>Giới thiệu</span></a>
     <a class="cta" href="tel:0942467674" aria-label="Gọi 0942467674"><div class="ico">📞</div><span>Gọi</span></a>
-    <a href="https://zalo.me/0942467674" target="_blank" rel="noopener" aria-label="Zalo"><div class="ico">💬</div><span>Zalo</span></a>
+    <a href="#sec-lienhe" aria-label="Liên hệ"><div class="ico">💬</div><span>Liên hệ</span></a>
   </nav>
 
-  <!-- ===== App logic: theme + drawer + spy + bump AI bubble ===== -->
+  <!-- ===== App-menu logic + theme toggle + scroll-spy (ID chuẩn sec-…) ===== -->
   <script>
   (function(){
     const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
@@ -336,18 +292,12 @@
     // Drawer
     const d=$('#drawer'), msk=$('#drawerMask');
     const open=()=>{
-      d.classList.add('open');
-      msk.classList.add('show');
-      msk.setAttribute('aria-hidden','false');
-      document.body.style.overflow='hidden';
-      document.body.style.touchAction='none';
+      d.classList.add('open'); msk.classList.add('show'); msk.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden'; document.body.style.touchAction='none';
     };
     const close=()=>{
-      d.classList.remove('open');
-      msk.classList.remove('show');
-      msk.setAttribute('aria-hidden','true');
-      document.body.style.overflow='';
-      document.body.style.touchAction='';
+      d.classList.remove('open'); msk.classList.remove('show'); msk.setAttribute('aria-hidden','true');
+      document.body.style.overflow=''; document.body.style.touchAction='';
     };
     $('#btnMenu').addEventListener('click', open);
     $('#btnCloseDrawer').addEventListener('click', close);
@@ -356,8 +306,8 @@
     $$('.drawer a').forEach(a=> a.addEventListener('click', close));
     window.addEventListener('resize', ()=>{ if(innerWidth>=900) close(); });
 
-    // Scroll spy
-    const appLinks = $$('.appbar a[href^="#"]');
+    // Scroll spy (theo ID #sec-…)
+    const appLinks = $$('.appbar a[href^="#sec-"]');
     const targets = appLinks.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
     const spy=()=>{ let idx=0,y=scrollY+120; targets.forEach((s,i)=>{ if(s.offsetTop<=y) idx=i; }); appLinks.forEach(a=>a.classList.remove('active')); if(appLinks[idx]) appLinks[idx].classList.add('active'); };
     spy(); document.addEventListener('scroll', spy, {passive:true});
@@ -365,29 +315,10 @@
     // Bump MotoAI bubble above appbar
     const bump=()=>{ const r=document.getElementById('mta-root'); if(r && innerWidth<900){ r.style.bottom='calc(64px + 18px + env(safe-area-inset-bottom,0))'; } };
     bump(); addEventListener('resize', bump);
-  })();
-  </script>
 
-  <!-- ===== CTA pulse 1 lần sau 6s hoặc khi thấy hero ===== -->
-  <script>
-  (function(){
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (sessionStorage.getItem('cta-pulsed')) return;
-    const pulseOnce = ()=>{
-      const btn = document.querySelector('.cta.primary');
-      if(!btn) return;
-      btn.classList.add('pulse');
-      setTimeout(()=> btn.classList.remove('pulse'), 1200);
-      sessionStorage.setItem('cta-pulsed','1');
-    };
-    setTimeout(pulseOnce, 6000);
-    const hero = document.getElementById('trangchu');
-    if('IntersectionObserver' in window && hero){
-      const io = new IntersectionObserver(e=>{
-        if(e[0].isIntersecting){ pulseOnce(); io.disconnect(); }
-      }, {threshold:.6});
-      io.observe(hero);
-    }
+    // (Tuỳ chọn) Guard chống trùng ID
+    const seen=new Set();
+    document.querySelectorAll('[id]').forEach(el=>{ const id=el.id.trim(); if(!id) return; if(seen.has(id)) console.warn('⚠️ Trùng ID:', id); seen.add(id); });
   })();
   </script>
 
