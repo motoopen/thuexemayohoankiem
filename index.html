@@ -9,52 +9,72 @@
   <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_5245.jpeg" />
   <style>
     :root{
-      --primary:#d0021b; --text:#111; --bg:#fff; --muted:#666; --line:#eaeaea;
+      --primary:#d0021b; --primary-dark:#8b0000;
+      --text:#111; --bg:#fff; --muted:#666; --line:#eaeaea;
       --appbar-h:64px; --maxw:1100px;
       font-family:-apple-system,system-ui,Segoe UI,Roboto,Arial,sans-serif;
     }
-    .theme-dark{ --bg:#101113; --text:#fafafa; --muted:#b6b6b6; --line:#2a2b2e; --primary:#ff2d55; }
+    .theme-dark{ --bg:#0f1113; --text:#f7f8fa; --muted:#b7bcc3; --line:#2a2d31; --primary:#ff2d55; --primary-dark:#c80f2e; }
+
     body{margin:0;background:var(--bg);color:var(--text)}
+    body.noscroll{overflow:hidden}
     .container{max-width:var(--maxw);margin:auto;padding:0 16px}
 
-    /* Top bar */
-    .topbar{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+    /* ===== Topbar (gradient + blur + shrink) ===== */
+    .topbar{position:sticky;top:0;z-index:100;background:linear-gradient(120deg,var(--primary) 0%,var(--primary-dark) 100%);
+            border-bottom:1px solid rgba(255,255,255,.08); color:#fff;
+            backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+            transition:all .24s ease}
     .topbar .row{display:flex;align-items:center;gap:10px;padding:10px 14px}
-    .btn-ico{width:40px;height:40px;border:1px solid var(--line);border-radius:10px;background:transparent;
-      display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text)}
+    .btn-ico{width:40px;height:40px;border:1px solid rgba(255,255,255,.25);border-radius:12px;background:rgba(255,255,255,.08);
+      display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;
+      box-shadow:0 1px 6px rgba(0,0,0,.25); transition:transform .16s ease, box-shadow .2s ease}
+    .btn-ico:hover{transform:translateY(-1px); box-shadow:0 6px 16px rgba(0,0,0,.28), 0 0 0 2px rgba(255,255,255,.18) inset}
     .brand-toggle{margin-left:auto;margin-right:auto}
-    .logo{height:34px;width:auto;display:block}
+    .logo{height:34px;width:auto;display:block;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+    .topbar.scrolled{background:linear-gradient(120deg,var(--primary-dark) 0%,var(--primary) 100%);
+                     box-shadow:0 6px 18px rgba(0,0,0,.18)}
+    .topbar.scrolled .logo{transform:scale(.86); transition:transform .18s ease}
 
-    /* Drawer mask (đÃ FIX) */
-    .drawer-mask{
-      position:fixed;inset:0;background:rgba(0,0,0,.25);
-      opacity:0;visibility:hidden;pointer-events:none;
-      transition:opacity .25s ease, visibility .25s ease;
-      z-index:60;
-    }
-    .drawer-mask.show{opacity:1;visibility:visible;pointer-events:auto}
-
-    /* Drawer */
+    /* ===== Drawer (glow border) ===== */
+    .drawer-mask{position:fixed;inset:0;background:rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:opacity .18s;z-index:98}
+    .drawer-mask.show{opacity:1;pointer-events:auto}
     .drawer{position:fixed;left:0;top:0;bottom:0;width:min(92vw,360px);background:var(--bg);
-      border-right:1px solid var(--line);transform:translateX(-102%);transition:transform .22s ease-out;z-index:61;
-      will-change:transform;-webkit-overflow-scrolling:touch}
-    .drawer.open{transform:translateX(0)}
+      border-right:1px solid var(--line);transform:translateX(-102%);transition:transform .22s ease-out;z-index:99}
+    .drawer.open{transform:translateX(0); box-shadow:10px 0 30px rgba(0,0,0,.22)}
     .drawer .hd{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--line)}
     .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:14px}
-    .grid a{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:12px;text-decoration:none;color:var(--text)}
+    .grid a{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:12px;text-decoration:none;color:var(--text);position:relative;overflow:hidden}
     .grid a b{font-size:14px} .grid a span{font-size:12px;color:var(--muted)}
     .i{width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;background:rgba(208,2,27,.1);color:var(--primary);font-weight:700}
+    .grid a::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .25s}
+    .grid a:hover{border-color:rgba(208,2,27,.45)}
+    .grid a:hover::after{opacity:1; box-shadow:0 0 0 1px rgba(208,2,27,.45), 0 6px 16px rgba(208,2,27,.18) inset}
 
-    /* Bottom app bar (mobile) */
-    .appbar{position:fixed;left:0;right:0;bottom:0;z-index:55;background:var(--bg);border-top:1px solid var(--line);
-      display:flex;justify-content:space-around;gap:6px;padding:8px 6px}
+    /* ===== Bottom App Bar (mobile) ===== */
+    .appbar{position:fixed;left:0;right:0;bottom:0;z-index:95;background:rgba(255,255,255,.96);
+      border-top:1px solid var(--line);display:flex;justify-content:space-around;gap:6px;padding:8px 6px;
+      backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px)}
+    .theme-dark .appbar{background:rgba(16,17,19,.9)}
     .appbar a{flex:1;max-width:120px;text-decoration:none;color:var(--text);
       display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px}
     .appbar .ico{font-size:18px;line-height:1}
-    .appbar a.cta{color:#fff;background:var(--primary);border-radius:12px;padding:8px 10px}
     .appbar a.active{color:var(--primary);font-weight:700}
-    @media(min-width:900px){ .appbar{display:none} }
-    @media(max-width:899px){ body{padding-bottom:calc(var(--appbar-h) + env(safe-area-inset-bottom,0))} }
+    .appbar a.cta{position:relative; color:#fff; border-radius:12px; padding:8px 10px; overflow:hidden;
+      background:linear-gradient(120deg,var(--primary) 0%, var(--primary-dark) 100%);
+      box-shadow:0 10px 18px rgba(208,2,27,.28)}
+    .appbar a.cta::before{content:""; position:absolute; top:0; left:-150%; width:50%; height:100%;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+      animation:sweep 2.8s linear infinite}
+    .appbar a.cta::after{content:""; position:absolute; inset:-6px; border-radius:14px; border:2px solid rgba(255,255,255,.24);
+      animation:ring 2.4s ease-in-out infinite}
+
+    /* Zalo blink hint */
+    .appbar a[aria-label="Zalo"] .ico{animation:pulse .9s ease-in-out infinite alternate; transform-origin:center}
+
+    @keyframes sweep{0%{left:-150%}100%{left:150%}}
+    @keyframes ring{0%{box-shadow:0 0 0 0 rgba(255,255,255,.0)}50%{box-shadow:0 0 0 6px rgba(255,255,255,.08)}100%{box-shadow:0 0 0 0 rgba(255,255,255,.0)}}
+    @keyframes pulse{0%{transform:scale(1)}100%{transform:scale(1.12)}}
 
     /* Sections */
     section{padding:24px 0;border-bottom:1px solid var(--line)}
@@ -71,6 +91,9 @@
 
     /* Bump MotoAI bubble above appbar on mobile */
     @media(max-width:899px){ #mta-root{ bottom: calc(64px + 18px + env(safe-area-inset-bottom,0)) !important; } }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce){ *{animation:none!important; transition:none!important} }
   </style>
 </head>
 
@@ -88,7 +111,7 @@
     </div>
   </header>
 
-  <!-- Drawer (App Menu) -->
+  <!-- Drawer -->
   <div id="drawerMask" class="drawer-mask" aria-hidden="true"></div>
   <aside id="drawer" class="drawer" role="dialog" aria-label="Menu ứng dụng" aria-modal="true">
     <div class="hd">
@@ -127,7 +150,7 @@
 
     <section id="gioithieu">
       <h2>Giới thiệu nhanh</h2>
-      <p>Chúng tôi cho thuê xe máy tại Hoàn Kiếm, gần khu đi bộ Phố Cổ – linh hoạt theo ngày/tuần/tháng. Có giao/nhận tại nơi khách yêu cầu trong nội thành (phí tuỳ khu vực, đơn ngắn ngày có thể phụ thu).</p>
+      <p>Cho thuê xe máy tại Hoàn Kiếm, gần khu đi bộ Phố Cổ – linh hoạt theo ngày/tuần/tháng. Có giao/nhận tại nơi khách yêu cầu trong nội thành (phí tuỳ khu vực, đơn ngắn ngày có thể phụ thu).</p>
     </section>
 
     <section id="gia">
@@ -166,7 +189,7 @@
     <a href="https://zalo.me/0942467674" target="_blank" rel="noopener" aria-label="Zalo"><div class="ico">💬</div><span>Zalo</span></a>
   </nav>
 
-  <!-- App-menu logic + theme toggle (đã vá đóng/mở) -->
+  <!-- App-menu logic + theme toggle (nâng cấp) -->
   <script>
   (function(){
     const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
@@ -176,30 +199,20 @@
     apply(localStorage.getItem(KEY)||'light');
     btnTheme.addEventListener('click',()=>{ const cur=localStorage.getItem(KEY)||'light'; const n=cur==='light'?'dark':'light'; localStorage.setItem(KEY,n); apply(n); });
 
-    // Drawer
+    // Drawer open/close
     const d=$('#drawer'), msk=$('#drawerMask');
-    const open=()=>{
-      d.classList.add('open');
-      msk.classList.add('show');
-      msk.setAttribute('aria-hidden','false');
-      document.body.style.overflow='hidden';
-      document.body.style.touchAction='none';
-    };
-    const close=()=>{
-      d.classList.remove('open');
-      msk.classList.remove('show');
-      msk.setAttribute('aria-hidden','true');
-      document.body.style.overflow='';
-      document.body.style.touchAction='';
-    };
+    const open=()=>{ d.classList.add('open'); msk.classList.add('show'); msk.setAttribute('aria-hidden','false'); document.body.classList.add('noscroll'); };
+    const close=()=>{ d.classList.remove('open'); msk.classList.remove('show'); msk.setAttribute('aria-hidden','true'); document.body.classList.remove('noscroll'); };
     $('#btnMenu').addEventListener('click', open);
     $('#btnCloseDrawer').addEventListener('click', close);
     msk.addEventListener('click', close);
     document.addEventListener('keydown',e=>{ if(e.key==='Escape') close(); });
-    // Auto-close khi click link trong drawer
-    $$('.drawer a').forEach(a=> a.addEventListener('click', close));
-    // Auto-close khi resize rộng (desktop)
-    window.addEventListener('resize', ()=>{ if(innerWidth>=900) close(); });
+    $$('#drawer .grid a').forEach(a=> a.addEventListener('click', close));
+
+    // Topbar shrink on scroll
+    const topbar=$('.topbar');
+    const onScroll=()=>{ if(window.scrollY>80) topbar.classList.add('scrolled'); else topbar.classList.remove('scrolled'); };
+    onScroll(); document.addEventListener('scroll', onScroll, {passive:true});
 
     // Scroll spy
     const appLinks = $$('.appbar a[href^="#"]');
@@ -207,7 +220,7 @@
     const spy=()=>{ let idx=0,y=scrollY+120; targets.forEach((s,i)=>{ if(s.offsetTop<=y) idx=i; }); appLinks.forEach(a=>a.classList.remove('active')); if(appLinks[idx]) appLinks[idx].classList.add('active'); };
     spy(); document.addEventListener('scroll', spy, {passive:true});
 
-    // Bump MotoAI bubble above appbar
+    // MotoAI bubble bump (mobile)
     const bump=()=>{ const r=document.getElementById('mta-root'); if(r && innerWidth<900){ r.style.bottom='calc(64px + 18px + env(safe-area-inset-bottom,0))'; } };
     bump(); addEventListener('resize', bump);
   })();
