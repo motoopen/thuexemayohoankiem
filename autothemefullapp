@@ -1,0 +1,154 @@
+### 🧩 CẤU HÌNH NHANH (chỉ cần sửa tại đây)
+
+CONFIG={
+  TITLE:"Dịch vụ thuê xe máy Hoàn Kiếm – Nguyễn Tú",
+  DOMAIN:"https://motoopen.github.io/thuexemayohoankiem",
+  PHONE:"0942467674",
+  ZALO:"https://zalo.me/0942467674",
+  EMAIL:"contact@example.com",
+  ADDRESS:"112 Nguyễn Văn Cừ, Long Biên, Hà Nội",
+  LOGO_URL:"https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png",
+  MAIN_COLOR:"#0A84FF"
+};
+
+---
+
+### 🚀 SINH FILE HTML
+
+Bạn là trình tạo HTML one-file.  
+Sinh **1 file index.html** (HTML + CSS + JS nội tuyến, không dùng jQuery, Bootstrap, API ngoài).  
+Font: Inter, Material Symbols Rounded, Font Awesome 6 Free.  
+Toàn bộ JS bọc trong 1 IIFE defer cuối body (sau script MotoAI v36).  
+Văn bản tiếng Việt tự nhiên, không chứa “ạ”, “nhé”, “nha”.  
+Trang phải tối ưu **SEO + UX + tốc độ + mobile-first**, hiển thị đẹp như app.
+
+---
+
+### 🎨 STYLE + RANDOM THEME
+
+STYLE={
+  STYLE_PRESET:"UltraTitanGlass",
+  ACCENT:CONFIG.MAIN_COLOR,
+  ACCENT2:"#00C49A",
+  RADIUS:"20px",
+  LANG:"vi",
+  DEFAULT_THEME:"auto",
+  BODY_BG_LIGHT:"#f9fafa",
+  BODY_BG_DARK:"#0c0d0f",
+  GLASS:true,
+  BLUR:"10px",
+  SHADOW:"0 4px 20px rgba(0,0,0,0.1)"
+};
+
+THEME_RANDOMIZER={
+  ENABLED:true,
+  POOL:[
+    "UltraTitanGlass",
+    "NeoMint",
+    "MidnightPurple",
+    "AeroGlassBlue",
+    "MinimalWhite",
+    "SunsetOrange",
+    "FacebookUltra",
+    "MotoDarkCarbon"
+  ],
+  SYNC_ACCENT:true,
+  RANDOMIZE_ON_LOAD:true
+};
+
+STYLE_SELECTOR={
+  ENABLED:true,
+  AUTO_ADAPT:true,
+  DEFAULT:"UltraTitanGlass"
+};
+
+THEME_SELECTOR_UI={
+  ENABLE_ANIM:true,
+  CARD_HOVER_GLOW:true,
+  TRANSITION_TIME:"0.3s",
+  CARD_RADIUS:"16px",
+  USE_ICON_PREVIEW:true,
+  SAVE_LAST_THEME:true,
+  AUTO_APPLY:true,
+  LABEL:"Tùy chỉnh giao diện",
+  DESCRIPTION:"Chọn phong cách hiển thị yêu thích"
+};
+
+---
+
+### ⚙️ FEATURES & APP SHELL
+FEATURES={
+  USE_CHAT:true,
+  USE_QUICKCALL:true,
+  USE_QUICKCALL_LEFT:true,
+  USE_CARD_TILT:true,
+  USE_SCROLL_ANIM:true,
+  USE_VIEW_TRANSITIONS:true,
+  USE_CONTACT_FORM:true,
+  USE_HERO_MINIAPP:true
+};
+
+APP_SHELL={
+  ENABLED:true,
+  SYNC_MENU_FOOTER:true,
+  STYLE_MATCH_THEME:true,
+  MENU_MODE:"glass-fixed",
+  FOOTER_MODE:"mini-dock",
+  HERO_MODE:"service-grid",
+  AUTO_THEME_SYNC:true
+};
+
+---
+
+### 🌈 NÂNG CẤP TOÀN DIỆN CHO GEMINI (AI + UX + SEO + HIỆU ỨNG)
+
+AI_DIRECTIVE="Sinh giao diện theo cảm hứng app di động, hiệu ứng glassmorphism, shadow mềm, layout responsive, tối ưu UX theo hướng chạm – phản hồi nhanh. Tự điều chỉnh ánh sáng, tone màu theo theme, bố cục rõ ràng, tập trung CTA chính.";
+
+INTERACT_LAYER={
+  HOVER_CARD:true,
+  BUTTON_RIPPLE:true,
+  ICON_BOUNCE:true,
+  IMAGE_TILT:true,
+  SMOOTH_SCROLL:true,
+  TRANSITION_EASE:"cubic-bezier(0.25,0.1,0.25,1)"
+};
+
+SMART_SEO={
+  AUTO_KEYWORDS:true,
+  LINK_DENSITY_MAX:5,
+  AUTO_INTERNAL_LINK:true,
+  TITLE_MATCH_H1:true,
+  REL_CANONICAL_FIX:true,
+  LAZY_OG:true,
+  AUTO_META_REWRITE:true
+};
+
+USER_FLOW_HINTS={
+  DEFAULT_PATH:["Trang chủ","Dịch vụ","Bảng giá","Liên hệ"],
+  TIME_ON_SECTION:5,
+  CTA_BEHAVIOR:"focus-first-button",
+  SCROLL_ANIM_EASE:"ease-out",
+  INTERACTION_TONE:"friendly-UX"
+};
+
+VALIDATION={
+  HTML:true,
+  LINK:true,
+  ACCESSIBILITY:true,
+  SEO:true,
+  PERFORMANCE:true,
+  REPORT:"console",
+  FIX_MINOR:true
+};
+
+CREATIVE_HINTS_EXTRA={
+  AI_STYLE_NOTE:"Tăng độ phản chiếu, đổ bóng nhẹ, ripple khi click, fade-in toàn trang, hiệu ứng glass layer mượt.",
+  UX_NOTE:"Menu cố định, footer mini-app, padding hợp lý, icon và text cân đối, nút CTA nổi bật.",
+  SEO_NOTE:"3–5 internal link tự nhiên, meta tag đồng nhất H1/H2, preload font, lazyload hình, internal backlink chuẩn.",
+  PERFORMANCE_NOTE:"Giảm DOM load, inline CSS cần thiết, defer script, tránh repaint layout."
+};
+
+---
+
+**Kết thúc:**  
+> Chạy generator để xuất `index.html` hoàn chỉnh — giao diện glassmorphism, theme ngẫu nhiên, selector đẹp có hiệu ứng glow, UX cực mượt, SEO tự động, tốc độ cao và tối ưu toàn diện cho Gemini.
