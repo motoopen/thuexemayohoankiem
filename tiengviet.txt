@@ -1,0 +1,209 @@
+Bạn là trình tạo HTML one-file.  
+Sinh **1 file index.html** (HTML + CSS + JS nội tuyến, không dùng jQuery, Bootstrap, API ngoài).  
+Font CDN: Inter, Material Symbols Rounded, Font Awesome 6 Free.  
+Toàn bộ JS bọc trong 1 IIFE (inline) defer cuối body, đặt sau 1 thẻ external MotoAI v36 (thứ tự thực thi: MotoAI → IIFE).  
+Văn bản tiếng Việt tự nhiên, không chứa “ạ”, “nhé”, “nha”.  
+Trang tối ưu **SEO + UX + tốc độ + trải nghiệm mobile**, hiển thị đẹp như app mini-site.
+
+---
+
+### 🧭 META
+META={
+  TITLE:"Dịch vụ cho thuê xe máy Hoàn Kiếm, Hà Nội – Nguyễn Tú",
+  DESCRIPTION:"Thuê xe máy Hà Nội giá rẻ, uy tín – Nguyễn Tú Motorbike Rental. Xe ga, xe số, xe điện, giao nhanh 20–40 phút, hỗ trợ 24/7.",
+  KEYWORDS:"thuê xe máy, thuê xe máy Hà Nội, thuê xe máy Hoàn Kiếm, Nguyễn Tú, thuê xe ga, thuê xe số, thuê xe điện",
+  AUTHOR:"Nguyễn Tú Motorbike Rental",
+  CANONICAL:"https://motoopen.github.io/thuexemayohoankiem/index.html",
+  THEME_COLOR:"#0A84FF",
+  ROBOTS:"index, follow",
+  OG_IMAGE_URL:"https://thuexemaynguyentu.com/wp-content/uploads/2025/09/BANNER-THUE-XE-MAY-1.png"
+};
+
+---
+
+### 📞 CONTACT
+CONTACT={
+  PHONE:"0942467674",
+  ZALO:"https://zalo.me/0942467674",
+  MAP:"https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc",
+  EMAIL:"contact@example.com",
+  ADDRESS:"112 Nguyễn Văn Cừ, Long Biên, Hà Nội",
+  LOGO_URL:"https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png"
+};
+
+---
+
+### 🎨 STYLE + THEME
+
+STYLE={
+  STYLE_PRESET:"UltraTitanGlass",
+  ACCENT:"#0A84FF",
+  ACCENT2:"#00C49A",
+  RADIUS:"20px",
+  LANG:"vi",
+  DEFAULT_THEME:"auto",
+  BODY_BG_LIGHT:"#f9fafa",
+  BODY_BG_DARK:"#0c0d0f",
+  GLASS:true,
+  BLUR:"10px",
+  SHADOW:"0 4px 20px rgba(0,0,0,0.1)"
+};
+
+THEME_RANDOMIZER={
+  ENABLED:true,
+  POOL:[
+    "UltraTitanGlass",
+    "NeoMint",
+    "MidnightPurple",
+    "AeroGlassBlue",
+    "MinimalWhite",
+    "SunsetOrange",
+    "FacebookUltra",
+    "MotoDarkCarbon"
+  ],
+  SYNC_ACCENT:true,
+  RANDOMIZE_ON_LOAD:true
+};
+
+STYLE_SELECTOR={
+  ENABLED:true,
+  AUTO_ADAPT:true,
+  DEFAULT:"UltraTitanGlass"
+};
+
+THEME_SELECTOR_UI={
+  ENABLE_ANIM:true,
+  CARD_HOVER_GLOW:true,
+  TRANSITION_TIME:"0.3s",
+  CARD_RADIUS:"16px",
+  USE_ICON_PREVIEW:true,
+  SAVE_LAST_THEME:true,
+  AUTO_APPLY:true,
+  LABEL:"Tùy chỉnh giao diện",
+  DESCRIPTION:"Chọn phong cách hiển thị yêu thích"
+};
+
+---
+
+### ⚙️ FEATURES & APP SHELL
+FEATURES={
+  USE_CHAT:true,
+  USE_QUICKCALL:true,
+  USE_QUICKCALL_LEFT:true,
+  USE_CARD_TILT:true,
+  USE_SCROLL_ANIM:true,
+  USE_VIEW_TRANSITIONS:true,
+  USE_CONTACT_FORM:true,
+  USE_HERO_MINIAPP:true
+};
+
+APP_SHELL={
+  ENABLED:true,
+  SYNC_MENU_FOOTER:true,
+  STYLE_MATCH_THEME:true,
+  MENU_MODE:"glass-fixed",
+  FOOTER_MODE:"mini-dock",
+  HERO_MODE:"service-grid",
+  AUTO_THEME_SYNC:true
+};
+
+---
+
+### 🚀 HERO MINI-APP
+HERO_MINIAPP={
+  ENABLED:true,
+  TYPE:"service-grid",
+  TITLE:"Đặt xe nhanh cùng Nguyễn Tú",
+  SUBTITLE:"Chọn loại xe bạn cần và nhận xe trong 20–40 phút",
+  BUTTONS:[
+    {"label":"🚀 Đặt xe ngay","href":"lienhe.html"},
+    {"label":"🛵 Xem bảng giá","href":"banggia.html"},
+    {"label":"💬 Chat MotoAI","href":"#motoai"}
+  ]
+};
+
+---
+
+### 🧱 BODY_SECTIONS
+BODY_SECTIONS={
+  USE_FADEIN:true,
+  SECTIONS:[
+    {"TITLE":"Giới thiệu Nguyễn Tú Motorbike Rental","TYPE":"intro",
+     "CONTENT":["Dịch vụ thuê xe máy Hà Nội – Nguyễn Tú Motorbike Rental chuyên cho thuê xe ga, xe số, xe điện tại Hoàn Kiếm.","Xe mới, bảo dưỡng tốt, hỗ trợ giao tận nơi chỉ 20–40 phút."]}
+  ]
+};
+
+---
+
+### 🧩 FALLBACK_MAIN – tự sinh nội dung khi thiếu section
+FALLBACK_MAIN={
+  ENABLED:true,
+  DEFAULT_SECTIONS:["intro","services","testimonials","contact"],
+  AUTO_FILL:true,
+  SYNC_HERO:true,
+  MESSAGE:"Tự tạo nội dung mặc định trong <main> nếu thiếu BODY_SECTIONS, đồng bộ nội dung từ HERO_MINIAPP.",
+  SERVICE_AUTO_LINKS:[
+    {"label":"Thuê xe ga","href":"banggia.html"},
+    {"label":"Thuê xe số","href":"banggia.html"},
+    {"label":"Xe điện","href":"banggia.html"}
+  ],
+  CTA_BUTTONS:[
+    {"label":"📞 Liên hệ ngay","href":"lienhe.html"},
+    {"label":"🛵 Xem bảng giá","href":"banggia.html"}
+  ]
+};
+
+---
+
+### 🌈 NÂNG CẤP TOÀN DIỆN CHO GEMINI (AI + UX + SEO + HIỆU ỨNG)
+
+AI_DIRECTIVE="Sinh giao diện như app di động, hiệu ứng glassmorphism, layout responsive, tối ưu UX theo hướng chạm – phản hồi nhanh. Tự điều chỉnh ánh sáng, CTA nổi bật và tự đồng bộ với hero.";
+
+INTERACT_LAYER={
+  HOVER_CARD:true,
+  BUTTON_RIPPLE:true,
+  ICON_BOUNCE:true,
+  IMAGE_TILT:true,
+  SMOOTH_SCROLL:true,
+  TRANSITION_EASE:"cubic-bezier(0.25,0.1,0.25,1)"
+};
+
+SMART_SEO={
+  AUTO_KEYWORDS:true,
+  LINK_DENSITY_MAX:5,
+  AUTO_INTERNAL_LINK:true,
+  TITLE_MATCH_H1:true,
+  REL_CANONICAL_FIX:true,
+  LAZY_OG:true,
+  AUTO_META_REWRITE:true
+};
+
+USER_FLOW_HINTS={
+  DEFAULT_PATH:["Trang chủ","Dịch vụ","Bảng giá","Liên hệ"],
+  TIME_ON_SECTION:5,
+  CTA_BEHAVIOR:"focus-first-button",
+  SCROLL_ANIM_EASE:"ease-out",
+  INTERACTION_TONE:"friendly-UX"
+};
+
+VALIDATION={
+  HTML:true,
+  LINK:true,
+  ACCESSIBILITY:true,
+  SEO:true,
+  PERFORMANCE:true,
+  REPORT:"console",
+  FIX_MINOR:true
+};
+
+CREATIVE_HINTS_EXTRA={
+  AI_STYLE_NOTE:"Glass blur + ripple click + shadow nhẹ, fade-in toàn trang, hiệu ứng icon mềm mại.",
+  UX_NOTE:"Menu cố định, footer mini-app, padding thoáng, CTA nổi bật, màu nhấn ăn theme.",
+  SEO_NOTE:"3–5 internal link tự nhiên, preload font, lazyload hình, title + H1 đồng bộ.",
+  PERFORMANCE_NOTE:"Giảm DOM load, inline critical CSS, defer JS, tránh layout shift."
+};
+
+---
+
+**Kết thúc:**  
+> Xuất `index.html` hoàn chỉnh — theme Ultra Glass tự random, selector mượt, fallback auto main đồng bộ hero, tối ưu SEO + UX + tốc độ, mini-app đồng bộ menu/footer và hiệu ứng glassmorphism hiện đại.
