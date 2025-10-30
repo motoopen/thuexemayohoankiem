@@ -8,7 +8,7 @@
     <title>Liên Hệ Thuê xe máy – Nguyễn Tú</title>
     <meta name="description" content="Thuê xe máy tại Hoàn Kiếm, Hà Nội. Xe số, xe ga, xe 50cc, xe điện. Giao tận nơi 20–40’, cọc nhẹ, hỗ trợ 24/7.">
     <meta name="keywords" content="thuê xe máy Hoàn Kiếm, thuê xe máy Hà Nội, xe ga, xe số, xe điện, thuê xe máy Nguyễn Tú, cho thuê xe máy giá rẻ">
-    <meta name_author" content="Nguyễn Tú Motorbike Rental">
+    <meta name="author" content="Nguyễn Tú Motorbike Rental">
     <link rel="canonical" href="https://thuexemaynguyentu.com/lienhe.html"> <!-- Giả định URL trang liên hệ -->
 
     <!-- Open Graph (Facebook, Zalo) -->
@@ -34,7 +34,7 @@
     <meta name="contact:address" content="112 Nguyễn Văn Cừ, Long Biên, Hà Nội">
 
     <!-- Favicon -->
-    <link rel_icon" href="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png" type="image/png">
+    <link rel="icon" href="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png" type="image/png">
 
     <!-- ===================== FONTS & ICONS ===================== -->
     <!-- Google Fonts: Inter -->
@@ -83,7 +83,7 @@
             --border-dark: #374151;
             
             --gradient-hero: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 50%, var(--bg-dark-2) 100%);
-            --gradient-footer: linear-gradient(180deg, var(--bg-dark) 0%, #0B1A3C 100%);
+            /* --gradient-footer: linear-gradient(180deg, var(--bg-dark) 0%, #0B1A3C 100%); */ /* Bị thay thế bởi yêu cầu mới */
 
             /* Default to light theme */
             --text: var(--text-light);
@@ -842,69 +842,64 @@
         
         /* 16. Footer */
         .main-footer {
-            background: var(--gradient-footer);
+            /* THAY ĐỔI THEO YÊU CẦU: Nền gradient và căn giữa */
+            background: linear-gradient(#1C1C1E, #2C2C2E);
             color: var(--text-dark-muted);
             padding-top: 5rem;
-            padding-bottom: 1rem;
+            padding-bottom: 2rem; /* Tăng padding bottom một chút */
+            text-align: center;
         }
-        .footer-grid {
+        
+        /* CSS MỚI: Grid 8 cột cho link */
+        .footer-links-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(2, 1fr); /* 2 cột mobile */
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
         }
-        .footer-col h4 {
-            color: var(--text-dark);
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-        .footer-col ul {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-        .footer-col a {
+        .footer-links-grid a {
             color: var(--text-dark-muted);
-            position: relative;
-            display: inline-block;
+            font-weight: 500;
+            padding: 0.5rem;
+            border-radius: var(--radius);
+            transition: color 0.3s, background-color 0.3s;
         }
-        /* Hiệu ứng phản sáng bạc */
-        .footer-col a::before {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background-color: #E5E7EB;
-            transition: width 0.3s ease;
-        }
-        .footer-col a:hover {
-            color: var(--text-dark);
-        }
-        .footer-col a:hover::before {
-            width: 100%;
+        .footer-links-grid a:hover {
+            color: #FFFFFF;
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
-        /* Footer contact & social */
-        .footer-contact li {
+        /* CSS MỚI: Hàng link hỗ trợ */
+        .footer-support-links {
             display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.75rem 1.5rem; /* row-gap | column-gap */
+            margin: 2.5rem 0;
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--border-dark);
+            border-bottom: 1px solid var(--border-dark);
         }
-        .footer-contact .icon {
-            font-size: 1.25rem;
-            width: 24px;
-            text-align: center;
-            flex-shrink: 0;
+        .footer-support-links a {
+            color: var(--text-dark-muted);
+            font-weight: 500;
+            transition: color 0.3s;
         }
+        .footer-support-links a:hover {
+            color: #FFFFFF;
+        }
+
+        /* CSS CŨ ĐÃ XÓA: .footer-grid, .footer-col, .footer-contact */
+        
+        /* CSS CŨ ĐƯỢC GIỮ LẠI: .social-links */
         .social-links {
             display: flex;
             flex-wrap: wrap;
             gap: 0.75rem;
             margin-top: 1.5rem;
+            /* Thêm justify-content để căn giữa khi di chuyển ra ngoài */
+            justify-content: center;
+            margin-bottom: 2.5rem; /* Thêm margin bottom */
         }
         .social-links a {
             font-size: 1.5rem;
@@ -923,9 +918,23 @@
             border-color: var(--accent);
             transform: scale(1.1);
         }
-        .social-links a::before { display: none; } /* Tắt gạch chân cho icon */
 
-        /* Footer Form */
+        /* CSS MỚI: Container cho Form */
+        .footer-form-container {
+            max-width: 500px;
+            margin: 0 auto 2.5rem auto;
+            text-align: left; /* Reset text-align cho form */
+        }
+        .footer-form.glass-card {
+            padding: 1.5rem;
+        }
+        .footer-form h4 {
+             text-align: center;
+             color: var(--text-dark);
+             margin-bottom: 1rem;
+        }
+
+        /* CSS CŨ ĐƯỢC GIỮ LẠI: .footer-form (input/button) */
         .footer-form .form-input {
             background-color: rgba(255, 255, 255, 0.05);
             border-color: var(--border-dark);
@@ -933,7 +942,9 @@
         }
         .footer-form .form-input:focus {
             background-color: rgba(255, 255, 255, 0.1);
-            border-color: var(--accent);
+            /* THAY ĐỔI THEO YÊU CẦU: viền focus */
+            border-color: #00BFFF;
+            box-shadow: 0 0 0 3px rgba(0, 191, 255, 0.3);
         }
         .footer-form .btn {
             width: 100%;
@@ -955,9 +966,30 @@
             padding-top: 1.5rem;
             border-top: 1px solid var(--border-dark);
             font-size: 0.9rem;
+            /* CSS MỚI: Dùng flex để căn giữa nút theme */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem 1rem; /* row | column */
         }
         .copyright a {
             font-weight: 500;
+            color: var(--text-dark-muted);
+        }
+        .copyright a:hover {
+            color: #FFFFFF;
+        }
+        /* CSS MỚI: Nút theme trong footer */
+        .copyright .theme-toggle {
+            margin-left: 0.5rem;
+            vertical-align: middle;
+            background: var(--border-dark);
+            padding: 0.25rem;
+            border-radius: 99px;
+        }
+        .copyright .theme-toggle .material-symbols-rounded {
+            font-size: 1.25rem;
         }
         
         /* 17. Quick Call Dock */
@@ -1063,15 +1095,24 @@
             .form-grid {
                  grid-template-columns: repeat(3, 1fr) auto;
             }
+            /* CSS MỚI: Grid 8 cột desktop */
+            .footer-links-grid {
+                grid-template-columns: repeat(8, 1fr);
+            }
+        }
+
+        @media (min-width: 640px) {
+             /* CSS MỚI: Grid 4 cột tablet */
+            .footer-links-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
         @media (max-width: 1023px) {
             h1 { font-size: 2.2rem; }
             .hero-content h1 { font-size: 2.5rem; }
 
-            .footer-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
+            /* CSS CŨ BỊ XÓA: .footer-grid */
         }
         
         @media (max-width: 767px) {
@@ -1097,16 +1138,7 @@
                 gap: 1rem;
             }
             
-            .footer-grid {
-                 grid-template-columns: 1fr;
-                 text-align: center;
-            }
-            .footer-contact li {
-                justify-content: center;
-            }
-            .social-links {
-                justify-content: center;
-            }
+            /* CSS CŨ BỊ XÓA: .footer-grid, .footer-contact, .social-links */
             
             /* Ẩn QuickCall bên trái, tránh chatbot */
             #quick-call {
@@ -1132,7 +1164,7 @@
                     <li><a href="index.html" class="internal-link">🏠 Trang chủ</a></li>
                     <li><a href="gioithieu.html" class="internal-link">📄 Giới thiệu</a></li>
                     <li>
-                        <a href="#services" class="internal-link">⚙️ Dịch vụ</a>
+                        <a href="dichvu.html" class="internal-link">⚙️ Dịch vụ</a> <!-- THAY ĐỔI: Link trỏ đến dichvu.html -->
                         <ul class="dropdown">
                             <li><a href="thutuc.html" class="internal-link">📑 Thủ tục</a></li>
                             <li><a href="loaixe.html" class="internal-link">🛵 Loại xe</a></li>
@@ -1168,7 +1200,7 @@
             <li><a href="index.html" class="internal-link">🏠 Trang chủ</a></li>
             <li><a href="gioithieu.html" class="internal-link">📄 Giới thiệu</a></li>
             <li>
-                <a href="#services" class="dropdown-toggle internal-link">
+                <a href="dichvu.html" class="dropdown-toggle internal-link"> <!-- THAY ĐỔI: Link trỏ đến dichvu.html -->
                     <span>⚙️ Dịch vụ</span>
                     <span class="material-symbols-rounded">expand_more</span>
                 </a>
@@ -1438,86 +1470,60 @@
     <!-- ===================== FOOTER ===================== -->
     <footer class="main-footer">
         <div class="container">
-            <div class="footer-grid">
-                <!-- Col 1: Về chúng tôi -->
-                <div class="footer-col">
-                    <h4>🏢 Về chúng tôi</h4>
-                    <p>Nguyễn Tú Motorbike Rental chuyên cho thuê xe máy uy tín tại Hoàn Kiếm, Hà Nội với xe mới, giá tốt và dịch vụ hỗ trợ 24/7.</p>
-                    <a href="gioithieu.html" class="internal-link">Tìm hiểu thêm</a>
-                </div>
-                
-                <!-- Col 2: Dịch vụ -->
-                <div class="footer-col">
-                    <h4>⚙️ Dịch vụ</h4>
-                    <ul>
-                        <li><a href="dichvu.html" class="internal-link">Tất cả dịch vụ</a></li>
-                        <li><a href="loaixe.html" class="internal-link">Các loại xe</a></li>
-                        <li><a href="uudai.html" class="internal-link">Ưu đãi hiện có</a></li>
-                        <li><a href="giamgia.html" class="internal-link">Mã giảm giá</a></li>
-                    </ul>
-                </div>
+            <!-- 
+                =====================================================
+                BẮT ĐẦU PHẦN FOOTER ĐÃ CHỈNH SỬA THEO YÊU CẦU
+                =====================================================
+            -->
 
-                <!-- Col 3: Bảng giá -->
-                <div class="footer-col">
-                    <h4>🏷️ Bảng giá</h4>
-                    <ul>
-                        <li><a href="banggia.html" class="internal-link">Bảng giá chi tiết</a></li>
-                        <li><a href="banggia.html#xe-ga" class="internal-link">Giá thuê xe ga</a></li>
-                        <li><a href="banggia.html#xe-so" class="internal-link">Giá thuê xe số</a></li>
-                        <li><a href="banggia.html#xe-dien" class="internal-link">Giá thuê xe điện</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 4: Liên hệ -->
-                <div class="footer-col">
-                    <h4>📞 Liên hệ</h4>
-                    <ul class="footer-contact">
-                        <li><span class="icon">☎️</span> <a href="tel:0942467674">0942467674</a></li>
-                        <li><span class="icon">💬</span> <a href="https://zalo.me/0942467674" target="_blank" rel="noopener">Chat Zalo</a></li>
-                        <li><span class="icon">✉️</span> <a href="mailto:contact@example.com">contact@example.com</a></li>
-                        <li><span class="icon">🕓</span> <span>Giờ: 8:00 – 21:00</span></li>
-                        <li><span class="icon">🗺️</span> <a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc" target="_blank" rel="noopener">112 Nguyễn Văn Cừ, Long Biên</a></li>
-                        <li><span class="icon">📰</span> <a href="https://motoopen.github.io/thuexemayohoankiem/blog.html" target="_blank" rel="noopener">Blog Kinh nghiệm</a></li>
-                    </ul>
-                    <div class="social-links">
-                        <a href="https://m.facebook.com/chothuexemay0857255868/" target="_blank" rel="noopener" aria-label="Facebook 1"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://m.facebook.com/chothuexemayphocohanoi/" target="_blank" rel="noopener" aria-label="Facebook 2"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html" target="_blank" rel="noopener" aria-label="Tripadvisor"><i class="fab fa-tripadvisor"></i></a>
-                        <a href="https://www.instagram.com/nguyentumotorbike/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://thuexemaynguyentu.com" target="_blank" rel="noopener" aria-label="Website"><i class="fas fa-globe"></i></a>
-                    </div>
-                </div>
-                
-                <!-- Col 5: Hỗ trợ -->
-                <div class="footer-col">
-                    <h4>🛡️ Hỗ trợ</h4>
-                    <ul>
-                        <li><a href="faq.html" class="internal-link">❓ FAQ - Câu hỏi thường gặp</a></li>
-                        <li><a href="chinhsach.html" class="internal-link">📜 Chính sách thuê xe</a></li>
-                        <li><a href="dieukhoan.html" class="internal-link">⚖️ Điều khoản dịch vụ</a></li>
-                        <li><a href="baomat.html" class="internal-link">🔒 Bảo mật thông tin</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 6: Form liên hệ nhanh -->
-                <div class="footer-col">
-                    <h4>📬 Gửi liên hệ nhanh</h4>
-                    <form id="footer-contact-form" class="footer-form">
-                        <div class="form-group">
-                            <input type="text" id="footer-name" class="form-input" placeholder="Họ tên" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" id="footer-phone" class="form-input" placeholder="Số điện thoại" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="footer-message" class="form-input" rows="3" placeholder="Nội dung cần hỗ trợ..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Gửi liên hệ</button>
-                    </form>
-                </div>
+            <!-- 1. Grid 8 Cột Mới -->
+            <div class="footer-links-grid">
+                <a href="index.html" class="internal-link">🏠 Trang chủ</a>
+                <a href="gioithieu.html" class="internal-link">📄 Giới thiệu</a>
+                <a href="dichvu.html" class="internal-link">⚙️ Dịch vụ</a>
+                <a href="huongdan.html" class="internal-link">📘 Hướng dẫn</a>
+                <a href="diadiem.html" class="internal-link">📍 Địa điểm</a>
+                <a href="banggia.html" class="internal-link">🏷️ Bảng giá</a>
+                <a href="lienhe.html" class="internal-link">💬 Liên hệ</a>
+                <a href="https://motoopen.github.io/thuexemayohoankiem/blog.html" target="_blank" rel="noopener">📰 Blog</a>
             </div>
 
-            <!-- Google Map Embed -->
+            <!-- 2. Hàng Link Hỗ Trợ Mới -->
+            <div class="footer-support-links">
+                <a href="faq.html" class="internal-link">❓ FAQ</a>
+                <a href="chinhsach.html" class="internal-link">📜 Chính sách thuê xe</a>
+                <a href="dieukhoan.html" class="internal-link">⚖️ Điều khoản dịch vụ</a>
+                <a href="baomat.html" class="internal-link">🔒 Bảo mật thông tin</a>
+            </div>
+
+            <!-- 3. Social Links (Đã cập nhật và di chuyển) -->
+            <div class="social-links">
+                <a href="https://m.facebook.com/chothuexemay0857255868/" target="_blank" rel="noopener" aria-label="Facebook 1"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://m.facebook.com/chothuexemayphocohanoi/" target="_blank" rel="noopener" aria-label="Facebook 2"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://m.facebook.com/thuexemayhanoigiare/" target="_blank" rel="noopener" aria-label="Facebook 3"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html" target="_blank" rel="noopener" aria-label="Tripadvisor"><i class="fab fa-tripadvisor"></i></a>
+                <a href="https://www.instagram.com/nguyentumotorbike/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://thuexemaynguyentu.com" target="_blank" rel="noopener" aria-label="Website"><i class="fas fa-globe"></i></a>
+            </div>
+
+            <!-- 4. Form Liên Hệ Mini (Đã di chuyển và bọc lại) -->
+            <div class="footer-form-container">
+                <form id="footer-contact-form" class="footer-form glass-card">
+                    <h4>📬 Gửi liên hệ nhanh</h4>
+                    <div class="form-group">
+                        <input type="text" id="footer-name" class="form-input" placeholder="Họ tên" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="footer-phone" class="form-input" placeholder="Số điện thoại" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="footer-message" class="form-input" rows="3" placeholder="Nội dung cần hỗ trợ..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Gửi liên hệ</button>
+                </form>
+            </div>
+
+            <!-- 5. Google Map Embed (Giữ nguyên) -->
             <div class="map-embed">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.911206107162!2d105.8702598!3d21.035704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9dd5f4cc73%3A0xdda6d835d7e1e1d5!2zMTEyIE5ndXnhu4VuIFbEg24gQ-G7qywgQ-G7rWEgRMSDbmcgTGEsIExvbmcgQmnDqm4sIEjDoCBO4buZaQ!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s"
@@ -1525,10 +1531,21 @@
                 </iframe>
             </div>
 
+            <!-- 6. Copyright (Đã cập nhật văn bản, id năm, và thêm nút theme) -->
             <div class="copyright">
-                © <span id="current-year"></span> Nguyễn Tú Motorbike Rental · 
+                <span>© <span id="y"></span> Nguyễn Tú Motorbike Rental – Dịch vụ thuê xe máy Hoàn Kiếm, Hà Nội</span>
                 <a href="#top" id="back-to-top">⬆️ Lên đầu trang</a>
+                <button class="theme-toggle" id="footer-theme-toggle" aria-label="Đổi giao diện sáng/tối">
+                    <span class="material-symbols-rounded light-icon">light_mode</span>
+                    <span class="material-symbols-rounded dark-icon">dark_mode</span>
+                </button>
             </div>
+            
+            <!-- 
+                =====================================================
+                KẾT THÚC PHẦN FOOTER ĐÃ CHỈNH SỬA
+                =====================================================
+            -->
         </div>
     </footer>
     
@@ -1564,7 +1581,7 @@
         whatsapp: "https://wa.me/84942467674",
         map: "https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc",
         theme: "auto",
-        color: "#0A84FF"
+        color: "#222222" /* THAY ĐỔI THEO YÊU CẦU */
       };
     </script>
     <script src="https://motoopen.github.io/chothuexemayhanoi/motoai_v36_smarttone_deep.js"></script>
@@ -1636,13 +1653,14 @@
         document.addEventListener('DOMContentLoaded', () => {
 
             // --- 0. Cập nhật năm tự động ---
-            const currentYearEl = document.getElementById('current-year');
+            // THAY ĐỔI: Sử dụng id 'y'
+            const currentYearEl = document.getElementById('y');
             if (currentYearEl) {
                 currentYearEl.textContent = new Date().getFullYear();
             }
 
             // --- 1. Xử lý Giao diện Sáng/Tối (Theme Toggle) ---
-            const themeToggle = document.getElementById('theme-toggle');
+            const themeToggle = document.getElementById('theme-toggle'); // Header toggle
             const htmlEl = document.documentElement;
 
             // Hàm áp dụng theme
@@ -1667,9 +1685,19 @@
                 window.MotoAI_CONFIG.theme = savedTheme;
             }
 
-            // Lắng nghe sự kiện click
+            // Lắng nghe sự kiện click (Header)
             if (themeToggle) {
                 themeToggle.addEventListener('click', () => {
+                    const newTheme = htmlEl.classList.contains('dark') ? 'light' : 'dark';
+                    localStorage.setItem('theme', newTheme);
+                    applyTheme(newTheme);
+                });
+            }
+            
+            // THÊM MỚI: Lắng nghe sự kiện click (Footer)
+            const footerThemeToggle = document.getElementById('footer-theme-toggle');
+            if (footerThemeToggle) {
+                footerThemeToggle.addEventListener('click', () => {
                     const newTheme = htmlEl.classList.contains('dark') ? 'light' : 'dark';
                     localStorage.setItem('theme', newTheme);
                     applyTheme(newTheme);
