@@ -7,17 +7,19 @@
     <title>Cho thuê xe máy Hoàn Kiếm Hà Nội - Nguyễn Tú</title>
 
     <meta name="description" content="Nguyễn Tú cho thuê xe máy Hà Nội, thuê xe máy Hoàn Kiếm. Thủ tục cọc 2 đến 5 triệu nhanh gọn. Có cho thuê xe máy tháng Hà Nội. Giao nhanh 20-40', giá tốt.">
-
     <meta name="keywords" content="cho thuê xe máy hoàn kiếm hà nội, thuê xe máy hà nội, thuê xe máy hoàn kiếm, thuê xe máy tháng hà nội, thuê xe máy hà nội thủ tục nhanh gọn, thuê xe máy nguyễn tú">
+    <meta name="author" content="Nguyễn Tú">
 
-    <link rel="canonical" href="https://thuexemaynguyentu.com"> <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://thuexemaynguyentu.com">
+    <meta name="robots" content="index, follow">
 
     <link rel="icon" href="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png">
-
+    
     <meta property="og:title" content="Cho thuê xe máy Hoàn Kiếm Hà Nội - Nguyễn Tú">
     <meta property="og:description" content="Nguyễn Tú cho thuê xe máy Hà Nội, thuê xe máy Hoàn Kiếm. Thủ tục cọc 2 đến 5 triệu nhanh gọn. Có cho thuê xe máy tháng Hà Nội. Giao nhanh 20-40', giá tốt.">
     <meta property="og:image" content="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/BANNER-THUE-XE-MAY-1.png">
-    <meta property="og:url" content="https://thuexemaynguyentu.com"> <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thuexemaynguyentu.com">
+    <meta property="og:type" content="website">
     <meta property="og:locale" content="vi_VN">
     
     <meta name="twitter:card" content="summary_large_image">
@@ -26,12 +28,14 @@
     <meta name="twitter:image" content="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/BANNER-THUE-XE-MAY-1.png">
     
     <meta name="view-transition" content="same-origin">
+    <meta name="theme-color" content="#0078D4">
+    <meta name="color-scheme" content="light dark">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     <style>
         /* 1. Reset và Biến Root */
@@ -344,7 +348,7 @@
             display: flex;
             align-items: center;
             gap: 0.25rem;
-            cursor: default; /* Hoặc href="#" */
+            cursor: pointer;
         }
         .nav-dropdown-toggle .dropdown-icon {
             font-size: 1.25rem;
@@ -1191,7 +1195,7 @@
         }
     </style>
 </head>
-<body>
+<body id="top">
 
     <header class="main-header">
         <div class="container">
@@ -1209,9 +1213,9 @@
                     <li><a href="gioithieu.html">📄 Giới thiệu</a></li>
                     
                     <li class="nav-item-dropdown">
-                        <a href="#" class="nav-dropdown-toggle">
+                        <a href="dichvu.html" class="nav-dropdown-toggle">
                             ⚙️ Dịch vụ
-                            <span class="material-symbols-rounded dropdown-icon">expand_more</span>
+                            <span class="material-symbols-rounded dropdown-icon" aria-hidden="true">expand_more</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="thutuc.html">📑 Thủ tục</a></li>
@@ -1219,7 +1223,7 @@
                             <li><a href="kinhnghiem.html">💡 Kinh nghiệm</a></li>
                             <li><a href="diadiem.html">📍 Địa điểm</a></li>
                             <li><a href="quytrinh.html">⚙️ Quy trình</a></li>
-                            <li><a href="tintuc.html">📰 Tin tức</a></li>
+                            <li><a href="https://motoopen.github.io/thuexemayohoankiem/blog.html">📰 Blog / Tin tức</a></li>
                             <li><a href="uudai.html">🎁 Ưu đãi</a></li>
                             <li><a href="giamgia.html">💰 Giảm giá</a></li>
                         </ul>
@@ -1230,25 +1234,25 @@
                 </ul>
                 <div class="nav-actions">
                     <button class="theme-switcher" id="theme-switcher" aria-label="Chuyển đổi giao diện Sáng/Tối">
-                        <span class="material-symbols-rounded light-icon">light_mode</span>
-                        <span class="material-symbols-rounded dark-icon">dark_mode</span>
+                        <span class="material-symbols-rounded light-icon" aria-hidden="true">light_mode</span>
+                        <span class="material-symbols-rounded dark-icon" aria-hidden="true">dark_mode</span>
                     </button>
                     <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Mở menu">
-                        <span class="material-symbols-rounded">menu</span>
+                        <span class="material-symbols-rounded" aria-hidden="true">menu</span>
                     </button>
                 </div>
             </nav>
         </div>
     </header>
 
-    <nav class="mobile-nav-panel" id="mobile-nav-panel">
+    <nav class="mobile-nav-panel" id="mobile-nav-panel" aria-label="Menu di động" role="dialog" aria-modal="true">
         <div class="mobile-nav-header">
             <a href="index.html" class="logo">
                 <img src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png" alt="Logo Nguyễn Tú">
                 <span>Nguyễn Tú</span>
             </a>
             <button id="mobile-nav-close" aria-label="Đóng menu">
-                <span class="material-symbols-rounded">close</span>
+                <span class="material-symbols-rounded" aria-hidden="true">close</span>
             </button>
         </div>
         
@@ -1257,17 +1261,17 @@
             <li><a href="gioithieu.html">📄 Giới thiệu</a></li>
             
             <li class="mobile-nav-dropdown">
-                <button class="mobile-dropdown-toggle">
+                <button class="mobile-dropdown-toggle" aria-expanded="false" aria-controls="mobile-submenu-services">
                     <span>⚙️ Dịch vụ</span>
-                    <span class="material-symbols-rounded icon">expand_more</span>
+                    <span class="material-symbols-rounded icon" aria-hidden="true">expand_more</span>
                 </button>
-                <ul class="mobile-submenu">
+                <ul class="mobile-submenu" id="mobile-submenu-services">
                     <li><a href="thutuc.html">📑 Thủ tục</a></li>
                     <li><a href="loaixe.html">🛵 Loại xe</a></li>
                     <li><a href="kinhnghiem.html">💡 Kinh nghiệm</a></li>
                     <li><a href="diadiem.html">📍 Địa điểm</a></li>
                     <li><a href="quytrinh.html">⚙️ Quy trình</a></li>
-                    <li><a href="tintuc.html">📰 Tin tức</a></li>
+                    <li><a href="https://motoopen.github.io/thuexemayohoankiem/blog.html">📰 Blog / Tin tức</a></li>
                     <li><a href="uudai.html">🎁 Ưu đãi</a></li>
                     <li><a href="giamgia.html">💰 Giảm giá</a></li>
                 </ul>
@@ -1281,19 +1285,19 @@
 
     <main>
 
-        <section class="hero">
+        <section class="hero" aria-labelledby="hero-title">
             <div class="container">
-                <h2 class="animate-on-scroll">⭐ Thuê Xe Máy Hà Nội – Nguyễn Tú</h2>
+                <h2 id="hero-title" class="animate-on-scroll">⭐ Thuê Xe Máy Hà Nội – Nguyễn Tú</h2>
                 <p class="subtitle animate-on-scroll" data-delay="100">
                     📍 Giao nhanh, cọc nhẹ, xe tốt, hỗ trợ 24/7.
                 </p>
                 <div class="cta-buttons animate-on-scroll" data-delay="200">
                     <a href="tel:0942467674" class="btn btn-primary">
-                        <span class="material-symbols-rounded">call</span>
+                        <span class="material-symbols-rounded" aria-hidden="true">call</span>
                         Gọi ngay 0942467674
                     </a>
                     <a href="https://zalo.me/0942467674" target="_blank" rel="noopener" class="btn btn-secondary">
-                        <span class="material-symbols-rounded">chat</span>
+                        <span class="material-symbols-rounded" aria-hidden="true">chat</span>
                         Chat Zalo
                     </a>
                 </div>
@@ -1303,8 +1307,8 @@
                     <span class="chip">🛵 Xe ga/xe số</span>
                     <span class="chip">🚚 Giao tận nơi</span>
                 </div>
-                <form class="mini-form animate-on-scroll" data-delay="400" onsubmit="event.preventDefault(); alert('Cảm ơn! Chúng tôi sẽ sớm liên hệ tư vấn lịch trình cho bạn.');">
-                    <h3>🧭 Gợi ý lịch trình</h3>
+                <form class="mini-form animate-on-scroll" data-delay="400" onsubmit="event.preventDefault(); alert('Cảm ơn! Chúng tôi sẽ sớm liên hệ tư vấn lịch trình cho bạn.');" aria-labelledby="form-title">
+                    <h3 id="form-title">🧭 Gợi ý lịch trình</h3>
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="destination">Điểm đến</label>
@@ -1326,47 +1330,47 @@
             </div>
         </section>
 
-        <section id="why-us" class="section">
+        <section id="why-us" class="section" aria-labelledby="why-us-title">
             <div class="container">
-                <h2 class="section-title animate-on-scroll">Vì Sao Chọn Chúng Tôi?</h2>
+                <h2 id="why-us-title" class="section-title animate-on-scroll">Vì Sao Chọn Chúng Tôi?</h2>
                 <div class="benefits-grid">
                     <div class="benefit-item animate-on-scroll">
-                        <span class="material-symbols-rounded icon">help_center</span>
+                        <span class="material-symbols-rounded icon" aria-hidden="true">help_center</span>
                         <div>
                             <h3>Thủ Tục Nhanh Gọn</h3>
                             <p>Chỉ cần Căn cước công dân hoặc Hộ chiếu. Hoàn tất thủ tục trong 5 phút.</p>
                         </div>
                     </div>
                     <div class="benefit-item animate-on-scroll" data-delay="100">
-                        <span class="material-symbols-rounded icon">verified</span>
+                        <span class="material-symbols-rounded icon" aria-hidden="true">verified</span>
                         <div>
                             <h3>Xe Mới & Chất Lượng</h3>
                             <p>Dàn xe đời mới, bảo dưỡng định kỳ, đảm bảo an toàn tuyệt đối trên mọi nẻo đường.</p>
                         </div>
                     </div>
                     <div class="benefit-item animate-on-scroll" data-delay="200">
-                        <span class="material-symbols-rounded icon">safety_divider</span>
+                        <span class="material-symbols-rounded icon" aria-hidden="true">safety_divider</span>
                         <div>
                             <h3>Cọc Nhẹ & Linh Hoạt</h3>
                             <p>Không cần đặt cọc số tiền lớn, hỗ trợ giữ giấy tờ linh hoạt, tin cậy.</p>
                         </div>
                     </div>
                     <div class="benefit-item animate-on-scroll" data-delay="300">
-                        <span class="material-symbols-rounded icon">headset_mic</span>
+                        <span class="material-symbols-rounded icon" aria-hidden="true">headset_mic</span>
                         <div>
                             <h3>Hỗ Trợ 24/7</h3>
                             <p>Đội ngũ kỹ thuật luôn sẵn sàng hỗ trợ bạn xử lý sự cố mọi lúc, mọi nơi.</p>
                         </div>
                     </div>
                     <div class="benefit-item animate-on-scroll" data-delay="400">
-                        <span class="material-symbols-rounded icon">location_on</span>
+                        <span class="material-symbols-rounded icon" aria-hidden="true">location_on</span>
                         <div>
                             <h3>Giao Xe Tận Nơi</h3>
                             <p>Giao xe nhanh chóng 20-40 phút tại Phố Cổ, Hoàn Kiếm và các quận nội thành.</p>
                         </div>
                     </div>
                     <div class="benefit-item animate-on-scroll" data-delay="500">
-                        <span class="material-symbols-rounded icon">workspace_premium</span>
+                        <span class="material-symbols-rounded icon" aria-hidden="true">workspace_premium</span>
                         <div>
                             <h3>Giá Tốt & Minh Bạch</h3>
                             <p>Cam kết giá thuê xe cạnh tranh nhất thị trường, không phát sinh chi phí ẩn.</p>
@@ -1376,9 +1380,9 @@
             </div>
         </section>
 
-        <section id="services" class="section" data-tilt="true">
+        <section id="services" class="section" data-tilt="true" aria-labelledby="services-title">
             <div class="container">
-                <h2 class="section-title animate-on-scroll">Dịch Vụ Nổi Bật</h2>
+                <h2 id="services-title" class="section-title animate-on-scroll">Dịch Vụ Nổi Bật</h2>
                 <div class="services-grid">
                     <div class="card service-card animate-on-scroll">
                         <img loading="lazy" src="https://placehold.co/600x400/0078D4/FFFFFF?text=Xe+Ga+Vision" alt="Cho thuê xe ga Vision">
@@ -1402,37 +1406,37 @@
             </div>
         </section>
 
-        <section id="deals" class="section">
+        <section id="deals" class="section" aria-labelledby="deals-title">
             <div class="container">
                 <div class="deal-highlight animate-on-scroll">
-                    <h2>Giảm Giá 20% Cho Đặt Lịch Tuần</h2>
+                    <h2 id="deals-title">Giảm Giá 20% Cho Đặt Lịch Tuần</h2>
                     <p>Nhận ngay ưu đãi đặc biệt khi thuê xe từ 5 ngày trở lên. Tiết kiệm hơn, trải nghiệm nhiều hơn!</p>
                     <a href="banggia.html" class="btn">Xem chi tiết ưu đãi</a>
                 </div>
             </div>
         </section>
 
-        <section id="process" class="section">
+        <section id="process" class="section" aria-labelledby="process-title">
             <div class="container">
-                <h2 class="section-title animate-on-scroll">Quy Trình Thuê Xe 4 Bước</h2>
+                <h2 id="process-title" class="section-title animate-on-scroll">Quy Trình Thuê Xe 4 Bước</h2>
                 <div class="process-steps">
                     <div class="process-step animate-on-scroll" data-delay="0">
-                        <div class="step-number">1</div>
+                        <div class="step-number" aria-hidden="true">1</div>
                         <h3>Liên Hệ & Chọn Xe</h3>
                         <p>Gọi điện hoặc chat Zalo để được tư vấn và chọn loại xe phù hợp với nhu cầu của bạn.</p>
                     </div>
                     <div class="process-step animate-on-scroll" data-delay="100">
-                        <div class="step-number">2</div>
+                        <div class="step-number" aria-hidden="true">2</div>
                         <h3>Chốt Thủ Tục</h3>
                         <p>Cung cấp thông tin (CCCD/Hộ chiếu) và địa điểm nhận xe. Không cần cọc tiền trước.</p>
                     </div>
                     <div class="process-step animate-on-scroll" data-delay="200">
-                        <div class="step-number">3</div>
+                        <div class="step-number" aria-hidden="true">3</div>
                         <h3>Nhận Xe & Thanh Toán</h3>
                         <p>Chúng tôi giao xe tận nơi. Bạn kiểm tra xe, nhận hợp đồng và thanh toán tiền thuê.</p>
                     </div>
                     <div class="process-step animate-on-scroll" data-delay="300">
-                        <div class="step-number">4</div>
+                        <div class="step-number" aria-hidden="true">4</div>
                         <h3>Trả Xe Linh Hoạt</h3>
                         <p>Chúng tôi sẽ đến tận nơi nhận lại xe khi hết hạn hợp đồng, hoàn tất thủ tục nhanh chóng.</p>
                     </div>
@@ -1440,9 +1444,9 @@
             </div>
         </section>
 
-        <section id="gallery" class="section">
+        <section id="gallery" class="section" aria-labelledby="gallery-title">
             <div class="container">
-                <h2 class="section-title animate-on-scroll">Gallery Hình Ảnh Thực Tế</h2>
+                <h2 id="gallery-title" class="section-title animate-on-scroll">Gallery Hình Ảnh Thực Tế</h2>
                 <div class="gallery-grid" id="gallery-grid">
                     <div class="gallery-item animate-on-scroll">
                         <img loading="lazy" src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/Muon-xe-may-Ha-Noi.jpg" alt="Mượn xe máy Hà Nội tại Nguyễn Tú">
@@ -1460,36 +1464,36 @@
             </div>
         </section>
 
-        <section id="testimonials" class="section">
+        <section id="testimonials" class="section" aria-labelledby="testimonials-title">
             <div class="container">
-                <h2 class="section-title animate-on-scroll">Đánh Giá Từ Khách Hàng</h2>
+                <h2 id="testimonials-title" class="section-title animate-on-scroll">Đánh Giá Từ Khách Hàng</h2>
                 <div class="testimonial-slider animate-on-scroll">
-                    <div class="slider-track" id="slider-track">
-                        <div class="testimonial-card">
-                            <div class="stars">★★★★★</div>
+                    <div class="slider-track" id="slider-track" aria-live="polite">
+                        <div class="testimonial-card" role="group" aria-label="Đánh giá 1 của 3">
+                            <div class="stars" aria-label="5 trên 5 sao">★★★★★</div>
                             <blockquote>"Dịch vụ tuyệt vời! Xe mới, chạy êm. Bạn chủ hỗ trợ giao xe tận khách sạn rất nhanh. Sẽ quay lại ủng hộ."</blockquote>
                             <cite class="author">Anh Minh Tuấn, TP. HCM</cite>
                         </div>
-                        <div class="testimonial-card">
-                            <div class="stars">★★★★★</div>
+                        <div class="testimonial-card" role="group" aria-label="Đánh giá 2 của 3">
+                            <div class="stars" aria-label="5 trên 5 sao">★★★★★</div>
                             <blockquote>"Thủ tục quá nhanh, mình chỉ cần đưa CCCD là xong. Xe Wave mới cứng, leo dốc Ba Vì khỏe re. Rất hài lòng."</blockquote>
                             <cite class="author">Chị Huyền Trang, Hà Nội</cite>
                         </div>
-                        <div class="testimonial-card">
-                            <div class="stars">★★★★★</div>
+                        <div class="testimonial-card" role="group" aria-label="Đánh giá 3 của 3">
+                            <div class="stars" aria-label="5 trên 5 sao">★★★★★</div>
                             <blockquote>"Great service for foreigners. Easy process with passport. The motorbike was reliable and cheap. Highly recommend!"</blockquote>
                             <cite class="author">John Doe, Australia</cite>
                         </div>
                     </div>
-                    <div class="slider-dots" id="slider-dots">
+                    <div class="slider-dots" id="slider-dots" role="tablist" aria-label="Điều hướng đánh giá">
                         </div>
                 </div>
             </div>
         </section>
 
-        <section id="commitment" class="section">
+        <section id="commitment" class="section" aria-labelledby="commitment-title">
             <div class="container animate-on-scroll">
-                <h2 class="section-title">🎯 Cam Kết & Bảo Hành</h2>
+                <h2 id="commitment-title" class="section-title">🎯 Cam Kết & Bảo Hành</h2>
                 <div class="card">
                     <ul class="checklist">
                         <li><strong>Đổi xe miễn phí:</strong> Hỗ trợ 1 đổi 1 ngay lập tức nếu xe phát sinh lỗi kỹ thuật không mong muốn.</li>
@@ -1501,9 +1505,9 @@
             </div>
         </section>
         
-        <section id="maintenance" class="section">
+        <section id="maintenance" class="section" aria-labelledby="maintenance-title">
             <div class="container animate-on-scroll">
-                <h2 class="section-title">🛠️ Chăm Sóc Xe Định Kỳ</h2>
+                <h2 id="maintenance-title" class="section-title">🛠️ Chăm Sóc Xe Định Kỳ</h2>
                 <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem; color: var(--c-text-muted);">
                     Để đảm bảo an toàn, mọi chiếc xe của Nguyễn Tú đều trải qua quy trình kiểm tra nghiêm ngặt trước khi đến tay bạn.
                 </p>
@@ -1524,9 +1528,9 @@
             </div>
         </section>
 
-        <section id="locations" class="section">
+        <section id="locations" class="section" aria-labelledby="locations-title">
             <div class="container">
-                <h2 class="section-title animate-on-scroll">🌆 Khám Phá Địa Điểm Nổi Bật</h2>
+                <h2 id="locations-title" class="section-title animate-on-scroll">🌆 Khám Phá Địa Điểm Nổi Bật</h2>
                 <div class="bonus-grid-3">
                     <div class="card location-card animate-on-scroll">
                         <img loading="lazy" src="https://placehold.co/600x400/D83B01/FFFFFF?text=Phố+Cổ+Hà+Nội" alt="Khám phá Phố Cổ Hà Nội">
@@ -1550,49 +1554,49 @@
             </div>
         </section>
         
-        <section id="faq" class="section">
+        <section id="faq" class="section" aria-labelledby="faq-title">
             <div class="container animate-on-scroll">
-                <h2 class="section-title">💬 Câu Hỏi Thường Gặp</h2>
+                <h2 id="faq-title" class="section-title">💬 Câu Hỏi Thường Gặp</h2>
                 <div class="faq-container" id="faq-container">
                     <div class="faq-item">
-                        <button class="faq-question">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
                             <span>Thuê xe cần những giấy tờ gì?</span>
-                            <span class="material-symbols-rounded icon">expand_more</span>
+                            <span class="material-symbols-rounded icon" aria-hidden="true">expand_more</span>
                         </button>
-                        <div class="faq-answer">
+                        <div class="faq-answer" id="faq-answer-1">
                             <div>
                                 <p>Bạn chỉ cần Căn cước công dân (CCCD) gốc hoặc Hộ chiếu (Passport) gốc. Chúng tôi sẽ giữ lại giấy tờ và hoàn trả khi bạn trả xe.</p>
                             </div>
                         </div>
                     </div>
                     <div class="faq-item">
-                        <button class="faq-question">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
                             <span>Tôi có cần đặt cọc tiền không?</span>
-                            <span class="material-symbols-rounded icon">expand_more</span>
+                            <span class="material-symbols-rounded icon" aria-hidden="true">expand_more</span>
                         </button>
-                        <div class="faq-answer">
+                        <div class="faq-answer" id="faq-answer-2">
                             <div>
                                 <p>Không. Chúng tôi hỗ trợ linh hoạt, bạn chỉ cần để lại giấy tờ tùy thân. Trường hợp không có giấy tờ, bạn có thể đặt cọc một khoản tiền nhỏ (tùy loại xe).</p>
                             </div>
                         </div>
                     </div>
                     <div class="faq-item">
-                        <button class="faq-question">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
                             <span>Xe có được giao tận nơi không?</span>
-                            <span class="material-symbols-rounded icon">expand_more</span>
+                            <span class="material-symbols-rounded icon" aria-hidden="true">expand_more</span>
                         </button>
-                        <div class="faq-answer">
+                        <div class="faq-answer" id="faq-answer-3">
                             <div>
                                 <p>Có. Chúng tôi giao xe nhanh chóng (20-40 phút) tại khu vực Phố Cổ, Hoàn Kiếm, Ba Đình và các quận nội thành. Vui lòng liên hệ để biết chi tiết phí giao xe (nếu có).</p>
                             </div>
                         </div>
                     </div>
                     <div class="faq-item">
-                        <button class="faq-question">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
                             <span>Nếu xe hỏng giữa đường thì sao?</span>
-                            <span class="material-symbols-rounded icon">expand_more</span>
+                            <span class="material-symbols-rounded icon" aria-hidden="true">expand_more</span>
                         </button>
-                        <div class="faq-answer">
+                        <div class="faq-answer" id="faq-answer-4">
                             <div>
                                 <p>Hãy gọi ngay cho chúng tôi qua hotline. Đội ngũ kỹ thuật 24/7 sẽ hỗ trợ bạn ngay lập tức, hoặc đổi cho bạn một chiếc xe khác miễn phí.</p>
                             </div>
@@ -1604,8 +1608,11 @@
 
     </main>
 
-    <footer class="main-footer">
+    <footer class="main-footer" aria-labelledby="footer-title">
         <div class="container">
+            <h2 id="footer-title" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">
+                Thông tin cuối trang
+            </h2>
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>🏢 Về Chúng Tôi</h4>
@@ -1616,21 +1623,21 @@
                     <h4>📞 Liên Hệ</h4>
                     <ul class="footer-contact">
                         <li>
-                            <span class="material-symbols-rounded icon">call</span>
+                            <span class="material-symbols-rounded icon" aria-hidden="true">call</span>
                             <div>
                                 <strong>Hotline/Zalo:</strong><br>
                                 <a href="tel:0942467674">0942467674</a>
                             </div>
                         </li>
                         <li>
-                            <span class="material-symbols-rounded icon">map</span>
+                            <span class="material-symbols-rounded icon" aria-hidden="true">map</span>
                             <div>
                                 <strong>Địa chỉ:</strong><br>
                                 <a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc" target="_blank" rel="noopener">112 Nguyễn Văn Cừ, Long Biên, Hà Nội</a>
                             </div>
                         </li>
                         <li>
-                            <span class="material-symbols-rounded icon">mail</span>
+                            <span class="material-symbols-rounded icon" aria-hidden="true">mail</span>
                             <div>
                                 <strong>Email:</strong><br>
                                 <a href="mailto:contact@example.com">contact@example.com</a>
@@ -1657,7 +1664,7 @@
                         <li><a href="kinhnghiem.html">💡 Kinh nghiệm</a></li>
                         <li><a href="diadiem.html">📍 Địa điểm</a></li>
                         <li><a href="quytrinh.html">⚙️ Quy trình</a></li>
-                        <li><a href="tintuc.html">📰 Tin tức</a></li>
+                        <li><a href="https://motoopen.github.io/thuexemayohoankiem/blog.html">📰 Blog / Tin tức</a></li>
                         <li><a href="uudai.html">🎁 Ưu đãi</a></li>
                         <li><a href="giamgia.html">💰 Giảm giá</a></li>
                     </ul>
@@ -1676,56 +1683,56 @@
                 <div class="footer-col">
                     <h4>🌐 Mạng Xã Hội</h4>
                     <div class="social-links">
-                        <a href="https://m.facebook.com/chothuexemay0857255868/" target="_blank" rel="noopener" aria-label="Facebook 1"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="https://m.facebook.com/chothuexemayphocohanoi/" target="_blank" rel="noopener" aria-label="Facebook 2"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="https://m.facebook.com/thuexemayhanoigiare/" target="_blank" rel="noopener" aria-label="Facebook 3"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html" target="_blank" rel="noopener" aria-label="TripAdvisor"><i class="fa-brands fa-tripadvisor"></i></a>
-                        <a href="https://thuexemaynguyentu.com" target="_blank" rel="noopener" aria-label="Website"><i class="fa-solid fa-globe"></i></a>
+                        <a href="https://m.facebook.com/chothuexemay0857255868/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
+                        <a href="https://zalo.me/0942467674" target="_blank" rel="noopener" aria-label="Zalo"><i class="fa-brands fa-zalo" aria-hidden="true"></i></a>
+                        <a href="https://wa.me/84942467674" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+                        <a href="https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html" target="_blank" rel="noopener" aria-label="TripAdvisor"><i class="fa-brands fa-tripadvisor" aria-hidden="true"></i></a>
+                        <a href="https://thuexemaynguyentu.com" target="_blank" rel="noopener" aria-label="Website"><i class="fa-solid fa-globe" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>© <span id="current-year"></span> Thuê Xe Máy hoàn kiếm Hà Nội – Nguyễn Tú</p>
-                <a href="#top" id="back-to-top">⬆️ Lên đầu trang</a>
+                <p>© <span id="current-year">2025</span> Thuê Xe Máy hoàn kiếm Hà Nội – Nguyễn Tú</p>
+                <a href="#top" id="back-to-top"><span aria-hidden="true">⬆️</span> Lên đầu trang</a>
             </div>
         </div>
     </footer>
 
-    <div class="quick-call-bar" id="quick-call-bar">
+    <nav class="quick-call-bar" id="quick-call-bar" aria-label="Thanh công cụ nhanh">
         <a href="tel:0942467674" class="quick-call-btn">
-            <span class="material-symbols-rounded icon">call</span>
+            <span class="material-symbols-rounded icon" aria-hidden="true">call</span>
             Gọi điện
         </a>
         <a href="https://zalo.me/0942467674" target="_blank" rel="noopener" class="quick-call-btn">
-            <i class="fa-brands fa-zalo icon"></i>
+            <i class="fa-brands fa-zalo icon" aria-hidden="true"></i>
             Chat Zalo
         </a>
         <a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc" target="_blank" rel="noopener" class="quick-call-btn">
-            <span class="material-symbols-rounded icon">map</span>
+            <span class="material-symbols-rounded icon" aria-hidden="true">map</span>
             Bản đồ
         </a>
-    </div>
+    </nav>
 
-    <div class="lightbox" id="lightbox">
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Trình xem ảnh phóng to">
         <div class="lightbox-content">
             <img src="" alt="Hình ảnh phóng to" class="lightbox-img" id="lightbox-img">
         </div>
-        <button class="lightbox-close" id="lightbox-close" aria-label="Đóng ảnh">close</button>
+        <button class="lightbox-close" id="lightbox-close" aria-label="Đóng ảnh"><span aria-hidden="true">close</span></button>
     </div>
 
     <script>
       window.MotoAI_CONFIG = {
-        brand: "Thuê Xe Máy Hà Nội",
+        brand: "Dịch vụ cho thuê xe máy Hoàn Kiếm – Nguyễn Tú",
         phone: "0942467674",
         zalo: "https://zalo.me/0942467674",
         whatsapp: "https://wa.me/84942467674",
         map: "https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc",
         theme: "auto",
-        color: "#0078D4"
+        color: "#1C1C1E"
       };
     </script>
-    <script src="https://motoopen.github.io/chothuexemayhanoi/motoai_v36_smarttone_deep.js"></script>
+    <script defer src="https://motoopen.github.io/chothuexemayhanoi/motoai_v36_smarttone_deep.js"></script>
     
     <script defer>
     (function() {
@@ -1773,22 +1780,23 @@
                 const toggleMobileNav = (show) => {
                     mobileNavPanel.classList.toggle('active', show);
                     mobileNavOverlay.classList.toggle('active', show);
+                    mobileMenuToggle.setAttribute('aria-expanded', show);
                 };
                 
                 mobileMenuToggle.addEventListener('click', () => toggleMobileNav(true));
                 mobileNavClose.addEventListener('click', () => toggleMobileNav(false));
                 mobileNavOverlay.addEventListener('click', () => toggleMobileNav(false));
                 
-                // --- THÊM JS CHO MENU CON TRÊN DI ĐỘNG ---
+                // --- JS CHO MENU CON TRÊN DI ĐỘNG ---
                 mobileNavPanel.addEventListener('click', (e) => {
                     const toggleBtn = e.target.closest('.mobile-dropdown-toggle');
                     if (toggleBtn) {
-                        e.preventDefault(); // Ngăn hành vi mặc định nếu là thẻ <a>
+                        e.preventDefault();
                         const dropdown = toggleBtn.parentElement;
-                        dropdown.classList.toggle('active');
+                        const isActive = dropdown.classList.toggle('active');
+                        toggleBtn.setAttribute('aria-expanded', isActive);
                     }
                 });
-                // --- KẾT THÚC JS CHO MENU CON ---
             }
             
             // --- 3. Cập nhật năm hiện tại ---
@@ -1806,24 +1814,32 @@
 
             // --- 5. FAQ Accordion ---
             if (faqContainer) {
+                const faqItems = faqContainer.querySelectorAll('.faq-item');
+                
                 faqContainer.addEventListener('click', (e) => {
                     const questionButton = e.target.closest('.faq-question');
                     if (!questionButton) return;
                     
                     const faqItem = questionButton.parentElement;
                     const isActive = faqItem.classList.contains('active');
-
-                    // Đóng tất cả item khác
-                    // Array.from(faqContainer.children).forEach(item => {
-                    //     if (item !== faqItem) item.classList.remove('active');
+                    
+                    // Đóng tất cả
+                    // faqItems.forEach(item => {
+                    //    item.classList.remove('active');
+                    //    item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
                     // });
                     
                     // Mở/đóng item hiện tại
                     faqItem.classList.toggle('active', !isActive);
+                    questionButton.setAttribute('aria-expanded', !isActive);
                 });
+                
                 // Mở sẵn câu đầu tiên
-                const firstFaq = faqContainer.querySelector('.faq-item');
-                if(firstFaq) firstFaq.classList.add('active');
+                const firstFaq = faqItems[0];
+                if(firstFaq) {
+                    firstFaq.classList.add('active');
+                    firstFaq.querySelector('.faq-question').setAttribute('aria-expanded', 'true');
+                }
             }
 
             // --- 6. Testimonial Slider ---
@@ -1837,7 +1853,9 @@
                     for (let i = 0; i < slideCount; i++) {
                         const dot = document.createElement('button');
                         dot.classList.add('slider-dot');
+                        dot.setAttribute('role', 'tab');
                         dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                        dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
                         dot.dataset.index = i;
                         if (i === 0) dot.classList.add('active');
                         sliderDotsContainer.appendChild(dot);
@@ -1847,8 +1865,10 @@
                     
                     const updateSlider = (index) => {
                         sliderTrack.style.transform = `translateX(-${index * 100}%)`;
-                        Array.from(dots).forEach(dot => dot.classList.remove('active'));
-                        dots[index].classList.add('active');
+                        Array.from(dots).forEach((dot, idx) => {
+                            dot.classList.toggle('active', idx === index);
+                            dot.setAttribute('aria-selected', idx === index);
+                        });
                         currentIndex = index;
                     };
 
@@ -1918,6 +1938,7 @@
                         e.preventDefault();
                         lightboxImg.src = img.src;
                         lightbox.classList.add('active');
+                        lightboxClose.focus(); // Focus vào nút đóng
                     }
                 });
                 
@@ -1925,6 +1946,12 @@
                 lightboxClose.addEventListener('click', closeLightbox);
                 lightbox.addEventListener('click', (e) => {
                     if (e.target === lightbox) closeLightbox();
+                });
+                // Đóng bằng phím Escape
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                        closeLightbox();
+                    }
                 });
             }
 
@@ -1935,7 +1962,7 @@
                 internalLinks.forEach(link => {
                     link.addEventListener('click', (e) => {
                         // Bỏ qua các link đặc biệt
-                        if (link.hash || link.target === '_blank' || link.closest('.no-transition') || link.closest('.nav-dropdown-toggle')) { // Thêm điều kiện bỏ qua toggle
+                        if (link.hash || link.target === '_blank' || link.closest('.no-transition') || link.closest('.nav-dropdown-toggle')) {
                             return;
                         }
 
