@@ -34,6 +34,21 @@ CONTACT={
 
 STYLE={
   STYLE_PRESET:"UltraTitanGlass",
+THEME_RANDOMIZER={
+  ENABLED:true,
+  POOL:[
+    "UltraTitanGlass",
+    "FacebookUltra",
+    "NeoMint",
+    "MidnightPurple",
+    "AeroGlassBlue",
+    "SunsetOrange",
+    "MotoDarkCarbon",
+    "MinimalWhite"
+  ],
+  SYNC_ACCENT:true,
+  RANDOMIZE_ON_LOAD:true
+};
   ACCENT:"#0A84FF",
   ACCENT2:"#00C49A",
   RADIUS:"20px",
