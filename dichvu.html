@@ -16,21 +16,32 @@
     <meta name="keywords" content="dịch vụ thuê xe máy Hoàn Kiếm, thuê xe máy Hà Nội, thuê xe máy Nguyễn Tú, cho thuê xe máy giá rẻ, xe ga, xe số, xe 50cc, xe điện">
     <meta name="author" content="Nguyễn Tú Motorbike Rental">
     <meta name="robots" content="index, follow">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://motoopen.github.io/thuexemayohoankiem/index.html">
+    
     <meta name="theme-color" content="#1C1C1E">
     <meta name="color-scheme" content="light dark">
     <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph (Facebook, Zalo) -->
     <meta property="og:title" content="Dịch vụ cho thuê xe máy Hoàn Kiếm, Hà Nội – Nguyễn Tú">
     <meta property="og:description" content="Dịch vụ thuê xe máy chuyên nghiệp tại Quận Hoàn Kiếm – Nguyễn Tú Motorbike Rental. Xe ga, xe số, xe 50cc, xe điện, giao nhanh 20–40’, cọc nhẹ, hỗ trợ 24/7.">
     <meta property="og:image" content="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/BANNER-THUE-XE-MAY-1.png">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://motoopen.github.io/thuexemayohoankiem/index.html">
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Dịch vụ cho thuê xe máy Hoàn Kiếm, Hà Nội – Nguyễn Tú">
     <meta name="twitter:description" content="Dịch vụ thuê xe máy chuyên nghiệp tại Quận Hoàn Kiếm – Nguyễn Tú Motorbike Rental. Xe ga, xe số, xe 50cc, xe điện, giao nhanh 20–40’, cọc nhẹ, hỗ trợ 24/7.">
     <meta name="twitter:image" content="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/BANNER-THUE-XE-MAY-1.png">
+    
+    <!-- Icons & Favicon -->
     <link rel="apple-touch-icon" href="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png">
+    <link rel="icon" href="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png" sizes="32x32">
+    
     <meta name="referrer" content="origin-when-cross-origin">
     <meta name="format-detection" content="telephone=no">
-    <link rel="icon" href="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png" sizes="32x32">
 
     <!-- ===================== VIEW TRANSITIONS ===================== -->
     <meta name="view-transition" content="same-origin">
@@ -312,6 +323,9 @@
         text-decoration: none;
         padding: 0.5rem 0;
         position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
       }
       .nav-links a::after {
         content: '';
@@ -431,6 +445,16 @@
         opacity: 0.9;
         margin-bottom: 2rem;
       }
+      /* Style for new SEO link in hero */
+      #hero p a {
+        color: #ffffff;
+        text-decoration: underline;
+        font-weight: 500;
+      }
+      #hero p a:hover {
+        text-decoration: none;
+      }
+      
       .hero-cta {
         display: flex;
         justify-content: center;
@@ -484,6 +508,9 @@
         color: var(--text-color);
         text-align: left;
         margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
       }
       .form-grid {
         display: grid;
@@ -558,6 +585,10 @@
       html.dark #promotions {
         background: linear-gradient(135deg, #2a2a2e 0%, #3a3a3c 100%);
       }
+      /* Style for new SEO links in promotions */
+      #promotions p a {
+        font-weight: 500;
+      }
 
       /* ==================== PROCESS SECTION ==================== */
       .stepper {
@@ -588,6 +619,11 @@
       .step h4 {
         margin-top: 1rem;
       }
+      /* Style for new SEO link in process */
+      .step p a {
+        font-weight: 500;
+      }
+      
       .stepper::before {
         content: '';
         position: absolute;
@@ -640,6 +676,7 @@
         padding: 1rem;
         opacity: 0;
         transition: var(--transition-base);
+        pointer-events: none;
       }
       .gallery-item:hover img, .gallery-item:focus img {
         transform: scale(1.1);
@@ -733,9 +770,10 @@
         gap: 2rem;
         text-align: center;
       }
-      .footer-col h4 {
+      .footer-col h3 {
         color: var(--accent-text);
         margin-bottom: 1.5rem;
+        font-size: 1.25rem; /* H4 size */
       }
       .footer-col ul li {
         margin-bottom: 0.75rem;
@@ -958,7 +996,7 @@
                     <li><a href="index.html">🏠 Trang chủ</a></li>
                     <li><a href="gioithieu.html">📄 Giới thiệu</a></li>
                     <li class="dropdown">
-                        <a href="#" aria-haspopup="true">⚙️ Dịch vụ <span class="material-symbols-rounded" style="font-size: 1rem;">expand_more</span></a>
+                        <a href="dichvu.html" aria-haspopup="true">⚙️ Dịch vụ <span class="material-symbols-rounded" style="font-size: 1rem;" aria-hidden="true">expand_more</span></a>
                         <ul class="dropdown-menu">
                             <li><a href="thutuc.html">📑 Thủ tục</a></li>
                             <li><a href="loaixe.html">🛵 Loại xe</a></li>
@@ -968,7 +1006,7 @@
                             <li><a href="quytrinh.html">⚙️ Quy trình</a></li>
                             <li><a href="uudai.html">🎁 Ưu đãi</a></li>
                             <li><a href="giamgia.html">💰 Giảm giá</a></li>
-                            <li><a href="tintuc.html">📰 Tin tức</a></li>
+                            <li><a href="https://motoopen.github.io/thuexemayohoankiem/blog.html" target="_blank" rel="noopener">📰 Blog / Tin tức</a></li>
                         </ul>
                     </li>
                     <li><a href="banggia.html">🏷️ Bảng giá</a></li>
@@ -976,9 +1014,9 @@
                 </ul>
             </nav>
 
-            <button class="nav-toggle" id="nav-toggle" aria-label="Mở menu">
-                <span class="material-symbols-rounded icon-menu">menu</span>
-                <span class="material-symbols-rounded icon-close" style="display: none;">close</span>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Mở menu" aria-controls="nav-links">
+                <span class="material-symbols-rounded icon-menu" aria-hidden="true">menu</span>
+                <span class="material-symbols-rounded icon-close" style="display: none;" aria-hidden="true">close</span>
             </button>
         </div>
     </header>
@@ -990,14 +1028,14 @@
         <section id="hero">
             <div class="container hero-content">
                 <h1 class="reveal">⭐ DỊCH VỤ CHO THUÊ XE MÁY HOÀN KIẾM, HÀ NỘI – Nguyễn Tú</h1>
-                <p class="reveal" style="transition-delay: 0.1s;">📍 Xe ga, xe số, xe 50cc, xe điện — giao nhanh 20’, cọc nhẹ, hỗ trợ 24/7.</p>
+                <p class="reveal" style="transition-delay: 0.1s;">📍 Xe ga, xe số, xe 50cc, xe điện — giao nhanh 20’, cọc nhẹ, hỗ trợ 24/7. Khám phá Hà Nội với <a href="kinhnghiem.html">kinh nghiệm</a> du lịch từ chúng tôi.</p>
                 <div class="hero-cta reveal" style="transition-delay: 0.2s;">
                     <a href="tel:0942467674" class="btn btn-primary">
-                        <span class="material-symbols-rounded">call</span>
+                        <span class="material-symbols-rounded" aria-hidden="true">call</span>
                         Gọi ngay
                     </a>
-                    <a href="https://zalo.me/0942467674" target="_blank" class="btn btn-secondary">
-                        <i class="fa-solid fa-comment-dots"></i>
+                    <a href="https://zalo.me/0942467674" target="_blank" rel="noopener" class="btn btn-secondary">
+                        <i class="fa-solid fa-comment-dots" aria-hidden="true"></i>
                         Chat Zalo
                     </a>
                 </div>
@@ -1008,12 +1046,12 @@
                     <span class="chip">🚚 Giao tận nơi</span>
                 </div>
 
-                <form class="mini-form reveal" style="transition-delay: 0.4s;" onsubmit="event.preventDefault();">
-                    <h3><span class="material-symbols-rounded">explore</span> Gợi ý lịch trình</h3>
+                <form class="mini-form reveal" style="transition-delay: 0.4s;" onsubmit="event.preventDefault();" role="search">
+                    <h3><span class="material-symbols-rounded" aria-hidden="true">explore</span> Gợi ý lịch trình</h3>
                     <div class="form-grid">
-                        <input type="text" placeholder="Điểm đến (VD: Phố Cổ)">
-                        <input type="text" placeholder="Ngân sách (VD: 200k)">
-                        <input type="number" placeholder="Số ngày">
+                        <input type="text" placeholder="Điểm đến (VD: Phố Cổ)" aria-label="Điểm đến">
+                        <input type="text" placeholder="Ngân sách (VD: 200k)" aria-label="Ngân sách">
+                        <input type="number" placeholder="Số ngày" aria-label="Số ngày">
                         <button type="submit" class="btn btn-primary">Gợi ý</button>
                     </div>
                 </form>
@@ -1026,33 +1064,33 @@
                 <h2 class="section-title reveal">Vì sao chọn Nguyễn Tú?</h2>
                 <div class="grid-3">
                     <div class="benefit-card reveal">
-                        <span class="icon material-symbols-rounded">verified</span>
-                        <h4>Thủ tục siêu tốc</h4>
+                        <span class="icon material-symbols-rounded" aria-hidden="true">verified</span>
+                        <h3>Thủ tục siêu tốc</h3>
                         <p>Chỉ cần Căn cước công dân hoặc Passport. Hoàn tất trong 5 phút.</p>
                     </div>
                     <div class="benefit-card reveal" style="transition-delay: 0.1s;">
-                        <span class="icon material-symbols-rounded">local_shipping</span>
-                        <h4>Giao xe tận nơi</h4>
+                        <span class="icon material-symbols-rounded" aria-hidden="true">local_shipping</span>
+                        <h3>Giao xe tận nơi</h3>
                         <p>Giao xe nhanh chóng 20-40 phút tại mọi địa điểm ở Hoàn Kiếm.</p>
                     </div>
                     <div class="benefit-card reveal" style="transition-delay: 0.2s;">
-                        <span class="icon material-symbols-rounded">headset_mic</span>
-                        <h4>Hỗ trợ 24/7</h4>
+                        <span class="icon material-symbols-rounded" aria-hidden="true">headset_mic</span>
+                        <h3>Hỗ trợ 24/7</h3>
                         <p>Đội ngũ hỗ trợ kỹ thuật và cứu hộ luôn túc trực mọi lúc.</p>
                     </div>
                     <div class="benefit-card reveal">
-                        <span class="icon material-symbols-rounded">payments</span>
-                        <h4>Cọc linh hoạt</h4>
+                        <span class="icon material-symbols-rounded" aria-hidden="true">payments</span>
+                        <h3>Cọc linh hoạt</h3>
                         <p>Đặt cọc nhẹ nhàng, linh hoạt, hỗ trợ thanh toán online tiện lợi.</p>
                     </div>
                     <div class="benefit-card reveal" style="transition-delay: 0.1s;">
-                        <span class="icon material-symbols-rounded">electric_moped</span>
-                        <h4>Đa dạng xe mới</h4>
+                        <span class="icon material-symbols-rounded" aria-hidden="true">electric_moped</span>
+                        <h3>Đa dạng xe mới</h3>
                         <p>Luôn có sẵn xe ga, xe số, xe 50cc, xe điện đời mới, bảo dưỡng định kỳ.</p>
                     </div>
                     <div class="benefit-card reveal" style="transition-delay: 0.2s;">
-                        <span class="icon material-symbols-rounded">event_available</span>
-                        <h4>Giá cả rõ ràng</h4>
+                        <span class="icon material-symbols-rounded" aria-hidden="true">event_available</span>
+                        <h3>Giá cả rõ ràng</h3>
                         <p>Cam kết không phát sinh chi phí ẩn. Giá thuê xe luôn công khai, minh bạch.</p>
                     </div>
                 </div>
@@ -1105,10 +1143,10 @@
             <div class="container text-center">
                 <h2 class="section-title reveal">Ưu đãi & Giảm giá đặc biệt</h2>
                 <p class="reveal" style="font-size: 1.25rem; max-width: 700px; margin: 0 auto 2rem auto;">
-                    Chúng tôi luôn có các chương trình giảm giá cho sinh viên, khách thuê dài ngày và các dịp lễ lớn.
+                    Chúng tôi luôn có các chương trình <a href="giamgia.html">giảm giá</a> cho sinh viên, khách thuê dài ngày và gợi ý các <a href="diadiem.html">địa điểm</a> thú vị.
                 </p>
                 <div class="reveal">
-                    <a href="giamgia.html" class="btn btn-primary">Xem tất cả ưu đãi</a>
+                    <a href="uudai.html" class="btn btn-primary">Xem tất cả ưu đãi</a>
                 </div>
             </div>
         </section>
@@ -1126,7 +1164,7 @@
                     <div class="step reveal" style="transition-delay: 0.1s;">
                         <div class="step-icon">2</div>
                         <h4>Chọn xe & Thủ tục</h4>
-                        <p>Chọn loại xe, chốt giá và gửi thông tin (CCCD/Passport).</p>
+                        <p>Chọn loại xe, chốt giá và xem <a href="thutuc.html">thủ tục</a> (CCCD/Passport).</p>
                     </div>
                     <div class="step reveal" style="transition-delay: 0.2s;">
                         <div class="step-icon">3</div>
@@ -1147,28 +1185,28 @@
             <div class="container">
                 <h2 class="section-title reveal">Hình ảnh thực tế</h2>
                 <div class="grid-4">
-                    <a href="https://placehold.co/1200x800/1C1C1E/FFFFFF?text=Xe+mới+1" class="gallery-item reveal" data-lightbox-src="https://placehold.co/1200x800/1C1C1E/FFFFFF?text=Xe+mới+1">
+                    <a href="https://placehold.co/1200x800/1C1C1E/FFFFFF?text=Xe+mới+1" class="gallery-item reveal" data-lightbox-src="https://placehold.co/1200x800/1C1C1E/FFFFFF?text=Xe+mới+1" aria-label="Xem ảnh xe mới 1">
                         <img src="https://placehold.co/600x400/1C1C1E/FFFFFF?text=Xe+mới+1" alt="Hình ảnh xe 1" loading="lazy">
                     </a>
-                    <a href="https://placehold.co/1200x800/9D9FA3/1C1C1E?text=Xe+mới+2" class="gallery-item reveal" style="transition-delay: 0.1s;" data-lightbox-src="https://placehold.co/1200x800/9D9FA3/1C1C1E?text=Xe+mới+2">
+                    <a href="https://placehold.co/1200x800/9D9FA3/1C1C1E?text=Xe+mới+2" class="gallery-item reveal" style="transition-delay: 0.1s;" data-lightbox-src="https://placehold.co/1200x800/9D9FA3/1C1C1E?text=Xe+mới+2" aria-label="Xem ảnh xe mới 2">
                         <img src="https://placehold.co/600x400/9D9FA3/1C1C1E?text=Xe+mới+2" alt="Hình ảnh xe 2" loading="lazy">
                     </a>
-                    <a href="https://placehold.co/1200x800/1C1C1E/FFFFFF?text=Khách+hàng" class="gallery-item reveal" style="transition-delay: 0.2s;" data-lightbox-src="https://placehold.co/1200x800/1C1C1E/FFFFFF?text=Khách+hàng">
+                    <a href="https://placehold.co/1200x800/1C1C1E/FFFFFF?text=Khách+hàng" class="gallery-item reveal" style="transition-delay: 0.2s;" data-lightbox-src="https://placehold.co/1200x800/1C1C1E/FFFFFF?text=Khách+hàng" aria-label="Xem ảnh khách hàng">
                         <img src="https://placehold.co/600x400/1C1C1E/FFFFFF?text=Khách+hàng" alt="Hình ảnh xe 3" loading="lazy">
                     </a>
-                    <a href="https://placehold.co/1200x800/9D9FA3/1C1C1E?text=Giao+xe" class="gallery-item reveal" style="transition-delay: 0.3s;" data-lightbox-src="https://placehold.co/1200x800/9D9FA3/1C1C1E?text=Giao+xe">
+                    <a href="https://placehold.co/1200x800/9D9FA3/1C1C1E?text=Giao+xe" class="gallery-item reveal" style="transition-delay: 0.3s;" data-lightbox-src="https://placehold.co/1200x800/9D9FA3/1C1C1E?text=Giao+xe" aria-label="Xem ảnh giao xe">
                         <img src="https://placehold.co/600x400/9D9FA3/1C1C1E?text=Giao+xe" alt="Hình ảnh xe 4" loading="lazy">
                     </a>
-                    <a href="https://placehold.co/1200x800/9D9FA3/1C1C1E?text=Xe+Vision" class="gallery-item reveal" data-lightbox-src="https://placehold.co/1200x800/9D9FA3/1C1C1E?text=Xe+Vision">
+                    <a href="https://placehold.co/1200x800/9D9FA3/1C1C1E?text=Xe+Vision" class="gallery-item reveal" data-lightbox-src="https://placehold.co/1200x800/9D9FA3/1C1C1E?text=Xe+Vision" aria-label="Xem ảnh xe Vision">
                         <img src="https://placehold.co/600x400/9D9FA3/1C1C1E?text=Xe+Vision" alt="Hình ảnh xe 5" loading="lazy">
                     </a>
-                    <a href="https://placehold.co/1200x800/1C1C1E/FFFFFF?text=Mũ+bảo+hiểm" class="gallery-item reveal" style="transition-delay: 0.1s;" data-lightbox-src="https://placehold.co/1200x800/1C1C1E/FFFFFF?text=Mũ+bảo+hiểm">
+                    <a href="https://placehold.co/1200x800/1C1C1E/FFFFFF?text=Mũ+bảo+hiểm" class="gallery-item reveal" style="transition-delay: 0.1s;" data-lightbox-src="https://placehold.co/1200x800/1C1C1E/FFFFFF?text=Mũ+bảo+hiểm" aria-label="Xem ảnh mũ bảo hiểm">
                         <img src="https://placehold.co/600x400/1C1C1E/FFFFFF?text=Mũ+bảo+hiểm" alt="Hình ảnh xe 6" loading="lazy">
                     </a>
-                    <a href="https://placehold.co/1200x800/9D9FA3/1C1C1E?text=Cửa+hàng" class="gallery-item reveal" style="transition-delay: 0.2s;" data-lightbox-src="https://placehold.co/1200x800/9D9FA3/1C1C1E?text=Cửa+hàng">
+                    <a href="https://placehold.co/1200x800/9D9FA3/1C1C1E?text=Cửa+hàng" class="gallery-item reveal" style="transition-delay: 0.2s;" data-lightbox-src="https://placehold.co/1200x800/9D9FA3/1C1C1E?text=Cửa+hàng" aria-label="Xem ảnh cửa hàng">
                         <img src="https://placehold.co/600x400/9D9FA3/1C1C1E?text=Cửa+hàng" alt="Hình ảnh xe 7" loading="lazy">
                     </a>
-                    <a href="https://placehold.co/1200x800/1C1C1E/FFFFFF?text=Khách+nước+ngoài" class="gallery-item reveal" style="transition-delay: 0.3s;" data-lightbox-src="https://placehold.co/1200x800/1C1C1E/FFFFFF?text=Khách+nước+ngoài">
+                    <a href="https://placehold.co/1200x800/1C1C1E/FFFFFF?text=Khách+nước+ngoài" class="gallery-item reveal" style="transition-delay: 0.3s;" data-lightbox-src="https://placehold.co/1200x800/1C1C1E/FFFFFF?text=Khách+nước+ngoài" aria-label="Xem ảnh khách nước ngoài">
                         <img src="https://placehold.co/600x400/1C1C1E/FFFFFF?text=Khách+nước+ngoài" alt="Hình ảnh xe 8" loading="lazy">
                     </a>
                 </div>
@@ -1184,34 +1222,34 @@
                         <!-- Slide 1 -->
                         <div class="slide">
                             <div class="review-card">
-                                <img src="https://placehold.co/80x80/9D9FA3/FFFFFF?text=H" alt="Avatar khách hàng">
+                                <img src="https://placehold.co/80x80/9D9FA3/FFFFFF?text=H" alt="Avatar khách hàng Hoàng">
                                 <h4>Anh Hoàng (Cầu Giấy)</h4>
-                                <div class="stars">⭐⭐⭐⭐⭐</div>
+                                <div class="stars" aria-label="5 trên 5 sao">⭐⭐⭐⭐⭐</div>
                                 <p>"Dịch vụ quá tốt. Giao xe nhanh, xe mới, anh chủ rất nhiệt tình. Sẽ ủng hộ dài dài."</p>
                             </div>
                         </div>
                         <!-- Slide 2 -->
                         <div class="slide">
                             <div class="review-card">
-                                <img src="https://placehold.co/80x80/1C1C1E/FFFFFF?text=L" alt="Avatar khách hàng">
+                                <img src="https://placehold.co/80x80/1C1C1E/FFFFFF?text=L" alt="Avatar khách hàng Linh">
                                 <h4>Chị Linh (TP. HCM)</h4>
-                                <div class="stars">⭐⭐⭐⭐⭐</div>
+                                <div class="stars" aria-label="5 trên 5 sao">⭐⭐⭐⭐⭐</div>
                                 <p>"Mình thuê xe đi lượn Phố Cổ. Thủ tục online nhanh gọn, xe Vision mới tinh, đi rất êm. 10 điểm."</p>
                             </div>
                         </div>
                         <!-- Slide 3 -->
                         <div class="slide">
                             <div class="review-card">
-                                <img src="https://placehold.co/80x80/9D9FA3/FFFFFF?text=J" alt="Avatar khách hàng">
+                                <img src="https://placehold.co/80x80/9D9FA3/FFFFFF?text=J" alt="Avatar khách hàng John">
                                 <h4>John (USA)</h4>
-                                <div class="stars">⭐⭐⭐⭐⭐</div>
+                                <div class="stars" aria-label="5 trên 5 sao">⭐⭐⭐⭐⭐</div>
                                 <p>"Excellent service! Very fast delivery to my hotel in Hoan Kiem. The bike was new and reliable. Highly recommend."</p>
                             </div>
                         </div>
                     </div>
                     <div class="slider-nav">
-                        <button id="slider-prev" aria-label="Đánh giá trước"><span class="material-symbols-rounded">arrow_back</span></button>
-                        <button id="slider-next" aria-label="Đánh giá kế tiếp"><span class="material-symbols-rounded">arrow_forward</span></button>
+                        <button id="slider-prev" aria-label="Đánh giá trước"><span class="material-symbols-rounded" aria-hidden="true">arrow_back</span></button>
+                        <button id="slider-next" aria-label="Đánh giá kế tiếp"><span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></button>
                     </div>
                 </div>
             </div>
@@ -1222,11 +1260,11 @@
             <div class="container">
                 <h2 class="section-title reveal">Cam kết & Đối tác</h2>
                 <div class="logos-container reveal">
-                    <img src="https://placehold.co/150x50/ffffff/9D9FA3?text=Honda" alt="Honda" loading="lazy">
-                    <img src="https://placehold.co/150x50/ffffff/9D9FA3?text=Yamaha" alt="Yamaha" loading="lazy">
-                    <img src="https://placehold.co/150x50/ffffff/9D9FA3?text=TripAdvisor" alt="TripAdvisor" loading="lazy">
-                    <img src="https://placehold.co/150x50/ffffff/9D9FA3?text=Google+Maps" alt="Google Maps" loading="lazy">
-                    <img src="https://placehold.co/150x50/ffffff/9D9FA3?text=VinFast" alt="VinFast" loading="lazy">
+                    <img src="https://placehold.co/150x50/ffffff/9D9FA3?text=Honda" alt="Logo đối tác Honda" loading="lazy">
+                    <img src="https://placehold.co/150x50/ffffff/9D9FA3?text=Yamaha" alt="Logo đối tác Yamaha" loading="lazy">
+                    <img src="https://placehold.co/150x50/ffffff/9D9FA3?text=TripAdvisor" alt="Logo đối tác TripAdvisor" loading="lazy">
+                    <img src="https://placehold.co/150x50/ffffff/9D9FA3?text=Google+Maps" alt="Logo đối tác Google Maps" loading="lazy">
+                    <img src="https://placehold.co/150x50/ffffff/9D9FA3?text=VinFast" alt="Logo đối tác VinFast" loading="lazy">
                 </div>
             </div>
         </section>
@@ -1239,48 +1277,46 @@
             <div class="footer-grid">
                 <!-- Col 1: Về chúng tôi -->
                 <div class="footer-col reveal">
-                    <span class="icon material-symbols-rounded">apartment</span>
-                    <h4>Về chúng tôi</h4>
+                    <span class="icon material-symbols-rounded" aria-hidden="true">apartment</span>
+                    <h3>Về chúng tôi</h3>
                     <ul>
                         <li><p style="color: var(--accent-text); opacity: 0.8; margin-bottom: 0;">Nguyễn Tú Motorbike Rental chuyên cho thuê xe máy tại Hoàn Kiếm, Hà Nội.</p></li>
                     </ul>
                 </div>
                 <!-- Col 2: Liên hệ -->
                 <div class="footer-col reveal" style="transition-delay: 0.1s;">
-                    <span class="icon material-symbols-rounded">call</span>
-                    <h4>Liên hệ</h4>
+                    <span class="icon material-symbols-rounded" aria-hidden="true">call</span>
+                    <h3>Liên hệ</h3>
                     <ul>
                         <li><a href="tel:0942467674">Phone: 0942467674</a></li>
-                        <li><a href="https://zalo.me/0942467674">Zalo: 0942467674</a></li>
-                        <li><a href="mailto:contact@example.com">Email: contact@example.com</a></li>
-                        <li><a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc">Địa chỉ: 112 Nguyễn Văn Cừ, Long Biên, Hà Nội</a></li>
+                        <li><a href="https://zalo.me/0942467674" target="_blank" rel="noopener">Zalo: 0942467674</a></li>
+                        <li><a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc" target="_blank" rel="noopener">Địa chỉ: 112 Nguyễn Văn Cừ, Long Biên, Hà Nội</a></li>
                     </ul>
                 </div>
                 <!-- Col 3: Hỗ trợ -->
                 <div class="footer-col reveal" style="transition-delay: 0.2s;">
-                    <span class="icon material-symbols-rounded">support_agent</span>
-                    <h4>Hỗ trợ</h4>
+                    <span class="icon material-symbols-rounded" aria-hidden="true">support_agent</span>
+                    <h3>Hỗ trợ</h3>
                     <ul>
                         <li><a href="huongdan.html">Hướng dẫn đặt xe</a></li>
-                        <li><a href="#">Chính sách bảo mật</a></li>
-                        <li><a href="#">Điều khoản dịch vụ</a></li>
-                        <li><a href="#">Câu hỏi thường gặp</a></li>
+                        <li><a href="baomat.html">Chính sách bảo mật</a></li>
+                        <li><a href="dieukhoan.html">Điều khoản dịch vụ</a></li>
+                        <li><a href="faq.html">Câu hỏi thường gặp</a></li>
                     </ul>
                 </div>
                 <!-- Col 4: Mạng xã hội -->
                 <div class="footer-col reveal" style="transition-delay: 0.3s;">
-                    <span class="icon material-symbols-rounded">public</span>
-                    <h4>Mạng xã hội</h4>
+                    <span class="icon material-symbols-rounded" aria-hidden="true">public</span>
+                    <h3>Mạng xã hội</h3>
                     <div class="footer-socials">
-                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" aria-label="Tiktok"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://m.facebook.com/chothuexemay0857255868/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
+                        <a href="https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html" target="_blank" rel="noopener" aria-label="TripAdvisor"><i class="fa-brands fa-tripadvisor" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <!-- Col 5: Dịch vụ -->
                 <div class="footer-col reveal" style="transition-delay: 0.4s;">
-                    <span class="icon material-symbols-rounded">moped</span>
-                    <h4>Dịch vụ</h4>
+                    <span class="icon material-symbols-rounded" aria-hidden="true">moped</span>
+                    <h3>Dịch vụ</h3>
                     <ul>
                         <li><a href="loaixe.html">Thuê xe ga</a></li>
                         <li><a href="loaixe.html">Thuê xe số</a></li>
@@ -1290,25 +1326,25 @@
                 </div>
                 <!-- Col 6: Liên kết nhanh -->
                 <div class="footer-col reveal" style="transition-delay: 0.5s;">
-                    <span class="icon material-symbols-rounded">link</span>
-                    <h4>Liên kết nhanh</h4>
+                    <span class="icon material-symbols-rounded" aria-hidden="true">link</span>
+                    <h3>Liên kết nhanh</h3>
                     <ul>
                         <li><a href="banggia.html">Bảng giá</a></li>
                         <li><a href="kinhnghiem.html">Kinh nghiệm</a></li>
                         <li><a href="diadiem.html">Địa điểm</a></li>
-                        <li><a href="lienhe.html">Liên hệ</a></li>
+                        <li><a href="https." target="_blank" rel="noopener">📰 Blog / Tin tức</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p>© <span id="auto-year"></span> Nguyễn Tú Motorbike Rental. All rights reserved.</p>
+                <p>© <span id="auto-year">2024</span> Nguyễn Tú Motorbike Rental. All rights reserved.</p>
                 <button class="theme-toggle" id="theme-toggle" aria-label="Đổi giao diện">
-                    <span class="material-symbols-rounded icon-light">light_mode</span>
-                    <span class="material-symbols-rounded icon-dark" style="display: none;">dark_mode</span>
+                    <span class="material-symbols-rounded icon-light" aria-hidden="true">light_mode</span>
+                    <span class="material-symbols-rounded icon-dark" style="display: none;" aria-hidden="true">dark_mode</span>
                 </button>
                 <a href="#hero" style="color: var(--accent-text); opacity: 0.8;">
-                    <span class="material-symbols-rounded">arrow_upward</span> Lên đầu trang
+                    <span class="material-symbols-rounded" aria-hidden="true">arrow_upward</span> Lên đầu trang
                 </a>
             </div>
         </div>
@@ -1317,20 +1353,20 @@
     <!-- ==================== QUICKCALL DOCK ==================== -->
     <aside class="quickcall-dock" id="quickcall-dock">
         <a href="tel:0942467674" aria-label="Gọi điện">
-            <span class="material-symbols-rounded">call</span>
+            <span class="material-symbols-rounded" aria-hidden="true">call</span>
         </a>
-        <a href="https://zalo.me/0942467674" target="_blank" aria-label="Chat Zalo">
-            <i class="fa-solid fa-comment-dots"></i>
+        <a href="https://zalo.me/0942467674" target="_blank" rel="noopener" aria-label="Chat Zalo">
+            <i class="fa-solid fa-comment-dots" aria-hidden="true"></i>
         </a>
-        <a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc" target="_blank" aria-label="Bản đồ">
-            <span class="material-symbols-rounded">map</span>
+        <a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc" target="_blank" rel="noopener" aria-label="Bản đồ">
+            <span class="material-symbols-rounded" aria-hidden="true">map</span>
         </a>
     </aside>
 
     <!-- ==================== LIGHTBOX MODAL ==================== -->
-    <div id="lightbox-modal" class="lightbox">
+    <div id="lightbox-modal" class="lightbox" role="dialog" aria-modal="true">
         <div class="lightbox-content">
-            <button id="lightbox-close" class="lightbox-close" aria-label="Đóng"><span class="material-symbols-rounded">close</span></button>
+            <button id="lightbox-close" class="lightbox-close" aria-label="Đóng"><span class="material-symbols-rounded" aria-hidden="true">close</span></button>
             <img id="lightbox-image" src="" alt="Hình ảnh phóng to">
         </div>
     </div>
@@ -1374,10 +1410,22 @@
             iconLight.style.display = dark ? 'none' : 'inline-block';
             iconDark.style.display = dark ? 'inline-block' : 'none';
             localStorage.setItem('theme', dark ? 'dark' : 'light');
+            
+            // Cập nhật theme cho chatbot nếu đã tải
+            if (window.MotoAI && typeof window.MotoAI.setTheme === 'function') {
+              window.MotoAI.setTheme(dark ? 'dark' : 'light');
+            }
           };
 
           applyTheme(isDark);
           themeToggle.addEventListener('click', () => applyTheme(!html.classList.contains('dark')));
+          
+          // Lắng nghe thay đổi theme từ hệ thống
+          window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (!localStorage.getItem('theme')) {
+              applyTheme(e.matches);
+            }
+          });
         } catch (e) { console.error('Theme toggle failed:', e); }
 
         // ==================== AUTO YEAR ====================
@@ -1398,6 +1446,20 @@
             iconMenu.style.display = isActive ? 'none' : 'inline-block';
             iconClose.style.display = isActive ? 'inline-block' : 'none';
             navToggle.setAttribute('aria-label', isActive ? 'Đóng menu' : 'Mở menu');
+            navToggle.setAttribute('aria-expanded', isActive);
+          });
+          
+          // Đóng menu khi click vào link (trên mobile)
+          $$('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+              if (window.innerWidth <= 992 && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                iconMenu.style.display = 'inline-block';
+                iconClose.style.display = 'none';
+                navToggle.setAttribute('aria-label', 'Mở menu');
+                navToggle.setAttribute('aria-expanded', false);
+              }
+            });
           });
         } catch (e) { console.error('Nav toggle failed:', e); }
 
@@ -1417,21 +1479,23 @@
 
         // ==================== CARD TILT (USE_CARD_TILT) ====================
         try {
-          const tiltCards = $$('.card-tilt');
-          tiltCards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-              const rect = card.getBoundingClientRect();
-              const x = e.clientX - rect.left;
-              const y = e.clientY - rect.top;
-              const { width, height } = rect;
-              const rotateX = (y / height - 0.5) * -10; // Max 5deg tilt
-              const rotateY = (x / width - 0.5) * 10;   // Max 5deg tilt
-              card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+          if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const tiltCards = $$('.card-tilt');
+            tiltCards.forEach(card => {
+              card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const { width, height } = rect;
+                const rotateX = (y / height - 0.5) * -10; // Max 5deg tilt
+                const rotateY = (x / width - 0.5) * 10;   // Max 5deg tilt
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+              });
+              card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+              });
             });
-            card.addEventListener('mouseleave', () => {
-              card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-            });
-          });
+          }
         } catch (e) { console.error('Card tilt failed:', e); }
 
         // ==================== REVIEWS SLIDER ====================
@@ -1440,22 +1504,39 @@
           const slides = $$('.slide');
           const prevBtn = $('#slider-prev');
           const nextBtn = $('#slider-next');
-          let currentIndex = 0;
-          const slideCount = slides.length;
-
-          const updateSlider = () => {
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
-          };
           
-          if(track && prevBtn && nextBtn && slideCount > 0) {
+          if(track && prevBtn && nextBtn && slides.length > 0) {
+            let currentIndex = 0;
+            const slideCount = slides.length;
+
+            const updateSlider = () => {
+              track.style.transform = `translateX(-${currentIndex * 100}%)`;
+              prevBtn.disabled = currentIndex === 0;
+              nextBtn.disabled = currentIndex === slideCount - 1;
+            };
+            
+            // Clone first and last for infinite loop (optional, current setup is not infinite)
+            // For now, simple start-end slider
+            
             nextBtn.addEventListener('click', () => {
-              currentIndex = (currentIndex + 1) % slideCount;
+              if (currentIndex < slideCount - 1) {
+                currentIndex++;
+              } else {
+                 currentIndex = 0; // Loop back to start
+              }
               updateSlider();
             });
             prevBtn.addEventListener('click', () => {
-              currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+              if (currentIndex > 0) {
+                currentIndex--;
+              } else {
+                currentIndex = slideCount - 1; // Loop to end
+              }
               updateSlider();
             });
+            
+            // updateSlider(); // Initial state (disabled buttons if at start)
+            // Let's make it loop instead of disabling
           }
         } catch (e) { console.error('Slider failed:', e); }
 
@@ -1467,18 +1548,40 @@
           const lightboxClose = $('#lightbox-close');
 
           if(galleryItems.length > 0 && lightbox) {
+            let lastFocusedElement;
+            
+            const openLightbox = (e) => {
+              e.preventDefault();
+              lastFocusedElement = d.activeElement;
+              const imgSrc = e.currentTarget.getAttribute('href');
+              lightboxImg.setAttribute('src', imgSrc);
+              lightbox.classList.add('active');
+              lightboxClose.focus();
+            };
+            
+            const closeLightbox = () => {
+              lightbox.classList.remove('active');
+              lightboxImg.setAttribute('src', '');
+              if (lastFocusedElement) {
+                lastFocusedElement.focus();
+              }
+            };
+
             galleryItems.forEach(item => {
-              item.addEventListener('click', (e) => {
-                e.preventDefault();
-                const imgSrc = item.getAttribute('href');
-                lightboxImg.setAttribute('src', imgSrc);
-                lightbox.classList.add('active');
-              });
+              item.addEventListener('click', openLightbox);
             });
 
-            const closeLightbox = () => lightbox.classList.remove('active');
-            lightbox.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+              if (e.target === lightbox) closeLightbox();
+            });
             lightboxClose.addEventListener('click', closeLightbox);
+            
+            // A11y: Close on Escape key
+            d.addEventListener('keydown', (e) => {
+              if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+              }
+            });
           }
         } catch (e) { console.error('Lightbox failed:', e); }
 
@@ -1502,7 +1605,8 @@
             $$('a[href]').forEach(link => {
               link.addEventListener('click', (e) => {
                 const url = new URL(link.href);
-                if (url.origin === location.origin && !e.ctrlKey && !e.metaKey) {
+                // Chỉ transition cho link nội bộ, không phải link _blank hoặc file
+                if (url.origin === location.origin && !e.ctrlKey && !e.metaKey && link.target !== '_blank' && !url.pathname.includes('.')) {
                   e.preventDefault();
                   d.startViewTransition(() => {
                     location.href = link.href;
