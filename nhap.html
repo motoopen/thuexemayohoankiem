@@ -10,6 +10,8 @@
   <link rel="canonical" href="https://motoopen.github.io/thuexemayohoankiem/index.html" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#0A84FF" />
+  <link rel="icon" href="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png" type="image/png">
+  
   <!-- Open Graph -->
   <meta property="og:title" content="Dịch vụ cho thuê xe máy Hoàn Kiếm, Hà Nội – Nguyễn Tú" />
   <meta property="og:description" content="Thuê xe máy Hà Nội giá rẻ, uy tín – Nguyễn Tú. Xe ga, xe số, xe điện, giao nhanh 20–40 phút, cọc nhẹ, hỗ trợ 24/7." />
@@ -17,24 +19,37 @@
   <meta property="og:url" content="https://motoopen.github.io/thuexemayohoankiem/index.html" />
   <meta property="og:image" content="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/BANNER-THUE-XE-MAY-1.png" />
   <meta property="og:site_name" content="Thuê xe máy Nguyễn Tú" />
+  
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@thuexemaynguyentu" />
   <meta name="twitter:title" content="Dịch vụ cho thuê xe máy Hoàn Kiếm, Hà Nội – Nguyễn Tú" />
   <meta name="twitter:description" content="Thuê xe máy Hà Nội giá rẻ, uy tín – Nguyễn Tú. Xe ga, xe số, xe điện, giao nhanh 20–40 phút, cọc nhẹ, hỗ trợ 24/7." />
   <meta name="twitter:image" content="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/BANNER-THUE-XE-MAY-1.png" />
+  
   <!-- Preload fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Symbols+Rounded:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" integrity="sha512-mQ7G1ikn+x/L2wIJi3gYlhg+IxKG6wxGZyKqut4APhMXSRbiI9ePU9UBtKmQOISFObp9hho+rNOcvh3A1u2Z3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Font: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font: Material Symbols Rounded -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  
+  <!-- Font: Font Awesome 6 Free (cdnjs) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
   <style>
+    /* --- CSS NỘI TUYẾN --- */
     :root {
       --accent: #0A84FF;
       --accent-soft: rgba(10,132,255,0.12);
       --accent-2: #00C49A;
       --radius-lg: 20px;
       --radius-sm: 12px;
+      
+      /* Light Mode (Default) */
       --glass-bg: rgba(255,255,255,0.35);
       --glass-bg-elevated: rgba(255,255,255,0.45);
       --glass-border: rgba(255,255,255,0.35);
@@ -44,13 +59,16 @@
       --muted: rgba(12,13,15,0.6);
       --surface: rgba(255,255,255,0.55);
       --shadow: 0 14px 34px rgba(15,23,42,0.15);
+      --footer-bg: rgba(255,255,255,0.12);
+      --footer-border: rgba(255,255,255,0.3);
+      
+      /* Shared */
       --header-h: 68px;
       --gap: clamp(1.25rem,3vw,1.75rem);
       --blur: 10px;
-      --footer-bg: rgba(255,255,255,0.12);
-      --footer-border: rgba(255,255,255,0.3);
       --nav-height: 68px;
     }
+
     [data-theme-mode="dark"] {
       --glass-bg: rgba(9,10,12,0.35);
       --glass-bg-elevated: rgba(18,18,20,0.58);
@@ -64,9 +82,13 @@
       --footer-border: rgba(255,255,255,0.04);
       --shadow: 0 14px 34px rgba(0,0,0,0.4);
     }
+    
     * {
       box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
+    
     html,body {
       margin: 0;
       padding: 0;
@@ -76,17 +98,28 @@
       min-height: 100%;
       scroll-behavior: smooth;
     }
+    
     body {
       background-image: var(--body-bg-alt);
       background-attachment: fixed;
+      opacity: 0;
+      animation: pageFadeIn .3s ease-out forwards;
     }
+
+    @keyframes pageFadeIn {
+      to { opacity: 1; }
+    }
+    
     img { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
+    
     .app-shell {
       width: min(1180px, 100%);
       margin: 0 auto;
       padding: calc(var(--header-h) + 1.6rem) clamp(1rem, 3vw, 1.5rem) 9rem;
     }
+    
+    /* --- Header & Menu --- */
     header.app-header {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -94,16 +127,19 @@
       display: flex;
       align-items: center;
       backdrop-filter: blur(var(--blur));
-      background: linear-gradient(120deg, rgba(255,255,255,0.28), rgba(255,255,255,0)) ;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
+      -webkit-backdrop-filter: blur(var(--blur));
+      background: var(--glass-bg);
+      border-bottom: 1px solid var(--glass-border);
       z-index: 60;
       transition: background .3s ease, box-shadow .3s ease, border .3s ease;
     }
+    
     header.app-header.scrolled {
-      background: radial-gradient(circle at top, rgba(12,13,15,.35), rgba(12,13,15,.1));
-      border-bottom: 1px solid rgba(255,255,255,0.02);
+      background: var(--glass-bg-elevated);
+      border-bottom: 1px solid var(--glass-border);
       box-shadow: 0 6px 24px rgba(0,0,0,.12);
     }
+    
     .header-inner {
       width: min(1180px, 100%);
       margin: 0 auto;
@@ -113,32 +149,41 @@
       gap: 1.2rem;
       padding-inline: clamp(1rem, 3vw, 1.5rem);
     }
+    
     .brand {
       display: flex;
       align-items: center;
       gap: .7rem;
     }
+    
     .brand img {
       width: 42px; height: 42px; border-radius: 14px;
       background: rgba(255,255,255,0.1);
       object-fit: contain;
     }
+    
     .brand-title { font-weight: 600; font-size: .98rem; line-height: 1.2; }
     .brand-sub { font-size: .68rem; color: var(--muted); }
+    
     nav.main-nav {
       display: flex;
       align-items: center;
       gap: .5rem;
     }
+    
     .nav-menu {
       list-style: none;
+      margin: 0;
+      padding: 0;
       display: flex;
       align-items: center;
       gap: .4rem;
     }
+    
     .nav-menu > li {
       position: relative;
     }
+    
     .nav-link {
       display: flex;
       gap: .45rem;
@@ -151,18 +196,30 @@
       white-space: nowrap;
       border: 1px solid transparent;
       transition: .23s ease;
-      color: inherit;
+      color: var(--text-color);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
     }
+    
     .nav-link:hover,
     .nav-link.active {
-      background: rgba(10,132,255,0.12);
-      border-color: rgba(10,132,255,0.4);
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
     }
+
+    [data-theme-mode="dark"] .nav-link:hover,
+    [data-theme-mode="dark"] .nav-link.active {
+      color: #fff;
+    }
+    
     .nav-link .chevron {
-      font-size: .6rem;
+      font-size: 1rem;
       opacity: .85;
     }
+    
     .dropdown {
       position: absolute;
       top: 115%;
@@ -170,23 +227,26 @@
       min-width: 240px;
       background: var(--glass-bg-elevated);
       backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border: 1px solid var(--glass-border);
       border-radius: 16px;
       padding: .55rem;
       display: grid;
       gap: .3rem;
-      box-shadow: 0 12px 50px rgba(12,13,15,0.2);
+      box-shadow: var(--shadow);
       opacity: 0;
       pointer-events: none;
       transform: translateY(6px);
       transition: .15s ease;
       z-index: 40;
     }
+    
     .nav-menu > li:hover > .dropdown {
       opacity: 1;
       pointer-events: all;
       transform: translateY(0);
     }
+    
     .dropdown a {
       display: flex;
       gap: .5rem;
@@ -195,65 +255,91 @@
       border-radius: 12px;
       font-size: .74rem;
       transition: .15s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
     }
+    
     .dropdown a:hover {
-      background: rgba(255,255,255,0.08);
+      background: var(--accent-soft);
+      color: var(--accent);
     }
+    
+    /* --- Theme Toggle --- */
     .theme-toggle {
       width: 34px; height: 34px;
       border-radius: 999px;
-      background: linear-gradient(140deg, rgba(10,132,255,0.3), rgba(0,196,154,0.12));
+      background: var(--glass-bg);
       backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,255,255,.4);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--glass-border);
       display: grid;
       place-items: center;
       cursor: pointer;
       font-size: 1.1rem;
       transition: .25s ease;
-      color: #fff;
+      color: var(--text-color);
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
     }
-    .theme-toggle:is(:hover,:focus-visible) { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(10,132,255,0.25); }
+    
+    .theme-toggle:is(:hover,:focus-visible) { 
+      transform: translateY(-2px); 
+      box-shadow: 0 8px 16px rgba(10,132,255,0.25);
+      color: var(--accent);
+    }
+
+    .theme-toggle .material-symbols-rounded {
+      font-size: 1.1rem;
+    }
+    
+    /* --- Hero Section --- */
     .hero {
       display: grid;
       gap: 1.2rem;
-      background: radial-gradient(circle at top, rgba(10,132,255,0.12), rgba(0,0,0,0));
+      background: radial-gradient(circle at top, var(--accent-soft), rgba(0,0,0,0));
       border-radius: 28px;
       padding: clamp(1.4rem,3.5vw,2.1rem);
-      border: 1px solid rgba(255,255,255,0.2);
+      border: 1px solid var(--glass-border);
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       box-shadow: var(--shadow);
       margin-bottom: 1.6rem;
     }
+    
     .hero-toptext {
       display: inline-flex;
       align-items: center;
       gap: .35rem;
-      background: rgba(255,255,255,0.35);
+      background: var(--surface);
       padding: .35rem .7rem;
       border-radius: 999px;
       font-size: .7rem;
-      color: rgba(0,0,0,0.7);
+      color: var(--muted);
       width: fit-content;
+      border: 1px solid var(--glass-border);
     }
-    [data-theme-mode="dark"] .hero-toptext {
-      background: rgba(8,9,10,.6);
-      color: rgba(255,255,255,0.9);
-    }
+    
     .hero h1 {
       font-size: clamp(1.75rem, 3.2vw, 2.25rem);
       line-height: 1.05;
       letter-spacing: -.03rem;
+      margin: 0;
     }
+    
     .hero p {
       color: var(--muted);
       margin-top: .4rem;
       font-size: .9rem;
     }
+    
     .hero-actions {
       display: flex;
       gap: .75rem;
       flex-wrap: wrap;
     }
+    
     .btn {
       display: inline-flex;
       align-items: center;
@@ -268,27 +354,33 @@
       position: relative;
       overflow: hidden;
       transition: .15s ease-in-out;
+      z-index: 1;
     }
+    
     .btn-primary {
       background: radial-gradient(circle at top, var(--accent) 0%, #0059ff 100%);
       color: #fff;
       box-shadow: 0 12px 34px rgba(10,132,255,0.35);
     }
+    
     .btn-secondary {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.25);
-      color: inherit;
+      background: var(--surface);
+      border: 1px solid var(--glass-border);
+      color: var(--text-color);
     }
+    
     .hero-miniapp {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: .8rem;
       margin-top: 1.3rem;
     }
+    
     .hero-miniapp .mini-card {
-      background: rgba(255,255,255,0.135);
+      background: var(--glass-bg);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.15);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
       padding: .72rem .75rem .75rem;
       border-radius: 17px;
       display: flex;
@@ -296,54 +388,60 @@
       align-items: flex-start;
       cursor: pointer;
       transition: .15s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
     }
-    [data-theme-mode="dark"] .hero-miniapp .mini-card {
-      background: rgba(16,20,26,0.35);
-    }
+    
     .hero-miniapp .mini-icon {
       width: 36px; height: 36px;
       border-radius: 14px;
-      background: radial-gradient(circle,#fff 0%, rgba(255,255,255,0) 70%);
+      background: radial-gradient(circle, var(--accent) 0%, var(--accent-2) 100%);
       display: grid; place-items: center;
       font-size: 1.05rem;
-      color: #000;
+      color: #fff;
     }
+    
     .hero-miniapp .mini-meta {
       flex: 1;
     }
+    
     .hero-miniapp .mini-title {
       font-weight: 600;
       font-size: .78rem;
     }
+    
     .hero-miniapp .mini-desc {
       font-size: .68rem;
       color: var(--muted);
       margin-top: .15rem;
     }
+    
     .hero-miniapp .mini-card:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 16px rgba(0,0,0,0.12);
-      border-color: rgba(10,132,255,0.55);
+      border-color: var(--accent);
     }
+    
+    /* --- Main Sections --- */
     .sections {
       display: flex;
       flex-direction: column;
       gap: 1.1rem;
     }
+    
     .section-card {
       border-radius: 22px;
-      background: rgba(255,255,255,0.35);
+      background: var(--glass-bg);
       backdrop-filter: blur(6px);
-      border: 1px solid rgba(255,255,255,.25);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid var(--glass-border);
       padding: 1.1rem 1.1rem 1.2rem;
       box-shadow: 0 10px 20px rgba(12,13,15,0.04);
       position: relative;
       overflow: hidden;
     }
-    [data-theme-mode="dark"] .section-card {
-      background: rgba(13,14,15,0.45);
-      border: 1px solid rgba(255,255,255,0.02);
-    }
+    
     .section-heading {
       display: flex;
       justify-content: space-between;
@@ -351,34 +449,40 @@
       gap:1rem;
       margin-bottom: .5rem;
     }
+    
     .section-title {
       font-size: 1rem;
       font-weight: 600;
     }
+    
     .chips {
       display: flex;
       gap:.35rem;
       flex-wrap: wrap;
     }
+    
     .chip {
-      background: rgba(10,132,255,0.06);
-      border: 1px solid rgba(10,132,255,0.18);
+      background: var(--accent-soft);
+      border: 1px solid var(--accent);
       border-radius: 999px;
       padding: .25rem .7rem;
       font-size: .66rem;
-      color: var(--muted);
+      color: var(--accent);
     }
+    
     .list-check {
       display: grid;
       gap: .4rem;
       margin-top: .65rem;
     }
+    
     .list-check .item {
       display: flex;
       gap: .5rem;
       align-items: flex-start;
       font-size: .8rem;
     }
+    
     .list-check .icon {
       width: 24px; height: 24px; border-radius: 999px;
       background: rgba(0,196,154,0.15);
@@ -387,72 +491,84 @@
       font-size: .7rem;
       flex: 0 0 auto;
     }
+    
     [data-theme-mode="dark"] .list-check .icon {
       background: rgba(0,196,154,0.26);
       color: #fff;
     }
+    
     .steps-wrap {
       display: grid;
       gap:.6rem;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       margin-top: .5rem;
     }
+    
     .step {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: var(--surface);
+      border: 1px solid var(--glass-border);
       border-radius: 16px;
       padding: .5rem .65rem .55rem;
       display: flex;
       gap: .55rem;
       align-items: flex-start;
     }
+    
     .step-index {
       width: 26px; height: 26px;
       border-radius: 999px;
-      background: rgba(10,132,255,.15);
+      background: var(--accent-soft);
       display: grid;place-items:center;
       font-size: .65rem;
       font-weight: 600;
-      color: #0A84FF;
+      color: var(--accent);
       flex: 0 0 auto;
     }
+    
     .testimonials {
       display: grid;
       grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
       gap: .7rem;
     }
+    
     .testimonial-card {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.2);
+      background: var(--surface);
+      border: 1px solid var(--glass-border);
       border-radius: 15px;
       padding: .6rem .65rem .8rem;
     }
+    
     .testimonial-name { font-weight: 600; font-size: .78rem; }
     .stars { color: #f9cc45; font-size: .7rem;margin-top:.25rem; }
     .testimonial-text { font-size: .7rem; margin-top: .35rem; color: var(--muted); }
+    
     .places {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(165px,1fr));
       gap:.7rem;
       margin-top:.35rem;
     }
+    
     .place-item {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.14);
+      background: var(--surface);
+      border: 1px solid var(--glass-border);
       border-radius: 14px;
       padding: .6rem .6rem .7rem;
       display: flex;
       gap: .5rem;
       align-items: flex-start;
     }
+    
     .place-icon { font-size: 1.25rem; }
+    
     .faq-item {
       border-radius: 14px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
+      background: var(--surface);
+      border: 1px solid var(--glass-border);
       padding:.45rem .6rem .5rem;
       margin-top:.45rem;
     }
+    
     .faq-q {
       display: flex;
       justify-content: space-between;
@@ -462,25 +578,38 @@
       cursor: pointer;
       font-size: .78rem;
     }
+    
     .faq-a {
       font-size: .7rem;
       color: var(--muted);
       display: none;
       margin-top: .25rem;
     }
+    
     .faq-item.active .faq-a {
       display: block;
     }
+
+    .faq-item .material-symbols-rounded {
+      transition: .2s ease;
+    }
+    .faq-item.active .material-symbols-rounded {
+      transform: rotate(180deg);
+    }
+    
+    /* --- Footer --- */
     footer.site-footer {
       margin-top: 2.5rem;
       background: var(--footer-bg);
       border-top: 1px solid var(--footer-border);
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-radius: 26px 26px 0 0;
       padding: 1.2rem 1rem 1.2rem;
       box-shadow: 0 -10px 35px rgba(0,0,0,0.12);
       text-align: center;
     }
+    
     .footer-grid {
       display: grid;
       grid-template-columns: repeat(6,minmax(0,1fr));
@@ -488,11 +617,13 @@
       justify-content: center;
       align-items: flex-start;
     }
+    
     .footer-col-title {
       font-size: .74rem;
       font-weight: 600;
       margin-bottom: .5rem;
     }
+    
     .footer-link {
       display: block;
       margin-bottom: .35rem;
@@ -500,25 +631,40 @@
       color: var(--muted);
       transition: .15s ease;
     }
+    
     .footer-link:hover {
       color: var(--accent);
     }
+    
     .footer-tagline {
       margin-top: 1.1rem;
       font-size: .69rem;
       color: var(--muted);
     }
+    
     .footer-social {
       display:flex; gap:.4rem; justify-content: center; margin-top:.75rem;
     }
+    
     .footer-social a {
       width: 30px; height: 30px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.08);
+      background: var(--surface);
+      border: 1px solid var(--glass-border);
       display:grid;place-items:center;
-      color: inherit;
+      color: var(--text-color);
       font-size:.66rem;
+      transition: .2s ease;
     }
+
+    .footer-social a:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    
+    /* --- QuickCall Mini-App --- */
     .quickcall-dock {
       position: fixed;
       bottom: 1rem; left: 1rem;
@@ -527,6 +673,7 @@
       gap:.45rem;
       z-index: 70;
     }
+    
     .quickcall-main {
       width: 50px; height: 50px;
       border-radius: 999px;
@@ -536,80 +683,149 @@
       box-shadow: 0 10px 24px rgba(10,132,255,0.35);
       cursor:pointer;
       transition:.2s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      border: none;
+      outline: none;
     }
-    .quickcall-main:hover { transform: translateY(-1px); }
+    
+    .quickcall-main:hover { 
+      transform: translateY(-1px); 
+      filter: drop-shadow(0 0 10px rgba(10,132,255,0.7));
+    }
+    
     .quickcall-group {
       display:flex;
       flex-direction: column;
       gap:.45rem;
       transform-origin: bottom left;
-      transition:.16s ease-out;
+      transition:.16s cubic-bezier(0.34, 1.56, 0.64, 1);
       opacity: 0;
       pointer-events: none;
+      transform: scale(0.9);
     }
+    
     .quickcall-btn {
       width: 46px;height: 46px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.25);
+      background: var(--glass-bg-elevated);
       display:grid;place-items:center;
-      border: 1px solid rgba(255,255,255,0.2);
-      color: inherit;
+      border: 1px solid var(--glass-border);
+      color: var(--text-color);
       font-size: 1.05rem;
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      transition: .2s ease;
     }
+
+    .quickcall-btn:hover {
+      transform: translateY(-2px) scale(1.05);
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    
     .quickcall-group.open {
       opacity: 1;
       pointer-events: all;
+      transform: scale(1);
     }
+    
+    /* --- Effects --- */
     .ripple {
       position: absolute;
       border-radius: 50%;
-      background: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.45);
       transform: scale(0);
       animation: ripple .6s linear;
       pointer-events: none;
+      z-index: 2;
     }
+    
     @keyframes ripple {
       to {
         transform: scale(4.5);
         opacity: 0;
       }
     }
+    
     .fade-up {
       opacity: 0;
       transform: translateY(16px);
       transition: opacity .3s ease, transform .35s ease;
     }
+    
     .fade-up.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* mobile */
+    /* --- Mobile --- */
     .nav-toggle {
-      display: none;
-      width: 34px;height:34px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);display:none;align-items:center;justify-content:center;color:inherit;cursor:pointer;
+      width: 34px;height:34px;border-radius:12px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      display:none;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-color);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
     }
+    
     @media (max-width: 920px) {
       .app-shell { padding: calc(var(--header-h) + 1.1rem) 1rem 8rem; }
       .hero { border-radius: 20px; }
       .header-inner { gap:.75rem; }
-      nav.main-nav { position: fixed; top: calc(var(--header-h) + .5rem); right: 1rem; left: 1rem;
+      
+      nav.main-nav { 
+        position: fixed; 
+        top: calc(var(--header-h) + .5rem); 
+        right: 1rem; 
+        left: 1rem;
         background: var(--glass-bg-elevated);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
         border-radius: 17px;
-        border: 1px solid rgba(255,255,255,0.06);
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--shadow);
         padding:.45rem;
         display: none;
         flex-direction: column;
         gap:.3rem;
       }
+      
       nav.main-nav.open { display:flex; }
-      .nav-menu { flex-direction: column; align-items: flex-start; gap:.35rem; }
-      .dropdown { position: static; opacity:1; transform:none; pointer-events: all; background: transparent; border:none; box-shadow: none; padding-left: 2.1rem; }
+      .nav-menu { flex-direction: column; align-items: flex-start; gap:.35rem; width: 100%; }
+      .nav-menu > li { width: 100%; }
+      
+      .dropdown { 
+        position: static; 
+        opacity:1; 
+        transform:none; 
+        pointer-events: all; 
+        background: transparent; 
+        border:none; 
+        box-shadow: none; 
+        padding-left: 2.1rem;
+        width: 100%;
+      }
+      
       .nav-link { width: 100%; }
       .nav-toggle { display:flex; }
-      .footer-grid { grid-template-columns: repeat(2, minmax(0,1fr)); text-align: center; }
+      
+      .footer-grid { 
+        grid-template-columns: repeat(2, minmax(0,1fr)); 
+        text-align: center; 
+      }
     }
+    
     @media (max-width: 520px) {
       .hero-actions { flex-direction: column; align-items: flex-start; }
       .hero-miniapp { grid-template-columns: 1fr; }
@@ -621,14 +837,19 @@
 <body>
   <header class="app-header" id="appHeader">
     <div class="header-inner">
-      <div class="brand">
-        <img src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png" alt="Thuê xe máy Nguyễn Tú" loading="lazy">
+      <!-- Brand Logo & Title -->
+      <a href="index.html" class="brand">
+        <img src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png" alt="Logo Thuê xe máy Nguyễn Tú" loading="lazy">
         <div>
           <div class="brand-title">Thuê xe máy Nguyễn Tú</div>
           <div class="brand-sub">Hoàn Kiếm, Hà Nội</div>
         </div>
-      </div>
+      </a>
+      
+      <!-- Main Navigation (JS populated) -->
       <nav class="main-nav" id="mainNav"></nav>
+      
+      <!-- Controls -->
       <div style="display:flex; gap:.5rem; align-items:center;">
         <button class="theme-toggle" id="themeToggle" type="button" aria-label="Đổi chế độ sáng/tối">
           <span class="material-symbols-rounded">sunny</span>
@@ -639,13 +860,17 @@
       </div>
     </div>
   </header>
+  
   <main class="app-shell" id="appShell">
+    
+    <!-- Hero Section -->
     <section class="hero fade-up" id="hero">
       <span class="hero-toptext">
         <i class="fa-solid fa-motorcycle"></i> Giao xe 20–40 phút trong nội thành
       </span>
       <h1>Dịch vụ cho thuê xe máy Hoàn Kiếm, Hà Nội – Nguyễn Tú</h1>
       <p>Xe ga, xe số, xe điện – giao tận nơi, thủ tục nhanh, cọc nhẹ. Phù hợp khách du lịch, công tác, người ở phố cổ.</p>
+      
       <div class="hero-actions">
         <a href="tel:0942467674" class="btn btn-primary">
           <i class="fa-solid fa-phone-volume"></i> Gọi đặt xe
@@ -657,16 +882,23 @@
           <i class="fa-solid fa-tags"></i> Bảng giá
         </a>
       </div>
+      
+      <!-- Hero Mini App (JS populated) -->
       <div class="hero-miniapp" id="heroMiniApp"></div>
     </section>
 
+    <!-- Main Content Sections (JS populated) -->
     <section class="sections" id="sectionsRoot">
-      <!-- các section sẽ được JS đổ -->
+      <!-- Các section sẽ được JS đổ vào đây -->
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer" id="siteFooter">
+    <!-- Footer Grid (JS populated) -->
     <div class="footer-grid" id="footerGrid"></div>
+    
+    <!-- Social Icons -->
     <div class="footer-social">
       <a href="https://m.facebook.com/chothuexemay0857255868/" aria-label="Facebook" target="_blank" rel="noopener">
         <i class="fab fa-facebook-f"></i>
@@ -678,17 +910,23 @@
         <i class="fa-brands fa-tripadvisor"></i>
       </a>
       <a href="https://zalo.me/0942467674" aria-label="Zalo" target="_blank" rel="noopener">
-        <i class="fa-solid fa-message"></i>
+        <i class="fa-solid fa-comment-dots"></i>
       </a>
     </div>
+    
+    <!-- Tagline -->
     <div class="footer-tagline">
-      Thuê xe máy Hà Nội – Nguyễn Tú • Giao nhanh 20–40 phút • Hotline <a href="tel:0942467674">0942 467 674</a> • 112 Nguyễn Văn Cừ, Long Biên, Hà Nội
+      Thuê xe máy Hà Nội – Nguyễn Tú • Giao nhanh 20–40 phút • Hotline <a href="tel:0942467674" style="color: var(--accent); font-weight: 500;">0942 467 674</a> • 112 Nguyễn Văn Cừ, Long Biên, Hà Nội
     </div>
   </footer>
 
   <!-- Quick Call Mini-App -->
   <div class="quickcall-dock" id="quickCallDock">
+    <!-- Child Buttons -->
     <div class="quickcall-group" id="quickCallGroup">
+      <a class="quickcall-btn" href="https://wa.me/84942467674" target="_blank" rel="noopener" title="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
       <a class="quickcall-btn" href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc" target="_blank" rel="noopener" title="Bản đồ">
         <i class="fa-solid fa-location-dot"></i>
       </a>
@@ -698,85 +936,31 @@
       <a class="quickcall-btn" href="tel:0942467674" title="Gọi ngay">
         <i class="fa-solid fa-phone"></i>
       </a>
-      <a class="quickcall-btn" href="https://wa.me/84942467674" target="_blank" rel="noopener" title="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-      </a>
     </div>
-    <button class="quickcall-main" id="quickCallToggle" type="button">
+    
+    <!-- Main Toggle Button -->
+    <button class="quickcall-main" id="quickCallToggle" type="button" aria-label="Mở menu liên hệ nhanh">
       <i class="fa-solid fa-headset"></i>
     </button>
   </div>
 
-  <!-- NO external MotoAI as user requested remove Moto AI -->
+  <!-- 
+    Script được đặt sau (thay thế) MotoAI v36 external
+  -->
   <script defer>
   (function(){
     "use strict";
 
     /* ---------- CONFIG / DATA FROM USER BLOCKS ---------- */
-    const META = {
-      TITLE:"Dịch vụ cho thuê xe máy Hoàn Kiếm, Hà Nội – Nguyễn Tú",
-      DESCRIPTION:"Thuê xe máy Hà Nội giá rẻ, uy tín – Nguyễn Tú. Xe ga, xe số, xe điện, giao nhanh 20–40 phút, cọc nhẹ, hỗ trợ 24/7.",
-      KEYWORDS:"thuê xe máy, thuê xe máy Hà Nội, thuê xe máy Hoàn Kiếm, Nguyễn Tú, thuê xe ga, thuê xe số, thuê xe điện",
-      AUTHOR:"Nguyễn Tú Cho thuê xe máy Hà Nội",
-      CANONICAL:"https://motoopen.github.io/thuexemayohoankiem/index.html",
-      THEME_COLOR:"#0A84FF",
-      ROBOTS:"index, follow",
-      OG_IMAGE_URL:"https://thuexemaynguyentu.com/wp-content/uploads/2025/09/BANNER-THUE-XE-MAY-1.png"
-    };
-
+    // Dữ liệu này được lấy từ yêu cầu của bạn
     const CONTACT = {
-      PHONE:"0942467674",
-      ZALO:"https://zalo.me/0942467674",
-      MAP:"https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc",
-      EMAIL:"thuexemaynguyentu@gmail.com",
-      ADDRESS:"112 Nguyễn Văn Cừ, Long Biên, Hà Nội",
-      LOGO_URL:"https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png"
-    };
-
-    const STYLE = {
-      STYLE_PRESET:"UltraTitanGlass",
-      ACCENT:"#0A84FF",
-      ACCENT2:"#00C49A",
-      RADIUS:"20px",
-      LANG:"vi",
-      DEFAULT_THEME:"auto",
-      BODY_BG_LIGHT:"#f9fafa",
-      BODY_BG_DARK:"#0c0d0f",
-      GLASS:true,
-      BLUR:"10px",
-      SHADOW:"0 4px 20px rgba(0,0,0,0.1)"
-    };
-
-    const THEME_RANDOMIZER = {
-      ENABLED:true,
-      POOL:[
-        "UltraTitanGlass",
-        "NeoMint",
-        "MidnightPurple",
-        "AeroGlassBlue",
-        "MinimalWhite",
-        "SunsetOrange",
-        "FacebookUltra",
-        "MotoDarkCarbon"
-      ],
-      SYNC_ACCENT:true,
-      RANDOMIZE_ON_LOAD:true
-    };
-
-    const AUTO_ACCENT_PALETTE = {
-      ENABLED:true,
-      MAP:{
-        "UltraTitanGlass":"#0A84FF",
-        "FacebookUltra":"#1877F2",
-        "GooglePure":"#4285F4",
-        "HondaRedMotion":"#DA251D",
-        "NeoMint":"#9CF5B0",
-        "MidnightPurple":"#6C4AE4",
-        "AeroGlassBlue":"#4FC3F7",
-        "SunsetOrange":"#FF7043",
-        "MotoDarkCarbon":"#202020",
-        "MinimalWhite":"#DDDDDD"
-      }
+      PHONE: "0942467674",
+      ZALO: "https://zalo.me/0942467674",
+      MAP: "https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc",
+      WHATSAPP: "https://wa.me/84942467674",
+      EMAIL: "thuexemaynguyentu@gmail.com",
+      ADDRESS: "112 Nguyễn Văn Cừ, Long Biên, Hà Nội",
+      LOGO_URL: "https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png"
     };
 
     const MENU = [
@@ -807,29 +991,25 @@
       {"title":"❓ FAQ","href":"faq.html"},
       {"title":"💬 Liên hệ","href":"lienhe.html"},
       {"title":"🌐 Website","icon":"globe","href":"https://thuexemaynguyentu.com"},
-      {"title":"📞 Gọi","icon":"phone","href":"tel:0942467674"},
-      {"title":"💬 Zalo","icon":"zalo","href":"https://zalo.me/0942467674"},
+      {"title":"📞 Gọi","icon":"phone","href":`tel:${CONTACT.PHONE}`},
+      {"title":"💬 Zalo","icon":"zalo","href":CONTACT.ZALO},
       {"title":"📷 Instagram","icon":"instagram","href":"https://www.instagram.com/nguyentumotorbike/"},
       {"title":"⭐ TripAdvisor","icon":"tripadvisor","href":"https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html"},
       {"title":"📘 Facebook","icon":"facebook","href":"https://m.facebook.com/chothuexemay0857255868/"}
     ];
-
+    
+    // Dữ liệu cho các phần nội dung chính
     const HERO_MINIAPP = {
-      ENABLED:true,
-      TYPE:"service-grid",
       TITLE:"Đặt xe nhanh cùng Nguyễn Tú",
       SUBTITLE:"Chọn loại xe bạn cần và nhận xe trong 20–40 phút",
       BUTTONS:[
-        {"label":"🚀 Đặt xe ngay","href":"lienhe.html"},
-        {"label":"🛵 Xem bảng giá","href":"banggia.html"},
-        {"label":"💬 Chat MotoAI","href":"#motoai"}
+        {"label":"🛵 Xe Ga (Vision, Lead)", "href":"loaixe.html#xe-ga", "icon": "fa-solid fa-motorcycle"},
+        {"label":"⚙️ Xe Số (Wave, Sirius)", "href":"loaixe.html#xe-so", "icon": "fa-solid fa-gears"},
+        {"label":"⚡ Xe Điện (Vinfast)", "href":"loaixe.html#xe-dien", "icon": "fa-solid fa-bolt"}
       ]
     };
 
-    const BODY_SECTIONS = {
-      USE_FADEIN:true,
-      USE_SCROLL_ANIM:true,
-      SECTIONS:[
+    const BODY_SECTIONS = [
         {
           TITLE:"Giới thiệu thuê xe máy Hoàn Kiếm, Hà Nội",
           TYPE:"intro",
@@ -879,16 +1059,6 @@
           ]
         },
         {
-          TITLE:"Ưu đãi & Nội dung hữu ích",
-          TYPE:"links",
-          LINKS:[
-            {"label":"🎁 Ưu đãi thuê xe","href":"uudai.html"},
-            {"label":"💡 Kinh nghiệm thuê xe","href":"kinhnghiem.html"},
-            {"label":"📘 Hướng dẫn thuê xe","href":"huongdan.html"},
-            {"label":"⚖️ Điều khoản thuê xe","href":"https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html"}
-          ]
-        },
-        {
           TITLE:"Câu hỏi thường gặp (FAQ)",
           TYPE:"faq",
           QUESTIONS:[
@@ -900,20 +1070,25 @@
         {
           TITLE:"Liên hệ & đặt xe ngay",
           TYPE:"cta",
+          ID: "cta",
           DESC:"Bạn cần thuê xe ngay khu vực Hoàn Kiếm, Long Biên, phố cổ Hà Nội? Gọi hoặc nhắn Zalo để được giao xe trong 20–40 phút.",
           BUTTONS:[
-            {"label":"📞 Gọi ngay","href":"tel:0942467674"},
-            {"label":"💬 Chat Zalo","href":"https://zalo.me/0942467674"},
-            {"label":"📍 Xem bản đồ","href":"https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc"}
+            {"label":"📞 Gọi ngay","href":`tel:${CONTACT.PHONE}`, "primary": true},
+            {"label":"💬 Chat Zalo","href":CONTACT.ZALO, "primary": false},
+            {"label":"📍 Xem bản đồ","href":CONTACT.MAP, "primary": false}
           ]
         }
-      ]
-    };
+    ];
 
     /* ------------- UI Builders ------------- */
+    
+    /**
+     * Xây dựng menu chính từ JSON
+     */
     function buildMenu() {
       const nav = document.getElementById("mainNav");
       if(!nav) return;
+      
       const ul = document.createElement("ul");
       ul.className = "nav-menu";
 
@@ -925,11 +1100,11 @@
         const li = document.createElement("li");
 
         if(Array.isArray(val)) {
-          // dropdown
+          // Dropdown
           const btn = document.createElement("a");
-          btn.href = "javascript:void(0)";
+          btn.href = "javascript:void(0)"; // Hoặc href của trang dịch vụ chính
           btn.className = "nav-link";
-          btn.innerHTML = `<span>${key}</span><span class="chevron material-symbols-rounded" style="font-size:.65rem;">expand_more</span>`;
+          btn.innerHTML = `<span>${key}</span><span class="chevron material-symbols-rounded">expand_more</span>`;
           li.appendChild(btn);
 
           const dd = document.createElement("div");
@@ -946,6 +1121,7 @@
 
           li.appendChild(dd);
         } else {
+          // Link đơn
           const a = document.createElement("a");
           a.href = val;
           a.className = "nav-link";
@@ -961,45 +1137,55 @@
       nav.appendChild(ul);
     }
 
+    /**
+     * Xây dựng hero mini-app
+     */
     function buildHeroMiniApp() {
-      if(!HERO_MINIAPP.ENABLED) return;
       const root = document.getElementById("heroMiniApp");
       if(!root) return;
 
-      // thêm title/subtitle
+      // Thêm title/subtitle
       const titleCard = document.createElement("div");
       titleCard.className = "mini-card";
-      titleCard.innerHTML = `<div class="mini-icon"><i class="fa-solid fa-motorcycle"></i></div>
+      titleCard.innerHTML = `<div class="mini-icon"><i class="fa-solid fa-bolt"></i></div>
         <div class="mini-meta">
           <div class="mini-title">${HERO_MINIAPP.TITLE}</div>
           <div class="mini-desc">${HERO_MINIAPP.SUBTITLE}</div>
         </div>`;
       root.appendChild(titleCard);
 
+      // Thêm các nút
       HERO_MINIAPP.BUTTONS.forEach(btn => {
         const div = document.createElement("a");
         div.className = "mini-card";
         div.href = btn.href;
-        div.innerHTML = `<div class="mini-icon"><i class="fa-solid fa-bolt"></i></div>
+        div.innerHTML = `<div class="mini-icon"><i class="${btn.icon || 'fa-solid fa-arrow-right'}"></i></div>
         <div class="mini-meta">
           <div class="mini-title">${btn.label}</div>
-          <div class="mini-desc">Chạm để chuyển tới</div>
+          <div class="mini-desc">Chạm để xem chi tiết</div>
         </div>`;
         root.appendChild(div);
       });
     }
 
+    /**
+     * Xây dựng các sections nội dung chính
+     */
     function buildSections() {
       const root = document.getElementById("sectionsRoot");
       if(!root) return;
 
-      BODY_SECTIONS.SECTIONS.forEach((sec, i) => {
+      BODY_SECTIONS.forEach((sec, i) => {
         const card = document.createElement("section");
         card.className = "section-card fade-up";
+        if (sec.ID) card.id = sec.ID;
+
         if(sec.TITLE) {
           const heading = document.createElement("div");
           heading.className = "section-heading";
-          heading.innerHTML = `<h2 class="section-title" id="${slugify(sec.TITLE)}">${sec.TITLE}</h2>`;
+          // Tạo slug cho ID để link #banggia hoạt động
+          const slug = (sec.TITLE === "Bảng giá") ? "banggia" : slugify(sec.TITLE);
+          heading.innerHTML = `<h2 class="section-title" id="${slug}">${sec.TITLE}</h2>`;
           card.appendChild(heading);
         }
 
@@ -1049,7 +1235,7 @@
               const stars = "★".repeat(r.stars) + "☆".repeat(5-r.stars);
               t.innerHTML = `<div class="testimonial-name">${r.name}</div>
               <div class="stars">${stars}</div>
-              <div class="testimonial-text">${r.text}</div>`;
+              <div class="testimonial-text">"${r.text}"</div>`;
               testWrap.appendChild(t);
             });
             card.appendChild(testWrap);
@@ -1068,31 +1254,17 @@
             card.appendChild(pl);
             break;
 
-          case "links":
-            const links = document.createElement("div");
-            links.className = "hero-actions";
-            sec.LINKS.forEach(l => {
-              const a = document.createElement("a");
-              a.href = l.href;
-              a.className = "btn btn-secondary";
-              a.textContent = l.label;
-              links.appendChild(a);
-            });
-            card.appendChild(links);
-            break;
-
           case "faq":
             sec.QUESTIONS.forEach((q, idx) => {
               const faq = document.createElement("div");
               faq.className = "faq-item" + (idx===0 ? " active" : "");
-              faq.innerHTML = `<div class="faq-q">${q.q}<span class="material-symbols-rounded" style="font-size:.9rem;">expand_more</span></div>
+              faq.innerHTML = `<div class="faq-q">${q.q}<span class="material-symbols-rounded">expand_more</span></div>
               <div class="faq-a">${q.a}</div>`;
               card.appendChild(faq);
             });
             break;
 
           case "cta":
-            card.id = "cta";
             const desc = document.createElement("p");
             desc.textContent = sec.DESC;
             desc.style.marginBottom = ".65rem";
@@ -1105,13 +1277,14 @@
             sec.BUTTONS.forEach(btn => {
               const a = document.createElement("a");
               a.href = btn.href;
-              a.className = "btn btn-primary";
-              a.textContent = btn.label;
+              a.className = btn.primary ? "btn btn-primary" : "btn btn-secondary";
+              a.innerHTML = btn.label;
+              if (btn.href.startsWith('http')) a.target = "_blank";
               ctaBtns.appendChild(a);
             });
             card.appendChild(ctaBtns);
             break;
-
+            
           default:
             break;
         }
@@ -1120,16 +1293,20 @@
       });
     }
 
+    /**
+     * Xây dựng footer 6 cột
+     */
     function buildFooter() {
       const footerGrid = document.getElementById("footerGrid");
       if(!footerGrid) return;
 
+      // Định nghĩa 6 cột
       const cols = [
         {title:"🏠 Khám phá", filter:["index.html","gioithieu.html"]},
-        {title:"⚙️ Dịch vụ", filter:["dichvu.html","banggia.html","huongdan.html","loaixe.html"]},
-        {title:"📰 Blog & Ưu đãi", filter:["kinhnghiem.html","uudai.html","diadiem.html"]},
-        {title:"📘 Chính sách", filter:["https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html","https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html","faq.html"]},
-        {title:"📞 Liên hệ", filter:["lienhe.html","https://thuexemaynguyentu.com","tel:0942467674","https://zalo.me/0942467674"]},
+        {title:"⚙️ Dịch vụ", filter:["dichvu.html","banggia.html"]},
+        {title:"📘 Hướng dẫn", filter:["huongdan.html","kinhnghiem.html","diadiem.html"]},
+        {title:"🔒 Chính sách", filter:["https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html","https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html","faq.html"]},
+        {title:"📞 Liên hệ", filter:["lienhe.html",`tel:${CONTACT.PHONE}`, CONTACT.ZALO]},
         {title:"🌐 Mạng xã hội", filter:["https://m.facebook.com/chothuexemay0857255868/","https://www.instagram.com/nguyentumotorbike/","https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html"]}
       ];
 
@@ -1141,6 +1318,7 @@
         h.textContent = c.title;
         wrap.appendChild(h);
 
+        // Lọc các link từ FOOTER_COLUMNS
         c.filter.forEach(f => {
           const item = FOOTER_COLUMNS.find(fc => fc.href === f);
           if(item) {
@@ -1148,6 +1326,9 @@
             a.href = item.href;
             a.className = "footer-link";
             a.textContent = item.title;
+            if (item.href.startsWith('http') || item.href.startsWith('tel')) {
+              a.target = "_blank";
+            }
             wrap.appendChild(a);
           }
         });
@@ -1160,64 +1341,82 @@
     function slugify(str="") {
       return str.toString().toLowerCase()
         .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+        .replace(/[đĐ]/g, 'd')
         .replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
     }
 
     /* ---------- THEME ---------- */
     const THEME_KEY = "moto-theme-mode";
+    
     function detectSystemTheme() {
       return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     }
+    
     function applyTheme(mode) {
       document.documentElement.setAttribute("data-theme-mode", mode);
       localStorage.setItem(THEME_KEY, mode);
       const toggle = document.getElementById("themeToggle");
       if(toggle) {
+        // Đảm bảo icon là Material Symbols
         toggle.innerHTML = `<span class="material-symbols-rounded">${mode==="dark"?"dark_mode":"sunny"}</span>`;
       }
     }
 
-    function randomizeTheme(){
-      if(!THEME_RANDOMIZER.ENABLED || !THEME_RANDOMIZER.RANDOMIZE_ON_LOAD) return;
-      const pool = THEME_RANDOMIZER.POOL;
-      if(!pool || !pool.length) return;
-      const rand = pool[Math.floor(Math.random()*pool.length)];
-      if(AUTO_ACCENT_PALETTE.ENABLED && AUTO_ACCENT_PALETTE.MAP[rand]) {
-        document.documentElement.style.setProperty("--accent", AUTO_ACCENT_PALETTE.MAP[rand]);
+    /* ---------- EFFECTS ---------- */
+    
+    /**
+     * Hiệu ứng khi scroll (header + fade-up)
+     */
+    function initScrollEffects() {
+      const header = document.getElementById("appHeader");
+      
+      // Observer cho header
+      if (header) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(e => {
+            if(!e.isIntersecting) {
+              header.classList.add("scrolled");
+            } else {
+              header.classList.remove("scrolled");
+            }
+          });
+        }, {threshold:.06});
+        
+        // Dùng 1 element vô hình ngay sau header để trigger
+        const dummyTrigger = document.createElement('div');
+        dummyTrigger.style.height = '1px';
+        header.parentNode.insertBefore(dummyTrigger, header.nextSibling);
+        observer.observe(dummyTrigger);
+      }
+
+      // Observer cho fade-up
+      const fadeEls = document.querySelectorAll(".fade-up");
+      if ("IntersectionObserver" in window) {
+        const fadeObs = new IntersectionObserver((entries) => {
+          entries.forEach(ent => {
+            if(ent.isIntersecting) {
+              ent.target.classList.add("visible");
+              fadeObs.unobserve(ent.target);
+            }
+          });
+        },{threshold:.1});
+        fadeEls.forEach(el => fadeObs.observe(el));
+      } else {
+        // Fallback cho trình duyệt cũ
+        fadeEls.forEach(el => el.classList.add('visible'));
       }
     }
 
-    /* ---------- EFFECTS ---------- */
-    function initScrollEffects() {
-      const header = document.getElementById("appHeader");
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if(!e.isIntersecting) {
-            header?.classList.add("scrolled");
-          } else {
-            header?.classList.remove("scrolled");
-          }
-        });
-      }, {threshold:.06});
-      const hero = document.getElementById("hero");
-      if(hero) observer.observe(hero);
-
-      const fadeEls = document.querySelectorAll(".fade-up");
-      const fadeObs = new IntersectionObserver((entries) => {
-        entries.forEach(ent => {
-          if(ent.isIntersecting) {
-            ent.target.classList.add("visible");
-            fadeObs.unobserve(ent.target);
-          }
-        });
-      },{threshold:.17});
-      fadeEls.forEach(el => fadeObs.observe(el));
-    }
-
+    /**
+     * Hiệu ứng gợn sóng (ripple)
+     */
     function initRipple() {
       document.body.addEventListener("click", function(e){
-        const target = e.target.closest(".btn, .quickcall-main, .quickcall-btn, .mini-card, .nav-link");
+        // Chỉ target các element có hiệu ứng
+        const target = e.target.closest(".btn, .quickcall-main, .quickcall-btn, .mini-card, .nav-link, .theme-toggle, .nav-toggle, .dropdown a");
         if(!target) return;
+        
+        // Tạo ripple
         const rect = target.getBoundingClientRect();
         const circle = document.createElement("span");
         circle.className = "ripple";
@@ -1225,58 +1424,105 @@
         circle.style.width = circle.style.height = size + "px";
         circle.style.left = (e.clientX - rect.left - size/2) + "px";
         circle.style.top = (e.clientY - rect.top - size/2) + "px";
+        
+        // Thêm vào target
         target.appendChild(circle);
-        setTimeout(() => circle.remove(), 450);
+        
+        // Tự xoá
+        setTimeout(() => circle.remove(), 600);
       });
     }
 
-    /* ---------- FAQ ---------- */
+    /* ---------- Component Logic ---------- */
+    
+    /**
+     * Logic cho FAQ (accordion)
+     */
     function initFAQ() {
-      document.querySelectorAll(".faq-item .faq-q").forEach(btn => {
-        btn.addEventListener("click", () => {
-          btn.parentElement.classList.toggle("active");
-        });
+      const root = document.getElementById('sectionsRoot');
+      if (!root) return;
+
+      root.addEventListener('click', function(e) {
+        const target = e.target.closest('.faq-q');
+        if (!target) return;
+
+        const parent = target.parentElement;
+        if (!parent || !parent.classList.contains('faq-item')) return;
+        
+        parent.classList.toggle("active");
+
+        // (Tùy chọn) Đóng các FAQ khác
+        // const allFaqs = root.querySelectorAll('.faq-item');
+        // allFaqs.forEach(faq => {
+        //   if (faq !== parent) faq.classList.remove('active');
+        // });
       });
     }
 
-    /* ---------- QUICKCALL ---------- */
+    /**
+     * Logic cho QuickCall
+     */
     function initQuickCall() {
       const toggle = document.getElementById("quickCallToggle");
       const group = document.getElementById("quickCallGroup");
       if(!toggle || !group) return;
+      
       toggle.addEventListener("click", () => {
         group.classList.toggle("open");
       });
     }
 
-    /* ---------- NAV TOGGLE MOBILE ---------- */
+    /**
+     * Logic cho Nav Toggle (Mobile)
+     */
     function initNavToggle(){
       const navToggle = document.getElementById("navToggle");
       const nav = document.getElementById("mainNav");
       if(!navToggle || !nav) return;
-      navToggle.addEventListener("click", () => {
+      
+      navToggle.addEventListener("click", (e) => {
+        e.stopPropagation();
         nav.classList.toggle("open");
+      });
+      
+      // Đóng menu khi click ra ngoài
+      document.addEventListener('click', (e) => {
+        if (!nav.contains(e.target) && !navToggle.contains(e.target)) {
+          nav.classList.remove('open');
+        }
       });
     }
 
     /* ---------- INIT ---------- */
+    
+    /**
+     * Chạy tất cả khi DOM đã sẵn sàng
+     */
     function init() {
-      randomizeTheme();
+      // 1. Xây dựng giao diện từ JSON
       buildMenu();
       buildHeroMiniApp();
       buildSections();
       buildFooter();
+      
+      // 2. Kích hoạt các tính năng tương tác
       initScrollEffects();
       initRipple();
       initFAQ();
       initQuickCall();
       initNavToggle();
 
-      // theme from storage
-      const saved = localStorage.getItem(THEME_KEY);
-      applyTheme(saved || detectSystemTheme());
+      // 3. Áp dụng theme
+      const savedTheme = localStorage.getItem(THEME_KEY);
+      const autoTheme = document.documentElement.getAttribute('data-theme-mode') === 'auto';
+      
+      if (savedTheme) {
+        applyTheme(savedTheme);
+      } else {
+        applyTheme(detectSystemTheme());
+      }
 
-      // theme toggle
+      // 4. Lắng nghe nút đổi theme
       const themeToggle = document.getElementById("themeToggle");
       if(themeToggle) {
         themeToggle.addEventListener("click", () => {
@@ -1284,18 +1530,19 @@
           applyTheme(current==="dark"?"light":"dark");
         });
       }
-
-      // auto-fix menu/footer old links
-      const oldLinks = ["dieukhoan.html","baomat.html"];
-      document.querySelectorAll("a[href]").forEach(a => {
-        if(oldLinks.includes(a.getAttribute("href"))) {
-          if(a.getAttribute("href")==="dieukhoan.html") a.setAttribute("href","https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html");
-          if(a.getAttribute("href")==="baomat.html") a.setAttribute("href","https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html");
+      
+      // 5. Lắng nghe thay đổi theme hệ thống
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", e => {
+        // Chỉ thay đổi nếu người dùng chưa set thủ công
+        if (!localStorage.getItem(THEME_KEY)) {
+          applyTheme(e.matches ? "dark" : "light");
         }
       });
     }
 
+    // Chạy init khi DOM đã load
     document.addEventListener("DOMContentLoaded", init);
+    
   })();
   </script>
 </body>
