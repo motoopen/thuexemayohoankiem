@@ -383,3 +383,58 @@ Giữ nguyên emoji, href, icon. Dùng grid 6 cột, auto-collapse còn 2 cột 
   COLOR_SYNC:"Tự động đồng bộ accent màu chính (#0A84FF, #00C49A) giữa header, footer, hero, nút CTA và icon.",
   GENERATOR_NOTE:"Khi render HTML, phải tự sinh menu và footer dựa trên JSON MENU và FOOTER_COLUMNS. Không được bỏ, gộp hay đổi tên link. Giữ semantic HTML (nav, ul/li, footer, h4)."
 };
+
+Bạn là trình tạo HTML one-file chuyên nghiệp.  
+Sinh ra 1 file duy nhất: **index.html** (HTML + CSS + JS nội tuyến, không dùng jQuery, Bootstrap hay API ngoài).  
+Dùng font CDN: Inter, Material Symbols Rounded, Font Awesome 6 Free.  
+Toàn bộ JS phải gói trong 1 IIFE (inline) đặt cuối body, defer, sau thẻ external MotoAI v36.  
+Ngôn ngữ: tiếng Việt tự nhiên (không “ạ”, “nhé”, “nha”).  
+
+⚙️ **Yêu cầu tổng thể**
+- Giao diện kiểu app di động (mini-app), hiệu ứng **glassmorphism** (kính mờ sang trọng, blur nhẹ, bóng mềm).  
+- Có **dark/light mode** tự động theo hệ thống, và **nút chuyển mode** góc phải trên.  
+- Khi chuyển theme, toàn bộ màu accent, glass, shadow, nền, icon phải đổi đồng bộ.  
+- Menu và footer **bắt buộc phải sinh từ JSON** (không được viết tay).  
+- Giao diện responsive, mượt, hiệu ứng hover và ripple tinh tế.  
+- Footer chia grid 6 cột, có quickcall bên trái, icon tròn.  
+
+---
+
+## 🎨 META + CẤU HÌNH
+(giữ nguyên như bạn đã gửi ở trên – Gemini đọc toàn bộ block JSON này để render)
+[📌 dán toàn bộ META, CONTACT, STYLE, FEATURES, APP_SHELL, MENU, FOOTER_COLUMNS, HERO_MINIAPP, BODY_SECTIONS, KIEM_TRA_MENU_FOOTER, THEME_DRIFT, STYLE_SELECTOR, SMART_INTERACT, GLASS_ANIM, LAZYLOAD_EXTEND, ADAPTIVE_MODE, SCRIPT_OPTIMIZER, CREATIVE_MODE_HINT, AI_DIRECTIVE, SMART_SEO, USER_FLOW_HINTS, VALIDATION, CREATIVE_HINTS_EXTRA — không thay đổi]
+
+---
+
+## 🧩 RENDER_HINTS (chỉ đạo rõ ràng cho Gemini)
+
+RENDER_HINTS={
+  MENU_STRUCTURE:"Tạo <ul class='nav-menu'> theo JSON MENU=[...] — có dropdown cho nhóm Dịch vụ, giữ emoji icon, glass fixed top, blur nhẹ 6–8px, opacity ~0.9, hover sáng hơn.",
+  MENU_AUTO_ACTIVE:"Thêm class active cho trang hiện tại (so khớp href).",
+  FOOTER_LAYOUT:"Tạo footer từ FOOTER_COLUMNS=[...] — chia 6 cột responsive grid: \
+1️⃣ Khám phá (Trang chủ, Giới thiệu) \
+2️⃣ Dịch vụ (Dịch vụ, Bảng giá, Hướng dẫn) \
+3️⃣ Blog & Ưu đãi (Kinh nghiệm, Ưu đãi, Blog) \
+4️⃣ Chính sách (Điều khoản, Bảo mật, FAQ) \
+5️⃣ Liên hệ (Liên hệ, Website, Gọi, Zalo) \
+6️⃣ Mạng xã hội (Facebook, Instagram, TripAdvisor). \
+Có tagline và quickcall ở góc trái, giữ icon emoji hoặc Font Awesome tương ứng.",
+  FOOTER_STYLE:"Footer glass mini-dock, có blur nhẹ, border-top mảnh, icon social tròn, hover phát sáng, đồng bộ màu accent.",
+  HEADER_STYLE:"Header glass fixed-top, có shadow khi scroll, đồng bộ accent và blur. Khi scroll >120px, nền đậm hơn.",
+  THEME_MODE:"Hỗ trợ Light / Dark mode thực: dùng thuộc tính data-theme-mode='light' hoặc 'dark' để điều khiển CSS. Nút chuyển theme có biểu tượng ☀️ / 🌙, đặt trong header, toggle bằng JS trong IIFE.",
+  COLOR_SYNC:"Accent #0A84FF (chính) và #00C49A (phụ) được đồng bộ cho menu, footer, hero và nút CTA.",
+  HERO_STYLE:"Hero miniapp đồng bộ glass style, có CTA nổi bật và hiệu ứng hover ripple.",
+  GENERATOR_NOTE:"Gemini phải thực sự sinh menu và footer từ JSON (không hardcode). Toàn bộ code phải hợp lệ HTML5, semantic, inline CSS/JS, tương thích mobile."
+};
+
+---
+
+🎯 **Kết thúc lệnh:**
+> Sinh ra 1 file `index.html` one-file hoàn chỉnh theo cấu hình trên, có:
+> - Menu glass fixed top (tự sinh từ JSON)
+> - Footer 6 cột glass mini-dock (tự sinh từ JSON)
+> - Hero miniapp
+> - Body sections
+> - Dark/light mode tự động + nút chuyển theme
+> - Đồng bộ màu theme, glass blur, lazyload, scroll mượt  
+> Không dùng schema, framework, hoặc file tách rời.
