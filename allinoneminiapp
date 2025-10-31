@@ -9,7 +9,7 @@ META={
   DESCRIPTION:"Thuê xe máy Hà Nội giá rẻ, uy tín – Nguyễn Tú 
 . Xe ga, xe số, xe điện, giao nhanh 20–40 phút, cọc nhẹ, hỗ trợ 24/7.",
   KEYWORDS:"thuê xe máy, thuê xe máy Hà Nội, thuê xe máy Hoàn Kiếm, Nguyễn Tú, thuê xe ga, thuê xe số, thuê xe điện",
-  AUTHOR:"Nguyễn Tú Motorbike Rental",
+  AUTHOR:"Nguyễn Tú Cho thuê xe máy Hà Nội",
   CANONICAL:"https://motoopen.github.io/thuexemayohoankiem/index.html",
   THEME_COLOR:"#0A84FF",
   ROBOTS:"index, follow",
@@ -19,7 +19,7 @@ META={
 META_EXTRA={
   OG_TYPE:"website",
   TWITTER_CARD:"summary_large_image",
-  TWITTER_SITE:"@nguyentumotorbike",
+  TWITTER_SITE:"@thuexemaynguyentu",
   PUBLISHER:"https://thuexemaynguyentu.com",
   MESSENGER_PREVIEW:true,
   ZALO_PREVIEW:true
@@ -29,7 +29,7 @@ CONTACT={
   PHONE:"0942467674",
   ZALO:"https://zalo.me/0942467674",
   MAP:"https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc",
-  EMAIL:"contact@example.com",
+  EMAIL:"thuexễmaynguyentu@gmail.com",
   ADDRESS:"112 Nguyễn Văn Cừ, Long Biên, Hà Nội",
   LOGO_URL:"https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png"
 };
