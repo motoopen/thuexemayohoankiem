@@ -521,3 +521,21 @@ Khi tạo giao diện, hãy:
 - Viết code thực sự hợp lệ (HTML5 + CSS + JS inline).
 
 - Chỉ xuất code hoàn chỉnh, không mô tả.
+FRAMEWORK_LOCK = {
+  JQUERY: false,
+  BOOTSTRAP: false,
+  API_OUTSIDE: false
+};
+FRAMEWORK_LOCK = { JQUERY:false, BOOTSTRAP:false, API_OUTSIDE:false };
+AI_SAFEMODE = {
+  ENABLE_CREATIVE:true,
+  MAX_VARIANCE:0.3,
+  FIX_SYNTAX:true,
+  VALIDATE_OUTPUT:true,
+  SINGLE_FILE:true,
+  NO_DUPLICATE_TAGS:true,
+  TEST_RUN:true,
+
+  RESTRICT_API_OUTSIDE:true,
+  AUTO_RECOVER:true
+};
