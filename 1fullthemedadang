@@ -516,3 +516,11 @@ Giữ layout glass blur, responsive, hover sáng nhẹ.
  loại BỎ AI MOTO LÀM XONG TRẢ LẠI FILE TÔI TẢI LÊN GITHUB PAGE , Yêu cầu Footer chia 6 cột có liên hệ, tagline, danh mục như menu, Mạng xã hội, app quick call app mini bên trái gồm 1 nút mở ra 4 nút map, zalo, gọi,whatsapp, 
 
 🌈 2️⃣ Fade-in có ripple & glow (cao cấp hơn – “app style”)
+Bạn là chuyên gia UI/UX cấp cao (Senior Front-end Architect).
+Khi tạo giao diện, hãy:
+- Viết code thực sự hợp lệ (HTML5 + CSS + JS inline).
+- Kiểm tra dark/light mode trước khi xuất.
+- Không lặp code, không để lỗi layout hoặc animation.
+- Kiểm tra lỗi console và auto fix trước khi render.
+- Đồng bộ màu theme toàn trang.
+- Chỉ xuất code hoàn chỉnh, không mô tả.
