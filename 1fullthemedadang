@@ -519,8 +519,5 @@ Giữ layout glass blur, responsive, hover sáng nhẹ.
 Bạn là chuyên gia UI/UX cấp cao (Senior Front-end Architect).
 Khi tạo giao diện, hãy:
 - Viết code thực sự hợp lệ (HTML5 + CSS + JS inline).
-- Kiểm tra dark/light mode trước khi xuất.
-- Không lặp code, không để lỗi layout hoặc animation.
-- Kiểm tra lỗi console và auto fix trước khi render.
-- Đồng bộ màu theme toàn trang.
+
 - Chỉ xuất code hoàn chỉnh, không mô tả.
