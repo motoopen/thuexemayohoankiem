@@ -21,7 +21,7 @@
   <!-- META Chính (SEO) -->
   <title>Dịch vụ cho thuê xe máy Hoàn Kiếm, Hà Nội – Nguyễn Tú</title>
   <meta name="description" content="Thuê xe máy Hà Nội giá rẻ, uy tín – Nguyễn Tú. Xe ga, xe số, xe điện, giao nhanh 20–40 phút, cọc nhẹ, hỗ trợ 24/7.">
-  <meta name="keywords" content="thuê xe máy, thuê xe máy Hà Nội, thuê xe máy Hoàn Kiếm, Nguyễn Tú, thuê xe ga, thuê xe số, thuê xe điện">
+  <meta name="keywords" content="thuê xe máy, thuê xe máy Hà Nội, thuê xe máy Hoàn Kiếm, Nguyễn Tú, thuê xe ga, thuê xe số, thuê xe điện, kinh nghiệm thuê xe máy hoàn kiếm">
   <meta name="author" content="Nguyễn Tú Cho thuê xe máy Hà Nội">
   <link rel="canonical" href="https://motoopen.github.io/thuexemayohoankiem/index.html">
   <meta name="robots" content="index, follow">
@@ -33,7 +33,8 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://motoopen.github.io/thuexemayohoankiem/index.html">
   <meta property="og:image" content="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/BANNER-THUE-XE-MAY-1.png">
-  <meta property="og:site_name" content="Nguyễn Tú Motorbike Rental">
+  <!-- THAY ĐỔI: Việt hóa -->
+  <meta property="og:site_name" content="Nguyễn Tú - Cho thuê xe máy">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
@@ -686,10 +687,17 @@
     }
 
     /* 11. Footer */
+    /* THAY ĐỔI: Cập nhật toàn bộ khối Footer để căn giữa */
     .app-footer {
       padding: 4rem 0 2rem 0;
       border-top: 1px solid var(--glass-border);
       margin-top: 3rem;
+    }
+
+    /* YÊU CẦU: Căn giữa toàn bộ nội dung footer */
+    .app-footer .container {
+      text-align: center;
+      /* Căn giữa h4, p, và các <li> */
     }
 
     .footer-top {
@@ -701,10 +709,14 @@
 
     .footer-info {
       padding-right: 1rem;
+      text-align: center;
+      /* Đảm bảo căn giữa cho cột này */
     }
 
     .footer-info .logo {
       margin-bottom: 1rem;
+      justify-content: center;
+      /* Căn giữa logo (flex item) */
     }
 
     .footer-info p {
@@ -714,6 +726,10 @@
 
     .footer-contact-list {
       font-size: 0.9rem;
+      display: inline-block;
+      /* Thu hẹp list để căn giữa */
+      text-align: left;
+      /* Giữ nội dung list (icon+text) căn trái */
     }
 
     .footer-contact-list li {
@@ -752,6 +768,8 @@
       display: flex;
       gap: 0.75rem;
       flex-wrap: wrap;
+      justify-content: center;
+      /* Căn giữa các icon social */
     }
 
     .social-links a {
@@ -779,6 +797,8 @@
       font-size: 0.9rem;
       color: var(--text-muted);
     }
+    /* KẾT THÚC THAY ĐỔI FOOTER */
+
 
     /* 12. Quick Call Mini-App (Floating) */
     .quick-call-mini-app {
@@ -883,12 +903,15 @@
     /* 14. Responsive (Media Queries) */
     @media (max-width: 1024px) {
       .footer-top {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-grid {
+        /* THAY ĐỔI: Điều chỉnh responsive cho footer */
         grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
+      }
+
+      .footer-info {
+        grid-column: 1 / -1;
+        /* Cột info chiếm toàn bộ hàng đầu tiên */
+        padding-right: 0;
       }
     }
 
@@ -964,10 +987,7 @@
       }
 
       .footer-top {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-grid {
+        /* THAY ĐỔI: Điều chỉnh responsive cho footer */
         grid-template-columns: repeat(2, 1fr);
       }
     }
@@ -1003,7 +1023,8 @@
         grid-template-columns: 1fr;
       }
 
-      .footer-grid {
+      .footer-top {
+        /* THAY ĐỔI: Điều chỉnh responsive cho footer */
         grid-template-columns: 1fr;
       }
 
@@ -1072,9 +1093,13 @@
     <!-- Giới thiệu -->
     <section id="intro" class="section">
       <div class="container section-center">
-        <h2 class="scroll-animate">Giới thiệu Nguyễn Tú Motorbike Rental</h2>
-        <p class="scroll-animate">Nguyễn Tú Motorbike Rental là dịch vụ cho thuê xe máy uy tín hàng đầu tại khu vực Hoàn Kiếm, Hà Nội. Chúng tôi chuyên cung cấp các dòng xe ga, xe số và xe điện đời mới, đảm bảo chất lượng và an toàn.</p>
+        <!-- THAY ĐỔI: Việt hóa H2 -->
+        <h2 class="scroll-animate">Giới thiệu Dịch vụ Thuê xe máy Nguyễn Tú</h2>
+        <!-- THAY ĐỔI: Việt hóa P1 -->
+        <p class="scroll-animate">Dịch vụ Thuê xe máy Nguyễn Tú là dịch vụ cho thuê xe máy uy tín hàng đầu tại khu vực Hoàn Kiếm, Hà Nội. Chúng tôi chuyên cung cấp các dòng xe ga, xe số và xe điện đời mới, đảm bảo chất lượng và an toàn.</p>
         <p class="scroll-animate">Với dịch vụ giao xe tận nơi siêu tốc chỉ trong 20–40 phút và hỗ trợ 24/7, chúng tôi là lựa chọn lý tưởng cho du khách, người đi công tác và bất kỳ ai có nhu cầu di chuyển linh hoạt tại thủ đô.</p>
+        <!-- THAY ĐỔI: Thêm nội dung SEO và 2 link nội bộ -->
+        <p class="scroll-animate">Với nhiều năm hoạt động, chúng tôi đúc kết được nhiều <a href='kinhnghiem.html' style='font-weight: 600; color: var(--accent-2);'>kinh nghiệm thuê xe máy Hoàn Kiếm, Hà Nội</a> để tư vấn cho bạn, giúp bạn chọn được <a href='loaixe.html' style='font-weight: 600;'>chiếc xe ưng ý nhất</a> cho chuyến đi của mình.</p>
       </div>
     </section>
 
@@ -1245,7 +1270,8 @@
         <div class="footer-info">
           <a href="index.html" class="logo">
             <img src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png" alt="Logo Nguyễn Tú">
-            Nguyễn Tú Motorbike
+            <!-- THAY ĐỔI: Việt hóa -->
+            Nguyễn Tú Cho thuê xe máy
           </a>
           <p>Dịch vụ cho thuê xe máy uy tín tại Hoàn Kiếm & Hà Nội. Giao xe nhanh, giá rẻ, hỗ trợ 24/7.</p>
           <ul class="footer-contact-list">
@@ -1318,7 +1344,8 @@
         </div>
       </div>
       <div class="footer-bottom">
-        Bản quyền © 2024 Nguyễn Tú Motorbike Rental. Giao diện thiết kế bởi Gemini.
+        <!-- THAY ĐỔI: Việt hóa -->
+        Bản quyền © 2024 Nguyễn Tú - Cho thuê xe máy. Giao diện thiết kế bởi Gemini.
       </div>
     </div>
   </footer>
