@@ -473,14 +473,78 @@
             max-width: 800px;
             margin: 0 auto;
         }
-        .benefits-list li, .steps-list li, .links-list li {
+        .benefits-list li, .links-list li {
             position: relative;
             padding-left: 30px;
             font-size: 1.1rem;
             color: var(--text-secondary);
             margin-bottom: 1rem;
         }
-        .benefits-list li::before, .steps-list li::before {
+        
+        /* Cập nhật Styles cho Steps List: Dùng Emoji thay cho Font Icons */
+        .steps-list {
+            /* Căn giữa toàn bộ danh sách */
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+        }
+
+        .steps-list li {
+            /* Căn giữa nội dung, dùng flex để sắp xếp emoji và text */
+            position: relative;
+            padding-left: 0; /* Xóa padding cũ */
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem; /* Tăng khoảng cách */
+            display: flex;
+            align-items: flex-start;
+            text-align: left;
+            width: 100%;
+            max-width: 500px; /* Giới hạn chiều rộng cho dễ đọc */
+            
+            /* Hiệu ứng Fade-in nhẹ cho từng bước (Yêu cầu 3) */
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        /* Xóa bỏ CSS counter cũ */
+        .steps-list li::before { 
+            content: none !important; 
+        }
+
+        .steps-list li span.emoji-counter {
+            /* Style cho Emoji (Yêu cầu 1 & 5) */
+            min-width: 30px;
+            height: auto;
+            line-height: 1.5;
+            font-size: 1.4rem; /* Kích thước lớn hơn */
+            margin-right: 15px;
+            color: var(--accent); /* Đồng bộ màu accent */
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .steps-list li span.step-text {
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+
+        /* Trigger hiệu ứng Fade-in tuần tự (Yêu cầu 3) */
+        .content-section.is-visible .steps-list li {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .content-section.is-visible .steps-list li:nth-child(1) { transition-delay: 0.1s; }
+        .content-section.is-visible .steps-list li:nth-child(2) { transition-delay: 0.2s; }
+        .content-section.is-visible .steps-list li:nth-child(3) { transition-delay: 0.3s; }
+        .content-section.is-visible .steps-list li:nth-child(4) { transition-delay: 0.4s; }
+        
+        /* Styles cho benefits list vẫn giữ nguyên */
+        .benefits-list li::before {
             position: absolute;
             left: 0;
             top: 0;
@@ -488,12 +552,8 @@
             font-weight: 600;
             color: var(--accent2);
             font-size: 1.2rem;
+            content: 'check_circle';
         }
-        .benefits-list li::before { content: 'check_circle'; }
-        .steps-list li::before { content: 'numeric_counter_1'; } /* JS sẽ cần cập nhật số */
-        .steps-list li:nth-child(2)::before { content: 'numeric_counter_2'; }
-        .steps-list li:nth-child(3)::before { content: 'numeric_counter_3'; }
-        .steps-list li:nth-child(4)::before { content: 'numeric_counter_4'; }
         
         .grid-container {
             display: grid;
@@ -949,7 +1009,10 @@
     <script defer>
         (function() {
             'use strict';
-
+            
+            // --- CONSTANTS ---
+            const STEP_EMOJIS = ['①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧', '⑨']; // Dùng emoji thay cho Material Symbols để tương thích iOS
+            
             // === DỮ LIỆU CẤU HÌNH (TỪ JSON) ===
             const CONFIG = {
                 CONTACT: {
@@ -1256,7 +1319,11 @@
                             break;
                         case 'steps':
                             content += '<ol class="steps-list">';
-                            content += section.STEPS.map(p => `<li>${p}</li>`).join('');
+                            // Thay thế Material Symbols bằng Emoji (Yêu cầu 1)
+                            content += section.STEPS.map((p, index) => {
+                                const emoji = STEP_EMOJIS[index] || (index + 1);
+                                return `<li><span class="emoji-counter" aria-hidden="true">${emoji}</span> <span class="step-text">${p}</span></li>`;
+                            }).join('');
                             content += '</ol>';
                             break;
                         case 'testimonials':
