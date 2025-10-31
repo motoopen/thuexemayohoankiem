@@ -205,5 +205,52 @@ CREATIVE_HINTS_EXTRA={
 
 ---
 
+đây là cấu trúc menu và footer thêm vào khi tạo theme
+
+Tạo cấu trúc HTML cho theme website thuê xe máy.
+
+1️⃣ Header (menu chính)  
+Tạo menu theo cấu trúc sau (giữ nguyên emoji, href, thứ tự và dropdown):
+
+<ul class="nav-menu">
+  <li><a href="index.html">🏠 Trang chủ</a></li>
+  <li><a href="gioithieu.html">📄 Giới thiệu</a></li>
+  <li class="nav-item-dropdown">
+    <a href="dichvu.html" class="nav-dropdown-toggle">
+      ⚙️ Dịch vụ <span class="material-symbols-rounded dropdown-icon">expand_more</span>
+    </a>
+    <ul class="dropdown-menu">
+      <li><a href="banggia.html">🏷️ Bảng giá</a></li>
+      <li><a href="thutuc.html">📑 Thủ tục</a></li>
+      <li><a href="loaixe.html">🛵 Loại xe</a></li>
+      <li><a href="kinhnghiem.html">💡 Kinh nghiệm</a></li>
+      <li><a href="diadiem.html">📍 Địa điểm</a></li>
+      <li><a href="quytrinh.html">⚙️ Quy trình</a></li>
+      <li><a href="blog.html">📰 Blog</a></li>
+      <li><a href="uudai.html">🎁 Ưu đãi</a></li>
+      <li><a href="giamgia.html">💰 Giảm giá</a></li>
+    </ul>
+  </li>
+  <li><a href="lienhe.html">💬 Liên hệ</a></li>
+  <li><a href="chinhsachbaomat.html">🔒 Bảo mật</a></li>
+  <li><a href="dieukhoansudung.html">📘 Điều khoản</a></li>
+</ul>
+
+2️⃣ Footer  
+Tạo <footer> dạng grid hoặc flex, gồm:  
+- Cột trái: quick call (Hotline, địa chỉ, email).  
+- Cột giữa: tagline ngắn về dịch vụ thuê xe máy.  
+- 6 cột còn lại chia link theo nhóm, dùng lại từ menu trên (không thêm, không bớt):  
+  1. 🧭 Khám phá → Trang chủ, Giới thiệu  
+  2. ⚙️ Dịch vụ → Dịch vụ, Bảng giá, Thủ tục, Loại xe, Kinh nghiệm  
+  3. 📍 Quy trình - Địa điểm → Địa điểm, Quy trình  
+  4. 📰 Blog & Ưu đãi → Blog, Ưu đãi, Giảm giá  
+  5. 💬 Liên hệ → Liên hệ  
+  6. 🔒 Chính sách → Bảo mật, Điều khoản  
+
+Yêu cầu:
+- HTML semantic, có <h4> tiêu đề mỗi cột.  
+- Code gọn, rõ, dễ chèn vào theme và responsive.
+
 **Kết thúc:**  
 > Xuất `index.html` hoàn chỉnh — theme Ultra Glass tự random, selector mượt, fallback auto main đồng bộ hero, tối ưu SEO + UX + tốc độ, mini-app đồng bộ menu/footer và hiệu ứng glassmorphism hiện đại.
