@@ -1,707 +1,1532 @@
 <!DOCTYPE html>
-<html lang="vi" dir="ltr" data-theme-mode="auto" data-style-preset="UltraTitanGlass">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- === META SEO (Theo yêu cầu) === -->
     <title>Dịch vụ cho thuê xe máy Hoàn Kiếm, Hà Nội – Nguyễn Tú</title>
     <meta name="description" content="Thuê xe máy Hà Nội giá rẻ, uy tín – Nguyễn Tú Motorbike Rental. Xe ga, xe số, xe điện, giao nhanh 20–40 phút, hỗ trợ 24/7.">
     <meta name="keywords" content="thuê xe máy, thuê xe máy Hà Nội, thuê xe máy Hoàn Kiếm, Nguyễn Tú, thuê xe ga, thuê xe số, thuê xe điện">
     <meta name="author" content="Nguyễn Tú Motorbike Rental">
     <link rel="canonical" href="https://motoopen.github.io/thuexemayohoankiem/index.html">
-    <meta name="theme-color" content="#0A84FF">
     <meta name="robots" content="index, follow">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://motoopen.github.io/thuexemayohoankiem/index.html">
-    <meta property="og:title" content="Dịch vụ cho thuê xe máy Hoàn Kiếm, Hà Nội – Nguyễn Tú">
-    <meta property="og:description" content="Thuê xe máy Hà Nội giá rẻ, uy tín – Nguyễn Tú Motorbike Rental. Xe ga, xe số, xe điện, giao nhanh 20–40 phút, hỗ trợ 24/7.">
-    <meta data-lazy-og-image="true" property="og:image" content="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/BANNER-THUE-XE-MAY-1.png">
     
+    <!-- === META OG & Theme (Theo yêu cầu) === -->
+    <meta property="og:title" content="Dịch vụ cho thuê xe máy Hoàn Kiếm, Hà Nội – Nguyễn Tú">
+    <meta property="og:description" content="Thuê xe máy Hà Nội giá rẻ, uy tín. Xe ga, xe số, xe điện, giao nhanh 20–40 phút.">
+    <meta property="og:image" content="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/BANNER-THUE-XE-MAY-1.png">
+    <meta property="og:url" content="https://motoopen.github.io/thuexemayohoankiem/index.html">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#0A84FF">
+    
+    <!-- === View Transitions API === -->
+    <meta name="view-transition" content="same-origin">
+    
+    <!-- === Font CDNs (Theo yêu cầu) === -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style">
-    <link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Rounded" as="style">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Rounded" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" integrity="sha512-..." crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-    <style>
+    <!-- === INLINE STYLESHEET === -->
+    <style id="theme-styles">
+        /* === 1. Reset & Root Variables === */
         :root {
-            /* Mặc định cho UltraTitanGlass (Light) */
-            --accent-color: #0A84FF;
-            --accent-color-2: #00C49A;
-            --text-color: #212529;
-            --text-color-light: #5c6370;
-            --body-bg: #f9fafa;
-            --card-bg: rgba(255, 255, 255, 0.7);
-            --border-color: rgba(0, 0, 0, 0.1);
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            --radius: 20px;
-            --blur: 10px;
-            --transition-time: 0.3s;
-            --header-height: 60px;
-            --footer-height: 50px;
+            --ease-main: cubic-bezier(0.25, 0.1, 0.25, 1);
+            --ease-out: ease-out;
+            --radius-main: 20px;
+            --radius-small: 12px;
+            --radius-btn: 16px;
+            --blur-main: 10px;
+            --shadow-main: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.05);
+            --shadow-heavy: 0 8px 30px rgba(0, 0, 0, 0.15);
+            --pad-main: 1.5rem;
+            --pad-card: 1.25rem;
+            --header-height: 70px;
+            --footer-height: 60px;
         }
 
-        /* Dark Mode (Auto Sync) */
-        [data-theme-mode="dark"] {
-            --text-color: #eceff1;
-            --text-color-light: #aeb6bf;
-            --body-bg: #0c0d0f;
-            --card-bg: rgba(255, 255, 255, 0.08);
-            --border-color: rgba(255, 255, 255, 0.1);
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Global Reset & Base */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        ::view-transition-old, ::view-transition-new { animation-duration: 0.3s; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--body-bg);
-            color: var(--text-color);
+        html {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 16px;
             line-height: 1.6;
-            transition: background-color var(--transition-time), color var(--transition-time);
+            scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
-            min-height: 100vh;
+            -moz-osx-font-smoothing: grayscale;
         }
-        a { color: var(--accent-color); text-decoration: none; transition: color var(--transition-time); }
-        h1, h2, h3, h4 { margin-bottom: 0.8rem; line-height: 1.2; color: var(--text-color); }
-        h1 { font-size: 2.2rem; }
-        h2 { font-size: 1.8rem; }
-        main { padding-top: var(--header-height); padding-bottom: calc(var(--footer-height) + 10px); }
-        section { padding: 30px 20px; max-width: 1200px; margin: 0 auto; opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-        section.is-visible { opacity: 1; transform: translateY(0); }
 
-        /* Glassmorphism Card Style */
-        .glass-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(var(--blur));
-            -webkit-backdrop-filter: blur(var(--blur));
-            padding: 25px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        body {
+            background-color: var(--c-bg);
+            color: var(--c-text);
+            transition: background-color 0.3s var(--ease-main), color 0.3s var(--ease-main);
+            overflow-x: hidden;
+        }
+
+        img, video, svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        a {
+            color: var(--c-accent);
+            text-decoration: none;
+            transition: color 0.2s var(--ease-main), opacity 0.2s var(--ease-main);
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.3;
+            color: var(--c-text-head);
+            margin-bottom: 0.75rem;
+            view-transition-name: var(--vt-name, none);
+        }
+
+        h1 { font-size: 2.25rem; }
+        h2 { font-size: 1.75rem; }
+        h3 { font-size: 1.25rem; }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            list-style: none;
+        }
+
+        button,
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: var(--radius-btn);
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s var(--ease-main);
             position: relative;
             overflow: hidden;
-        }
-        .glass-card:hover {
-            transform: translateY(-3px) scale(1.01);
-            box-shadow: 0 8px 30px rgba(var(--accent-color-rgb, 10, 132, 255), 0.2);
-        }
-        .glass-header, .glass-footer {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            backdrop-filter: blur(var(--blur));
-            -webkit-backdrop-filter: blur(var(--blur));
-        }
-        [data-theme-mode="dark"] .glass-header, [data-theme-mode="dark"] .glass-footer {
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* App Shell - Header (Menu Cố định Glass) */
-        .glass-header {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .btn-primary {
+            background-color: var(--c-accent);
+            color: var(--c-btn-text);
+            box-shadow: 0 4px 15px -3px var(--c-accent-shadow, rgba(0, 122, 255, 0.4));
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px -3px var(--c-accent-shadow, rgba(0, 122, 255, 0.5));
+        }
+
+        .btn-secondary {
+            background-color: var(--c-card-bg);
+            color: var(--c-text-head);
+            border: 1px solid var(--c-border);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--c-bg-hover);
+        }
+
+        .card {
+            background-color: var(--c-card-bg);
+            border-radius: var(--radius-main);
+            box-shadow: var(--shadow-main);
+            padding: var(--pad-card);
+            border: 1px solid var(--c-border);
+            transition: transform 0.2s var(--ease-main), box-shadow 0.2s var(--ease-main);
+        }
+        
+        .tilt-card:hover {
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* === 2. Theme Definitions === */
+
+        /* Base Light (Fallback) */
+        :root {
+            --c-bg: #f9fafa;
+            --c-text: #333;
+            --c-text-head: #111;
+            --c-text-subtle: #555;
+            --c-border: rgba(0, 0, 0, 0.1);
+            --c-bg-hover: rgba(0, 0, 0, 0.05);
+            --c-card-bg: #ffffff;
+            --c-accent: #0A84FF;
+            --c-accent2: #00C49A;
+            --c-btn-text: #ffffff;
+            --c-accent-shadow: rgba(10, 132, 255, 0.4);
+            --c-glass-bg: rgba(255, 255, 255, 0.7);
+            --c-glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Base Dark */
+        .theme-dark {
+            --c-bg: #0c0d0f;
+            --c-text: #ccc;
+            --c-text-head: #f5f5f7;
+            --c-text-subtle: #888;
+            --c-border: rgba(255, 255, 255, 0.15);
+            --c-bg-hover: rgba(255, 255, 255, 0.1);
+            --c-card-bg: #1a1b1e;
+            --c-btn-text: #000;
+            --c-glass-bg: rgba(26, 27, 30, 0.7);
+            --c-glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Auto Dark Mode */
+        @media (prefers-color-scheme: dark) {
+            body.theme-auto {
+                --c-bg: #0c0d0f;
+                --c-text: #ccc;
+                --c-text-head: #f5f5f7;
+                --c-text-subtle: #888;
+                --c-border: rgba(255, 255, 255, 0.15);
+                --c-bg-hover: rgba(255, 255, 255, 0.1);
+                --c-card-bg: #1a1b1e;
+                --c-btn-text: #000;
+                --c-glass-bg: rgba(26, 27, 30, 0.7);
+                --c-glass-border: rgba(255, 255, 255, 0.1);
+            }
+        }
+        
+        /* Theme: UltraTitanGlass (Default) */
+        body.theme-ultratitanglass {
+            --c-accent: #0A84FF;
+            --c-accent2: #00C49A;
+            --c-accent-shadow: rgba(10, 132, 255, 0.4);
+        }
+        body.theme-ultratitanglass.theme-dark {
+            --c-btn-text: #fff;
+        }
+
+        /* Theme: NeoMint */
+        body.theme-neomint {
+            --c-accent: #30E8A1;
+            --c-accent2: #0A84FF;
+            --c-accent-shadow: rgba(48, 232, 161, 0.4);
+            --c-btn-text: #000;
+        }
+
+        /* Theme: MidnightPurple */
+        body.theme-midnightpurple {
+            --c-accent: #9D50FF;
+            --c-accent2: #FF57B7;
+            --c-accent-shadow: rgba(157, 80, 255, 0.4);
+            --c-btn-text: #fff;
+        }
+
+        /* Theme: AeroGlassBlue */
+        body.theme-aeroglassblue {
+            --c-accent: #007AFF;
+            --c-accent2: #5856D6;
+            --c-accent-shadow: rgba(0, 122, 255, 0.4);
+            --c-btn-text: #fff;
+        }
+
+        /* Theme: MinimalWhite */
+        body.theme-minimalwhite {
+            --c-bg: #fff;
+            --c-card-bg: #f9f9f9;
+            --c-accent: #333;
+            --c-accent2: #007AFF;
+            --c-accent-shadow: rgba(51, 51, 51, 0.3);
+            --c-btn-text: #fff;
+        }
+        body.theme-minimalwhite.theme-dark {
+            --c-bg: #000;
+            --c-card-bg: #111;
+            --c-accent: #eee;
+            --c-btn-text: #000;
+        }
+
+        /* Theme: SunsetOrange */
+        body.theme-sunsetorange {
+            --c-accent: #FF6B2C;
+            --c-accent2: #FF9500;
+            --c-accent-shadow: rgba(255, 107, 44, 0.4);
+            --c-btn-text: #fff;
+        }
+        
+        /* Theme: FacebookUltra */
+        body.theme-facebookultra {
+            --c-bg: #F0F2F5;
+            --c-card-bg: #FFFFFF;
+            --c-accent: #0866FF;
+            --c-accent2: #00A400;
+            --c-accent-shadow: rgba(8, 102, 255, 0.4);
+            --c-btn-text: #fff;
+        }
+
+        /* Theme: MotoDarkCarbon */
+        body.theme-motodarkcarbon {
+            /* Forcing dark mode variables */
+            --c-bg: #101010;
+            --c-text: #ccc;
+            --c-text-head: #f5f5f7;
+            --c-text-subtle: #888;
+            --c-border: rgba(255, 255, 255, 0.2);
+            --c-bg-hover: rgba(255, 255, 255, 0.1);
+            --c-card-bg: #1d1d1d;
+            --c-glass-bg: rgba(29, 29, 29, 0.75);
+            --c-glass-border: rgba(255, 255, 255, 0.15);
+            /* Custom accents */
+            --c-accent: #FFD700;
+            --c-accent2: #0A84FF;
+            --c-accent-shadow: rgba(255, 215, 0, 0.3);
+            --c-btn-text: #000;
+        }
+        /* Make MotoDarkCarbon ignore light preference */
+        body.theme-motodarkcarbon {
+            --c-bg: #101010 !important;
+            --c-text: #ccc !important;
+            --c-text-head: #f5f5f7 !important;
+            --c-text-subtle: #888 !important;
+            --c-border: rgba(255, 255, 255, 0.2) !important;
+            --c-bg-hover: rgba(255, 255, 255, 0.1) !important;
+            --c-card-bg: #1d1d1d !important;
+            --c-glass-bg: rgba(29, 29, 29, 0.75) !important;
+            --c-glass-border: rgba(255, 255, 255, 0.15) !important;
+        }
+
+        /* === 3. Glassmorphism Engine === */
+        .glass-enabled .glass,
+        .glass-enabled #main-header.glass-fixed,
+        .glass-enabled #main-footer.mini-dock {
+            background-color: var(--c-glass-bg);
+            backdrop-filter: blur(var(--blur-main));
+            -webkit-backdrop-filter: blur(var(--blur-main));
+            border: 1px solid var(--c-glass-border);
+        }
+
+        /* === 4. App Shell & Header === */
+        #app-shell {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        #main-header {
             width: 100%;
-            z-index: 1000;
             height: var(--header-height);
+            z-index: 1000;
+            transition: background-color 0.3s var(--ease-main), box-shadow 0.3s var(--ease-main);
+        }
+
+        #main-header.glass-fixed {
+            position: sticky;
+            top: 0;
+            box-shadow: var(--shadow-light);
+            border-bottom: 1px solid var(--c-border);
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+        }
+
+        .header-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 20px;
-            box-shadow: var(--shadow);
-        }
-        .logo-box img { height: 40px; border-radius: 8px; }
-        .nav-menu { list-style: none; display: flex; align-items: center; }
-        .nav-menu > li { margin-left: 20px; position: relative; }
-        .nav-menu a {
-            display: block; padding: 8px 12px; border-radius: 8px;
-            color: var(--text-color); font-weight: 600;
-            transition: background var(--transition-time), color var(--transition-time);
-        }
-        .nav-menu a:hover { background-color: rgba(var(--accent-color-rgb, 10, 132, 255), 0.1); color: var(--accent-color); }
-
-        /* Dropdown */
-        .dropdown-menu {
-            position: absolute; top: 100%; right: 0; min-width: 200px;
-            list-style: none; padding: 10px; z-index: 1010;
-            background: var(--card-bg); border-radius: var(--radius);
-            box-shadow: var(--shadow); border: 1px solid var(--border-color);
-            opacity: 0; visibility: hidden; transform: translateY(10px);
-            transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
-        }
-        .nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-        .dropdown-menu li { margin: 5px 0; }
-        .dropdown-menu a { padding: 10px 15px; white-space: nowrap; }
-
-        /* Mobile Menu */
-        .menu-toggle { display: none; background: none; border: none; font-size: 28px; cursor: pointer; color: var(--text-color); }
-        @media (max-width: 992px) {
-            .nav-menu { display: none; flex-direction: column; position: absolute; top: var(--header-height); left: 0; width: 100%; padding: 10px 0; background: var(--card-bg); border-top: 1px solid var(--border-color); box-shadow: var(--shadow); }
-            .nav-menu.is-open { display: flex; }
-            .nav-menu > li { margin: 5px 0; width: 100%; }
-            .nav-menu a { padding: 15px 20px; }
-            .menu-toggle { display: block; }
-            .dropdown-menu { position: static; transform: none; box-shadow: none; border: none; background: none; padding-left: 20px; }
-            .nav-item-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: none; }
-        }
-
-        /* Hero Mini-App Grid */
-        .hero-mini-app { text-align: center; padding: 40px 20px; }
-        .hero-mini-app h1 { font-size: 2.8rem; color: var(--accent-color); margin-bottom: 10px; }
-        .hero-mini-app p { font-size: 1.2rem; margin-bottom: 30px; color: var(--text-color-light); }
-        .service-grid {
-            display: grid; gap: 20px;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            max-width: 800px; margin: 0 auto 30px;
-        }
-        .grid-item {
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            min-height: 120px; font-weight: 600; font-size: 1rem;
-            cursor: pointer;
-        }
-        .grid-item i, .grid-item span { font-size: 36px; margin-bottom: 10px; color: var(--accent-color); transition: transform 0.3s ease; }
-        .grid-item:hover i, .grid-item:hover span { transform: translateY(-5px); }
-        .hero-cta-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-
-        /* CTA Button (Ripple Effect + Focus) */
-        .cta-button {
-            padding: 14px 25px; border-radius: 50px; font-weight: 700; font-size: 1rem;
-            cursor: pointer; border: none; position: relative; overflow: hidden;
-            transition: all 0.3s var(--transition-ease);
-            box-shadow: 0 5px 15px rgba(var(--accent-color-rgb, 10, 132, 255), 0.4);
-        }
-        .cta-button.primary { background-color: var(--accent-color); color: white; }
-        .cta-button.secondary { background-color: transparent; border: 2px solid var(--accent-color); color: var(--accent-color); box-shadow: none; }
-        .cta-button:active { transform: scale(0.98); box-shadow: 0 2px 10px rgba(var(--accent-color-rgb, 10, 132, 255), 0.5); }
-        .ripple { position: absolute; border-radius: 50%; background: rgba(255, 255, 255, 0.4); transform: scale(0); animation: ripple-anim 0.6s linear; pointer-events: none; }
-        @keyframes ripple-anim { to { transform: scale(4); opacity: 0; } }
-
-        /* Fallback Main Sections */
-        .section-intro p { font-size: 1.1rem; max-width: 800px; margin: 0 auto 1rem; text-align: center; }
-        .section-services .service-item { text-align: center; }
-        .section-services .service-item h4 { color: var(--accent-color); margin-top: 10px; }
-        .section-services .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
-
-        /* Footer Mini-Dock Grid */
-        .glass-footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 999;
-            padding: 10px 0;
-            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
-        }
-        .footer-dock {
-            display: flex;
-            justify-content: space-around;
-            max-width: 500px; /* Mini-dock size */
-            margin: 0 auto;
-        }
-        .dock-item {
-            text-align: center;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--text-color-light);
-            transition: color 0.3s;
-            padding: 5px 10px;
-            border-radius: 10px;
-        }
-        .dock-item:hover { color: var(--accent-color); }
-        .dock-item .material-symbols-rounded { font-size: 24px; display: block; margin-bottom: 2px; }
-
-        .footer-grid-container {
+            height: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 30px 20px;
-            border-top: 1px solid var(--border-color);
-            background: var(--body-bg); /* Footer chi tiết */
+            padding: 0 1rem;
         }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(8, 1fr);
-            gap: 20px;
-        }
-        .footer-col h4 {
-            color: var(--accent-color);
-            font-size: 1rem;
-            margin-bottom: 15px;
-            border-bottom: 2px solid var(--accent-color-2);
-            padding-bottom: 5px;
-        }
-        .footer-col ul { list-style: none; }
-        .footer-col a {
-            display: block;
-            padding: 5px 0;
-            font-size: 0.9rem;
-            color: var(--text-color-light);
-            transition: color 0.3s, transform 0.3s;
-        }
-        .footer-col a:hover { color: var(--accent-color); transform: translateX(5px); }
 
-        /* Quick Actions (Zalo/Call) */
-        .quick-actions {
-            position: fixed;
-            top: 50%;
-            left: 10px; /* Left side for quick call */
-            transform: translateY(-50%);
-            z-index: 100;
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--c-text-head);
+        }
+
+        .logo-container img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* === 5. Navigation Menu === */
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu li a {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.5rem 0.75rem;
+            color: var(--c-text-subtle);
+            font-weight: 500;
+            border-radius: var(--radius-small);
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            color: var(--c-text-head);
+            background-color: var(--c-bg-hover);
+        }
+
+        .nav-menu .nav-item-dropdown .dropdown-icon {
+            font-size: 1.25rem;
+            transition: transform 0.2s var(--ease-main);
+        }
+
+        .nav-menu .nav-item-dropdown:hover .dropdown-icon {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+            background-color: var(--c-card-bg);
+            border: 1px solid var(--c-border);
+            border-radius: var(--radius-small);
+            box-shadow: var(--shadow-main);
+            padding: 0.5rem;
+            z-index: 1100;
+            animation: fadeInDown 0.2s var(--ease-main);
+        }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-item-dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li {
+            width: 100%;
+        }
+
+        .dropdown-menu li a {
+            width: 100%;
+            color: var(--c-text);
+        }
+
+        .dropdown-menu li a:hover {
+            color: var(--c-text-head);
+            background-color: var(--c-bg-hover);
+        }
+
+        /* Mobile Menu Toggle */
+        #mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--c-text-head);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+        }
+        #mobile-menu-toggle .material-symbols-rounded {
+            font-size: 2rem;
+        }
+
+        /* === 6. Main Content & Hero === */
+        #main-content {
+            flex: 1 1 auto;
+        }
+
+        #hero.hero-service-grid {
+            text-align: center;
+            padding: 4rem 1rem 3rem 1rem;
+            background-color: var(--c-card-bg);
+            border-bottom: 1px solid var(--c-border);
+        }
+
+        #hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--c-text-head);
+            margin-bottom: 0.5rem;
+        }
+
+        #hero p {
+            font-size: 1.1rem;
+            color: var(--c-text-subtle);
+            max-width: 600px;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        /* Section Styling */
+        .section-container {
+            padding: 2.5rem 0;
+        }
+
+        .section-content {
+            padding: var(--pad-main);
+            border-radius: var(--radius-main);
+            background-color: var(--c-card-bg);
+            box-shadow: var(--shadow-light);
+            border: 1px solid var(--c-border);
+            margin-bottom: 1.5rem;
+        }
+
+        /* === 7. Fallback Sections (Services, Testimonials, Contact) === */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .service-card {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem;
+            border: 1px solid var(--c-border);
+            border-radius: var(--radius-main);
+            background-color: var(--c-bg);
+            transition: transform 0.2s var(--ease-main), box-shadow 0.2s var(--ease-main);
         }
-        .quick-actions a {
-            display: block;
-            width: 50px;
-            height: 50px;
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-main);
+        }
+        
+        .service-card .material-symbols-rounded {
+            font-size: 2.5rem;
+            color: var(--c-accent);
+            margin-bottom: 1rem;
+            padding: 0.75rem;
             border-radius: 50%;
-            background: var(--accent-color);
-            color: white;
+            background-color: var(--c-accent-shadow);
+            color: var(--c-accent);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .testimonial-card {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .testimonial-card .author {
+            font-weight: 600;
+            color: var(--c-text-head);
+        }
+        
+        .testimonial-card .stars {
+            color: #FFD700;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .contact-info ul {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .contact-info .material-symbols-rounded {
+            font-size: 1.5rem;
+            color: var(--c-accent);
+        }
+        
+        .contact-form .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .contact-form label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--c-border);
+            border-radius: var(--radius-small);
+            background-color: var(--c-bg);
+            color: var(--c-text);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* === 8. Footer === */
+        #main-footer {
+            background-color: var(--c-card-bg);
+            color: var(--c-text-subtle);
+            border-top: 1px solid var(--c-border);
+            padding: 3rem 1rem 2rem 1rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-col h4 {
+            color: var(--c-text-head);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-col ul li a {
+            color: var(--c-text-subtle);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--c-accent);
+        }
+        
+        .footer-tagline {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--c-border);
+        }
+        
+        .footer-copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--c-border);
+        }
+
+        /* === 9. Floating CTAs (Quick Call) === */
+        .quick-cta {
+            position: fixed;
+            bottom: 20px;
+            z-index: 900;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            color: #fff;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, background 0.3s ease;
-            animation: bounce-icon 2s infinite ease-in-out;
+            animation: pulse 2s infinite;
         }
-        .quick-actions a:hover { transform: scale(1.1); animation: none; }
-        .quick-actions .fa-phone-volume { background-color: var(--accent-color-2); }
-        @keyframes bounce-icon { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-5px); } 60% { transform: translateY(-3px); } }
+        
+        .quick-cta .material-symbols-rounded,
+        .quick-cta .fab {
+            font-size: 1.8rem;
+        }
+
+        #quick-call-cta {
+            right: 20px;
+            background-color: var(--c-accent);
+        }
+        
+        #quick-call-left {
+            left: 20px;
+            background-color: #00C49A; /* Zalo Green */
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 0, 0, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
+        }
+
+        /* === 10. Theme Selector UI === */
+        #theme-selector-ui {
+            position: fixed;
+            bottom: 85px; /* Above right CTA */
+            right: 20px;
+            z-index: 890;
+            width: 300px;
+            padding: var(--pad-card);
+            border-radius: var(--radius-main);
+            transform: translateX(120%);
+            transition: transform 0.4s var(--ease-main);
+        }
+        
+        #theme-selector-ui.visible {
+            transform: translateX(0);
+        }
+
+        .theme-selector-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        
+        .theme-preview-card {
+            border: 2px solid var(--c-border);
+            border-radius: var(--radius-small);
+            cursor: pointer;
+            padding: 0.75rem;
+            text-align: center;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+        
+        .theme-preview-card:hover {
+            border-color: var(--c-accent);
+        }
+        
+        .theme-preview-card.active {
+            border-color: var(--c-accent);
+            background-color: var(--c-accent-shadow);
+        }
+
+        .theme-preview-card .icon-preview {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin: 0 auto 0.5rem auto;
+            border: 2px solid #fff;
+        }
+        
+        .theme-preview-card span {
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* === 11. Helper Classes (Animation, Ripple) === */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+        }
+
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .ripple-effect {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: scale(0);
+            animation: ripple-anim 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-anim {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        /* === 12. Responsive Design === */
+        @media (max-width: 992px) {
+            /* Show mobile toggle */
+            #mobile-menu-toggle {
+                display: block;
+                z-index: 1002;
+            }
+            
+            /* Hide desktop menu */
+            .nav-menu {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 300px;
+                height: 100vh;
+                background-color: var(--c-card-bg);
+                border-left: 1px solid var(--c-border);
+                box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+                padding: 5rem 1rem 1rem 1rem;
+                transform: translateX(100%);
+                transition: transform 0.3s var(--ease-main);
+                z-index: 1001;
+                overflow-y: auto;
+            }
+            
+            body.mobile-menu-open .nav-menu {
+                transform: translateX(0);
+            }
+            
+            .nav-menu li,
+            .nav-menu .nav-item-dropdown {
+                width: 100%;
+            }
+            
+            .nav-menu li a {
+                padding: 0.75rem;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                display: block;
+                border: none;
+                box-shadow: none;
+                padding: 0 0 0 1rem;
+                background: none;
+                animation: none;
+                min-width: 0;
+            }
+            
+            .nav-item-dropdown:hover .dropdown-icon {
+                transform: rotate(0); /* Disable rotate on mobile */
+            }
+        }
 
         @media (max-width: 768px) {
-            .hero-mini-app h1 { font-size: 2rem; }
-            .hero-mini-app p { font-size: 1rem; }
-            .footer-grid-container { display: none; } /* Ẩn footer chi tiết trên mobile */
-            .quick-actions { top: auto; bottom: calc(var(--footer-height) + 15px); left: 15px; transform: none; }
-            .quick-actions a { width: 45px; height: 45px; font-size: 20px; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            
+            #hero.hero-service-grid {
+                padding: 3rem 1rem 2.5rem 1rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            /* Hide left quick call on small screens to avoid clutter */
+            #quick-call-left {
+                display: none;
+            }
+            
+            #theme-selector-ui {
+                width: calc(100vw - 40px);
+                bottom: 85px;
+                right: 20px;
+            }
         }
-        @media (min-width: 769px) {
-            .glass-footer { position: static; box-shadow: none; border-top: none; padding: 0; }
-            .footer-dock { display: none; } /* Ẩn mini-dock trên desktop */
+        
+        @media (max-width: 480px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
         }
+
     </style>
 </head>
-<body>
-    <header class="glass-header">
-        <div class="logo-box">
-            <a href="index.html">
-                <img src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png" alt="Nguyễn Tú Motorbike Rental Logo" loading="eager">
-            </a>
-        </div>
-        <nav class="main-nav">
-            <button class="menu-toggle" aria-label="Mở menu">
-                <span class="material-symbols-rounded">menu</span>
-            </button>
-            <ul class="nav-menu">
-                <li><a href="index.html">🏠 Trang chủ</a></li>
-                <li><a href="gioithieu.html">📄 Giới thiệu</a></li>
-                <li class="nav-item-dropdown">
-                    <a href="dichvu.html" class="nav-dropdown-toggle">
-                        ⚙️ Dịch vụ <span class="material-symbols-rounded dropdown-icon">expand_more</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="banggia.html">🏷️ Bảng giá</a></li>
-                        <li><a href="thutuc.html">📑 Thủ tục</a></li>
-                        <li><a href="loaixe.html">🛵 Loại xe</a></li>
-                        <li><a href="kinhnghiem.html">💡 Kinh nghiệm</a></li>
-                        <li><a href="diadiem.html">📍 Địa điểm</a></li>
-                        <li><a href="quytrinh.html">⚙️ Quy trình</a></li>
-                        <li><a href="blog.html">📰 Blog</a></li>
-                        <li><a href="uudai.html">🎁 Ưu đãi</a></li>
-                        <li><a href="giamgia.html">💰 Giảm giá</a></li>
+
+<!-- 
+    Body classes are managed by JS:
+    - theme-[name] (e.g., theme-ultratitanglass)
+    - theme-dark / theme-light
+    - glass-enabled
+    - mobile-menu-open
+-->
+<body class="theme-auto">
+
+    <div id="app-shell">
+
+        <!-- === HEADER (Theo yêu cầu) === -->
+        <header id="main-header" class="glass-fixed">
+            <div class="header-container">
+                <a href="index.html" class="logo-container" aria-label="Trang chủ Nguyễn Tú Motorbike Rental">
+                    <img src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png" alt="Logo Nguyễn Tú Motorbike Rental" loading="lazy">
+                    <strong>Nguyễn Tú</strong>
+                </a>
+
+                <nav class="navigation-menu">
+                    <!-- Menu HTML được cung cấp -->
+                    <ul class="nav-menu">
+                      <li><a href="index.html" class="active">🏠 Trang chủ</a></li>
+                      <li><a href="gioithieu.html">📄 Giới thiệu</a></li>
+                      <li class="nav-item-dropdown">
+                        <a href="dichvu.html" class="nav-dropdown-toggle">
+                          ⚙️ Dịch vụ <span class="material-symbols-rounded dropdown-icon">expand_more</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a href="banggia.html">🏷️ Bảng giá</a></li>
+                          <li><a href="thutuc.html">📑 Thủ tục</a></li>
+                          <li><a href="loaixe.html">🛵 Loại xe</a></li>
+                          <li><a href="kinhnghiem.html">💡 Kinh nghiệm</a></li>
+                          <li><a href="diadiem.html">📍 Địa điểm</a></li>
+                          <li><a href="quytrinh.html">⚙️ Quy trình</a></li>
+                          <li><a href="blog.html">📰 Blog</a></li>
+                          <li><a href="uudai.html">🎁 Ưu đãi</a></li>
+                          <li><a href="giamgia.html">💰 Giảm giá</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="lienhe.html">💬 Liên hệ</a></li>
+                      <li><a href="chinhsachbaomat.html">🔒 Bảo mật</a></li>
+                      <li><a href="dieukhoansudung.html">📘 Điều khoản</a></li>
                     </ul>
-                </li>
-                <li><a href="lienhe.html">💬 Liên hệ</a></li>
-                <li><a href="chinhsachbaomat.html">🔒 Bảo mật</a></li>
-                <li><a href="dieukhoansudung.html">📘 Điều khoản</a></li>
-            </ul>
-        </nav>
-    </header>
+                </nav>
 
-    <main>
-        <section class="hero-mini-app section-hero is-visible" data-scroll-fade="in">
-            <div class="glass-card">
-                <h1 id="main-title">Đặt xe nhanh cùng Nguyễn Tú</h1>
-                <p>Chọn loại xe bạn cần và nhận xe trong 20–40 phút</p>
-                <div class="service-grid">
-                    <a href="banggia.html" class="grid-item">
-                        <span class="material-symbols-rounded">two_wheeler</span>
-                        <span>Thuê xe ga</span>
-                    </a>
-                    <a href="banggia.html" class="grid-item">
-                        <i class="fa-solid fa-motorcycle"></i>
-                        <span>Thuê xe số</span>
-                    </a>
-                    <a href="banggia.html" class="grid-item">
-                        <span class="material-symbols-rounded">bolt</span>
-                        <span>Xe điện</span>
-                    </a>
-                </div>
-                <div class="hero-cta-buttons">
-                    <a href="lienhe.html" class="cta-button primary" data-role="ripple">🚀 Đặt xe ngay</a>
-                    <a href="banggia.html" class="cta-button secondary" data-role="ripple">🛵 Xem bảng giá</a>
-                    <a href="#motoai" class="cta-button secondary" data-role="ripple">💬 Chat MotoAI</a>
-                </div>
+                <button id="mobile-menu-toggle" class="ripple-btn" aria-label="Mở menu">
+                    <span class="material-symbols-rounded">menu</span>
+                </button>
             </div>
-        </section>
+        </header>
 
-        <section class="section-intro" data-scroll-fade="in">
-            <h2>Giới thiệu Nguyễn Tú Motorbike Rental</h2>
-            <div class="glass-card">
-                <p>Dịch vụ thuê xe máy Hà Nội – Nguyễn Tú Motorbike Rental chuyên cho thuê xe ga, xe số, xe điện tại Hoàn Kiếm.</p>
-                <p>Xe mới, bảo dưỡng tốt, hỗ trợ giao tận nơi chỉ **20–40 phút**. Chúng tôi cam kết thủ tục nhanh gọn, giá cả hợp lý và hỗ trợ 24/7 để chuyến đi của bạn luôn trọn vẹn.</p>
-            </div>
-        </section>
+        <!-- === MAIN CONTENT === -->
+        <main id="main-content">
 
-        <section class="section-services" data-scroll-fade="in">
-            <h2>Các loại xe phổ biến tại Hà Nội</h2>
-            <div class="grid-3">
-                <a href="banggia.html" class="glass-card service-item" data-role="hover-card">
-                    <span class="material-symbols-rounded">two_wheeler</span>
-                    <h4>Xe Tay Ga Đời Mới</h4>
-                    <p>Tiện lợi, phong cách, phù hợp di chuyển trong phố và du lịch ngắn ngày.</p>
-                </a>
-                <a href="banggia.html" class="glass-card service-item" data-role="hover-card">
-                    <i class="fa-solid fa-motorcycle"></i>
-                    <h4>Xe Số Bền Bỉ</h4>
-                    <p>Tiết kiệm xăng, dễ lái, lựa chọn lý tưởng cho các chuyến đi xa hơn trong ngày.</p>
-                </a>
-                <a href="banggia.html" class="glass-card service-item" data-role="hover-card">
-                    <span class="material-symbols-rounded">bolt</span>
-                    <h4>Xe Máy Điện Thân Thiện</h4>
-                    <p>Di chuyển êm ái, bảo vệ môi trường, thích hợp khám phá các điểm gần.</p>
-                </a>
-            </div>
-            <div class="hero-cta-buttons" style="margin-top: 30px;">
-                <a href="lienhe.html" class="cta-button primary" data-role="ripple">📞 Liên hệ ngay</a>
-                <a href="banggia.html" class="cta-button secondary" data-role="ripple">🛵 Xem bảng giá</a>
-            </div>
-        </section>
-
-        <section class="section-contact" data-scroll-fade="in">
-            <h2>Thông tin liên hệ nhanh</h2>
-            <div class="glass-card grid-3">
-                <div>
-                    <h4>Địa chỉ văn phòng</h4>
-                    <p><span class="material-symbols-rounded">location_on</span> 112 Nguyễn Văn Cừ, Long Biên, Hà Nội</p>
-                    <a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc" target="_blank" class="cta-button secondary" style="margin-top: 10px;">Xem bản đồ</a>
+            <!-- === HERO MINI-APP (Theo yêu cầu) === -->
+            <section id="hero" class="hero-service-grid">
+                <div class="container">
+                    <h1 style="--vt-name: hero-title;">Đặt xe nhanh cùng Nguyễn Tú</h1>
+                    <p>Chọn loại xe bạn cần và nhận xe trong 20–40 phút</p>
+                    <div class="hero-buttons">
+                        <a href="lienhe.html" class="btn btn-primary ripple-btn">
+                            <span class="material-symbols-rounded">rocket_launch</span>
+                            <span>Đặt xe ngay</span>
+                        </a>
+                        <a href="banggia.html" class="btn btn-secondary ripple-btn">
+                            <span class="material-symbols-rounded">local_offer</span>
+                            <span>Xem bảng giá</span>
+                        </a>
+                        <a href="#theme-toggle" id="hero-chat-btn" class="btn btn-secondary ripple-btn">
+                            <span class="material-symbols-rounded">palette</span>
+                            <span>Tùy chỉnh</span>
+                        </a>
+                    </div>
                 </div>
-                <div>
-                    <h4>Điện thoại & Zalo</h4>
-                    <p><span class="material-symbols-rounded">phone</span> **0942467674**</p>
-                    <a href="tel:0942467674" class="cta-button primary" style="margin-top: 10px;" data-role="ripple">Gọi ngay</a>
-                    <a href="https://zalo.me/0942467674" target="_blank" class="cta-button secondary" style="margin-top: 10px;">Zalo Chat</a>
-                </div>
-                <div>
-                    <h4>Gửi Email</h4>
-                    <p><span class="material-symbols-rounded">mail</span> contact@example.com</p>
-                    <a href="mailto:contact@example.com" class="cta-button secondary" style="margin-top: 10px;">Gửi thư</a>
-                </div>
-            </div>
-        </section>
+            </section>
 
-    </main>
+            <!-- === BODY SECTIONS CONTAINER === -->
+            <div class="section-container container">
 
-    <div class="quick-actions">
-        <a href="tel:0942467674" aria-label="Gọi ngay" class="quick-call-btn" data-role="icon-bounce">
-            <i class="fa-solid fa-phone-volume"></i>
-        </a>
-        <a href="https://zalo.me/0942467674" target="_blank" aria-label="Zalo Chat" class="quick-zalo-btn" data-role="icon-bounce">
-            <i class="fa-brands fa-whatsapp"></i> </a>
-    </div>
+                <!-- 1. Giới thiệu (Từ BODY_SECTIONS) -->
+                <section id="intro" class="section-content fade-in">
+                    <h2 style="--vt-name: intro-title;">Giới thiệu Nguyễn Tú Motorbike Rental</h2>
+                    <p>Dịch vụ thuê xe máy Hà Nội – Nguyễn Tú Motorbike Rental chuyên cho thuê xe ga, xe số, xe điện tại Hoàn Kiếm.</p>
+                    <p>Xe mới, bảo dưỡng tốt, hỗ trợ giao tận nơi chỉ 20–40 phút.</p>
+                </section>
 
-    <footer class="glass-footer">
-        <div class="footer-dock">
-            <a href="index.html" class="dock-item">
-                <span class="material-symbols-rounded">home</span>
-                <span>Trang chủ</span>
-            </a>
-            <a href="banggia.html" class="dock-item">
-                <span class="material-symbols-rounded">receipt_long</span>
-                <span>Bảng giá</span>
-            </a>
-            <a href="lienhe.html" class="dock-item">
-                <span class="material-symbols-rounded">chat</span>
-                <span>Liên hệ</span>
-            </a>
-            <a href="#" class="dock-item theme-selector-btn" aria-label="Đổi giao diện">
-                <span class="material-symbols-rounded">palette</span>
-                <span>Giao diện</span>
-            </a>
-        </div>
-        <div class="footer-grid-container">
+                <!-- 2. Dịch vụ (Từ FALLBACK_MAIN) -->
+                <section id="services" class="section-content fade-in">
+                    <h2>Dịch vụ của chúng tôi</h2>
+                    <p>Nguyễn Tú cung cấp đa dạng các loại xe để phục vụ mọi nhu cầu di chuyển của bạn tại Hà Nội.</p>
+                    <div class="service-grid">
+                        <a href="banggia.html" class="service-card tilt-card">
+                            <span class="material-symbols-rounded">moped</span>
+                            <h3>Thuê xe ga</h3>
+                            <p>Các dòng xe tay ga đời mới, cốp rộng như Vision, Lead, AirBlade.</p>
+                        </a>
+                        <a href="banggia.html" class="service-card tilt-card">
+                            <span class="material-symbols-rounded">two_wheeler</span>
+                            <h3>Thuê xe số</h3>
+                            <p>Xe số khỏe, bền bỉ, tiết kiệm xăng như Wave Alpha, Future.</p>
+                        </a>
+                        <a href="banggia.html" class="service-card tilt-card">
+                            <span class="material-symbols-rounded">electric_moped</span>
+                            <h3>Thuê xe điện</h3>
+                            <p>Trải nghiệm xe máy điện VinFast xanh, sạch, êm ái.</p>
+                        </a>
+                    </div>
+                </section>
+                
+                <!-- 3. Đánh giá (Từ FALLBACK_MAIN) -->
+                <section id="testimonials" class="section-content fade-in">
+                    <h2>Khách hàng nói gì</h2>
+                    <div class="testimonial-grid">
+                        <div class="testimonial-card card">
+                            <div class="stars">★★★★★</div>
+                            <p>"Dịch vụ rất chuyên nghiệp. Tôi đặt xe và được giao tận khách sạn ở Hoàn Kiếm chỉ sau 30 phút. Xe rất mới và sạch sẽ."</p>
+                            <span class="author">- Anh Minh, TP. Hồ Chí Minh</span>
+                        </div>
+                        <div class="testimonial-card card">
+                            <div class="stars">★★★★★</div>
+                            <p>"Thủ tục nhanh gọn, chỉ cần CCCD. Bạn chủ hỗ trợ nhiệt tình, tư vấn các địa điểm ăn uống rất ổn. Sẽ quay lại."</p>
+                            <span class="author">- Chị Lan Anh, Đà Nẵng</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. Liên hệ (Từ FALLBACK_MAIN & USE_CONTACT_FORM) -->
+                <section id="contact" class="section-content fade-in">
+                    <h2>Liên hệ với Nguyễn Tú</h2>
+                    <div class="contact-grid">
+                        <div class="contact-info">
+                            <h3>Thông tin</h3>
+                            <p>Liên hệ ngay với chúng tôi để được tư vấn và đặt xe nhanh nhất. Hỗ trợ 24/7.</p>
+                            <ul>
+                                <li>
+                                    <span class="material-symbols-rounded">call</span>
+                                    <a href="tel:0942467674"><strong>0942 467 674</strong> (Hotline/Zalo)</a>
+                                </li>
+                                <li>
+                                    <span class="material-symbols-rounded">location_on</span>
+                                    <span>112 Nguyễn Văn Cừ, Long Biên, Hà Nội</span>
+                                </li>
+                                <li>
+                                    <span class="material-symbols-rounded">mail</span>
+                                    <a href="mailto:contact@example.com">contact@example.com</a>
+                                </li>
+                                <li>
+                                    <span class="material-symbols-rounded">map</span>
+                                    <a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc" target="_blank" rel="noopener">Xem bản đồ</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <form class="contact-form">
+                            <h3>Gửi yêu cầu</h3>
+                            <div class="form-group">
+                                <label for="name">Họ tên</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Số điện thoại</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Lời nhắn</label>
+                                <textarea id="message" name="message" rows="4"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary ripple-btn">Gửi liên hệ</button>
+                        </form>
+                    </div>
+                </section>
+                
+            </div> <!-- .section-container -->
+        </main>
+
+        <!-- === FOOTER (Theo yêu cầu) === -->
+        <footer id="main-footer" class="mini-dock">
             <div class="footer-grid">
+                
+                <!-- Cột 1: Quick Call (Trái) -->
+                <div class="footer-col" style="grid-column: span 2;">
+                    <h4><span class="material-symbols-rounded">support_agent</span>Liên hệ nhanh</h4>
+                    <ul>
+                        <li><strong>Hotline:</strong> <a href="tel:0942467674">0942 467 674</a></li>
+                        <li><strong>Email:</strong> <a href="mailto:contact@example.com">contact@example.com</a></li>
+                        <li><strong>Địa chỉ:</strong> 112 Nguyễn Văn Cừ, Long Biên, Hà Nội</li>
+                    </ul>
+                </div>
+
+                <!-- Cột 2: Tagline (Giữa) -->
+                <div class="footer-col" style="grid-column: span 2;">
+                    <h4><span class="material-symbols-rounded">motorcycle</span>Nguyễn Tú Motorbike</h4>
+                    <p>Dịch vụ cho thuê xe máy uy tín tại Hà Nội. Giao xe nhanh, thủ tục gọn, hỗ trợ 24/7.</p>
+                </div>
+                
+                <div class="footer-col"></div> <!-- Spacer -->
+                
+                <!-- Cột 3-8 (6 cột links) -->
+
+                <!-- 3. Khám phá -->
                 <div class="footer-col">
                     <h4>🧭 Khám phá</h4>
                     <ul>
-                        <li><a href="index.html">🏠 Trang chủ</a></li>
-                        <li><a href="gioithieu.html">📄 Giới thiệu</a></li>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="gioithieu.html">Giới thiệu</a></li>
                     </ul>
                 </div>
+                
+                <!-- 4. Dịch vụ -->
                 <div class="footer-col">
                     <h4>⚙️ Dịch vụ</h4>
                     <ul>
-                        <li><a href="dichvu.html">⚙️ Dịch vụ</a></li>
-                        <li><a href="banggia.html">🏷️ Bảng giá</a></li>
-                        <li><a href="thutuc.html">📑 Thủ tục</a></li>
+                        <li><a href="dichvu.html">Dịch vụ</a></li>
+                        <li><a href="banggia.html">Bảng giá</a></li>
+                        <li><a href="thutuc.html">Thủ tục</a></li>
+                        <li><a href="loaixe.html">Loại xe</a></li>
+                        <li><a href="kinhnghiem.html">Kinh nghiệm</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>🛵 Xe & kinh nghiệm</h4>
-                    <ul>
-                        <li><a href="loaixe.html">🛵 Loại xe</a></li>
-                        <li><a href="kinhnghiem.html">💡 Kinh nghiệm</a></li>
-                    </ul>
-                </div>
+
+                <!-- 5. Quy trình - Địa điểm -->
                 <div class="footer-col">
                     <h4>📍 Quy trình - Địa điểm</h4>
                     <ul>
-                        <li><a href="diadiem.html">📍 Địa điểm</a></li>
-                        <li><a href="quytrinh.html">⚙️ Quy trình</a></li>
+                        <li><a href="diadiem.html">Địa điểm</a></li>
+                        <li><a href="quytrinh.html">Quy trình</a></li>
                     </ul>
                 </div>
+                
+                <!-- 6. Blog & Ưu đãi -->
                 <div class="footer-col">
-                    <h4>📰 Tin & blog</h4>
+                    <h4>📰 Blog & Ưu đãi</h4>
                     <ul>
-                        <li><a href="blog.html">📰 Blog</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="uudai.html">Ưu đãi</a></li>
+                        <li><a href="giamgia.html">Giảm giá</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>🎁 Ưu đãi</h4>
-                    <ul>
-                        <li><a href="uudai.html">🎁 Ưu đãi</a></li>
-                        <li><a href="giamgia.html">💰 Giảm giá</a></li>
-                    </ul>
-                </div>
+                
+                <!-- 7. Liên hệ -->
                 <div class="footer-col">
                     <h4>💬 Liên hệ</h4>
                     <ul>
-                        <li><a href="lienhe.html">💬 Liên hệ</a></li>
+                        <li><a href="lienhe.html">Liên hệ</a></li>
                     </ul>
                 </div>
+                
+                <!-- 8. Chính sách -->
                 <div class="footer-col">
                     <h4>🔒 Chính sách</h4>
                     <ul>
-                        <li><a href="chinhsachbaomat.html">🔒 Bảo mật</a></li>
-                        <li><a href="dieukhoansudung.html">📘 Điều khoản</a></li>
+                        <li><a href="chinhsachbaomat.html">Bảo mật</a></li>
+                        <li><a href="dieukhoansudung.html">Điều khoản</a></li>
                     </ul>
                 </div>
+
+            </div> <!-- .footer-grid -->
+            
+            <div class="footer-copyright">
+                &copy; 2025 Nguyễn Tú Motorbike Rental.
             </div>
-            <p style="text-align: center; margin-top: 30px; font-size: 0.85rem; color: var(--text-color-light);">
-                © 2024 Nguyễn Tú Motorbike Rental. Đã đăng ký bản quyền.
-            </p>
+        </footer>
+
+    </div> <!-- #app-shell -->
+
+    <!-- === APP SHELL UI ELEMENTS === -->
+    
+    <!-- Quick Call (Phải) -->
+    <a href="tel:0942467674" id="quick-call-cta" class="quick-cta ripple-btn" aria-label="Gọi ngay">
+        <span class="material-symbols-rounded">call</span>
+    </a>
+    
+    <!-- Quick Zalo (Trái) -->
+    <a href="https://zalo.me/0942467674" id="quick-call-left" class="quick-cta ripple-btn" aria-label="Chat Zalo">
+        <i class="fab fa-rocketchat"></i> <!-- Giả lập Zalo icon bằng Font Awesome -->
+    </a>
+    
+    <!-- Theme Selector (UI) -->
+    <div id="theme-selector-ui" class="card glass">
+        <h4>Tùy chỉnh giao diện</h4>
+        <p>Chọn phong cách hiển thị yêu thích.</p>
+        <div id="theme-selector-grid" class="theme-selector-grid">
+            <!-- JS sẽ điền vào đây -->
         </div>
-    </footer>
+    </div>
 
-    <script src="https://motoai.example.com/v36/core.js" defer></script>
 
-    <script defer>
-    (function () {
-        'use strict';
+    <!-- === SCRIPTS === -->
+    
+    <!-- 1. MotoAI (Mockup theo yêu cầu) -->
+    <script src="https://example.com/assets/js/motoai-v36.js" defer></script>
+    
+    <!-- 2. App IIFE (Theo yêu cầu) -->
+    <script id="app-script" defer>
+        (function() {
+            'use strict';
 
-        // --- Cấu hình JS ---
-        const CONFIG = {
-            THEME_POOL: ["UltraTitanGlass", "NeoMint", "MidnightPurple", "AeroGlassBlue", "MinimalWhite", "SunsetOrange", "FacebookUltra", "MotoDarkCarbon"],
-            DEFAULT_STYLE: "UltraTitanGlass",
-            ACCENT: "#0A84FF",
-            ACCENT2: "#00C49A",
-            THEME_SYNC_ACCENT: true,
-            RANDOMIZE_ON_LOAD: true,
-            TRANSITION_EASE: "cubic-bezier(0.25,0.1,0.25,1)",
-            LAZY_OG_URL: "https://thuexemaynguyentu.com/wp-content/uploads/2025/09/BANNER-THUE-XE-MAY-1.png"
-        };
-        const root = document.documentElement;
-        const body = document.body;
-
-        // --- 1. Quản lý Theme & Style ---
-
-        /**
-         * Áp dụng Style Preset
-         * @param {string} presetName
-         */
-        function applyStylePreset(presetName) {
-            root.setAttribute('data-style-preset', presetName);
-            // Giả định logic theme:
-            switch (presetName) {
-                case 'UltraTitanGlass':
-                    root.style.setProperty('--accent-color', CONFIG.ACCENT);
-                    root.style.setProperty('--body-bg', '#f9fafa');
-                    root.style.setProperty('--card-bg', 'rgba(255, 255, 255, 0.7)');
-                    root.style.setProperty('--border-color', 'rgba(0, 0, 0, 0.1)');
-                    root.style.setProperty('--text-color', '#212529');
-                    // Tính toán RGB cho hiệu ứng bóng
-                    const hexToRgb = (hex) => [parseInt(hex.slice(1, 3), 16), parseInt(hex.slice(3, 5), 16), parseInt(hex.slice(5, 7), 16)];
-                    root.style.setProperty('--accent-color-rgb', hexToRgb(CONFIG.ACCENT).join(','));
-                    break;
-                // Các preset khác sẽ được định nghĩa ở đây
-                default:
-                    // Fallback
-                    break;
-            }
-            // Đồng bộ chế độ sáng/tối
-            updateThemeMode();
-        }
-
-        /**
-         * Đồng bộ giữa Theme Mode (light/dark/auto) và Style Preset
-         */
-        function updateThemeMode() {
-            const currentPreset = root.getAttribute('data-style-preset') || CONFIG.DEFAULT_STYLE;
-            const mode = root.getAttribute('data-theme-mode');
-
-            let finalMode = mode;
-            if (mode === 'auto') {
-                finalMode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            }
-
-            if (finalMode === 'dark') {
-                // Áp dụng biến Dark Mode từ CSS nội tuyến
-                root.setAttribute('data-theme-mode', 'dark');
-            } else {
-                root.setAttribute('data-theme-mode', 'light');
-            }
-        }
-
-        // --- 2. Hiệu ứng UX/UI ---
-
-        /**
-         * Hiệu ứng gợn sóng (Ripple Effect)
-         * @param {Event} e
-         */
-        function handleRipple(e) {
-            const button = e.currentTarget;
-            const circle = document.createElement('span');
-            const diameter = Math.max(button.clientWidth, button.clientHeight);
-            const radius = diameter / 2;
-
-            circle.style.width = circle.style.height = `${diameter}px`;
-            circle.style.left = `${e.clientX - button.offsetLeft - radius}px`;
-            circle.style.top = `${e.clientY - button.offsetTop - radius}px`;
-            circle.classList.add('ripple');
-
-            const ripple = button.getElementsByClassName('ripple')[0];
-
-            if (ripple) {
-                ripple.remove();
-            }
-
-            button.appendChild(circle);
-        }
-
-        /**
-         * Hiệu ứng Fade-in khi cuộn trang
-         */
-        function setupScrollAnimations() {
-            const sections = document.querySelectorAll('section[data-scroll-fade="in"]');
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
+            // === 0. Cấu hình & DOM Helpers ===
+            const CONFIG = {
+                STYLE: {
+                    GLASS: true,
+                    DEFAULT_THEME: "auto",
+                },
+                THEME_RANDOMIZER: {
+                    ENABLED: true,
+                    POOL: [
+                        "UltraTitanGlass", "NeoMint", "MidnightPurple", "AeroGlassBlue",
+                        "MinimalWhite", "SunsetOrange", "FacebookUltra", "MotoDarkCarbon"
+                    ],
+                    RANDOMIZE_ON_LOAD: true
+                },
+                STYLE_SELECTOR: {
+                    ENABLED: true,
+                    SAVE_LAST_THEME: true
+                },
+                FEATURES: {
+                    USE_CARD_TILT: true,
+                    USE_SCROLL_ANIM: true,
+                    USE_VIEW_TRANSITIONS: true,
+                    USE_CHAT: true // (Biến này để bật/tắt logic chat nếu có)
+                }
             };
+            
+            const $ = (selector) => document.querySelector(selector);
+            const $$ = (selector) => document.querySelectorAll(selector);
+            const body = document.body;
 
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
+            // === 1. Khởi chạy khi DOM sẵn sàng ===
+            document.addEventListener('DOMContentLoaded', () => {
+                initThemeEngine();
+                initMobileMenu();
+                initEventListeners();
+                
+                if (CONFIG.FEATURES.USE_SCROLL_ANIM) {
+                    initScrollAnimation();
+                }
+                
+                if (CONFIG.FEATURES.USE_CARD_TILT) {
+                    initCardTilt();
+                }
+
+                if (CONFIG.FEATURES.USE_VIEW_TRANSITIONS) {
+                    initViewTransitions();
+                }
+                
+                runValidationReport();
+            });
+
+            // === 2. Theme Engine ===
+            function initThemeEngine() {
+                const themes = CONFIG.THEME_RANDOMIZER.POOL;
+                const savedTheme = localStorage.getItem('appTheme');
+                let currentTheme = CONFIG.STYLE.DEFAULT_THEME;
+
+                if (CONFIG.STYLE_SELECTOR.SAVE_LAST_THEME && savedTheme) {
+                    currentTheme = savedTheme;
+                } else if (CONFIG.THEME_RANDOMIZER.ENABLED && CONFIG.THEME_RANDOMIZER.RANDOMIZE_ON_LOAD) {
+                    currentTheme = themes[Math.floor(Math.random() * themes.length)];
+                }
+
+                applyTheme(currentTheme);
+
+                if (CONFIG.STYLE_SELECTOR.ENABLED) {
+                    initThemeSelectorUI(themes, currentTheme);
+                }
+            }
+
+            function applyTheme(themeName) {
+                // Xóa các theme class cũ
+                body.className.split(' ').forEach(cls => {
+                    if (cls.startsWith('theme-')) {
+                        body.classList.remove(cls);
                     }
                 });
-            }, observerOptions);
 
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-        }
+                // Xử lý theme 'auto'
+                if (themeName === 'auto') {
+                    body.classList.add('theme-auto');
+                    updateAutoTheme();
+                } else {
+                    body.classList.add(`theme-${themeName}`);
+                    // Nếu theme không phải auto, xóa class theme-dark/light
+                    body.classList.remove('theme-dark', 'theme-light');
+                    // Xử lý các theme tối đặc biệt (như MotoDarkCarbon)
+                    if (themeName === 'MotoDarkCarbon') {
+                        body.classList.add('theme-dark');
+                    } else {
+                         body.classList.add('theme-light');
+                    }
+                }
 
-        // --- 3. Tối ưu SEO/Khác ---
+                // Áp dụng/xóa glass
+                if (CONFIG.STYLE.GLASS) {
+                    body.classList.add('glass-enabled');
+                } else {
+                    body.classList.remove('glass-enabled');
+                }
 
-        /**
-         * Lazy Load Open Graph Image
-         */
-        function lazyLoadOGImage() {
-            const ogImage = document.querySelector('meta[data-lazy-og-image="true"]');
-            if (ogImage) {
-                ogImage.setAttribute('property', 'og:image');
-                ogImage.removeAttribute('data-lazy-og-image');
+                // Lưu lựa chọn
+                if (CONFIG.STYLE_SELECTOR.SAVE_LAST_THEME) {
+                    localStorage.setItem('appTheme', themeName);
+                }
+                
+                updateThemeSelectorActiveState(themeName);
             }
-        }
-
-        // --- 4. Sự kiện & Khởi tạo ---
-
-        /**
-         * Thêm event listeners cho các tương tác
-         */
-        function setupEventListeners() {
-            // Ripple effect
-            document.querySelectorAll('[data-role="ripple"]').forEach(button => {
-                button.addEventListener('click', handleRipple);
+            
+            function updateAutoTheme() {
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    body.classList.add('theme-dark');
+                    body.classList.remove('theme-light');
+                } else {
+                    body.classList.add('theme-light');
+                    body.classList.remove('theme-dark');
+                }
+            }
+            
+            // Lắng nghe thay đổi theme hệ thống
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                if (body.classList.contains('theme-auto')) {
+                    updateAutoTheme();
+                }
             });
 
-            // Mobile menu toggle
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navMenu = document.querySelector('.nav-menu');
-            if (menuToggle && navMenu) {
-                menuToggle.addEventListener('click', () => {
-                    navMenu.classList.toggle('is-open');
-                    menuToggle.querySelector('.material-symbols-rounded').textContent = navMenu.classList.contains('is-open') ? 'close' : 'menu';
+            // === 3. Theme Selector UI ===
+            function initThemeSelectorUI(themes, currentTheme) {
+                const container = $('#theme-selector-grid');
+                const uiCard = $('#theme-selector-ui');
+                if (!container || !uiCard) return;
+
+                // Thêm lựa chọn 'auto'
+                const allThemes = ['auto', ...themes];
+                
+                let themeHtml = '';
+                allThemes.forEach(theme => {
+                    themeHtml += `
+                        <div class="theme-preview-card ripple-btn" data-theme="${theme}" role="button" tabindex="0" aria-label="Chọn theme ${theme}">
+                            <div class="icon-preview" style="${getThemePreviewColor(theme)}"></div>
+                            <span>${theme.replace(/([A-Z])/g, ' $1').trim()}</span>
+                        </div>
+                    `;
+                });
+                container.innerHTML = themeHtml;
+
+                // Thêm sự kiện click
+                container.addEventListener('click', (e) => {
+                    const card = e.target.closest('.theme-preview-card');
+                    if (card) {
+                        const themeName = card.dataset.theme;
+                        applyTheme(themeName);
+                    }
+                });
+
+                // Nút bật/tắt UI
+                const toggleButton = $('#hero-chat-btn'); // Sử dụng nút "Chat MotoAI" làm nút bật
+                if (toggleButton) {
+                    toggleButton.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        uiCard.classList.toggle('visible');
+                    });
+                }
+            }
+            
+            function updateThemeSelectorActiveState(themeName) {
+                $$('#theme-selector-grid .theme-preview-card').forEach(card => {
+                    if (card.dataset.theme === themeName) {
+                        card.classList.add('active');
+                    } else {
+                        card.classList.remove('active');
+                    }
                 });
             }
 
-            // Theme Selector UI (Giả định đơn giản)
-            document.querySelector('.theme-selector-btn')?.addEventListener('click', (e) => {
-                e.preventDefault();
-                // Logic hiển thị theme selector (trong môi trường thực tế)
-                alert("Mở giao diện Tùy chỉnh giao diện. Preset hiện tại: " + root.getAttribute('data-style-preset'));
-            });
-        }
-
-        /**
-         * Hàm khởi tạo
-         */
-        function initialize() {
-            // 1. Randomize Theme (Nếu bật)
-            if (CONFIG.RANDOMIZE_ON_LOAD) {
-                const randomTheme = CONFIG.THEME_POOL[Math.floor(Math.random() * CONFIG.THEME_POOL.length)];
-                applyStylePreset(randomTheme);
-            } else {
-                applyStylePreset(CONFIG.DEFAULT_STYLE);
+            function getThemePreviewColor(theme) {
+                 const colors = {
+                    auto: 'background: linear-gradient(140deg, #fff 50%, #111 50%);',
+                    UltraTitanGlass: 'background-color: #0A84FF;',
+                    NeoMint: 'background-color: #30E8A1;',
+                    MidnightPurple: 'background-color: #9D50FF;',
+                    AeroGlassBlue: 'background-color: #007AFF;',
+                    MinimalWhite: 'background-color: #333;',
+                    SunsetOrange: 'background-color: #FF6B2C;',
+                    FacebookUltra: 'background-color: #0866FF;',
+                    MotoDarkCarbon: 'background-color: #FFD700;'
+                };
+                return colors[theme] || 'background-color: #ccc;';
             }
 
-            // 2. Thiết lập Event Listeners
-            setupEventListeners();
+            // === 4. Mobile Menu ===
+            function initMobileMenu() {
+                const toggleBtn = $('#mobile-menu-toggle');
+                const navMenu = $('.nav-menu');
+                if (!toggleBtn || !navMenu) return;
 
-            // 3. Khởi tạo Animation cuộn
-            setupScrollAnimations();
-
-            // 4. Lazy Load SEO
-            lazyLoadOGImage();
-
-            // 5. Thêm hỗ trợ View Transitions (nếu trình duyệt hỗ trợ)
-            if (document.startViewTransition) {
-                // Thêm logic view transition cho các link nội bộ
-                // Ví dụ: window.onpopstate = () => document.startViewTransition(() => { /* load new content */ });
+                toggleBtn.addEventListener('click', () => {
+                    body.classList.toggle('mobile-menu-open');
+                    const isExpanded = body.classList.contains('mobile-menu-open');
+                    toggleBtn.setAttribute('aria-expanded', isExpanded);
+                    toggleBtn.innerHTML = `<span class="material-symbols-rounded">${isExpanded ? 'close' : 'menu'}</span>`;
+                });
+                
+                // Đóng menu khi click vào link
+                navMenu.addEventListener('click', (e) => {
+                    if (e.target.tagName === 'A' && !e.target.closest('.nav-item-dropdown')) {
+                         body.classList.remove('mobile-menu-open');
+                         toggleBtn.setAttribute('aria-expanded', false);
+                         toggleBtn.innerHTML = `<span class="material-symbols-rounded">menu</span>`;
+                    }
+                });
             }
 
-            // Console Report (SEO, Performance)
-            console.group("✅ Báo cáo Tối ưu Trang (Nguyễn Tú Motorbike Rental)");
-            console.log("UX/UI: Glassmorphism, Ripple Click, Mobile First.");
-            console.log("Hiệu suất: Critical CSS Inline, JS Defer/IIFE, Font Preload.");
-            console.log("SEO: Title/H1 Match, Canonical, Lazy OG Image.");
-            console.log("Theme hiện tại: " + root.getAttribute('data-style-preset'));
-            console.groupEnd();
-        }
+            // === 5. Event Listeners (Ripple, etc.) ===
+            function initEventListeners() {
+                // Ripple Effect
+                document.addEventListener('click', (e) => {
+                    const rippleBtn = e.target.closest('.ripple-btn');
+                    if (rippleBtn) {
+                        createRipple(e, rippleBtn);
+                    }
+                });
+                
+                // Submit Form (Giả lập)
+                const contactForm = $('.contact-form');
+                if(contactForm) {
+                    contactForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        alert('Form đã được gửi (giả lập). Cảm ơn bạn đã liên hệ!');
+                        contactForm.reset();
+                    });
+                }
+            }
 
-        // Chạy hàm khởi tạo
-        initialize();
+            function createRipple(event, button) {
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple-effect');
 
-    })();
+                const rect = button.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = `${size}px`;
+                ripple.style.left = `${event.clientX - rect.left - size / 2}px`;
+                ripple.style.top = `${event.clientY - rect.top - size / 2}px`;
+
+                button.appendChild(ripple);
+
+                ripple.addEventListener('animationend', () => {
+                    ripple.remove();
+                });
+            }
+
+            // === 6. Scroll Animation (Fade-in) ===
+            function initScrollAnimation() {
+                const fadeInElements = $$('.fade-in');
+                if (fadeInElements.length === 0) return;
+
+                const observer = new IntersectionObserver((entries, obs) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+
+                fadeInElements.forEach(el => {
+                    observer.observe(el);
+                });
+            }
+
+            // === 7. Card Tilt Effect ===
+            function initCardTilt() {
+                const tiltCards = $$('.tilt-card');
+                tiltCards.forEach(card => {
+                    card.addEventListener('mousemove', (e) => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        const { width, height } = rect;
+                        
+                        const rotateX = (y - height / 2) / (height / 2) * -5; // max 5 độ
+                        const rotateY = (x - width / 2) / (width / 2) * 5; // max 5 độ
+
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                        card.style.transition = 'transform 0.05s linear';
+                    });
+
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+                        card.style.transition = 'transform 0.3s var(--ease-main)';
+                    });
+                });
+            }
+            
+            // === 8. View Transitions ===
+            function initViewTransitions() {
+                if (!document.startViewTransition) {
+                    console.log('View Transitions API không được hỗ trợ.');
+                    return;
+                }
+                
+                window.addEventListener('pageshow', (event) => {
+                    if (event.persisted) {
+                        // Nếu trang được khôi phục từ bfcache, không chạy transition
+                        return;
+                    }
+                });
+
+                document.addEventListener('click', (e) => {
+                    const link = e.target.closest('a');
+
+                    if (link && link.href && link.origin === location.origin && !link.hash && link.target !== '_blank' && !e.ctrlKey && !e.metaKey) {
+                        
+                        // Bỏ qua các link đặc biệt (như Zalo, tel)
+                        if(link.href.startsWith('tel:') || link.href.startsWith('mailto:')) {
+                            return;
+                        }
+
+                        e.preventDefault();
+                        
+                        // Lấy view-transition-name từ h1, h2 (nếu có)
+                        const transitionName = link.closest('section')?.querySelector('[style*="--vt-name"]')?.style.getPropertyValue('--vt-name');
+
+                        document.startViewTransition(() => {
+                            location.href = link.href;
+                        });
+                    }
+                });
+            }
+
+            // === 9. Validation Report (Mock) ===
+            function runValidationReport() {
+                console.log('--- BÁO CÁO VALIDATION (MOCK) ---');
+                console.log(`✅ [SEO] Tiêu đề: ${document.title.length} ký tự.`);
+                console.log(`✅ [SEO] Mô tả: ${$('meta[name="description"]').content.length} ký tự.`);
+                console.log(`✅ [SEO] H1 tồn tại: ${!!$('h1')}`);
+                console.log('✅ [Perf] JS đã được defer.');
+                console.log(`✅ [Theme] Đã tải theme: ${body.className.match(/theme-[\w-]+/)[0]}`);
+                console.log('--- KẾT THÚC BÁO CÁO ---');
+            }
+
+        })();
     </script>
+    
 </body>
 </html>
+
