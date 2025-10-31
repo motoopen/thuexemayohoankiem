@@ -144,10 +144,10 @@ BODY_SECTIONS={
   USE_SCROLL_ANIM:true,
   SECTIONS:[
     {
-      TITLE:"Giới thiệu Nguyễn Tú Motorbike Rental",
+      TITLE:"Giới thiệu cho thuê xe máy Hà Nội  ",
       TYPE:"intro",
       CONTENT:[
-        "Nguyễn Tú Motorbike Rental là dịch vụ cho thuê xe máy uy tín tại Hoàn Kiếm, Hà Nội.",
+        "Dịch vụ cho thuê xe máy uy tín tại Hoàn Kiếm, Hà Nội.",
         "Cung cấp xe ga, xe số, xe điện, giao tận nơi 20–40 phút.",
         "Hỗ trợ 24/7, phù hợp du khách, dân văn phòng, người đi công tác."
       ]
