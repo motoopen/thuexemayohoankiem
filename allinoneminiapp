@@ -440,4 +440,6 @@ Có tagline và quickcall ở góc trái, giữ icon emoji hoặc Font Awesome t
 > - Dark/light mode tự động + nút chuyển theme
 > - Đồng bộ màu theme, glass blur, lazyload, scroll mượt  
 > Không dùng schema, framework, hoặc file tách rời.
- loại BỎ AIMOTO LÀM XONG TRẢ LẠI FILE TÔI TẢI LÊN GITHUB PAGE
+ loại BỎ AI MOTO LÀM XONG TRẢ LẠI FILE TÔI TẢI LÊN GITHUB PAGE
+
+🌈 2️⃣ Fade-in có ripple & glow (cao cấp hơn – “app style”)
