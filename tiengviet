@@ -250,7 +250,7 @@ Tạo <footer> dạng grid hoặc flex, gồm:
 
 Yêu cầu:
 - HTML semantic, có <h4> tiêu đề mỗi cột.  
-- Code gọn, rõ, dễ chèn vào theme và responsive.
+- Code gọn, rõ, dễ chèn vào theme và responsive. và đồng bộ menu/footer theo cấu trúc bạn đã cung cấp.
 
 **Kết thúc:**  
 > Xuất `index.html` hoàn chỉnh — theme Ultra Glass tự random, selector mượt, fallback auto main đồng bộ hero, tối ưu SEO + UX + tốc độ, mini-app đồng bộ menu/footer và hiệu ứng glassmorphism hiện đại.
