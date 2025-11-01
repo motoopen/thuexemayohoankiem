@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <!-- Home -->
   <url>
     <loc>https://motoopen.github.io/thuexemayohoankiem/</loc>
@@ -8,21 +9,7 @@
     <priority>1.00</priority>
   </url>
 
-  <!-- Main pages -->
-  <url>
-    <loc>https://motoopen.github.io/thuexemayohoankiem/banggia.html</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-
-  <url>
-    <loc>https://motoopen.github.io/thuexemayohoankiem/lienhe.html</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
+  <!-- Core pages -->
   <url>
     <loc>https://motoopen.github.io/thuexemayohoankiem/gioithieu.html</loc>
     <lastmod>2025-11-01</lastmod>
@@ -30,7 +17,6 @@
     <priority>0.70</priority>
   </url>
 
-  <!-- Service / Info pages -->
   <url>
     <loc>https://motoopen.github.io/thuexemayohoankiem/thutuc.html</loc>
     <lastmod>2025-11-01</lastmod>
@@ -119,6 +105,20 @@
   </url>
 
   <url>
+    <loc>https://motoopen.github.io/thuexemayohoankiem/banggia.html</loc>
+    <lastmod>2025-11-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://motoopen.github.io/thuexemayohoankiem/lienhe.html</loc>
+    <lastmod>2025-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
     <loc>https://motoopen.github.io/thuexemayohoankiem/chinhsach.html</loc>
     <lastmod>2025-11-01</lastmod>
     <changefreq>yearly</changefreq>
@@ -139,160 +139,4 @@
     <priority>0.30</priority>
   </url>
 
-  <!-- Internal social aggregation page (recommended) -->
-  <url>
-    <loc>https://motoopen.github.io/thuexemayohoankiem/social.html</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <!-- External social profiles (low priority) -->
-  <url>
-    <loc>https://m.facebook.com/chothuexemaynguyentu/</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <url>
-    <loc>https://m.facebook.com/chothuexemayphoco/</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <url>
-    <loc>https://m.facebook.com/chothuexemay0857255868/</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <url>
-    <loc>https://m.facebook.com/chothuexemaycongtan/</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <url>
-    <loc>https://m.facebook.com/chothuexemaythanhxuan/</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <url>
-    <loc>https://m.facebook.com/chothuexemayquanhaibatrung/</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <url>
-    <loc>https://m.facebook.com/chothuexemaycaugiay/</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <url>
-    <loc>https://m.facebook.com/chothuexemayquanhoangmai/</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <url>
-    <loc>https://m.facebook.com/chothuexemayhoankiem/</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <url>
-    <loc>https://m.facebook.com/chothuexemaylongbien/</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <url>
-    <loc>https://m.facebook.com/chothuexemaytayho/</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <url>
-    <loc>https://m.facebook.com/chothuexemayohanoi1/</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <url>
-    <loc>https://m.facebook.com/chothuexeganmayhanoi/</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <url>
-    <loc>https://m.facebook.com/chothuexemaydongda/</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <url>
-    <loc>https://m.facebook.com/chothuexemaygiareohanoi/</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <url>
-    <loc>https://m.facebook.com/motoopenvn/</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <url>
-    <loc>https://m.facebook.com/xemayhanoi/</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <!-- Other social / profiles -->
-  <url>
-    <loc>https://www.instagram.com/thuexemaynguyentu/</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <url>
-    <loc>https://www.pinterest.com/thuexemaynguyentu/</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <url>
-    <loc>https://www.tumblr.com/thuexemaynguyentu</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
-
-  <url>
-    <loc>https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.20</priority>
-  </url>
 </urlset>
