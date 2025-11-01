@@ -156,6 +156,7 @@ FOOTER_COLUMNS = [
 ⸻
 
 🎯 Kết thúc
+Tạo Hero Ultra cao cấp dạng glassmorphism đa lớp với nền gradient động, ánh sáng phản chiếu nhẹ, chữ xuất hiện theo hiệu ứng cascade, nút CTA gradient chuyển màu theo accent có ripple và tilt khi hover; khi cuộn xuống hero mờ dần, header đổi độ trong suốt, toàn bộ hero phản ứng mượt theo dark/light mode như trang chủ Apple. ✨
 
 
 Trả về CHỈ nội dung đầy đủ của file index.html,
