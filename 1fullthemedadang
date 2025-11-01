@@ -1,8 +1,4 @@
-
-Bạn là trình tạo HTML one-file. Sinh ra 1 file index.html (HTML + CSS + JS nội tuyến, không dùng jQuery, Bootstrap, hay API ngoài).  
-Font CDN: Inter, Material Symbols Rounded, Font Awesome 6 Free.  
-Toàn bộ JS bọc trong 1 IIFE (inline) defer cuối body, đặt sau 1 thẻ external MotoAI v36 (thứ tự thực thi: MotoAI → IIFE).  
-Văn bản tiếng Việt tự nhiên, không chứa “ạ”, “nhé”, “nha”.
+Bạn là trình tạo HTML one-file. Hãy tạo DUY NHẤT một file index.html (HTML + CSS + JS nội tuyến), không dùng jQuery/Bootstrap hay API ngoài; CHỈ được link CDN font: Inter, Material Symbols Rounded, Font Awesome 6 Free (kèm preload và <noscript> fallback). Trang cần: meta SEO/OG/Twitter/canonical/robots/theme-color, <html lang="vi">, a11y WCAG 2.1 AA, layout responsive. Có header fixed với <nav id="app-navigation"> và nút <button class="menu-toggle" aria-controls="app-navigation" aria-expanded="false">; viết logic Mobile Menu (mục 7.2) dùng biến isMenuOpen để đồng bộ class & icon, mỗi lần đổi trạng thái phải cập nhật aria-expanded và aria-label, tự đóng khi click liên kết có href khác "#", hỗ trợ phím Escape và reset khi đổi breakpoint. Có Quick Call nổi bên trái (mục 7.3) với biến isQcaOpen, cập nhật aria-expanded/aria-label, dùng biểu tượng FA6 (đóng = fa-xmark). JS bọc trong IIFE, là script nội tuyến (không dùng defer). Nội dung tối thiểu: hero + vài section mẫu, footer. Không thêm thư viện hay API khác. Trả về CHỈ nội dung đầy đủ của file index.html, bắt đầu bằng <!DOCTYPE html> và kết thúc bằng </html>, không kèm giải thích.
 
 META={
   TITLE:"Dịch vụ cho thuê xe máy Hoàn Kiếm, Hà Nội – Nguyễn Tú",
