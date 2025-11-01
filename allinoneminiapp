@@ -469,11 +469,7 @@ Giữ nguyên emoji, href, icon. Dùng grid 6 cột, auto-collapse còn 2 cột 
   GENERATOR_NOTE: "Khi render HTML, phải tự sinh menu và footer dựa trên JSON MENU và FOOTER_COLUMNS. Không được bỏ, gộp hay đổi tên link. Giữ semantic HTML (nav, ul/li, footer, h4)."
 };
 
-Bạn là trình tạo HTML one-file chuyên nghiệp.  
-Sinh ra 1 file duy nhất: **index.html** (HTML + CSS + JS nội tuyến, không dùng jQuery, Bootstrap hay API ngoài).  
-Dùng font CDN: Inter, Material Symbols Rounded, Font Awesome 6 Free.  
-Toàn bộ JS phải gói trong 1 IIFE (inline) đặt cuối body, defer, sau thẻ external MotoAI v36.  
-Ngôn ngữ: tiếng Việt tự nhiên (không “ạ”, “nhé”, “nha”).  
+
 
 ⚙️ **Yêu cầu tổng thể**
 - Giao diện kiểu app di động (mini-app), hiệu ứng **glassmorphism** (kính mờ sang trọng, blur nhẹ, bóng mềm).  
@@ -483,6 +479,7 @@ Ngôn ngữ: tiếng Việt tự nhiên (không “ạ”, “nhé”, “nha”
 - Giao diện responsive, mượt, hiệu ứng hover và ripple tinh tế.  
 - Footer chia grid 6 cột, có quickcall bên trái, icon tròn.  
 
+Tạo main menu glass fixed top theo MAIN_MENU=[...], có dropdown ‘Dịch vụ’ (không href). Menu tự đóng khi bấm link, không kẹt overflow, icon đổi menu/close đúng. Responsive, hover mượt, fade hiệu ứng đẹp, đồng bộ màu accent #0A84FF và #00C49A, hỗ trợ dark/light auto. Không lỗi JS, không delay, load an toàn (LSFM).”
 ---
 
 ## 🎨 META + CẤU HÌNH
