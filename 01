@@ -302,3 +302,11 @@ Giữ nguyên emoji, href, icon. Dùng grid 6 cột, auto-collapse còn 2 cột 
   COLOR_SYNC:"Tự động đồng bộ accent màu chính (#0A84FF, #00C49A) giữa header, footer, hero, nút CTA và icon.",
   GENERATOR_NOTE:"Khi render HTML, phải tự sinh menu và footer dựa trên JSON MENU và FOOTER_COLUMNS. Không được bỏ, gộp hay đổi tên link. Giữ semantic HTML (nav, ul/li, footer, h4)."
 };
+==================== QUICKCALL (BÊN TRÁI) =====================
+	💎 Nâng cấp UX đề xuất
+	•	🔁 Smart Context: tự đổi nội dung theo giờ ( 1 nút bong bóng sổ ra 4 nút )
+	•	⏱ Auto-CTA: xuất hiện sau 10s nếu user chưa tương tác.
+	•	🧭 Mini Tooltip: khi hover hiển thị hotline, tên người phụ trách.
+	•	🪄 Hiệu ứng mở nhanh: bật animation xoay icon hoặc bounce nhẹ.
+phone; 0942467674 ( zalo, whatsapp, Map )
+===================== MẠNG XÃ HỘI =====================
