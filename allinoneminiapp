@@ -92,39 +92,79 @@ APP_SHELL={
   AI_HINT:"Đồng bộ menu, footer, hero mini-app và quickcall theo cùng 1 style, tạo cảm giác app một trang."
 };
 
-MENU=[
-  {"🏠 Trang chủ":"index.html"},
-  {"📄 Giới thiệu":"gioithieu.html"},
-  {"⚙️ Dịch vụ":[
-    {"📑 Thủ tục":"thutuc.html"},
-    {"🛵 Loại xe":"loaixe.html"},
-    {"📘 Hướng dẫn":"huongdan.html"},
-    {"💡 Kinh nghiệm":"kinhnghiem.html"},
-    {"📍 Địa điểm":"diadiem.html"},
-    {"🎁 Ưu đãi":"uudai.html"}
-  ]},
-  {"🏷️ Bảng giá":"banggia.html"},
-  {"⚖️ Điều khoản":"https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html"},
-  {"🔒 Bảo mật":"https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html"},
-  {"❓ FAQ":"faq.html"},
-  {"💬 Liên hệ":"lienhe.html"}
+const MAIN_MENU = [
+  {
+    "title": "🏠 Trang chủ",
+    "href": "https://motoopen.github.io/thuexemayohoankiem/"
+  },
+  {
+    "title": "📄 Giới thiệu",
+    "href": "https://motoopen.github.io/thuexemayohoankiem/gioithieu.html"
+  },
+  {
+    "title": "⚙️ Dịch vụ",
+    "children": [
+      {"title": "📋 Thủ tục thuê xe", "href": "https://motoopen.github.io/thuexemayohoankiem/thutuc.html"},
+      {"title": "🏍️ Các loại xe", "href": "https://motoopen.github.io/thuexemayohoankiem/loaixe.html"},
+      {"title": "💡 Kinh nghiệm thuê xe", "href": "https://motoopen.github.io/thuexemayohoankiem/kinhnghiem.html"},
+      {"title": "📍 Địa điểm nổi bật", "href": "https://motoopen.github.io/thuexemayohoankiem/diadiem.html"},
+      {"title": "🔄 Quy trình thuê", "href": "https://motoopen.github.io/thuexemayohoankiem/quytrinh.html"},
+      {"title": "📰 Blog", "href": "https://motoopen.github.io/thuexemayohoankiem/blog.html"},
+      {"title": "🎁 Ưu đãi", "href": "https://motoopen.github.io/thuexemayohoankiem/uudai.html"},
+      {"title": "💸 Giảm giá", "href": "https://motoopen.github.io/thuexemayohoankiem/giamgia.html"},
+      {"title": "📅 Thuê theo ngày", "href": "https://motoopen.github.io/thuexemayohoankiem/ngay.html"},
+      {"title": "🗓️ Thuê theo tuần", "href": "https://motoopen.github.io/thuexemayohoankiem/tuan.html"},
+      {"title": "📆 Thuê theo tháng", "href": "https://motoopen.github.io/thuexemayohoankiem/thang.html"},
+      {"title": "🏷️ Bảng giá", "href": "https://motoopen.github.io/thuexemayohoankiem/banggia.html"}
+    ]
+  },
+  {
+    "title": "❓ FAQ",
+    "href": "https://motoopen.github.io/thuexemayohoankiem/faq.html"
+  },
+  {
+    "title": "💬 Liên hệ",
+    "href": "https://motoopen.github.io/thuexemayohoankiem/lienhe.html"
+  },
+  {
+    "title": "🔒 Chính sách bảo mật",
+    "href": "https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html"
+  },
+  {
+    "title": "⚖️ Điều khoản sử dụng",
+    "href": "https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html"
+  }
 ];
 
 FOOTER_COLUMNS=[
-  {"title":"🏠 Trang chủ","href":"index.html"},
-  {"title":"📄 Giới thiệu","href":"gioithieu.html"},
-  {"title":"⚙️ Dịch vụ","href":"dichvu.html"},
-  {"title":"🏷️ Bảng giá","href":"banggia.html"},
-  {"title":"⚖️ Điều khoản","href":"https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html"},
-  {"title":"🔒 Bảo mật","href":"https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html"},
-  {"title":"❓ FAQ","href":"faq.html"},
-  {"title":"💬 Liên hệ","href":"lienhe.html"},
-  {"title":"🌐 Website","icon":"globe","href":"https://thuexemaynguyentu.com"},
+ 
+  {"title":"🏠 Trang chủ","href":"https://motoopen.github.io/thuexemayohoankiem/"},
+  {"title":"📄 Giới thiệu","href":"https://motoopen.github.io/thuexemayohoankiem/gioithieu.html"},
+  {"title":"📋 Thủ tục thuê xe","href":"https://motoopen.github.io/thuexemayohoankiem/thutuc.html"},
+  {"title":"🏍️ Các loại xe","href":"https://motoopen.github.io/thuexemayohoankiem/loaixe.html"},
+  {"title":"💡 Kinh nghiệm","href":"https://motoopen.github.io/thuexemayohoankiem/kinhnghiem.html"},
+  {"title":"📍 Địa điểm nổi bật","href":"https://motoopen.github.io/thuexemayohoankiem/diadiem.html"},
+  {"title":"🔄 Quy trình thuê","href":"https://motoopen.github.io/thuexemayohoankiem/quytrinh.html"},
+  {"title":"📰 Blog","href":"https://motoopen.github.io/thuexemayohoankiem/blog.html"},
+  {"title":"🎁 Ưu đãi","href":"https://motoopen.github.io/thuexemayohoankiem/uudai.html"},
+  {"title":"💸 Giảm giá","href":"https://motoopen.github.io/thuexemayohoankiem/giamgia.html"},
+  {"title":"📅 Thuê theo ngày","href":"https://motoopen.github.io/thuexemayohoankiem/ngay.html"},
+  {"title":"🗓️ Thuê theo tuần","href":"https://motoopen.github.io/thuexemayohoankiem/tuan.html"},
+  {"title":"📆 Thuê theo tháng","href":"https://motoopen.github.io/thuexemayohoankiem/thang.html"},
+  {"title":"❓ FAQ","href":"https://motoopen.github.io/thuexemayohoankiem/faq.html"},
+  {"title":"🏷️ Bảng giá","href":"https://motoopen.github.io/thuexemayohoankiem/banggia.html"},
+  {"title":"💬 Liên hệ","href":"https://motoopen.github.io/thuexemayohoankiem/lienhe.html"},
+  {"title":"📘 Chính sách chung","href":"https://motoopen.github.io/thuexemayohoankiem/chinhsach.html"},
+  {"title":"🌐 Mạng xã hội","href":"https://motoopen.github.io/thuexemayohoankiem/social.html"},
+  {"title":"🔒 Chính sách bảo mật","href":"https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html"},
+  {"title":"⚖️ Điều khoản sử dụng","href":"https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html"},
+  {"title":"🌍 Website","icon":"globe","href":"https://thuexemaynguyentu.com"},
   {"title":"📞 Gọi","icon":"phone","href":"tel:0942467674"},
   {"title":"💬 Zalo","icon":"zalo","href":"https://zalo.me/0942467674"},
   {"title":"📷 Instagram","icon":"instagram","href":"https://www.instagram.com/nguyentumotorbike/"},
   {"title":"⭐ TripAdvisor","icon":"tripadvisor","href":"https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html"},
   {"title":"📘 Facebook","icon":"facebook","href":"https://m.facebook.com/chothuexemay0857255868/"}
+];
 ];
 
 HERO_MINIAPP={
