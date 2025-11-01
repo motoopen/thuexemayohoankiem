@@ -14,7 +14,7 @@ KEYWORDS="thuê xe máy Hoàn Kiếm, thuê xe máy Hà Nội, xe ga, xe số, x
 PHONE="0942467674"
 ZALO="https://zalo.me/0942467674"
 MAP="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc"
-EMAIL="contact@example.com"
+EMAIL="thuexemaynguyentu@gmail.com"
 ADDRESS="112 Nguyễn Văn Cừ, Long Biên, Hà Nội"
 LOGO_URL="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png"
 OG_IMAGE="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/BANNER-THUE-XE-MAY-1.png"
@@ -202,13 +202,12 @@ Có tagline và quickcall ở góc trái, giữ icon emoji hoặc Font Awesome t
 	•	Nút 🌞/🌙 đổi theme TitanBlue realtime.
 
 ===================== QUICKCALL (BÊN TRÁI) =====================
-	•	Dock trái giữa màn hình (glass blur Titan).
-	•	Nút tròn icon to:
-📞 tel:PHONE
-💬 ZALO
-📍 MAP
-	•	Né chatbot bên phải, tự ẩn khi bàn phím bật.
-
+	💎 Nâng cấp UX đề xuất
+	•	🔁 Smart Context: tự đổi nội dung theo giờ ( 1 nút bong bóng sổ ra 4 nút )
+	•	⏱ Auto-CTA: xuất hiện sau 10s nếu user chưa tương tác.
+	•	🧭 Mini Tooltip: khi hover hiển thị hotline, tên người phụ trách.
+	•	🪄 Hiệu ứng mở nhanh: bật animation xoay icon hoặc bounce nhẹ.
+phone; 0942467674 ( zalo, whatsaap )  map https://maps.app.goo.gl/65L4sktHLoWYtBgw7?g_st=ipc
 ===================== MẠNG XÃ HỘI =====================
 
 SOCIAL_LINKS = [
@@ -232,7 +231,7 @@ SOCIAL_LINKS = [
 	•	Theme random: Đổi theme khi load, accent đồng bộ.
 	•	Selector: Có glow, animation, lưu theme cuối.
 	•	Feature: Chat, gọi nhanh, nghiêng card, scroll animation.
-	•	App shell: Menu kính cố định, footer dock nhỏ, hero dạng grid.
+	•	App shell: Menu cố định App mini phù hợp theme, footer dock nhỏ, hero Mini App
 STYLE={
   PRESET:"UltraTitanGlass",
   ACCENT:"#0A84FF",
