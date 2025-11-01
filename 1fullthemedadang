@@ -508,6 +508,7 @@ Có tagline và quickcall ở góc trái, giữ icon emoji hoặc Font Awesome t
 > - Menu glass fixed top (tự sinh từ JSON)
 > - Footer 6 cột glass mini-dock (tự sinh từ JSON)
 > - Hero miniapp Smart Hero Gateway – “Cổng truy cập nhanh thông minh”
+CHO PHÉP DÙNG SCHEMA CẤU HÌNH SCHEMA
 
 Căn giữa toàn bộ phần tử trong <footer>, gồm tiêu đề, link, icon và tagline.  
 Giữ layout glass blur, responsive, hover sáng nhẹ.  
