@@ -1,8 +1,74 @@
-# robots.txt - Cho phép mọi bot/AI thu thập toàn bộ site
-# Lưu ý: đặt file này ở root: /robots.txt (ví dụ: https://motoopen.github.io/thuexemayohoankiem/robots.txt)
+# Allow all crawlers (search engines & AI) to index everything
 
+# Default rule for all bots
 User-agent: *
+Disallow:
 Allow: /
 
-# Nếu bạn muốn đề xuất sitemap cho các bot:
+# --- Major Search Engines ---
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# --- AI / LLM Data Crawlers ---
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# --- Social / Preview Bots ---
+User-agent: FacebookBot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+# --- Copilot / Microsoft AI ---
+User-agent: BingPreview
+Allow: /
+
+User-agent: AdsBot-Bing
+Allow: /
+
+User-agent: msnbot-media
+Allow: /
+
+User-agent: MicrosoftCopilot
+Allow: /
+
+# --- Sitemap references ---
 Sitemap: https://motoopen.github.io/thuexemayohoankiem/sitemap.xml
+Sitemap: https://motoopen.github.io/thuexemayohoankiem/sitemap-social.xml
