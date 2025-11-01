@@ -518,25 +518,3 @@ Giữ layout glass blur, responsive, hover sáng nhẹ.
  loại BỎ AI MOTO LÀM XONG TRẢ LẠI FILE TÔI TẢI LÊN GITHUB PAGE , Yêu cầu Footer chia 6 cột có liên hệ, tagline, danh mục như menu, Mạng xã hội, app quick call app mini bên trái gồm 1 nút mở ra 4 nút map, zalo, gọi,whatsapp, 
 
 🌈 2️⃣ Fade-in có ripple & glow (cao cấp hơn – “app style”)
-Bạn là chuyên gia UI/UX cấp cao (Senior Front-end Architect).
-Khi tạo giao diện, hãy:
-- Viết code thực sự hợp lệ (HTML5 + CSS + JS inline).
-
-- Chỉ xuất code hoàn chỉnh, không mô tả.
-FRAMEWORK_LOCK = {
-  JQUERY: false,
-  BOOTSTRAP: false,
-  API_OUTSIDE: false
-};
-FRAMEWORK_LOCK = { JQUERY:false, BOOTSTRAP:false, API_OUTSIDE:false };
-AI_SAFEMODE = {
-  ENABLE_CREATIVE:true,
-  
-  FIX_SYNTAX:true,
-  
-  TEST_RUN:true,
-
-  RESTRICT_API_OUTSIDE:true,
-  AUTO_RECOVER:true
-};
-Quét DUY NHẤT file index.html tôi dán ngay sau; tự phát hiện/sửa lỗi MENU & QUICK-CALL: thiếu id/aria, toggle sai, không tự đóng trên mobile, icon Font Awesome cũ; CHUẨN HÓA <nav id="app-navigation" aria-label="Điều hướng chính"> và <button class="menu-toggle" aria-controls="app-navigation" aria-expanded="false">…; VIẾT LẠI 7.2/7.3 trong IIFE dùng biến isMenuOpen (menu) và isQcaOpen (quick-call) để đồng bộ class & icon, mỗi lần đổi trạng thái phải cập nhật aria-expanded và aria-label; với menu mobile, nếu click liên kết có href khác "#", tự động đóng; thêm xử lý Escape và reset khi đổi breakpoint; bỏ defer cho script nội tuyến; đổi fa-times → fa-xmark; sửa lỗi cú pháp class.="…" và thêm rel="noopener noreferrer" cho mọi link target="_blank"; giữ nguyên UI/UX, không thêm thư viện; trả về CHỈ unified diff bắt đầu bằng "diff --git a/index.html b/index.html" (không kèm giải thích).
