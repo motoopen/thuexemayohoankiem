@@ -1,0 +1,8 @@
+# robots.txt - Cho phép mọi bot/AI thu thập toàn bộ site
+# Lưu ý: đặt file này ở root: /robots.txt (ví dụ: https://motoopen.github.io/thuexemayohoankiem/robots.txt)
+
+User-agent: *
+Allow: /
+
+# Nếu bạn muốn đề xuất sitemap cho các bot:
+Sitemap: https://motoopen.github.io/thuexemayohoankiem/sitemap.xml
