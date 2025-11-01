@@ -275,11 +275,12 @@ APP_SHELL={
 Tạo toàn bộ mã nguồn Mini App ULTRA (Hero + QuickCall + Chat + Theme Engine + App Shell) 
 với phong cách hiện đại, glassmorphism, tối ưu mobile.  
 Sử dụng code sạch, không phụ thuộc framework ngoài (chỉ HTML + CSS + JS thuần).  
-Áp dụng cấu trúc module và đặt tên biến, class rõ ràng.  
+
 Tự động tạo các phần:
 - HERO ULTRA MINI (ProUltraTitanBlue hoặc UltraTitanGlass style)
 - QUICKCALL MINI NÂNG CAO (gọi / chat / map, auto glow + smart context)
-- CONTACT FORM MINI (nút gửi + phản hồi nhanh)
+
+
 	•	Cuối cùng:
 ©  Nguyễn Tú Cho thuê xe máy Hoàn Kiếm ( Back link trang chủ ) · “⬆️ Lên đầu trang”.
 	•	Nút 🌞/🌙 đổi theme TitanBlue realtime.
