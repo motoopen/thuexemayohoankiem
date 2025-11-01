@@ -1,0 +1,163 @@
+Bạn là trình tạo HTML one-file.  
+Sinh DUY NHẤT một file **index.html** (HTML + CSS + JS nội tuyến), **không dùng jQuery/Bootstrap/API ngoài**,  
+chỉ được link 3 font CDN:  
+- Inter  
+- Material Symbols Rounded  
+- Font Awesome 6 Free  
+(phải có preload và <noscript> fallback).  
+
+Yêu cầu:
+- Có đầy đủ meta SEO/OG/Twitter/canonical/robots/theme-color  
+- Thẻ <html lang="vi">, tuân thủ a11y WCAG 2.1 AA  
+- Layout responsive, mobile-first  
+- Script inline (IIFE, không dùng defer)  
+
+---
+
+### 🧭 Cấu trúc trang
+
+**Header cố định (glassmorphism)**  
+- `<nav id="app-navigation">` sinh từ JSON `MENU` (bên dưới)  
+- Có nút `<button class="menu-toggle" aria-controls="app-navigation" aria-expanded="false">`  
+- JS menu:
+  - Dùng biến `isMenuOpen`  
+  - Khi toggle, cập nhật `aria-expanded`, `aria-label`, class & icon  
+  - Tự đóng khi click link `href` ≠ "#"  
+  - Hỗ trợ phím Escape  
+  - Reset khi đổi breakpoint (mobile ↔ desktop)
+
+**Quick Call bên trái (glass-floating)**  
+- Biến `isQcaOpen`  
+- Nút chính mở 4 nút phụ: Gọi, Zalo, Bản đồ, WhatsApp  
+- Cập nhật `aria-expanded` / `aria-label`  
+- Icon đóng = `fa-xmark`  
+- FA6 Free; icon Zalo dùng SVG inline  
+
+**Nội dung chính**  
+- Hero mini-app: CTA 3 nút  
+- Vài section mẫu: giới thiệu, lợi ích, quy trình, đánh giá, liên hệ  
+- Footer glass chia 6 cột, sinh từ JSON `FOOTER_COLUMNS`  
+- Có tagline + icon social + quickcall mini  
+- Tự collapse còn 2 cột trên mobile  
+
+---
+
+### 🎨 Style tổng thể
+```js
+STYLE = {
+  PRESET: "UltraTitanGlass",
+  ACCENT: "#0A84FF",
+  ACCENT2: "#00C49A",
+  RADIUS: "20px",
+  BODY_BG_LIGHT: "#f9fafa",
+  BODY_BG_DARK: "#0c0d0f",
+  GLASS: true,
+  BLUR: "10px",
+  SHADOW: "0 4px 20px rgba(0,0,0,0.1)"
+};
+
+THEME_RANDOMIZER = {
+  ENABLED: true,
+  POOL: [
+    "UltraTitanGlass","FacebookUltra","GooglePure",
+    "HondaRedMotion","NeoMint","MidnightPurple",
+    "AeroGlassBlue","SunsetOrange","MotoDarkCarbon","MinimalWhite"
+  ],
+  SYNC_ACCENT: true,
+  RANDOMIZE_ON_LOAD: true
+};
+
+AUTO_ACCENT_PALETTE = {
+  ENABLED: true,
+  MAP: {
+    "UltraTitanGlass":"#0A84FF",
+    "FacebookUltra":"#1877F2",
+    "GooglePure":"#4285F4",
+    "HondaRedMotion":"#DA251D",
+    "NeoMint":"#9CF5B0",
+    "MidnightPurple":"#6C4AE4",
+    "AeroGlassBlue":"#4FC3F7",
+    "SunsetOrange":"#FF7043",
+    "MotoDarkCarbon":"#202020",
+    "MinimalWhite":"#DDDDDD"
+  }
+};
+
+META = {
+  TITLE: "Dịch vụ cho thuê xe máy Hoàn Kiếm, Hà Nội – Nguyễn Tú",
+  DESCRIPTION: "Thuê xe máy Hà Nội giá rẻ, uy tín – Nguyễn Tú. Xe ga, xe số, xe điện, giao nhanh 20–40 phút, cọc nhẹ, hỗ trợ 24/7.",
+  KEYWORDS: "thuê xe máy, thuê xe máy Hà Nội, thuê xe máy Hoàn Kiếm, Nguyễn Tú, thuê xe ga, thuê xe số, thuê xe điện",
+  AUTHOR: "Nguyễn Tú Cho thuê xe máy Hà Nội",
+  CANONICAL: "https://motoopen.github.io/thuexemayohoankiem/index.html",
+  THEME_COLOR: "#0A84FF",
+  ROBOTS: "index, follow",
+  OG_IMAGE_URL: "https://thuexemaynguyentu.com/wp-content/uploads/2025/09/BANNER-THUE-XE-MAY-1.png",
+  OG_TYPE: "website",
+  TWITTER_CARD: "summary_large_image",
+  TWITTER_SITE: "@thuexemaynguyentu",
+  PUBLISHER: "https://thuexemaynguyentu.com"
+};
+
+MENU = [
+  {"🏠 Trang chủ":"index.html"},
+  {"📄 Giới thiệu":"gioithieu.html"},
+  {"⚙️ Dịch vụ":[
+    {"📑 Thủ tục":"thutuc.html"},
+    {"🛵 Loại xe":"loaixe.html"},
+    {"📘 Hướng dẫn":"huongdan.html"},
+    {"💡 Kinh nghiệm":"kinhnghiem.html"},
+    {"📍 Địa điểm":"diadiem.html"},
+    {"🎁 Ưu đãi":"uudai.html"}
+  ]},
+  {"🏷️ Bảng giá":"banggia.html"},
+  {"⚖️ Điều khoản":"https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html"},
+  {"🔒 Bảo mật":"https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html"},
+  {"❓ FAQ":"faq.html"},
+  {"💬 Liên hệ":"lienhe.html"}
+];
+
+FOOTER_COLUMNS = [
+  {"title":"🏠 Trang chủ","href":"index.html"},
+  {"title":"📄 Giới thiệu","href":"gioithieu.html"},
+  {"title":"⚙️ Dịch vụ","href":"dichvu.html"},
+  {"title":"🏷️ Bảng giá","href":"banggia.html"},
+  {"title":"⚖️ Điều khoản","href":"https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html"},
+  {"title":"🔒 Bảo mật","href":"https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html"},
+  {"title":"❓ FAQ","href":"faq.html"},
+  {"title":"💬 Liên hệ","href":"lienhe.html"},
+  {"title":"🌐 Website","href":"https://thuexemaynguyentu.com"},
+  {"title":"📞 Gọi","href":"tel:0942467674"},
+  {"title":"💬 Zalo","href":"https://zalo.me/0942467674"},
+  {"title":"📷 Instagram","href":"https://www.instagram.com/nguyentumotorbike/"},
+  {"title":"⭐ TripAdvisor","href":"https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html"},
+  {"title":"📘 Facebook","href":"https://m.facebook.com/chothuexemay0857255868/"}
+];
+
+⚙️ Quy định render
+	•	Tự sinh menu và footer từ JSON trên
+	•	Tự nhận biết page active
+	•	Footer chia 6 cột glass grid, có quickcall mini
+	•	Light/Dark mode tự động, có nút ☀️/🌙 góc phải
+	•	Accent đồng bộ với theme (theo AUTO_ACCENT_PALETTE)
+	•	Ripple, fade-in, hover glow, tilt nhẹ, scroll mượt
+	•	Responsive & SEO hợp lệ
+
+⸻
+
+📞 Quick Call
+	•	Vị trí: bên trái giữa màn hình
+	•	Nút chính hình tròn glass; khi mở hiện 4 nút nhỏ:
+	•	📞 Gọi: tel:0942467674
+	•	💬 Zalo: https://zalo.me/0942467674
+	•	📍 Bản đồ: https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7
+	•	💬 WhatsApp: https://wa.me/84942467674
+	•	Đóng = fa-xmark
+
+⸻
+
+🎯 Kết thúc
+
+Trả về CHỈ nội dung đầy đủ của file index.html,
+bắt đầu bằng <!DOCTYPE html> và kết thúc bằng </html>,
+không kèm giải thích.
+Tạo giao diện mini-app kiểu glassmorphism cao cấp, fade-in + ripple + glow.
