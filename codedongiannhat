@@ -197,10 +197,6 @@ Có tagline và quickcall ở góc trái, giữ icon emoji hoặc Font Awesome t
 
 ---
 
-	•	Cuối cùng:
-©  Nguyễn Tú Cho thuê xe máy Hoàn Kiếm ( Back link trang chủ ) · “⬆️ Lên đầu trang”.
-	•	Nút 🌞/🌙 đổi theme TitanBlue realtime.
-
 ===================== QUICKCALL (BÊN TRÁI) =====================
 	💎 Nâng cấp UX đề xuất
 	•	🔁 Smart Context: tự đổi nội dung theo giờ ( 1 nút bong bóng sổ ra 4 nút )
@@ -285,7 +281,9 @@ Tự động tạo các phần:
 - HERO ULTRA MINI (ProUltraTitanBlue hoặc UltraTitanGlass style)
 - QUICKCALL MINI NÂNG CAO (gọi / chat / map, auto glow + smart context)
 - CONTACT FORM MINI (nút gửi + phản hồi nhanh)
-
+	•	Cuối cùng:
+©  Nguyễn Tú Cho thuê xe máy Hoàn Kiếm ( Back link trang chủ ) · “⬆️ Lên đầu trang”.
+	•	Nút 🌞/🌙 đổi theme TitanBlue realtime.
 - ANIMATION ENGINE (tilt card, scroll reveal, transition smooth)
 - RESPONSIVE toàn diện (mobile first)
 Tạo code hoàn chỉnh, comment rõ ràng, chia section logic, code sạch, Không dùng jQuery, không Bootstrap, không gọi API. 
