@@ -1,0 +1,281 @@
+
+Bạn là trình tạo HTML one-file.  
+Sinh ra **1 file index.html** (HTML + CSS + JS nội tuyến, không dùng jQuery, Bootstrap, API ngoài).  
+Font CDN: Inter, Material Symbols Rounded, Font Awesome 6 Free.  
+Toàn bộ JS bọc trong 1 IIFE (inline) defer cuối body, đặt sau 1 thẻ external MotoAI v36 (thứ tự thực thi: MotoAI → IIFE).  
+Văn bản tiếng Việt tự nhiên, không chứa “ạ”, “nhé”, “nha”.  
+Trang phải tối ưu **SEO + UX + tốc độ + trải nghiệm mobile**, hiển thị đẹp như app.
+
+---
+
+### 🧭 META
+META={
+  TITLE:"Dịch vụ cho thuê xe máy Hoàn Kiếm, Hà Nội – Nguyễn Tú",
+  DESCRIPTION:"Thuê xe máy Hà Nội giá rẻ, uy tín – Nguyễn Tú Motorbike Rental. Xe ga, xe số, xe điện, giao nhanh 20–40 phút, hỗ trợ 24/7.",
+  KEYWORDS:"thuê xe máy, thuê xe máy Hà Nội, thuê xe máy Hoàn Kiếm, Nguyễn Tú, thuê xe ga, thuê xe số, thuê xe điện",
+  AUTHOR:"Nguyễn Tú Motorbike Rental",
+  CANONICAL:"https://motoopen.github.io/thuexemayohoankiem/index.html",
+  THEME_COLOR:"#0A84FF",
+  ROBOTS:"index, follow",
+  OG_IMAGE_URL:"https://thuexemaynguyentu.com/wp-content/uploads/2025/09/BANNER-THUE-XE-MAY-1.png"
+};
+
+META_EXTRA_ADV={
+  VIEWPORT:"width=device-width, initial-scale=1.0",
+  REFERRER:"strict-origin-when-cross-origin",
+  LANGUAGE:"vi-VN",
+  CONTENT_LANGUAGE:"vi",
+  DISTRIBUTION:"global",
+  RATING:"general"
+};
+
+META_EXTRA={
+  OG_TYPE:"website",
+  TWITTER_CARD:"summary_large_image",
+  TWITTER_SITE:"@nguyentumotorbike",
+  PUBLISHER:"https://thuexemaynguyentu.com"
+};
+
+---
+
+### 📞 CONTACT
+CONTACT={
+  PHONE:"0942467674",
+  ZALO:"https://zalo.me/0942467674",
+  MAP:"https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc",
+  EMAIL:"contact@example.com",
+  ADDRESS:"112 Nguyễn Văn Cừ, Long Biên, Hà Nội",
+  LOGO_URL:"https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png"
+};
+
+---
+
+### 🎨 STYLE
+STYLE={
+  STYLE_PRESET:"UltraTitanGlass",
+  ACCENT:"#0A84FF",
+  ACCENT2:"#00C49A",
+  RADIUS:"20px",
+  LANG:"vi",
+  DEFAULT_THEME:"auto",
+  BODY_BG_LIGHT:"#f9fafa",
+  BODY_BG_DARK:"#0c0d0f",
+  GLASS:true,
+  BLUR:"10px",
+  SHADOW:"0 4px 20px rgba(0,0,0,0.1)"
+};
+
+STYLE_SELECTOR={
+  ENABLED:true,
+  THEMES:[
+    {NAME:"UltraTitanGlass",DESC:"Kính mờ titan sang trọng"},
+    {NAME:"FacebookUltra",DESC:"Xanh Meta hiện đại"},
+    {NAME:"MotoDarkCarbon",DESC:"Đen carbon mạnh mẽ"},
+    {NAME:"AeroGlassBlue",DESC:"Trong suốt xanh biển nhẹ"},
+    {NAME:"MinimalWhite",DESC:"Trắng tối giản, nhẹ SEO"},
+    {NAME:"SunsetOrange",DESC:"Cam ấm, năng động"},
+    {NAME:"NeoMint",DESC:"Xanh bạc hà pastel"},
+    {NAME:"MidnightPurple",DESC:"Tím than sang trọng"},
+    {NAME:"CyberSteel",DESC:"Xám cyan tech-style"},
+    {NAME:"EmeraldGlow",DESC:"Xanh ngọc sáng mượt"}
+  ],
+  AUTO_ADAPT:true,
+  DEFAULT:"UltraTitanGlass"
+};
+
+---
+
+### ⚙️ FEATURES
+FEATURES={
+  USE_CHAT:true,
+  USE_QUICKCALL:true,
+  USE_QUICKCALL_LEFT:true,
+  USE_CARD_TILT:true,
+  USE_SCROLL_ANIM:true,
+  USE_VIEW_TRANSITIONS:true,
+  USE_CONTACT_FORM:true,
+  USE_HERO_MINIAPP:true
+};
+
+APP_SHELL={
+  ENABLED:true,
+  SYNC_MENU_FOOTER:true,
+  STYLE_MATCH_THEME:true,
+  MENU_MODE:"glass-fixed",
+  FOOTER_MODE:"mini-dock",
+  HERO_MODE:"service-grid",
+  AUTO_THEME_SYNC:true
+};
+
+---
+
+### 📋 MENU & FOOTER
+MENU=[
+  {"🏠 Trang chủ":"index.html"},
+  {"📄 Giới thiệu":"gioithieu.html"},
+  {"⚙️ Dịch vụ":[
+    {"📑 Thủ tục":"thutuc.html"},
+    {"🛵 Loại xe":"loaixe.html"},
+    {"📘 Hướng dẫn":"huongdan.html"},
+    {"💡 Kinh nghiệm":"kinhnghiem.html"},
+    {"📍 Địa điểm":"diadiem.html"},
+    {"🎁 Ưu đãi":"uudai.html"}
+  ]},
+  {"🏷️ Bảng giá":"banggia.html"},
+  {"⚖️ Điều khoản":"https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html"},
+  {"🔒 Bảo mật":"https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html"},
+  {"❓ FAQ":"faq.html"},
+  {"💬 Liên hệ":"lienhe.html"}
+];
+
+FOOTER_COLUMNS=[
+  {"title":"🏠 Trang chủ","href":"index.html"},
+  {"title":"📄 Giới thiệu","href":"gioithieu.html"},
+  {"title":"⚙️ Dịch vụ","href":"dichvu.html"},
+  {"title":"🏷️ Bảng giá","href":"banggia.html"},
+  {"title":"⚖️ Điều khoản","href":"https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html"},
+  {"title":"🔒 Bảo mật","href":"https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html"},
+  {"title":"❓ FAQ","href":"faq.html"},
+  {"title":"💬 Liên hệ","href":"lienhe.html"},
+  {"title":"🌐 Website","icon":"globe","href":"https://thuexemaynguyentu.com"},
+  {"title":"📞 Gọi","icon":"phone","href":"tel:0942467674"},
+  {"title":"💬 Zalo","icon":"zalo","href":"https://zalo.me/0942467674"},
+  {"title":"📷 Instagram","icon":"instagram","href":"https://www.instagram.com/nguyentumotorbike/"},
+  {"title":"⭐ TripAdvisor","icon":"tripadvisor","href":"https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html"},
+  {"title":"📘 Facebook","icon":"facebook","href":"https://m.facebook.com/chothuexemay0857255868/"}
+];
+
+---
+
+### 🚀 HERO MINI-APP
+HERO_MINIAPP={
+  ENABLED:true,
+  TYPE:"service-grid",
+  TITLE:"Đặt xe nhanh cùng Nguyễn Tú",
+  SUBTITLE:"Chọn loại xe bạn cần và nhận xe trong 20–40 phút",
+  BUTTONS:[
+    {"label":"🚀 Đặt xe ngay","href":"lienhe.html"},
+    {"label":"🛵 Xem bảng giá","href":"banggia.html"},
+    {"label":"💬 Chat MotoAI","href":"#motoai"}
+  ]
+};
+
+---
+
+### 🧱 BODY_SECTIONS (đầy đủ + SEO link)
+BODY_SECTIONS={
+  USE_FADEIN:true,
+  SECTIONS:[
+    {"TITLE":"Giới thiệu Nguyễn Tú Motorbike Rental","TYPE":"intro",
+     "CONTENT":["Dịch vụ thuê xe máy Hà Nội – Nguyễn Tú Motorbike Rental chuyên cho thuê xe ga, xe số, xe điện tại Hoàn Kiếm.","Xe mới, bảo dưỡng tốt, hỗ trợ giao tận nơi chỉ 20–40 phút."]},
+    {"TITLE":"Ưu điểm dịch vụ","TYPE":"benefits",
+     "POINTS":["Xe đời mới, tiết kiệm xăng.","Thủ tục thuê xe đơn giản, chỉ cần CCCD.","Hỗ trợ 24/7 qua Zalo và điện thoại.","Giao nhận linh hoạt, không phát sinh chi phí."]},
+    {"TITLE":"Quy trình thuê xe","TYPE":"steps",
+     "STEPS":["Chọn xe phù hợp nhu cầu.","Liên hệ Zalo hoặc gọi trực tiếp.","Xác nhận địa điểm, thời gian.","Giao xe tận nơi trong 20–40 phút."]},
+    {"TITLE":"Khách hàng đánh giá","TYPE":"testimonials",
+     "REVIEWS":[{"name":"Linh","text":"Xe đẹp, giao nhanh, nhân viên dễ thương.","stars":5},{"name":"Đức","text":"Giá hợp lý, hỗ trợ chu đáo.","stars":5}]},
+    {"TITLE":"Liên kết nội bộ & tài nguyên SEO","TYPE":"seo-links",
+     "LINKS":[
+       {"label":"🚗 Thuê xe máy Hoàn Kiếm Hà Nội","href":"https://motoopen.github.io/thuexemayohoankiem/index.html"},
+       {"label":"📍 Dịch vụ thuê xe máy Hà Nội uy tín","href":"https://thuexemaynguyentu.com"},
+       {"label":"🛵 Bảng giá thuê xe máy Nguyễn Tú","href":"https://motoopen.github.io/thuexemayohoankiem/banggia.html"},
+       {"label":"💬 Liên hệ đặt xe nhanh qua Zalo","href":"https://zalo.me/0942467674"},
+       {"label":"⭐ Đánh giá trên TripAdvisor","href":"https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html"}
+     ]}
+  ]
+};
+
+---
+
+### 🧩 TỐI ƯU SEO + UX + HIỆU SUẤT
+SEO_HEADING_STRUCTURE={AUTO_H1:true,AUTO_H2_FROM_SECTIONS:true,LIMIT_H1:1};
+SEO_BREADCRUMB={ENABLED:true,PATH:[{"Trang chủ":"index.html"},{"Dịch vụ":"dichvu.html"},{"Thuê xe máy Hà Nội":"index.html"}]};
+PERFORMANCE_OPTIMIZE={PRELOAD:["Inter","Material Symbols Rounded","Font Awesome 6"],LAZY_JS:true,INLINE_CRITICAL_CSS:true,MINIFY_HTML:true};
+SMART_SCROLL_CONTEXT={ENABLED:true,MENU_TO_SECTION:true,SMOOTH_SCROLL:true};
+ENGAGE_BOX={ENABLED:true,POSITION:"bottom-right",MESSAGE:"Bạn cần thuê xe gấp? Chat ngay!",BUTTONS:[{"label":"💬 Zalo","href":"https://zalo.me/0942467674"},{"label":"📞 Gọi","href":"tel:0942467674"}]};
+FEEDBACK_CARD={ENABLED:true,SHOW_AT_SCROLL:0.7,TEXT:"Trang này có hữu ích không?",OPTIONS:["Rất tốt","Bình thường","Cần cải thiện"]};
+PWA_HINT={ENABLED:true,INSTALLABLE:true,DISPLAY_MODE:"standalone"};
+
+---
+
+### 🔍 KIỂM TRA & HƯỚNG DẪN GEMINI
+KIEM_TRA_MENU_FOOTER={
+  MENU_EXPECT:["index.html","gioithieu.html","dichvu.html","banggia.html","https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html","https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html","faq.html","lienhe.html"],
+  FOOTER_EXPECT:["index.html","gioithieu.html","dichvu.html","banggia.html","https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html","https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html","faq.html","lienhe.html"],
+  auto_fix:true
+};
+
+CREATIVE_HINTS={
+  AI_STYLE_NOTE:"Giao diện glass, sáng – tối tự động, menu cố định, footer mini-app, hiệu ứng tilt & blur.",
+  SEO_NOTE:"Tập trung anchor text tự nhiên, 3–5 internal link chính, tối đa 1 H1 duy nhất, preload font, lazyload, inline critical CSS."
+};
+
+---
+
+**Kết thúc:**  
+> Chạy generator để xuất `index.html` hoàn chỉnh, giao diện kiểu mini-app Ultra Glass, SEO tối ưu, tốc độ cao, menu & footer đồng bộ, internal backlink thân thiện và kiểm tra link nội bộ tự động.  
+
+
+### 🌈 NÂNG CẤP TOÀN DIỆN CHO GEMINI (AI + UX + SEO + HIỆU ỨNG)
+
+AI_DIRECTIVE="Sinh giao diện theo cảm hứng app di động, hiệu ứng glassmorphism, shadow mềm, layout responsive, tối ưu UX theo hướng chạm – phản hồi nhanh. Tự điều chỉnh ánh sáng, tone màu theo theme, bố cục rõ ràng, tập trung CTA chính.";
+
+INTERACT_LAYER={
+  HOVER_CARD:true,
+  BUTTON_RIPPLE:true,
+  ICON_BOUNCE:true,
+  IMAGE_TILT:true,
+  SMOOTH_SCROLL:true,
+  TRANSITION_EASE:"cubic-bezier(0.25,0.1,0.25,1)"
+};
+
+SMART_SEO={
+  AUTO_KEYWORDS:true,
+  LINK_DENSITY_MAX:5,
+  AUTO_INTERNAL_LINK:true,
+  TITLE_MATCH_H1:true,
+  REL_CANONICAL_FIX:true,
+  LAZY_OG:true,
+  AUTO_META_REWRITE:true
+};
+
+USER_FLOW_HINTS={
+  DEFAULT_PATH:["Trang chủ","Dịch vụ","Bảng giá","Liên hệ"],
+  TIME_ON_SECTION:5,
+  CTA_BEHAVIOR:"focus-first-button",
+  SCROLL_ANIM_EASE:"ease-out",
+  INTERACTION_TONE:"friendly-UX"
+};
+
+THEME_RANDOMIZER={
+  ENABLED:true,
+  POOL:[
+    "UltraTitanGlass",
+    "NeoMint",
+    "MidnightPurple",
+    "AeroGlassBlue",
+    "MinimalWhite",
+    "SunsetOrange",
+    "FacebookUltra",
+    "MotoDarkCarbon"
+  ],
+  SYNC_ACCENT:true,
+  RANDOMIZE_ON_LOAD:true
+};
+
+VALIDATION={
+  HTML:true,
+  LINK:true,
+  ACCESSIBILITY:true,
+  SEO:true,
+  PERFORMANCE:true,
+  REPORT:"console",
+  FIX_MINOR:true
+};
+
+CREATIVE_HINTS_EXTRA={
+  AI_STYLE_NOTE:"Tăng độ phản chiếu, đổ bóng nhẹ, có ripple khi click, fade-in toàn trang, hiệu ứng glass layer mượt.",
+  UX_NOTE:"Menu cố định, footer mini-app, khoảng cách padding dễ đọc, icon và text cân đối, nút CTA nổi bật.",
+  SEO_NOTE:"Thêm 3–5 internal link tự nhiên, meta tag đồng nhất H1/H2, preload font, lazyload hình, internal backlink chuẩn.",
+  PERFORMANCE_NOTE:"Giảm DOM load, inline CSS cần thiết, defer script, tránh repaint layout."
+};
