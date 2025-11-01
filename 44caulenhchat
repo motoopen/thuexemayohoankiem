@@ -160,6 +160,11 @@ Tạo Hero Ultra cao cấp dạng glassmorphism đa lớp với nền gradient �
 
 Tạo giao diện Ultra App đồng bộ gồm Menu, Hero và QuickCall trong cùng một khối glassmorphism cao cấp:  
 - Menu kiểu ứng dụng Facebook Ultra fixed-top mờ nhẹ, icon rõ, bóng mềm, hover sáng dần, tự thu gọn mượt trên mobile với animation fade-slide như Facebook app, đồng bộ accent và dark/light mode.  
+- Hero dạng glassmorphism đa lớp **không dùng ảnh nền**, chỉ sử dụng hiệu ứng gradient động, ánh sáng phản chiếu, và glass blur để tạo chiều sâu; chữ xuất hiện cascade, nút CTA gradient động theo accent có ripple và tilt khi hover; khi cuộn xuống, hero mờ dần và header đổi độ trong suốt như trang chủ Apple.  
+- QuickCall Ultra nổi bên trái dạng nút tròn glass blur đa tầng, có glow nhẹ, ripple khi nhấn, trượt ra 4 nút con (Gọi, Zalo, Bản đồ, WhatsApp), đồng bộ accent và hiệu ứng kim loại cao cấp.  
+Toàn bộ ba phần phải hòa thành một khối app liền mạch, chia sẻ cùng hiệu ứng glass, ánh sáng, transition và tone màu, phản hồi mượt trên mọi kích thước màn hình. ✨
+Tạo giao diện Ultra App đồng bộ gồm Menu, Hero và QuickCall trong cùng một khối glassmorphism cao cấp:  
+- Menu kiểu ứng dụng Facebook Ultra fixed-top mờ nhẹ, icon rõ, bóng mềm, hover sáng dần, tự thu gọn mượt trên mobile với animation fade-slide như Facebook app, đồng bộ accent và dark/light mode.  
 - Hero dạng glassmorphism đa lớp, nền gradient động, ánh sáng phản chiếu nhẹ, chữ xuất hiện cascade, nút CTA gradient động theo accent có ripple và tilt khi hover; khi cuộn xuống, hero mờ dần và header đổi độ trong suốt như trang chủ Apple.  
 - QuickCall Ultra nổi bên trái dạng nút tròn glass blur đa tầng, có glow nhẹ, ripple khi nhấn, trượt ra 4 nút con (Gọi, Zalo, Bản đồ, WhatsApp), đồng bộ accent và hiệu ứng kim loại cao cấp.  
 Toàn bộ ba phần phải hòa thành một khối app liền mạch, chia sẻ cùng hiệu ứng glass, ánh sáng, transition và tone màu, phản hồi mượt trên mọi kích thước màn hình. ✨
