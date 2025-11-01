@@ -109,8 +109,8 @@ APP_SHELL={
 
 ---
 
-### 📋 MENU & FOOTER
-MENU=[
+{
+  "MENU": [
     {"🏠 Trang chủ": "index.html"},
     {"📄 Giới thiệu": "gioithieu.html"},
     {
@@ -129,7 +129,6 @@ MENU=[
     {"❓ FAQ": "faq.html"},
     {"💬 Liên hệ": "lienhe.html"}
   ],
-
   "FOOTER_COLUMNS": [
     {"title": "🏠 Trang chủ", "href": "index.html"},
     {"title": "📄 Giới thiệu", "href": "gioithieu.html"},
@@ -140,33 +139,13 @@ MENU=[
     {"title": "❓ FAQ", "href": "faq.html"},
     {"title": "💬 Liên hệ", "href": "lienhe.html"},
     {"title": "🌐 Website", "icon": "globe", "href": "https://thuexemaynguyentu.com"},
-    {"title": "📞 Gọi", "icon": "phone", "href": "tel:0942467674"},
-    {"title": "💬 Zalo", "icon": "zalo", "href": "https://zalo.me/0942467674"},
+    {"title": "📞 Gọi", "icon": "phone", "href": "tel:+84942467674"},
+    {"title": "💬 Zalo", "icon": "zalo", "href": "https://zalo.me/84942467674"},
     {"title": "📷 Instagram", "icon": "instagram", "href": "https://www.instagram.com/nguyentumotorbike/"},
     {"title": "⭐ TripAdvisor", "icon": "tripadvisor", "href": "https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html"},
     {"title": "📘 Facebook", "icon": "facebook", "href": "https://m.facebook.com/chothuexemay0857255868/"}
   ]
 }
-
----
-
-### HERO_MINIAPP = {
-  ENABLED: true,
-  TYPE: "service-grid-ultra", // Hero nâng cao Ultra không ảnh
-  TITLE: "Đặt xe nhanh cùng Nguyễn Tú",
-  SUBTITLE: "Chọn loại xe bạn cần và nhận xe trong 20–40 phút. Giao xe tận nơi, hỗ trợ 24/7.",
-  STYLE: "glass no-image accent-sync", // hiệu ứng glass, đồng bộ màu, không ảnh nền
-  BUTTONS: [
-    {"label": "🚀 Đặt xe ngay", "href": "lienhe.html"},
-    {"label": "⚙️ Dịch vụ", "href": "dichvu.html"},
-    {"label": "🏍️ Xem các loại xe", "href": "loaixe.html"},
-    {"label": "💸 Bảng giá", "href": "banggia.html"},
-    {"label": "🎁 Ưu đãi & Giảm giá", "href": "uudai.html"},
-    {"label": "📋 Thủ tục thuê xe", "href": "thutuc.html"},
-    {"label": "💬 Chat Zalo", "href": "https://zalo.me/0942467674"}
-  ]
-};
-
 ---
 
 ### 🧱 BODY_SECTIONS (đầy đủ + SEO link)
