@@ -408,9 +408,10 @@ CREATIVE_HINTS_EXTRA={
   PERFORMANCE_NOTE:"Giảm DOM load, inline CSS cần thiết, defer script, tránh repaint layout."
 };
 
-RENDER_HINTS={
-  MENU_STRUCTURE:"Tạo menu chính theo cấu trúc trong MENU=[...] (có dropdown, icon emoji). Giữ nguyên thứ tự và nhóm dịch vụ. Menu dạng glass fixed top, hiệu ứng hover mượt, đồng bộ màu accent.",
-  FOOTER_LAYOUT:"Tạo footer theo FOOTER_COLUMNS=[...] nhưng chia thành 6 cột responsive dạng grid: \
+RENDER_HINTS = {
+  MENU_STRUCTURE: "Tạo menu chính theo cấu trúc trong MENU=[...] (có dropdown, icon emoji). Giữ nguyên thứ tự và nhóm 'Dịch vụ' là menu cha không có href. Menu dạng glass fixed top, hiệu ứng hover mượt, đồng bộ màu accent.",
+  
+  FOOTER_LAYOUT: "Tạo footer theo FOOTER_COLUMNS=[...] nhưng chia thành 6 cột responsive dạng grid: \
 1️⃣ Khám phá → Trang chủ, Giới thiệu; \
 2️⃣ Dịch vụ → Dịch vụ, Bảng giá, Hướng dẫn; \
 3️⃣ Blog & Ưu đãi → Kinh nghiệm, Ưu đãi; \
@@ -418,11 +419,16 @@ RENDER_HINTS={
 5️⃣ Liên hệ → Liên hệ, Website, Gọi, Zalo; \
 6️⃣ Mạng xã hội → Facebook, Instagram, TripAdvisor. \
 Giữ nguyên emoji, href, icon. Dùng grid 6 cột, auto-collapse còn 2 cột trên mobile. Có tagline và quickcall bên trái.",
-  FOOTER_STYLE:"Footer dạng glass mini-dock, đồng bộ theme UltraTitanGlass, có shadow nhẹ, icon social tròn nhỏ, hover sáng nhẹ.",
-  HEADER_STYLE:"Menu glass fixed top, có bóng mờ khi scroll, icon hiển thị rõ, đồng bộ theme.",
-  THEME_MODE:"Hỗ trợ Light / Dark mode tự động (theo hệ thống), có nút chuyển theme góc trên. Khi người dùng đổi theme, toàn bộ màu, shadow và glass phải cập nhật tức thì.",
-  COLOR_SYNC:"Tự động đồng bộ accent màu chính (#0A84FF, #00C49A) giữa header, footer, hero, nút CTA và icon.",
-  GENERATOR_NOTE:"Khi render HTML, phải tự sinh menu và footer dựa trên JSON MENU và FOOTER_COLUMNS. Không được bỏ, gộp hay đổi tên link. Giữ semantic HTML (nav, ul/li, footer, h4)."
+  
+  FOOTER_STYLE: "Footer dạng glass mini-dock, đồng bộ theme UltraTitanGlass, có shadow nhẹ, icon social tròn nhỏ, hover sáng nhẹ.",
+  
+  HEADER_STYLE: "Menu glass fixed top, có bóng mờ khi scroll, icon hiển thị rõ, đồng bộ theme.",
+  
+  THEME_MODE: "Hỗ trợ Light / Dark mode tự động (theo hệ thống), có nút chuyển theme góc trên. Khi người dùng đổi theme, toàn bộ màu, shadow và hiệu ứng glass phải cập nhật tức thì.",
+  
+  COLOR_SYNC: "Tự động đồng bộ accent màu chính (#0A84FF, #00C49A) giữa header, footer, hero, nút CTA và icon.",
+  
+  GENERATOR_NOTE: "Khi render HTML, phải tự sinh menu và footer dựa trên JSON MENU và FOOTER_COLUMNS. Không được bỏ, gộp hay đổi tên link. Giữ semantic HTML (nav, ul/li, footer, h4)."
 };
 
 Bạn là trình tạo HTML one-file chuyên nghiệp.  
