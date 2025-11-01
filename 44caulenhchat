@@ -14,6 +14,25 @@ Yêu cầu:
 
 ---
 
+// nap – thông tin liên hệ doanh nghiệp
+NAP = {
+  name: "Nguyễn Tú cho thuê xe máy Hà Nội",
+  description: "Dịch vụ cho thuê xe máy uy tín tại Hoàn Kiếm, Hà Nội. Cung cấp xe ga, xe số, xe điện, giao tận nơi 20–40 phút, hỗ trợ 24/7, giá rẻ, chất lượng cao.",
+  phone: "0942467674",
+  whatsapp: "https://wa.me/84942467674",
+  zalo: "https://zalo.me/0942467674",
+  email: "thuexemaynguyentu@gmail.com",
+  website: "https://thuexemaynguyentu.com",
+  address: "112 Nguyễn Văn Cừ, Long Biên, Hà Nội",
+  map: "https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7",
+  hours: "Mở cửa: 7h00 – 22h00 (Giao xe 24/7 theo yêu cầu)",
+  social: {
+    facebook: "https://m.facebook.com/chothuexemay0857255868/",
+    instagram: "https://www.instagram.com/nguyentumotorbike/",
+    tripadvisor: "https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html"
+  }
+};
+
 ### 🧭 Cấu trúc trang
 
 **Header cố định (glassmorphism)**  
