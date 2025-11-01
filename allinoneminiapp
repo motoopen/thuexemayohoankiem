@@ -34,11 +34,23 @@ CONTACT={
   LOGO_URL:"https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png"
 };
 
-STYLE={
-  STYLE_PRESET:"UltraTitanGlass",
-THEME_RANDOMIZER={
-  ENABLED:true,
-  POOL:[
+const STYLE = {
+  STYLE_PRESET: "UltraTitanGlass",
+  ACCENT: "#0A84FF",
+  ACCENT2: "#00C49A",
+  RADIUS: "20px",
+  LANG: "vi",
+  DEFAULT_THEME: "auto",
+  BODY_BG_LIGHT: "#f9fafa",
+  BODY_BG_DARK: "#0c0d0f",
+  GLASS: true,
+  BLUR: "10px",
+  SHADOW: "0 4px 20px rgba(0,0,0,0.1)"
+};
+
+const THEME_RANDOMIZER = {
+  ENABLED: true,
+  POOL: [
     "UltraTitanGlass",
     "FacebookUltra",
     "NeoMint",
@@ -48,48 +60,8 @@ THEME_RANDOMIZER={
     "MotoDarkCarbon",
     "MinimalWhite"
   ],
-  SYNC_ACCENT:true,
-  RANDOMIZE_ON_LOAD:true
-};
-  ACCENT:"#0A84FF",
-  ACCENT2:"#00C49A",
-  RADIUS:"20px",
-  LANG:"vi",
-  DEFAULT_THEME:"auto",
-  BODY_BG_LIGHT:"#f9fafa",
-  BODY_BG_DARK:"#0c0d0f",
-  GLASS:true,
-  BLUR:"10px",
-  SHADOW:"0 4px 20px rgba(0,0,0,0.1)"
-};
-
-FEATURES={
-  USE_CHAT:true,
-  USE_QUICKCALL:true,
-  USE_QUICKCALL_LEFT:true,
-  USE_CARD_TILT:true,
-  USE_SCROLL_ANIM:true,
-  USE_VIEW_TRANSITIONS:true,
-  USE_CONTACT_FORM:true,
-  USE_HERO_MINIAPP:true
-};
-
-APP_SHELL={
-  ENABLED:true,
-  SYNC_MENU_FOOTER:true,
-  STYLE_MATCH_THEME:true,
-  MENU_MODE:"glass-fixed",
-  FOOTER_MODE:"mini-dock",
-  HERO_MODE:"service-grid",
-  USE_TILT_EFFECT:true,
-  FOOTER_ICONS_FIRST:true,
-  INTERACTION:{
-    SCROLL_HIDE_HEADER:true,
-    SCROLL_FADE_FOOTER:true,
-    SMOOTH_SCROLL:true
-  },
-  AUTO_THEME_SYNC:true,
-  AI_HINT:"Đồng bộ menu, footer, hero mini-app và quickcall theo cùng 1 style, tạo cảm giác app một trang."
+  SYNC_ACCENT: true,
+  RANDOMIZE_ON_LOAD: true
 };
 
 const main_menu = [
