@@ -157,7 +157,9 @@ FOOTER_COLUMNS = [
 
 🎯 Kết thúc
 
+
 Trả về CHỈ nội dung đầy đủ của file index.html,
+Tạo QuickCall Ultra cao cấp nổi bên trái, dạng nút tròn glassmorphism đa tầng có bóng mềm, glow nhẹ, ripple khi nhấn; khi mở trượt ra 4 nút con (Gọi, Zalo, Bản đồ, WhatsApp) có icon Font Awesome, đổi màu accent theo theme, hover sáng dần như hiệu ứng kim loại cao cấp. ✨
 bắt đầu bằng <!DOCTYPE html> và kết thúc bằng </html>,
 không kèm giải thích.
 Tạo giao diện mini-app kiểu glassmorphism cao cấp, fade-in + ripple + glow.
