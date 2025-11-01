@@ -543,3 +543,4 @@ AI_SAFEMODE = {
   RESTRICT_API_OUTSIDE:true,
   AUTO_RECOVER:true
 };
+Quét DUY NHẤT file index.html tôi dán ngay sau; tự phát hiện/sửa lỗi MENU & QUICK-CALL: thiếu id/aria, toggle sai, không tự đóng trên mobile, icon Font Awesome cũ; CHUẨN HÓA <nav id="app-navigation" aria-label="Điều hướng chính"> và <button class="menu-toggle" aria-controls="app-navigation" aria-expanded="false">…; VIẾT LẠI 7.2/7.3 trong IIFE dùng biến isMenuOpen (menu) và isQcaOpen (quick-call) để đồng bộ class & icon, mỗi lần đổi trạng thái phải cập nhật aria-expanded và aria-label; với menu mobile, nếu click liên kết có href khác "#", tự động đóng; thêm xử lý Escape và reset khi đổi breakpoint; bỏ defer cho script nội tuyến; đổi fa-times → fa-xmark; sửa lỗi cú pháp class.="…" và thêm rel="noopener noreferrer" cho mọi link target="_blank"; giữ nguyên UI/UX, không thêm thư viện; trả về CHỈ unified diff bắt đầu bằng "diff --git a/index.html b/index.html" (không kèm giải thích).
