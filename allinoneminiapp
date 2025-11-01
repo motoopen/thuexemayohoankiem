@@ -268,24 +268,57 @@ BODY_SECTIONS={
   ]
 };
 
-KIEM_TRA_MENU_FOOTER={
-  MENU_EXPECT:[
-    "index.html","gioithieu.html","dichvu.html","banggia.html",
-    "https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html",
+KIEM_TRA_MENU_FOOTER = {
+  MENU_EXPECT: [
+    // --- MENU CHÍNH ---
+    "https://motoopen.github.io/thuexemayohoankiem/",
+    "gioithieu.html",
+    "dichvu.html",
+    "banggia.html",
+    "faq.html",
+    "lienhe.html",
     "https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html",
-    "faq.html","lienhe.html"
+    "https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html"
   ],
-  FOOTER_EXPECT:[
-    "index.html","gioithieu.html","dichvu.html","banggia.html",
-    "https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html",
-    "https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html",
-    "faq.html","lienhe.html"
-  ],
-  RULES:{
-    MUST_MATCH:true,
-    REPORT_OLD:["dieukhoan.html","baomat.html"],
-    ON_ERROR:"đổi sang link GitHub Pages mới",
-    auto_fix:true
+
+  FOOTER_EXPECT: {
+    // --- 6 CỘT FOOTER ---
+    "1️⃣ Khám phá": [
+      "https://motoopen.github.io/thuexemayohoankiem/",
+      "gioithieu.html"
+    ],
+    "2️⃣ Dịch vụ": [
+      "dichvu.html",
+      "banggia.html",
+      "thutuc.html"
+    ],
+    "3️⃣ Blog & Ưu đãi": [
+      "kinhnghiem.html",
+      "uudai.html"
+    ],
+    "4️⃣ Chính sách": [
+      "https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html",
+      "https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html",
+      "faq.html"
+    ],
+    "5️⃣ Liên hệ": [
+      "lienhe.html",
+      "https://thuexemaynguyentu.com",
+      "tel:0942467674",
+      "https://zalo.me/0942467674"
+    ],
+    "6️⃣ Mạng xã hội": [
+      "https://m.facebook.com/chothuexemay0857255868/",
+      "https://www.instagram.com/nguyentumotorbike/",
+      "https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html"
+    ]
+  },
+
+  RULES: {
+    MUST_MATCH: true,
+    REPORT_OLD: ["index.html", "dieukhoan.html", "baomat.html", "chinhsachcu.html"],
+    ON_ERROR: "đổi sang link GitHub Pages mới",
+    auto_fix: true
   }
 };
 
