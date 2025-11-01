@@ -133,6 +133,86 @@ FOOTER_COLUMNS = [
   {"title":"📘 Facebook","href":"https://m.facebook.com/chothuexemay0857255868/"}
 ];
 
+BODY_SECTIONS = {
+  USE_FADEIN: true,
+  USE_SCROLL_ANIM: true,
+  SECTIONS: [
+    {
+      TITLE: "Giới thiệu thuê xe máy Hoàn Kiếm, Hà Nội",
+      TYPE: "intro",
+      CONTENT: [
+        "Dịch vụ cho thuê xe máy Nguyễn Tú cung cấp các dòng xe ga, xe số, xe điện mới, giao tận nơi chỉ trong 20–40 phút.",
+        "Thủ tục đơn giản – chỉ cần CCCD hoặc hộ chiếu. Hỗ trợ 24/7 cho du khách và dân văn phòng tại Hà Nội."
+      ]
+    },
+    {
+      TITLE: "Lý do nên chọn Nguyễn Tú",
+      TYPE: "benefits",
+      POINTS: [
+        "🚀 Xe mới, sạch, bảo dưỡng thường xuyên.",
+        "📞 Hỗ trợ kỹ thuật và giao nhận tận nơi nhanh chóng.",
+        "💰 Giá minh bạch, không chi phí ẩn.",
+        "🧾 Thủ tục nhanh – nhận xe chỉ trong vài phút."
+      ]
+    },
+    {
+      TITLE: "Quy trình thuê xe",
+      TYPE: "steps",
+      STEPS: [
+        "1️⃣ Chọn loại xe phù hợp nhu cầu (ga / số / điện).",
+        "2️⃣ Liên hệ qua Zalo hoặc gọi trực tiếp.",
+        "3️⃣ Xác nhận vị trí, thời gian, nhận xe sau 20–40 phút.",
+        "4️⃣ Kiểm tra xe, ký nhận và bắt đầu hành trình."
+      ]
+    },
+    {
+      TITLE: "Khách hàng nói gì",
+      TYPE: "testimonials",
+      REVIEWS: [
+        {"name": "Linh – Du khách", "stars": 5, "text": "Xe đẹp, giao nhanh, giá hợp lý. Dịch vụ rất chuyên nghiệp!"},
+        {"name": "Đức – Freelancer", "stars": 5, "text": "Đi êm, tiết kiệm xăng, nhân viên hỗ trợ nhiệt tình."},
+        {"name": "Sarah – Traveller", "stars": 4, "text": "Easy communication, fast delivery, good price."}
+      ]
+    },
+    {
+      TITLE: "Câu hỏi thường gặp (FAQ)",
+      TYPE: "faq",
+      QUESTIONS: [
+        {"q": "Có cần đặt cọc không?", "a": "Tùy dòng xe, thông thường chỉ cần cọc 500.000đ hoặc giữ giấy tờ tùy thân."},
+        {"q": "Có giao xe ban đêm không?", "a": "Có, chúng tôi hỗ trợ giao xe 24/7 trong nội thành Hà Nội."},
+        {"q": "Xe có được bảo dưỡng định kỳ không?", "a": "Tất cả xe đều được kiểm tra, bảo dưỡng kỹ trước khi giao khách."},
+        {"q": "Tôi có thể thuê xe bao lâu?", "a": "Thời gian linh hoạt – theo ngày, tuần, hoặc tháng. Càng lâu giá càng tốt."},
+        {"q": "Nếu xe bị hỏng giữa đường thì sao?", "a": "Liên hệ ngay hotline, sẽ có nhân viên hỗ trợ tận nơi trong thời gian ngắn."},
+        {"q": "Tôi có thể chọn dòng xe cụ thể không?", "a": "Có, bạn có thể chọn loại xe ga, xe số hoặc xe điện theo nhu cầu."},
+        {"q": "Có hỗ trợ giao xe đến khách sạn không?", "a": "Có, giao nhận tận nơi miễn phí trong bán kính 3km khu Hoàn Kiếm."},
+        {"q": "Có cần bằng lái xe không?", "a": "Có, khách cần có bằng lái hợp lệ khi thuê xe trên 50cc."}
+      ]
+    },
+    {
+      TITLE: "Liên hệ & Đặt xe ngay",
+      TYPE: "cta",
+      DESC: "Cần xe gấp ở khu Hoàn Kiếm, Long Biên, hoặc phố cổ Hà Nội? Gọi ngay để nhận xe trong 20–40 phút.",
+      BUTTONS: [
+        {"label": "📞 Gọi ngay", "href": "tel:0942467674"},
+        {"label": "💬 Chat Zalo", "href": "https://zalo.me/0942467674"},
+        {"label": "📍 Xem bản đồ", "href": "https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7"}
+      ]
+    }
+  ]
+};
+
+SEO_LINKING_HINT = {
+  ENABLED: true,
+  PURPOSE: "Tăng cường internal linking tự nhiên, cải thiện SEO và trải nghiệm người dùng.",
+  RULES: [
+    "Tự động chèn 4–5 liên kết nội bộ (internal links) trong phần nội dung, đặc biệt tại các section giới thiệu, lợi ích và quy trình.",
+    "Không cần đặt chính xác href; AI tự chọn hoặc để trống placeholder phù hợp với cấu trúc trang.",
+    "Các liên kết nên hướng đến trang như: bảng giá, hướng dẫn thuê xe, kinh nghiệm, liên hệ, ưu đãi, hoặc các dịch vụ liên quan.",
+    "Giữ văn phong tự nhiên, không spam link, mỗi đoạn tối đa 1 liên kết.",
+    "Không lặp lại anchor text, ưu tiên từ khóa có ngữ nghĩa rõ."
+  ]
+};
+
 ⚙️ Quy định render
 	•	Tự sinh menu và footer từ JSON trên
 	•	Tự nhận biết page active
