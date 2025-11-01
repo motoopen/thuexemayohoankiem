@@ -291,6 +291,11 @@ Tự động tạo các phần:
 - RESPONSIVE toàn diện (mobile first)
 Tạo code hoàn chỉnh, comment rõ ràng, chia section logic, code sạch, Không dùng jQuery, không Bootstrap, không gọi API. 
 
-
+- Chỉ xuất code hoàn chỉnh, không mô tả.
+FRAMEWORK_LOCK = {
+  JQUERY: false,
+  BOOTSTRAP: false,
+  API_OUTSIDE: false
+};
 
 
