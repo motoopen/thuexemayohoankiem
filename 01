@@ -150,16 +150,20 @@ MENU=[
 
 ---
 
-### 🚀 HERO MINI-APP
-HERO_MINIAPP={
-  ENABLED:true,
-  TYPE:"service-grid",
-  TITLE:"Đặt xe nhanh cùng Nguyễn Tú",
-  SUBTITLE:"Chọn loại xe bạn cần và nhận xe trong 20–40 phút",
-  BUTTONS:[
-    {"label":"🚀 Đặt xe ngay","href":"lienhe.html"},
-    {"label":"🛵 Xem bảng giá","href":"banggia.html"},
-    {"label":"💬 Chat MotoAI","href":"#motoai"}
+### HERO_MINIAPP = {
+  ENABLED: true,
+  TYPE: "service-grid-ultra", // Hero nâng cao Ultra không ảnh
+  TITLE: "Đặt xe nhanh cùng Nguyễn Tú",
+  SUBTITLE: "Chọn loại xe bạn cần và nhận xe trong 20–40 phút. Giao xe tận nơi, hỗ trợ 24/7.",
+  STYLE: "glass no-image accent-sync", // hiệu ứng glass, đồng bộ màu, không ảnh nền
+  BUTTONS: [
+    {"label": "🚀 Đặt xe ngay", "href": "lienhe.html"},
+    {"label": "⚙️ Dịch vụ", "href": "dichvu.html"},
+    {"label": "🏍️ Xem các loại xe", "href": "loaixe.html"},
+    {"label": "💸 Bảng giá", "href": "banggia.html"},
+    {"label": "🎁 Ưu đãi & Giảm giá", "href": "uudai.html"},
+    {"label": "📋 Thủ tục thuê xe", "href": "thutuc.html"},
+    {"label": "💬 Chat Zalo", "href": "https://zalo.me/0942467674"}
   ]
 };
 
