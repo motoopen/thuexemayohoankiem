@@ -26,6 +26,82 @@ ACCENT2="#1B5FFF"
 RADIUS="18px"
 LANG="vi"
 
+### 🎨 STYLE + RANDOM THEME
+
+STYLE={
+  STYLE_PRESET:"UltraTitanGlass",
+  ACCENT:CONFIG.MAIN_COLOR,
+  ACCENT2:"#00C49A",
+  RADIUS:"20px",
+  LANG:"vi",
+  DEFAULT_THEME:"auto",
+  BODY_BG_LIGHT:"#f9fafa",
+  BODY_BG_DARK:"#0c0d0f",
+  GLASS:true,
+  BLUR:"10px",
+  SHADOW:"0 4px 20px rgba(0,0,0,0.1)"
+};
+
+THEME_RANDOMIZER={
+  ENABLED:true,
+  POOL:[
+    "UltraTitanGlass",
+    "NeoMint",
+    "MidnightPurple",
+    "AeroGlassBlue",
+    "MinimalWhite",
+    "SunsetOrange",
+    "FacebookUltra",
+    "MotoDarkCarbon"
+  ],
+  SYNC_ACCENT:true,
+  RANDOMIZE_ON_LOAD:true
+};
+
+STYLE_SELECTOR={
+  ENABLED:true,
+  AUTO_ADAPT:true,
+  DEFAULT:"UltraTitanGlass"
+};
+
+THEME_SELECTOR_UI={
+  ENABLE_ANIM:true,
+  CARD_HOVER_GLOW:true,
+  TRANSITION_TIME:"0.3s",
+  CARD_RADIUS:"16px",
+  USE_ICON_PREVIEW:true,
+  SAVE_LAST_THEME:true,
+  AUTO_APPLY:true,
+  LABEL:"Tùy chỉnh giao diện",
+  DESCRIPTION:"Chọn phong cách hiển thị yêu thích"
+};
+
+---
+
+### ⚙️ FEATURES & APP SHELL
+FEATURES={
+  USE_CHAT:true,
+  USE_QUICKCALL:true,
+  USE_QUICKCALL_LEFT:true,
+  USE_CARD_TILT:true,
+  USE_SCROLL_ANIM:true,
+  USE_VIEW_TRANSITIONS:true,
+  USE_CONTACT_FORM:true,
+  USE_HERO_MINIAPP:true
+};
+
+APP_SHELL={
+  ENABLED:true,
+  SYNC_MENU_FOOTER:true,
+  STYLE_MATCH_THEME:true,
+  MENU_MODE:"glass-fixed",
+  FOOTER_MODE:"mini-dock",
+  HERO_MODE:"service-grid",
+  AUTO_THEME_SYNC:true
+};
+
+---
+
 # ===================== TÙY CHỌN TÍNH NĂNG =====================
 USE_CHAT=true
 USE_QUICKCALL=true
@@ -151,6 +227,55 @@ SOCIAL_LINKS = [
 	•	Input glass blur, outline #0A84FF.
 	•	Footer phản sáng bạc khi hover icon.
 	•	Responsive hoàn chỉnh, iOS safe-area.
+💡 Tổng hợp hiệu ứng:
+	•	Style: Glass titan xanh mờ, bóng nhẹ, bo 20px.
+	•	Theme random: Đổi theme khi load, accent đồng bộ.
+	•	Selector: Có glow, animation, lưu theme cuối.
+	•	Feature: Chat, gọi nhanh, nghiêng card, scroll animation.
+	•	App shell: Menu kính cố định, footer dock nhỏ, hero dạng grid.
+STYLE={
+  PRESET:"UltraTitanGlass",
+  ACCENT:"#0A84FF",
+  ACCENT2:"#00C49A",
+  RADIUS:"20px",
+  LANG:"vi",
+  THEME:"auto",
+  GLASS:true,
+  BLUR:"10px",
+  SHADOW:"0 4px 20px rgba(0,0,0,0.1)"
+};
+
+THEME_RANDOMIZER={
+  ENABLE:true,
+  POOL:["UltraTitanGlass","NeoMint","MidnightPurple","AeroGlassBlue","MinimalWhite","SunsetOrange","FacebookUltra","MotoDarkCarbon"],
+  SYNC_ACCENT:true,
+  ON_LOAD:true
+};
+
+THEME_SELECTOR={
+  ENABLE:true,
+  ANIM:true,
+  GLOW:true,
+  SAVE:true,
+  LABEL:"🎨 Giao diện",
+  DESC:"Chọn phong cách bạn thích"
+};
+
+FEATURES={
+  CHAT:true,
+  QUICKCALL:true,
+  CARD_TILT:true,
+  SCROLL_ANIM:true,
+  HERO_MINI:true
+};
+
+APP_SHELL={
+  ENABLE:true,
+  MENU:"glass-fixed",
+  FOOTER:"mini-dock",
+  HERO:"service-grid",
+  SYNC_THEME:true
+};
 
 
 
