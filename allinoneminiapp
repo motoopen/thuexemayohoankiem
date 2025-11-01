@@ -396,20 +396,52 @@ USER_FLOW_HINTS={
   INTERACTION_TONE:"friendly-UX"
 };
 
-THEME_RANDOMIZER={
-  ENABLED:true,
-  POOL:[
-    "UltraTitanGlass",
-    "NeoMint",
-    "MidnightPurple",
-    "AeroGlassBlue",
-    "MinimalWhite",
-    "SunsetOrange",
-    "FacebookUltra",
-    "MotoDarkCarbon"
-  ],
-  SYNC_ACCENT:true,
-  RANDOMIZE_ON_LOAD:true
+const STYLE = {
+  STYLE_PRESET: "UltraTitanGlass",
+  ACCENT: "#0A84FF",
+  ACCENT2: "#00C49A",
+  RADIUS: "20px",
+  LANG: "vi",
+  DEFAULT_THEME: "auto",
+  BODY_BG_LIGHT: "#f9fafa",
+  BODY_BG_DARK: "#0c0d0f",
+  GLASS: true,
+  BLUR: "10px",
+  SHADOW: "0 4px 20px rgba(0,0,0,0.1)",
+  THEME_RANDOMIZER: {
+    ENABLED: true,
+    POOL: [
+      // 🎨 Gốc
+      "UltraTitanGlass",
+      "FacebookUltra",
+      "NeoMint",
+      "MidnightPurple",
+      "AeroGlassBlue",
+      "SunsetOrange",
+      "MotoDarkCarbon",
+      "MinimalWhite",
+      // 💠 Thương hiệu phổ biến
+      "GoogleBright",
+      "HondaRed",
+      "YamahaBlue",
+      "KawasakiGreen",
+      // 🌈 Cao cấp / cảm hứng công nghệ
+      "AppleSilver",
+      "TeslaCrimson",
+      "BMWSteel",
+      "MercedesBlue",
+      "CyberSteel",
+      "EmeraldGlow",
+      "AuroraGradient",
+      "GalaxyGlass",
+      "OceanMist",
+      "CarbonWave",
+      "LavaGlow",
+      "FrostedPearl"
+    ],
+    SYNC_ACCENT: true,
+    RANDOMIZE_ON_LOAD: true
+  }
 };
 
 VALIDATION={
