@@ -283,10 +283,9 @@ Sử dụng code sạch, không phụ thuộc framework ngoài (chỉ HTML + CSS
 Áp dụng cấu trúc module và đặt tên biến, class rõ ràng.  
 Tự động tạo các phần:
 - HERO ULTRA MINI (ProUltraTitanBlue hoặc UltraTitanGlass style)
-- THEME ENGINE (random + selector + sync accent)
 - QUICKCALL MINI NÂNG CAO (gọi / chat / map, auto glow + smart context)
 - CONTACT FORM MINI (nút gửi + phản hồi nhanh)
-- APP SHELL (menu glass-fixed, footer mini-dock, auto theme sync)
+
 - ANIMATION ENGINE (tilt card, scroll reveal, transition smooth)
 - RESPONSIVE toàn diện (mobile first)
 Tạo code hoàn chỉnh, comment rõ ràng, chia section logic, code sạch, Không dùng jQuery, không Bootstrap, không gọi API. 
