@@ -22,7 +22,7 @@ NAP = {
   whatsapp: "https://wa.me/84942467674",
   zalo: "https://zalo.me/0942467674",
   email: "thuexemaynguyentu@gmail.com",
-  website: "https://thuexemaynguyentu.com",
+  website: "https://motoopen.github.io/thuexemayohoankiem/",
   address: "112 Nguyễn Văn Cừ, Long Biên, Hà Nội",
   map: "https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7",
   hours: "Mở cửa: 7h00 – 22h00 (Giao xe 24/7 theo yêu cầu)",
@@ -118,7 +118,7 @@ META = {
 };
 
 MENU = [
-  {"🏠 Trang chủ":"index.html"},
+  {"🏠 Trang chủ":"https://motoopen.github.io/thuexemayohoankiem/"},
   {"📄 Giới thiệu":"gioithieu.html"},
   {"⚙️ Dịch vụ":[
     {"📑 Thủ tục":"thutuc.html"},
