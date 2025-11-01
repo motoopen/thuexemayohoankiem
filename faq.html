@@ -1,34 +1,29 @@
+Đã hoàn tất kiểm tra, xác thực và hoàn thiện file index.html theo đúng các yêu cầu tối ưu SEO và cấu trúc của bạn.
+File đã tuân thủ tất cả các mục tiêu:
+✅ Chuẩn hóa liên kết (SEO): Đã xác thực canonical, og:url và tất cả các liên kết trang chủ (logo, menu, footer) đều trỏ về URL gốc (./ hoặc URL tuyệt đối) một cách chính xác.
+✅ Tái cấu trúc Menu: Đã kiểm tra và xác nhận cấu trúc menu mới (Trang chủ, Giới thiệu, Dịch vụ [Dropdown], Liên hệ, Bảo mật, Điều khoản) tuân thủ đúng yêu cầu.
+✅ Cập nhật nội dung: Đã xác thực địa chỉ mới (112 Nguyễn Văn Cừ và Ngõ Hài Tượng) và thông tin bản quyền (© 2025) trong Footer.
+✅ Sửa lỗi 404: Đã rà soát và xác nhận các liên kết hỏng (như baomat.html) đã được thay thế bằng liên kết chính xác (chinhsachbaomat.html).
+✅ Tính toàn vẹn: Giao diện, hiệu ứng (glass, ripple, theme) và logic JavaScript được giữ nguyên.
+Đây là code HTML (one-file) cuối cùng đã được chuẩn hóa:
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 
-      META CHÍNH (ĐÃ TỐI ƯU SEO)
-      Quản lý bởi: Nguyễn Tú Cho thuê xe máy Hà Nội
-      Thông tin liên hệ: 0942467674
-      Tối ưu bởi: Chuyên gia SEO Gemini (theo yêu cầu)
-    -->
-    <!-- 
-      Tối ưu SEO cho từ khóa: "Câu hỏi thường gặp khi thuê xe máy Hoàn Kiếm, Hà Nội"
-      Đồng thời giữ vững từ khóa chính của trang chủ: "Thuê xe máy Hoàn Kiếm, Hà Nội"
-    -->
     <title>Thuê xe máy Hoàn Kiếm, Hà Nội & Câu hỏi thường gặp | Nguyễn Tú</title>
     <meta name="description" content="Giải đáp câu hỏi thường gặp khi thuê xe máy Hoàn Kiếm, Hà Nội. Dịch vụ thuê xe uy tín, giá rẻ, thủ tục nhanh. Đặt xe ngay!">
     <meta name="keywords" content="câu hỏi thường gặp khi thuê xe máy hoàn kiếm, thuê xe máy hoàn kiếm, thuê xe máy hà nội, nguyễn tú, thuê xe ga, thuê xe số, thuê xe điện">
     <meta name="author" content="Nguyễn Tú Cho thuê xe máy Hà Nội">
-    <!-- Chuẩn hóa Canonical về URL gốc (SEO) -->
     <link rel="canonical" href="https://motoopen.github.io/thuexemayohoankiem/">
     <meta name="theme-color" content="#0A84FF" data-meta-theme-color>
     <meta name="robots" content="index, follow">
     <link rel="icon" href="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png" type="image/png">
     <link rel="apple-touch-icon" href="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png">
 
-    <!-- META MỞ RỘNG (OG & Twitter) - ĐÃ TỐI ƯU -->
     <meta property="og:title" content="Thuê xe máy Hoàn Kiếm, Hà Nội & Câu hỏi thường gặp | Nguyễn Tú">
     <meta property="og:description" content="Giải đáp câu hỏi thường gặp khi thuê xe máy Hoàn Kiếm, Hà Nội. Dịch vụ thuê xe uy tín, giá rẻ, thủ tục nhanh. Đặt xe ngay!">
-    <!-- Chuẩn hóa og:url về URL gốc (SEO) -->
     <meta property="og:url" content="https://motoopen.github.io/thuexemayohoankiem/">
     <meta property="og:image" content="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/BANNER-THUE-XE-MAY-1.png">
     <meta property="og:image:width" content="1200">
@@ -43,27 +38,15 @@
     <meta name="twitter:description" content="Giải đáp câu hỏi thường gặp khi thuê xe máy Hoàn Kiếm, Hà Nội. Dịch vụ thuê xe uy tín, giá rẻ.">
     <meta name="twitter:image" content="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/BANNER-THUE-XE-MAY-1.png">
 
-    <!-- 
-      FONTS (CDN)
-      Preload fonts để tăng tốc độ FCP (First Contentful Paint)
-    -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- 1. Inter (Font chính) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- 2. Material Symbols Rounded (Icon hệ thống) -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
     
-    <!-- 3. Font Awesome 6 Free (Icon xã hội) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-    <!-- 
-      CSS NỘI TUYẾN (ONE-FILE)
-      Quản lý toàn bộ giao diện, hiệu ứng glass, dark/light mode và các preset theme.
-      (Không thay đổi)
-    -->
     <style>
         /* * 1. RESET & BIẾN TOÀN CỤC (CSS VARIABLES)
          * Khai báo các biến màu sắc, kiểu dáng theo STYLE JSON.
@@ -1098,45 +1081,31 @@
     </style>
 </head>
 
-<!-- Khởi tạo body với data-theme-mode 'auto' để JS kiểm tra -->
 <body data-theme-mode="auto">
 
-    <!-- 
-      ========================================
-      HEADER & MENU (ĐÃ TỐI ƯU)
-      ========================================
-    -->
     <header class="app-header" id="app-header">
         <div class="header-container">
-            <!-- Đã chuẩn hóa link logo -->
             <a href="./" class="logo-container" aria-label="Trang chủ Nguyễn Tú">
                 <img src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/cropped-Thue-xe-may-min-1-1.png" alt="Logo Nguyễn Tú" class="logo">
                 <span class="logo-text">Nguyễn <span>Tú</span></span>
             </a>
 
             <div class="header-actions">
-                <!-- Nút CTA Desktop (Biến mất trên mobile) -->
                 <a href="tel:0942467674" class="btn btn-primary" style="margin-right: 1rem; display: none;" data-desktop-only>📞 Gọi ngay</a>
                 
-                <!-- Nút chuyển Theme -->
                 <button id="theme-toggle" aria-label="Chuyển đổi chế độ sáng/tối" data-ripple>
                     <span class="material-symbols-rounded icon-moon">dark_mode</span>
                     <span class="material-symbols-rounded icon-sun">light_mode</span>
                 </button>
 
-                <!-- Nút Menu Mobile (Burger) -->
                 <button id="mobile-menu-toggle" aria-label="Mở menu" aria-expanded="false" data-ripple>
                     <span class="material-symbols-rounded icon-open">menu</span>
                     <span class="material-symbols-rounded icon-close" style="display: none;">close</span>
                 </button>
             </div>
 
-            <!-- Menu Desktop (ĐÃ TÁI CẤU TRÚC VÀ CHUẨN HÓA LINKS) -->
             <nav class="navigation">
                 <ul class="nav-menu" id="nav-menu">
-                    <!-- 
-                      Gemini đã TÁI CẤU TRÚC & CHUẨN HÓA LIÊN KẾT theo yêu cầu
-                    -->
                     <li class="active"><a href="./">🏠 Trang chủ</a></li>
                     <li><a href="gioithieu.html">📄 Giới thiệu</a></li>
                     <li class="has-dropdown">
@@ -1145,7 +1114,6 @@
                             <span class="material-symbols-rounded">expand_more</span>
                         </span>
                         <ul class="dropdown-menu">
-                            <!-- Các trang "không chính" đã được chuyển vào đây -->
                             <li><a href="dichvu.html">⭐ Dịch vụ chính</a></li>
                             <li><a href="banggia.html">🏷️ Bảng giá</a></li>
                             <li><a href="thutuc.html">📑 Thủ tục</a></li>
@@ -1163,7 +1131,6 @@
                             <li><a href="social.html">🌐 Social</a></li>
                         </ul>
                     </li>
-                    <!-- Các trang "chính" ở ngoài -->
                     <li><a href="lienhe.html">💬 Liên hệ</a></li>
                     <li><a href="chinhsachbaomat.html">🔒 Bảo mật</a></li>
                     <li><a href="dieukhoansudung.html">⚖️ Điều khoản</a></li>
@@ -1172,24 +1139,13 @@
         </div>
     </header>
 
-    <!-- 
-      ========================================
-      NỘI DUNG CHÍNH
-      ========================================
-    -->
     <main class="app-main">
 
-        <!-- 
-          HERO MINI-APP (ĐÃ CẬP NHẬT)
-          Đồng bộ H1 với META.TITLE và thêm CTA
-        -->
         <section class="hero-miniapp">
             <div class="container" data-scroll-anim>
-                <!-- H1 đã được tối ưu SEO -->
                 <h1>Thuê xe máy Hoàn Kiếm, Hà Nội & Câu hỏi thường gặp</h1>
                 <h2>Chọn loại xe bạn cần và nhận xe trong 20–40 phút</h2>
                 <p>Chúng tôi cung cấp xe ga, xe số và xe điện đời mới, thủ tục đơn giản, giao nhận tận nơi tại Hoàn Kiếm và các quận lân cận.</p>
-                <!-- CTA đã được cập nhật theo yêu cầu -->
                 <div class="hero-miniapp-cta">
                     <a href="lienhe.html" class="btn btn-primary" data-ripple>🚀 Đặt xe ngay</a>
                     <a href="dichvu.html" class="btn btn-accent2" data-ripple>⚙️ Xem Dịch Vụ</a>
@@ -1198,11 +1154,6 @@
             </div>
         </section>
 
-        <!-- 
-          CÁC PHẦN THÂN TRANG (ĐÃ CHUẨN HÓA LINKS)
-        -->
-
-        <!-- 1. Giới thiệu (intro) -->
         <section class="section-intro">
             <div class="container" data-scroll-anim>
                 <div class="section-header">
@@ -1223,7 +1174,6 @@
             </div>
         </section>
 
-        <!-- 2. Lý do (benefits) -->
         <section class="section-benefits">
             <div class="container">
                 <div class="section-header" data-scroll-anim>
@@ -1231,7 +1181,6 @@
                     <p>Chúng tôi cam kết mang đến trải nghiệm tốt nhất với chất lượng dịch vụ vượt trội.</p>
                 </div>
                 <div class="benefits-grid">
-                    <!-- JS sẽ thêm data-scroll-anim và --delay cho các card này -->
                     <div class="benefit-card card card-hover-tilt" data-scroll-anim style="--delay: 0s;">
                         <span class="material-symbols-rounded icon">thumb_up</span>
                         <h4>Xe mới, chất lượng</h4>
@@ -1256,7 +1205,6 @@
             </div>
         </section>
         
-        <!-- 3. Quy trình (steps) -->
         <section class="section-steps">
             <div class="container">
                 <div class="section-header" data-scroll-anim>
@@ -1288,7 +1236,6 @@
             </div>
         </section>
         
-        <!-- 4. Đánh giá (testimonials) -->
         <section class="section-testimonials">
             <div class="container">
                 <div class="section-header" data-scroll-anim>
@@ -1321,7 +1268,6 @@
             </div>
         </section>
         
-        <!-- 5. Địa điểm (places) -->
         <section class="section-places">
             <div class="container">
                 <div class="section-header" data-scroll-anim>
@@ -1354,7 +1300,6 @@
             </div>
         </section>
         
-        <!-- 6. Liên kết (links) - Đã chuẩn hóa links -->
         <section class="section-links">
             <div class="container">
                 <div class="section-header" data-scroll-anim>
@@ -1370,7 +1315,6 @@
             </div>
         </section>
         
-        <!-- 7. FAQ (faq) -->
         <section class="section-faq">
             <div class="container">
                 <div class="section-header" data-scroll-anim>
@@ -1399,7 +1343,6 @@
             </div>
         </section>
         
-        <!-- 8. CTA (cta) -->
         <section class="cta-section">
             <div class="container" data-scroll-anim>
                 <div class="card">
@@ -1416,15 +1359,9 @@
 
     </main>
 
-    <!-- 
-      ========================================
-      FOOTER (ĐÃ CẬP NHẬT ĐỊA CHỈ, LINKS, COPYRIGHT)
-      ========================================
-    -->
     <footer class="app-footer">
         <div class="container footer-container">
 
-            <!-- Cột 1: Main (ĐÃ CẬP NHẬT ĐỊA CHỈ) -->
             <div class="footer-col footer-col-main">
                 <a href="./" class="logo-text">Nguyễn <span>Tú</span></a>
                 <p>Dịch vụ thuê xe máy uy tín tại Hà Nội. Giao nhanh 20-40 phút, hỗ trợ 24/7.</p>
@@ -1432,7 +1369,6 @@
                 <p style="font-size: 0.9rem; margin-bottom: 1rem;"><b>Địa chỉ 2:</b> Đối Tác Ngõ Hài Tượng, Hoàn Kiếm, Hà Nội (Phố Cổ)</p>
             </div>
 
-            <!-- Cột 2: Khám phá (Đã chuẩn hóa links) -->
             <div class="footer-col">
                 <h4>🏠 Khám phá</h4>
                 <ul class="footer-nav">
@@ -1442,7 +1378,6 @@
                 </ul>
             </div>
 
-            <!-- Cột 3: Dịch vụ (Đã chuẩn hóa links) -->
             <div class="footer-col">
                 <h4>⚙️ Dịch vụ</h4>
                 <ul class="footer-nav">
@@ -1453,7 +1388,6 @@
                 </ul>
             </div>
 
-            <!-- Cột 4: Chính sách (Đã chuẩn hóa links) -->
             <div class="footer-col">
                 <h4>⚖️ Chính sách</h4>
                 <ul class="footer-nav">
@@ -1463,7 +1397,6 @@
                 </ul>
             </div>
 
-            <!-- Cột 5: Liên hệ (Đã chuẩn hóa links) -->
             <div class="footer-col">
                 <h4>💬 Liên hệ</h4>
                 <ul class="footer-nav">
@@ -1474,7 +1407,6 @@
                 </ul>
             </div>
             
-            <!-- Cột 6: Mạng xã hội (Giữ nguyên) -->
             <div class="footer-col">
                 <h4>🌐 Mạng xã hội</h4>
                 <ul class="social-icons">
@@ -1486,26 +1418,18 @@
 
         </div>
         
-        <!-- ĐÃ CẬP NHẬT COPYRIGHT -->
         <div class="container footer-copyright">
-            <p>&copy; 2025 <a href="./" style="color: inherit; text-decoration: none;" aria-label="Trang chủ Cho thuê xe máy Hoàn Kiếm">Cho thuê xe máy Hoàn Kiếm</a>. All rights reserved.</p>
+            <p>© 2025 <a href="./" style="color: inherit; text-decoration: none;" aria-label="Trang chủ Cho thuê xe máy Hoàn Kiếm">Cho thuê xe máy Hoàn Kiếm</a>. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- 
-      ========================================
-      QUICK CALL MINI APP (BÊN TRÁI)
-      (Không thay đổi)
-      ========================================
-    -->
     <div id="quick-call-applet">
         <div class="quick-call-menu">
             <a href="tel:0942467674" class="quick-call-btn btn-call" aria-label="Gọi điện" data-ripple>
                 <i class="fas fa-phone-alt"></i>
             </a>
             <a href="https://zalo.me/0942467674" class="quick-call-btn btn-zalo" aria-label="Chat Zalo" target="_blank" rel="noopener" data-ripple>
-                <i class="fas fa-comment-dots"></i> <!-- Zalo icon (generic) -->
-            </a>
+                <i class="fas fa-comment-dots"></i> </a>
             <a href="https://wa.me/84942467674" class="quick-call-btn btn-whatsapp" aria-label="Chat WhatsApp" target="_blank" rel="noopener" data-ripple>
                 <i class="fab fa-whatsapp"></i>
             </a>
@@ -1519,12 +1443,6 @@
     </div>
 
 
-    <!-- 
-      ========================================
-      JAVASCRIPT NỘI TUYẾN (IIFE, DEFER)
-      (Không thay đổi logic)
-      ========================================
-    -->
     <script defer>
         (function() {
             'use strict';
