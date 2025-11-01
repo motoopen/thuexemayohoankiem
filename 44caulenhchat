@@ -233,6 +233,85 @@ SEO_LINKING_HINT = {
 	•	💬 WhatsApp: https://wa.me/84942467674
 	•	Đóng = fa-xmark
 
+
+### 🔗 SEO_LINKING_HINT
+SEO_LINKING_HINT = {
+  ENABLED: true,
+  PURPOSE: "Tăng cường internal linking tự nhiên, cải thiện SEO và trải nghiệm người dùng.",
+  RULES: [
+    "Tự động chèn 4–5 liên kết nội bộ (internal links) trong phần nội dung.",
+    "Không cần đặt chính xác href; AI tự chọn hoặc để trống placeholder phù hợp với cấu trúc trang.",
+    "Các liên kết nên hướng đến trang như: bảng giá, hướng dẫn thuê xe, kinh nghiệm, liên hệ, ưu đãi, hoặc các dịch vụ liên quan.",
+    "Giữ văn phong tự nhiên, không spam link, mỗi đoạn tối đa 1 liên kết.",
+    "Không lặp lại anchor text, ưu tiên từ khóa có ngữ nghĩa rõ."
+  ]
+};
+
+---
+
+### ⚡ PERFORMANCE_OPTIMIZER
+PERFORMANCE_OPTIMIZER = {
+  ENABLED: true,
+  GOALS: [
+    "Tối ưu hiệu suất tải trang, tránh dư CSS/JS.",
+    "Ưu tiên inline CSS quan trọng (critical CSS).",
+    "Giảm DOM depth, tránh layout shift.",
+    "Tối ưu font-display: swap và preload.",
+    "Thêm smooth-scroll và animation nhẹ, không block rendering."
+  ]
+};
+
+---
+
+### 🌗 DARKMODE_TUNER
+DARKMODE_TUNER = {
+  ENABLED: true,
+  TRANSITION: "all 0.4s ease",
+  AUTO_SYNC: true,
+  FIX_CONTRAST: true,
+  MODE_TOGGLE_ICON: "☀️ / 🌙",
+  NOTES: "Bảo đảm độ tương phản AA, không nhấp nháy khi đổi theme."
+};
+
+---
+
+### ♿ ACCESSIBILITY_HINT
+ACCESSIBILITY_HINT = {
+  ENABLED: true,
+  TARGET: "WCAG 2.1 AA",
+  RULES: [
+    "Mọi icon, nút, liên kết đều có aria-label.",
+    "Ảnh và SVG phải có alt text hoặc role='presentation'.",
+    "Focus ring rõ ràng, có contrast cao.",
+    "Menu, QuickCall và Hero hỗ trợ bàn phím (Enter, Escape)."
+  ]
+};
+
+---
+
+### 🧠 AI_RENDER_RULES
+AI_RENDER_RULES = {
+  STRICT_MODE: true,
+  OUTPUT_ONLY: "index.html",
+  NO_COMMENT: true,
+  NO_EXPLANATION: true,
+  VALIDATE_HTML: true,
+  CONSISTENCY_CHECK: true,
+  FINALIZE: "Kết thúc output bằng </html> duy nhất."
+};
+
+---
+
+### 🌈 Giao diện tổng thể Ultra App
+
+Tạo giao diện Ultra App đồng bộ gồm Menu, Hero và QuickCall trong cùng một khối glassmorphism cao cấp, liền mạch, không tách block:  
+- Menu kiểu ứng dụng Facebook Ultra fixed-top mờ nhẹ, icon rõ, bóng mềm, hover sáng dần, tự thu gọn mượt trên mobile với animation fade-slide như Facebook app, đồng bộ accent và dark/light mode.  
+- Hero dạng glassmorphism đa lớp **không dùng ảnh nền**, chỉ sử dụng hiệu ứng gradient động, ánh sáng phản chiếu, và glass blur để tạo chiều sâu; chữ xuất hiện cascade, nút CTA gradient động theo accent có ripple và tilt khi hover; khi cuộn xuống, hero mờ dần và header đổi độ trong suốt như trang chủ Apple.  
+- QuickCall Ultra nổi bên trái dạng nút tròn glass blur đa tầng, có glow nhẹ, ripple khi nhấn, trượt ra 4 nút con (Gọi, Zalo, Bản đồ, WhatsApp), đồng bộ accent và hiệu ứng kim loại cao cấp.  
+
+Toàn bộ ba phần phải hòa thành **một khối app liền mạch**, chia sẻ cùng hiệu ứng glass, ánh sáng, transition và tone màu, phản hồi mượt trên mọi kích thước màn hình.  
+Trả về CHỈ nội dung đầy đủ của file index.html, bắt đầu bằng <!DOCTYPE html> và kết thúc bằng </html>, không kèm giải thích.
+
 ⸻
 
 🎯 Kết thúc
