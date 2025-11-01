@@ -84,32 +84,29 @@ SUPPORT_MENU = [
 6️⃣ Đánh giá khách hàng — Slider ⭐⭐⭐⭐⭐ (3 người, feedback thực).  
 7️⃣ Cam kết & bảo hành — đoạn ngắn + link `chinhsach.html`.
 
-# ===================== FOOTER (6 CỘT + FORM LIÊN HỆ + GOOGLE MAP) =====================
-- Footer nền Titan Blue Gradient (#0A0A1A → #0B1A3C), chữ trắng ánh bạc.  
-- 6 cột căn giữa:
-  1️⃣ 🏢 Về chúng tôi → `gioithieu.html`  
-  2️⃣ ⚙️ Dịch vụ → `dichvu.html`, `loaixe.html`, `uudai.html`, `giamgia.html`  
-  3️⃣ 🏷️ Bảng giá → `banggia.html`  
-  4️⃣ 📞 Liên hệ →  
-      - ☎️ PHONE  
-      - 💬 ZALO  
-      - 🗺️ MAP  
-      - ✉️ EMAIL  
-      - 🕓 Giờ: 8:00–21:00  
-      - 📰 Blog → https://motoopen.github.io/thuexemayohoankiem/blog.html  
-  5️⃣ 🛡️ Hỗ trợ → (SUPPORT_MENU)  
-  6️⃣ 📬 Gửi liên hệ nhanh:
-      - Input: Họ tên, Số điện thoại, Nội dung.  
-      - Nút “Gửi liên hệ” (mailto:EMAIL hoặc alert cảm ơn).  
-- Dưới form:  
-  🗺️ Google Map embed:  
-  ```html
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.911206107162!2d105.8702598!3d21.035704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9dd5f4cc73%3A0xdda6d835d7e1e1d5!2zMTEyIE5ndXnhu4VuIFbEg24gQ-G7qywgQ-G7rWEgRMSDbmcgTGEsIExvbmcgQmnDqm4sIEjDoCBO4buZaQ!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s"
-    width="100%" height="300" style="border:0;border-radius:12px;margin-top:20px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+# ===================== FOOTER (6 CỘT )
+# 🧩 RENDER_HINTS (chỉ đạo rõ ràng cho Gemini)
 
-THÊM 4 liên kết nội bộ ở phù hợp cho trang
+RENDER_HINTS={
+  MENU_STRUCTURE:"Tạo <ul class='nav-menu'> theo JSON MENU=[...] — có dropdown cho nhóm Dịch vụ, giữ emoji icon, glass fixed top, blur nhẹ 6–8px, opacity ~0.9, hover sáng hơn.",
+  MENU_AUTO_ACTIVE:"Thêm class active cho trang hiện tại (so khớp href).",
+  FOOTER_LAYOUT:"Tạo footer từ FOOTER_COLUMNS=[...] — chia 6 cột responsive grid: \
+1️⃣ Khám phá (Trang chủ, Giới thiệu) \
+2️⃣ Dịch vụ (Dịch vụ, Bảng giá, Hướng dẫn) \
+3️⃣ Blog & Ưu đãi (Kinh nghiệm, Ưu đãi, Blog) \
+4️⃣ Chính sách (Điều khoản, Bảo mật, FAQ) \
+5️⃣ Liên hệ (Liên hệ, Website, Gọi, Zalo) \
+6️⃣ Mạng xã hội (Facebook, Instagram, TripAdvisor). \
+Có tagline và quickcall ở góc trái, giữ icon emoji hoặc Font Awesome tương ứng.",
+  FOOTER_STYLE:"Footer glass mini-dock, có blur nhẹ, border-top mảnh, icon social tròn, hover phát sáng, đồng bộ màu accent.",
+  HEADER_STYLE:"Header glass fixed-top, có shadow khi scroll, đồng bộ accent và blur. Khi scroll >120px, nền đậm hơn.",
+  THEME_MODE:"Hỗ trợ Light / Dark mode thực: dùng thuộc tính data-theme-mode='light' hoặc 'dark' để điều khiển CSS. Nút chuyển theme có biểu tượng ☀️ / 🌙, đặt trong header, toggle bằng JS trong IIFE.",
+  COLOR_SYNC:"Accent #0A84FF (chính) và #00C49A (phụ) được đồng bộ cho menu, footer, hero và nút CTA.",
+  HERO_STYLE:"Hero miniapp đồng bộ glass style, có CTA nổi bật và hiệu ứng hover ripple.",
+  GENERATOR_NOTE:"Gemini phải thực sự sinh menu và footer từ JSON (không hardcode). Toàn bộ code phải hợp lệ HTML5, semantic, inline CSS/JS, tương thích mobile."
+};
 
+---
 
 	•	Cuối cùng:
 ©  Nguyễn Tú Motorbike Rental · “⬆️ Lên đầu trang”.
