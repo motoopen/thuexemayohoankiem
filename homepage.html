@@ -1,3 +1,57 @@
+<!-- Fade-in toàn trang + Scroll reveal cascade -->
+<script>
+(function () {
+  // Inject CSS
+  const style = document.createElement('style');
+  style.textContent = `
+    body{opacity:0;transition:opacity .7s cubic-bezier(0.16,1,0.3,1);}
+    body.page-loaded{opacity:1;}
+    html{scroll-behavior:smooth;}
+    [data-animate]{opacity:0;transform:translateY(30px);filter:blur(8px);
+      transition:opacity .9s cubic-bezier(0.16,1,0.3,1),
+                 transform .9s cubic-bezier(0.16,1,0.3,1),
+                 filter .9s cubic-bezier(0.16,1,0.3,1);}
+    [data-animate].visible{opacity:1;transform:none;filter:blur(0);}
+  `;
+  document.head.appendChild(style);
+
+  // body fade-in
+  window.addEventListener('load', () => {
+    document.body.classList.add('page-loaded');
+  });
+
+  // auto gắn data-animate
+  document.addEventListener('DOMContentLoaded', () => {
+    const selectors = [
+      '.hero', '.hero-card', '.section', '.section-block',
+      '.sections', '.footer-grid', '.site-footer',
+      '.mini-nav', '.qca'
+    ];
+    selectors.forEach(sel => {
+      document.querySelectorAll(sel).forEach(el => {
+        if (!el.hasAttribute('data-animate')) {
+          el.setAttribute('data-animate', '');
+        }
+      });
+    });
+
+    // scroll reveal + cascade
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry, idx) => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const delay = (parseFloat(el.dataset.delay) || idx * 90) + 40;
+          setTimeout(() => el.classList.add('visible'), delay);
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('[data-animate]').forEach(el => io.observe(el));
+  });
+})();
+</script>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -765,17 +819,8 @@
       }
     }
 
-    /* === FADE-IN ON SCROLL === */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-      will-change: opacity, transform;
-    }
-    .fade-in.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* === (ĐÃ XÓA) FADE-IN ON SCROLL === */
+    /* Các quy tắc .fade-in và .fade-in.is-visible đã được xóa */
 
     /* === TILT EFFECT === */
     .tilt-card {
@@ -969,10 +1014,7 @@
       .tilt-card {
         transform: none !important;
       }
-      .fade-in {
-        opacity: 1;
-        transform: none;
-      }
+      /* Xóa .fade-in khỏi đây vì nó đã bị xóa */
     }
   </style>
   <script type="application/ld+json">
@@ -1050,7 +1092,8 @@
   
   <main id="main-content">
     
-    <section class="hero-card fade-in" id="hero">
+    <!-- Đã xóa lớp 'fade-in' khỏi đây -->
+    <section class="hero-card" id="hero"> 
       <div class="hero-inner tilt-card">
         <h1>Thuê Xe Máy Hà Nội – Giao Tận Nơi, Giá Từ 150k/ngày</h1>
         <p class="hero-desc">Xe số • Xe ga • 50cc/điện • Thuê ngày/tuần/tháng • Giao nhanh 20–40’, cọc nhẹ, xe bảo dưỡng kỹ.</p>
@@ -1471,7 +1514,8 @@
         if (!container) return; // Thoát nếu không tìm thấy container
         BODY_SECTIONS.SECTIONS.forEach(function(section) {
           var div = document.createElement("section");
-          div.className = "section-block tilt-card fade-in";
+          // Đã xóa lớp 'fade-in' khỏi đây
+          div.className = "section-block tilt-card"; 
           var id = section.TITLE.toLowerCase().replace(/[^a-z0-9]+/g,"-");
           div.id = id;
           var head = document.createElement("div");
@@ -1649,23 +1693,8 @@
         });
       }
 
-      // HIỆU ỨNG FADE-IN
-      function initFadeIn() {
-        const faders = document.querySelectorAll('.fade-in');
-        if (!('IntersectionObserver' in window) || document.body.getAttribute('data-reduced') === 'true') {
-          faders.forEach(fader => fader.classList.add('is-visible'));
-          return;
-        }
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.1 });
-        faders.forEach(fader => observer.observe(fader));
-      }
+      // (ĐÃ XÓA) HIỆU ỨNG FADE-IN
+      // function initFadeIn() { ... } đã bị xóa
 
       // HIỆU ỨNG TILT
       function initTilt() {
@@ -1711,7 +1740,7 @@
         // buildFooter(); // Không cần nữa
         initHeroTabs(); 
         initRipple();
-        initFadeIn();   
+        // initFadeIn(); // (ĐÃ XÓA)
         initTilt();   
       });
 
