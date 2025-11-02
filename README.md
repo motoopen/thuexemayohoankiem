@@ -1,7 +1,3 @@
-Ok, mình kéo dài bản README ra cho nó “đúng kiểu dự án đang chạy thật” nha 😎. Vẫn giữ vibe: demo AI cho thuê xe máy, có NAP, có các domain bạn đang xài, có hướng dẫn nhúng, có giải thích cấu hình, có note SEO, có phần “lỗi thường gặp”.
-
-Dán nguyên cái này vào README.md là nhìn xịn liền 👇
-
 # 🛵 AI Cho Thuê Xe Máy – Nguyễn Tú
 
 Dự án nhỏ để **thí nghiệm AI/chatbot** cho dịch vụ **cho thuê xe máy tại Hà Nội** (Hoàn Kiếm, Long Biên, khu phố cổ). Mục tiêu chính:
