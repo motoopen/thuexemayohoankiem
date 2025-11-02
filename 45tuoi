@@ -32,7 +32,6 @@ NAP = {
     tripadvisor: "https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html"
   }
 };
-
 ### 🧭 Cấu trúc trang
 
 **Header cố định (glassmorphism)**  
@@ -167,6 +166,85 @@ FOOTER_COLUMNS = [
   {"title": "⭐ TripAdvisor", "href": "https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html"},
   {"title": "📘 Facebook", "href": "https://m.facebook.com/chothuexemay0857255868/"}
 ];
+
+⚙️ Quy định render
+	// ⚙️ Quy tắc render nâng cao cho MENU + FOOTER
+
+NAVIGATION_RULES = {
+  TYPE: "auto-generate",
+  SOURCE: "MENU",
+  STYLE: "glassmorphism",
+  ACTIVE_PAGE_DETECT: true,
+  RESPONSIVE: true,
+  INTERACTION: {
+    TOGGLE_ARIA: true,
+    ESC_CLOSE: true,
+    AUTO_COLLAPSE_ON_LINK: true,
+    BREAKPOINT_RESET: true
+  },
+  ACCESSIBILITY: {
+    ROLE: "navigation",
+    LABEL: "Điều hướng chính",
+    KEYBOARD_NAV: true
+  },
+  DESIGN: {
+    HEIGHT: "70px",
+    BLUR: "10px",
+    SHADOW: "0 4px 20px rgba(0,0,0,0.2)",
+    ACCENT_SYNC: true,
+    BACKDROP: "rgba(255,255,255,0.25)",
+    BACKDROP_DARK: "rgba(20,20,20,0.5)"
+  }
+};
+
+
+// 🦶 FOOTER – Glass 6 Columns Responsive
+FOOTER_RENDER_RULES = {
+  TYPE: "auto-generate",
+  SOURCE: "FOOTER_COLUMNS",
+  GRID: {
+    DESKTOP: 6,
+    TABLET: 3,
+    MOBILE: 2,
+    GAP: "24px"
+  },
+  DESIGN: {
+    BACKDROP: "rgba(255,255,255,0.08)",
+    BLUR: "12px",
+    RADIUS: "20px",
+    SHADOW: "0 2px 12px rgba(0,0,0,0.2)",
+    TEXT_COLOR: "var(--text-color)",
+    LINK_COLOR: "var(--text-muted)",
+    LINK_HOVER: "var(--accent)"
+  },
+  A11Y: {
+    ROLE: "contentinfo",
+    LABEL: "Chân trang website Nguyễn Tú",
+    LINK_FOCUS_VISIBLE: true,
+    CONTRAST_AA: true
+  },
+  INTERACTION: {
+    SMOOTH_SCROLL: true,
+    HOVER_GLOW: true,
+    RIPPLE_ON_CLICK: false
+  },
+  SEO: {
+    STRUCTURED: true,
+    GROUP_BY_TOPIC: true,
+    NEST_CHILDREN: true,
+    NOFOLLOW_EXTERNAL: true
+  },
+  RESPONSIVE: {
+    COLLAPSE_THRESHOLD: "600px",
+    COLLAPSE_TO: 2,
+    AUTO_REFLOW: true
+  },
+  DECORATION: {
+    TAGLINE: "Thuê xe máy Hà Nội – Nguyễn Tú • Uy tín • Giao nhanh 24/7",
+    SOCIAL_INLINE: true,
+    MINI_QCALL: true
+  }
+};
 
 BODY_SECTIONS = {
   USE_FADEIN: true,
