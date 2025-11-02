@@ -422,3 +422,4 @@ Mục tiêu: 1 khối Ultra App liền mạch = Menu + Hero + QuickCall (glassmo
 	•	Đồng bộ: chia sẻ biến theme (--accent, radii, glass blur), cùng timing transition; dark/light toggle lưu localStorage (mặc định theo prefers-color-scheme).
 	•	A11y & perf: keyboard nav, visible focus, contrast ok, prefers-reduced-motion giảm hiệu ứng; tắt tilt/blur nặng trên thiết bị yếu.
 	
+“Hãy áp dụng hiệu ứng Fade Ultra + Cascade (Signature App Motion) cho phần menu mở rộng, gồm animation blur nhẹ, easing mượt cubic-bezier(0.16,1,0.3,1), delay tuần tự, không thay layout.”
