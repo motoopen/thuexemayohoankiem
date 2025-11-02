@@ -1,0 +1,97 @@
+Bạn hãy tạo 1 file index.html duy nhất (HTML5, responsive, mobile-first) cho trang “Dịch vụ cho thuê xe máy Hà Nội – Nguyễn Tú”.
+
+Yêu cầu chung:
+	1.	HTML + CSS + JS đều inline (không dùng jQuery, không Bootstrap).
+	2.	Được link đúng 3 font CDN và phải preload + có <noscript>:
+	•	Inter
+	•	Material Symbols Rounded
+	•	Font Awesome 6 Free
+	3.	Có đầy đủ meta SEO/OG/Twitter/canonical/robots/theme-color.
+	4.	Có dark / light mode bằng nút bấm, lưu localStorage.
+	5.	Thiết kế kiểu glassmorphism sáng, accent #0A84FF, bo góc đẹp.
+
+⸻
+
+KHU VỰC PHẢI CÓ
+
+1) Header cố định
+	•	Cao ~70px, blur nền.
+	•	Bên trái: logo chữ “NT” + tên “Thuê xe máy – Nguyễn Tú”.
+	•	Chính giữa / bên phải: menu dạng danh sách (có thể ul/li):
+	•	Trang chủ (./)
+	•	Giới thiệu (gioithieu.html)
+	•	Dịch vụ (dropdown) gồm: thủ tục, loại xe, hướng dẫn, kinh nghiệm, địa điểm, ưu đãi
+	•	Bảng giá
+	•	FAQ
+	•	Liên hệ
+	•	Trên mobile có nút hamburger để mở/đóng menu.
+	•	Khi bấm link trên mobile thì tự đóng menu.
+
+2) Hero dạng thẻ glass
+	•	Tiêu đề: “Thuê Xe Máy Hà Nội – Giao Tận Nơi, Giá Từ 150k/ngày”
+	•	Mô tả ngắn 1–2 câu
+	•	3 nút/tab nhỏ: Ngày – Tuần – Tháng
+	•	Dòng giá: “Giá dự kiến: 150–200k/ngày • Cọc nhẹ”
+	•	2 nút CTA:
+	•	Gọi ngay → tel:0942467674
+	•	Xem bảng giá → #banggia
+
+3) Các section nội dung
+Tạo 5–6 section đơn giản, mỗi section là 1 khối glass:
+	•	Giới thiệu dịch vụ
+	•	Lý do nên chọn
+	•	Quy trình thuê
+	•	Đánh giá khách hàng
+	•	FAQ (dùng <details><summary>)
+	•	Liên hệ & đặt xe ngay (gồm 3 nút: gọi, Zalo, bản đồ)
+
+4) Quick Call bên trái
+	•	Nút tròn cố định ở trái, dưới, dùng icon phone.
+	•	Bấm vào mở 4 nút con: Gọi, Zalo, WhatsApp, Bản đồ.
+	•	Dùng màu accent, có blur.
+
+5) Mini App Nav bên phải
+	•	Nút tròn cố định ở phải, dưới.
+	•	Khi bấm thì hiện 1 cụm menu nhỏ dạng glass (5 item): Trang chủ, Loại xe, Bảng giá, Liên hệ, Bản đồ.
+	•	Có animation xuất hiện mượt.
+
+6) Footer 6 cột + trust strip
+	•	Footer dạng glass, chia lưới (desktop 6 cột, mobile 2–3 cột).
+	•	Có dải chữ nhỏ (trust strip):
+“⭐ 4.9/5 từ khách hàng • Giao xe 20–40 phút • Hỗ trợ 24/7 • Xe bảo dưỡng định kỳ”
+	•	Có hàng icon social làm đẹp (bo góc, nền mờ, hover đổi sang màu accent):
+	•	Facebook
+	•	Instagram
+	•	TripAdvisor
+
+⸻
+
+CHUYỂN ĐỘNG / ANIMATION
+	•	Hãy áp dụng hiệu ứng fade mượt + trượt nhẹ xuống dưới cho hero, section, và menu mini.
+	•	Dùng easing: cubic-bezier(0.16,1,0.3,1)
+	•	Mỗi item xuất hiện chênh nhau 0.1s để có cảm giác cascade.
+	•	Nếu người dùng bật “prefers-reduced-motion” thì bỏ animation.
+
+⸻
+
+DATA CẦN DÙNG
+	•	Tên: “Nguyễn Tú cho thuê xe máy Hà Nội”
+	•	Mô tả: “Dịch vụ cho thuê xe máy uy tín tại Hoàn Kiếm, Hà Nội. Cung cấp xe ga, xe số, xe điện, giao tận nơi 20–40 phút, hỗ trợ 24/7, giá rẻ, chất lượng cao.”
+	•	Điện thoại: 0942467674
+	•	Zalo: https://zalo.me/0942467674
+	•	WhatsApp: https://wa.me/84942467674
+	•	Bản đồ: https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7
+	•	Địa chỉ: 112 Nguyễn Văn Cừ, Long Biên, Hà Nội
+
+⸻
+
+LƯU Ý QUAN TRỌNG (CHO DỄ)
+	•	Bạn được phép thêm div hoặc wrapper nếu cần để căn layout.
+	•	Bạn được phép viết JS để toggle menu, quick call, mini nav.
+	•	Bạn không được gọi API ngoài hoặc chèn thư viện khác 3 font ở trên.
+	•	Toàn bộ phải nằm trong 1 file index.html.
+
+Hãy xuất thẳng file index.html hoàn chỉnh.
+
+⸻
+Không lười làm đẹp cả footer
