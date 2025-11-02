@@ -1681,12 +1681,6 @@
 
         // --- Hàm trợ giúp ---
         
-        /**
-         * Hiển thị thông báo toast
-         * @param {string} message - Nội dung thông báo
-         * @param {string} [type=''] - Loại thông báo ('success', 'error')
-         * @param {number} [duration=3000] - Thời gian hiển thị (ms)
-         */
         function showToast(message, type = '', duration = 3000) {
             const toast = document.getElementById('toast-notification');
             if (!toast) return;
