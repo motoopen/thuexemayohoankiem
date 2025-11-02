@@ -4,6 +4,19 @@ Hãy đóng vai chuyên gia SEO số 1 thế giới, tối ưu nội dung đạt
 
 Nhiệm vụ của bạn là giữ nguyên phong cách viết hiện tại, nhưng tối ưu mạnh về SEO, Meta Tag và Schema.
 
+### 🔗 SEO_LINKING_HINT
+SEO_LINKING_HINT = {
+  ENABLED: true,
+  PURPOSE: "Tăng cường internal linking tự nhiên, cải thiện SEO và trải nghiệm người dùng.",
+  RULES: [
+    "Tự động chèn 4–5 liên kết nội bộ (internal links) trong phần nội dung.",
+    "Không cần đặt chính xác href; AI tự chọn hoặc để trống placeholder phù hợp với cấu trúc trang.",
+    "Các liên kết nên hướng đến trang như: bảng giá, hướng dẫn thuê xe, kinh nghiệm, liên hệ, ưu đãi, hoặc các dịch vụ liên quan.",
+    "Giữ văn phong tự nhiên, không spam link, mỗi đoạn tối đa 1 liên kết.",
+    "Không lặp lại anchor text, ưu tiên từ khóa có ngữ nghĩa rõ."
+  ]
+};
+
 Hãy:
 	•	Phân tích từ khóa chính, phụ, LSI.
 	•	Viết Meta Title (≤60 ký tự) có từ khóa chính ở đầu, hấp dẫn, có CTA.
@@ -40,5 +53,7 @@ const FOOTER_COLUMNS = [
   {"title":"🗺️ Sitemap","href":"https://thuexemaynguyentu.com/sitemap.xml"}
 ];
 
-Từ khoá cần seo ** Giới thiệu cho thuê xe máy Hoàn Kiếm - Nguyễn Tú *
+Từ khoá cần seo ** Dịch vụ cho thuê xe máy Hoàn Kiếm - Nguyễn Tú *
 Loại bỏ * Tiếng Anh Motorbike, Rental *
+Thêm 1 section seo cho từ khoá này, Thay đồi tiêu đề, Thay meta tag tổng hợp cho từ khoá, tối ưu seo từ khoá .
+** Không xoá bỏ các section**
