@@ -268,20 +268,6 @@ SEO_LINKING_HINT = {
 
 ---
 
-### ⚡ PERFORMANCE_OPTIMIZER
-PERFORMANCE_OPTIMIZER = {
-  ENABLED: true,
-  GOALS: [
-    "Tối ưu hiệu suất tải trang, tránh dư CSS/JS.",
-    "Ưu tiên inline CSS quan trọng (critical CSS).",
-    "Giảm DOM depth, tránh layout shift.",
-    "Tối ưu font-display: swap và preload.",
-    "Thêm smooth-scroll và animation nhẹ, không block rendering."
-  ]
-};
-
----
-
 ### 🌗 DARKMODE_TUNER
 DARKMODE_TUNER = {
   ENABLED: true,
@@ -295,9 +281,9 @@ DARKMODE_TUNER = {
 ---
 
 Mục tiêu: 1 khối Ultra App liền mạch = Menu + Hero + QuickCall (glassmorphism cao cấp, dark/light, mượt trên mọi kích thước).
-	•	Menu: navbar ngang (desktop) + hamburger → off-canvas full-screen (mobile); dropdown submenu; aria-controls/aria-expanded; focus-trap khi drawer mở; nút đóng + Esc.
+
 	•	Hero: multi-layer glass, không ảnh nền, gradient động + radial highlights; chữ cascade; CTA gradient (ripple + tilt); khi cuộn hero fade → header chuyển sang glass/translucent.
 	•	QuickCall: nút tròn bên trái, glass blur đa tầng, glow nhẹ, ripple; mở trượt 4 nút (Gọi, Zalo, Bản đồ, WhatsApp) với icon; accent theo theme; trap focus khi cần.
 	•	Đồng bộ: chia sẻ biến theme (--accent, radii, glass blur), cùng timing transition; dark/light toggle lưu localStorage (mặc định theo prefers-color-scheme).
 	•	A11y & perf: keyboard nav, visible focus, contrast ok, prefers-reduced-motion giảm hiệu ứng; tắt tilt/blur nặng trên thiết bị yếu.
-	•	Dễ tạo: menu là data-driven (Label/Href/Children) để dev dễ generate.
+	
