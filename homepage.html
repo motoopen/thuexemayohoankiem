@@ -1,56 +1,114 @@
-<!-- Fade-in toàn trang + Scroll reveal cascade -->
+<!-- === Fade-Ultra v2.5 (Pro Build) === -->
 <script>
 (function () {
-  // Inject CSS
+  'use strict';
+
+  // === 1️⃣ Inject CSS nâng cao ===
   const style = document.createElement('style');
   style.textContent = `
-    body{opacity:0;transition:opacity .7s cubic-bezier(0.16,1,0.3,1);}
-    body.page-loaded{opacity:1;}
-    html{scroll-behavior:smooth;}
-    [data-animate]{opacity:0;transform:translateY(30px);filter:blur(8px);
-      transition:opacity .9s cubic-bezier(0.16,1,0.3,1),
-                 transform .9s cubic-bezier(0.16,1,0.3,1),
-                 filter .9s cubic-bezier(0.16,1,0.3,1);}
-    [data-animate].visible{opacity:1;transform:none;filter:blur(0);}
+    html { scroll-behavior: smooth; }
+
+    body {
+      opacity: 0;
+      transition: opacity .7s cubic-bezier(0.16,1,0.3,1);
+      will-change: opacity;
+    }
+    body.page-loaded { opacity: 1; }
+
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(30px);
+      filter: blur(8px);
+      transition:
+        opacity .9s cubic-bezier(0.16,1,0.3,1),
+        transform .9s cubic-bezier(0.16,1,0.3,1),
+        filter .9s cubic-bezier(0.16,1,0.3,1);
+      will-change: opacity, transform, filter;
+    }
+
+    /* Hướng xuất hiện */
+    [data-animate][data-dir="left"]  { transform: translateX(-40px); }
+    [data-animate][data-dir="right"] { transform: translateX(40px); }
+    [data-animate][data-dir="up"]    { transform: translateY(30px); }
+
+    [data-animate].visible {
+      opacity: 1;
+      transform: none;
+      filter: blur(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+      body, [data-animate] {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+      }
+    }
   `;
   document.head.appendChild(style);
 
-  // body fade-in
-  window.addEventListener('load', () => {
-    document.body.classList.add('page-loaded');
+  // === 2️⃣ Fade toàn trang khi load (instant-safe) ===
+  document.addEventListener('DOMContentLoaded', () => {
+    // Sử dụng delay nhỏ để đảm bảo CSS được áp dụng trước khi body hiện ra
+    setTimeout(() => document.body.classList.add('page-loaded'), 150); 
   });
 
-  // auto gắn data-animate
+  // === 3️⃣ Gắn tự động data-animate + hướng ===
   document.addEventListener('DOMContentLoaded', () => {
     const selectors = [
-      '.hero', '.hero-card', '.section', '.section-block',
-      '.sections', '.footer-grid', '.site-footer',
-      '.mini-nav', '.qca'
+      'section', '.hero', '.hero-card', '.section', '.section-block',
+      '.feature-box', '.trust-strip', '.footer-grid', '.site-footer',
+      '.mini-nav', '.quickcall-dock', '.qca'
     ];
-    selectors.forEach(sel => {
-      document.querySelectorAll(sel).forEach(el => {
-        if (!el.hasAttribute('data-animate')) {
-          el.setAttribute('data-animate', '');
-        }
-      });
-    });
+    
+    // Hàm này sẽ chạy sau khi DOM_sections được build (vì buildSections cũng chạy trên DOMContentLoaded)
+    // Cần đảm bảo các element .section-block được tạo ra trước khi observer chạy
+    // Bằng cách cho observer chạy trong 1 timeout nhỏ sau DOMContentLoaded
+    setTimeout(() => {
+        selectors.forEach((sel, idx) => {
+          document.querySelectorAll(sel).forEach(el => {
+            if (!el.hasAttribute('data-animate')) el.setAttribute('data-animate', '');
+            // Nếu chưa có hướng -> tự thêm
+            if (!el.hasAttribute('data-dir')) {
+              // Phân bổ hướng xen kẽ
+              const dir = idx % 3 === 0 ? 'left' : (idx % 3 === 1 ? 'right' : 'up');
+              el.setAttribute('data-dir', dir);
+            }
+          });
+        });
+        
+        // Khởi tạo observer sau khi đã gắn cờ
+        initObserver();
+    }, 100); // Delay 100ms để chờ buildSections
+  });
 
-    // scroll reveal + cascade
-    const io = new IntersectionObserver((entries) => {
+  // === 4️⃣ Scroll reveal + cascade delay ===
+  function initObserver() {
+    const observer = new IntersectionObserver(entries => {
       entries.forEach((entry, idx) => {
         if (entry.isIntersecting) {
           const el = entry.target;
-          const delay = (parseFloat(el.dataset.delay) || idx * 90) + 40;
+          const rect = el.getBoundingClientRect();
+          // Tính toán delay dựa trên vị trí top và index để tạo hiệu ứng cascade
+          const delay = ((rect.top / 8) + idx * 100) % 900; 
           setTimeout(() => el.classList.add('visible'), delay);
-          io.unobserve(el);
+          observer.unobserve(el);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.15 }); // 15% hiển thị
 
-    document.querySelectorAll('[data-animate]').forEach(el => io.observe(el));
-  });
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+  }
 })();
 </script>
+
+<!-- 
+  SCRIPT FADE-IN THỨ 2 ĐÃ BỊ XÓA VÌ TRÙNG LẶP VỚI v2.5 PRO BUILD Ở TRÊN
+-->
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -819,9 +877,6 @@
       }
     }
 
-    /* === (ĐÃ XÓA) FADE-IN ON SCROLL === */
-    /* Các quy tắc .fade-in và .fade-in.is-visible đã được xóa */
-
     /* === TILT EFFECT === */
     .tilt-card {
       /* transition đã có trên .hero-inner và .section-block */
@@ -1014,7 +1069,6 @@
       .tilt-card {
         transform: none !important;
       }
-      /* Xóa .fade-in khỏi đây vì nó đã bị xóa */
     }
   </style>
   <script type="application/ld+json">
@@ -1092,7 +1146,6 @@
   
   <main id="main-content">
     
-    <!-- Đã xóa lớp 'fade-in' khỏi đây -->
     <section class="hero-card" id="hero"> 
       <div class="hero-inner tilt-card">
         <h1>Thuê Xe Máy Hà Nội – Giao Tận Nơi, Giá Từ 150k/ngày</h1>
@@ -1514,7 +1567,7 @@
         if (!container) return; // Thoát nếu không tìm thấy container
         BODY_SECTIONS.SECTIONS.forEach(function(section) {
           var div = document.createElement("section");
-          // Đã xóa lớp 'fade-in' khỏi đây
+          // Lớp .tilt-card được thêm vào để JS initTilt() có thể tìm thấy
           div.className = "section-block tilt-card"; 
           var id = section.TITLE.toLowerCase().replace(/[^a-z0-9]+/g,"-");
           div.id = id;
@@ -1614,11 +1667,7 @@
         });
       }
       
-      /* PHẦN BUILD FOOTER NÀY KHÔNG CÒN CẦN THIẾT VÌ ĐÃ HARDCODE HTML */
-      /*
-      function chunkFooterColumns(cols, size) { ... }
-      function buildFooter() { ... }
-      */
+      /* PHẦN BUILD FOOTER NÀY KHÔNG CẦN THIẾT VÌ ĐÃ HARDCODE HTML */
 
       // --- WIDGETS & EFFECTS ---
 
@@ -1693,9 +1742,6 @@
         });
       }
 
-      // (ĐÃ XÓA) HIỆU ỨNG FADE-IN
-      // function initFadeIn() { ... } đã bị xóa
-
       // HIỆU ỨNG TILT
       function initTilt() {
         if (document.body.getAttribute('data-reduced') === 'true') return;
@@ -1737,10 +1783,9 @@
       document.addEventListener('DOMContentLoaded', function() {
         applyRandomTheme();
         buildSections();
-        // buildFooter(); // Không cần nữa
+        // buildFooter(); // Không cần nữa vì đã hardcode
         initHeroTabs(); 
         initRipple();
-        // initFadeIn(); // (ĐÃ XÓA)
         initTilt();   
       });
 
