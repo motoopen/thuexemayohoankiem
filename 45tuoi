@@ -167,8 +167,7 @@ FOOTER_COLUMNS = [
   {"title": "📘 Facebook", "href": "https://m.facebook.com/chothuexemay0857255868/"}
 ];
 
-⚙️ Quy định render
-	// ⚙️ Quy tắc render nâng cao cho MENU + FOOTER
+⚙️ FOOTER_RENDER_RULES nhỏ để AI chia 6 cột
 
 NAVIGATION_RULES = {
   TYPE: "auto-generate",
