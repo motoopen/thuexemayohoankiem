@@ -522,9 +522,11 @@
       font-size: 0.9rem;
       border: 1px solid rgba(255,255,255,0.05);
     }
+    
+    /* === CSS NÚT CTA ĐÃ SỬA === */
     .cta {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* 2 cột */
       gap: 0.6rem;
     }
     .hero-card .btn {
@@ -540,6 +542,8 @@
       transition: all 0.25s ease;
       position: relative;
       overflow: hidden;
+      /* Thêm để các nút nhỏ hơn vừa vặn */
+      font-size: 0.9rem;
     }
     .hero-card .btn.accent {
       background: var(--accent);
@@ -1165,10 +1169,22 @@
           <span class="chip"><i class="fa-solid fa-screwdriver-wrench"></i> Xe bảo dưỡng kỹ</span>
         </div>
     
+        <!-- === KHỐI CTA ĐÃ NÂNG CẤP === -->
         <div class="cta">
-          <a href="tel:0942467674" class="btn accent ripple-btn"><i class="fa-solid fa-phone"></i> Gọi thuê theo ngày</a>
-          <a href="#banggia" class="btn outline ripple-btn"><i class="fa-solid fa-tag"></i> Xem bảng giá</a>
+          <!-- Hàng 1: CTA chính -->
+          <a href="tel:0942467674" class="btn accent ripple-btn"><i class="fa-solid fa-phone"></i> Gọi thuê xe</a>
+          <a href="https://zalo.me/0942467674" target="_blank" rel="noreferrer" class="btn accent ripple-btn" style="background-color: #0068FF; box-shadow: 0 4px 12px rgba(0, 104, 255, 0.4);"><i class="fa-solid fa-comment-dots"></i> Chat Zalo</a>
+          
+          <!-- Hàng 2: CTA phụ quan trọng -->
+          <a href="banggia.html" class="btn outline ripple-btn"><i class="fa-solid fa-tag"></i> Bảng giá</a>
+          <a href="loaixe.html" class="btn outline ripple-btn"><i class="fa-solid fa-motorcycle"></i> Các loại xe</a>
+          
+          <!-- Hàng 3: CTA thông tin -->
+          <a href="thutuc.html" class="btn outline ripple-btn"><i class="fa-solid fa-file-contract"></i> Thủ tục</a>
+          <a href="uudai.html" class="btn outline ripple-btn"><i class="fa-solid fa-gift"></i> Ưu đãi</a>
         </div>
+        <!-- === KẾT THÚC CTA NÂNG CẤP === -->
+
       </div>
     </section>
     <section id="dynamic-sections" class="sections" aria-label="Nội dung chính"></section>
@@ -1684,18 +1700,19 @@
             
             // Cập nhật giá và nút bấm (ví dụ)
             const priceLine = document.querySelector('.hero-card .price-line');
-            const ctaBtn = document.querySelector('.hero-card .btn.accent');
+            // Nút CTA chính không còn phụ thuộc vào tab nữa vì có 6 nút
+            // const ctaBtn = document.querySelector('.hero-card .btn.accent');
             const tabText = tab.textContent;
 
             if (tabText === 'Ngày') {
               priceLine.innerHTML = 'Giá dự kiến: <strong>150–200k/ngày</strong> • Cọc nhẹ';
-              ctaBtn.innerHTML = '<i class="fa-solid fa-phone"></i> Gọi thuê theo ngày';
+              // ctaBtn.innerHTML = '<i class="fa-solid fa-phone"></i> Gọi thuê theo ngày';
             } else if (tabText === 'Tuần') {
               priceLine.innerHTML = 'Giá dự kiến: <strong>800k–1tr2/tuần</strong> • Giao xe miễn phí';
-              ctaBtn.innerHTML = '<i class="fa-solid fa-phone"></i> Gọi thuê theo tuần';
+              // ctaBtn.innerHTML = '<i class="fa-solid fa-phone"></i> Gọi thuê theo tuần';
             } else if (tabText === 'Tháng') {
               priceLine.innerHTML = 'Giá dự kiến: <strong>2tr–3tr5/tháng</strong> • Hỗ trợ 24/7';
-              ctaBtn.innerHTML = '<i class="fa-solid fa-phone"></i> Gọi thuê theo tháng';
+              // ctaBtn.innerHTML = '<i class="fa-solid fa-phone"></i> Gọi thuê theo tháng';
             }
           });
         });
