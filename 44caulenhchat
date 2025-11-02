@@ -294,45 +294,6 @@ DARKMODE_TUNER = {
 
 ---
 
-### ♿ ACCESSIBILITY_HINT
-ACCESSIBILITY_HINT = {
-  ENABLED: true,
-  TARGET: "WCAG 2.1 AA",
-  RULES: [
-    "Mọi icon, nút, liên kết đều có aria-label.",
-    "Ảnh và SVG phải có alt text hoặc role='presentation'.",
-    "Focus ring rõ ràng, có contrast cao.",
-    "Menu, QuickCall và Hero hỗ trợ bàn phím (Enter, Escape)."
-  ]
-};
-
----
-
-### 🧠 AI_RENDER_RULES
-AI_RENDER_RULES = {
-  STRICT_MODE: true,
-  OUTPUT_ONLY: "index.html",
-  NO_COMMENT: true,
-  NO_EXPLANATION: true,
-  VALIDATE_HTML: true,
-  CONSISTENCY_CHECK: true,
-  FINALIZE: "Kết thúc output bằng </html> duy nhất."
-};
-
----
-
-### 🌈 Giao diện tổng thể Ultra App
-
-Tạo giao diện Ultra App đồng bộ gồm Menu, Hero và QuickCall trong cùng một khối glassmorphism cao cấp, liền mạch, không tách block:  
-- Menu kiểu ứng dụng Facebook Ultra fixed-top mờ nhẹ, icon rõ, bóng mềm, hover sáng dần, tự thu gọn mượt trên mobile với animation fade-slide như Facebook app, đồng bộ accent và dark/light mode.  
-- Hero dạng glassmorphism đa lớp **không dùng ảnh nền**, chỉ sử dụng hiệu ứng gradient động, ánh sáng phản chiếu, và glass blur để tạo chiều sâu; chữ xuất hiện cascade, nút CTA gradient động theo accent có ripple và tilt khi hover; khi cuộn xuống, hero mờ dần và header đổi độ trong suốt như trang chủ Apple.  
-- QuickCall Ultra nổi bên trái dạng nút tròn glass blur đa tầng, có glow nhẹ, ripple khi nhấn, trượt ra 4 nút con (Gọi, Zalo, Bản đồ, WhatsApp), đồng bộ accent và hiệu ứng kim loại cao cấp.  
-
-Toàn bộ ba phần phải hòa thành **một khối app liền mạch**, chia sẻ cùng hiệu ứng glass, ánh sáng, transition và tone màu, phản hồi mượt trên mọi kích thước màn hình.  
-Trả về CHỈ nội dung đầy đủ của file index.html, bắt đầu bằng <!DOCTYPE html> và kết thúc bằng </html>, không kèm giải thích.
-
-⸻
-
 Mục tiêu: 1 khối Ultra App liền mạch = Menu + Hero + QuickCall (glassmorphism cao cấp, dark/light, mượt trên mọi kích thước).
 	•	Menu: navbar ngang (desktop) + hamburger → off-canvas full-screen (mobile); dropdown submenu; aria-controls/aria-expanded; focus-trap khi drawer mở; nút đóng + Esc.
 	•	Hero: multi-layer glass, không ảnh nền, gradient động + radial highlights; chữ cascade; CTA gradient (ripple + tilt); khi cuộn hero fade → header chuyển sang glass/translucent.
