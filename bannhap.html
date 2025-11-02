@@ -59,7 +59,7 @@
       --bg: #0c0d0f;
       --bg-soft: rgba(12,13,15,0.65);
       --text-color: #f3f4f6;
-      --text-muted: rgba(243,244,246,0.75);
+      --text-muted: rgba(243,244,2f6,0.75);
       --glass: rgba(12,13,15,0.35);
       --glass-dark: rgba(12,13,15,0.5);
       --shadow: 0 4px 30px rgba(0,0,0,0.4);
@@ -148,75 +148,168 @@
       font-size: .7rem;
       color: var(--text-muted);
     }
+
+    /* === START: CSS MENU MỚI ĐÃ ĐIỀU CHỈNH === */
     nav#app-navigation {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
-    nav#app-navigation ul {
-      display: flex;
-      list-style: none;
-      gap: .4rem;
-      margin: 0;
-      padding: 0;
-      align-items: center;
-    }
-    nav#app-navigation li {
-      position: relative;
-    }
-    nav#app-navigation > ul > li > a,
-    nav#app-navigation > ul > li > button {
-      background: transparent;
-      border: none;
-      font: inherit;
-      color: var(--text-color);
-      padding: .45rem .75rem;
-      border-radius: .7rem;
-      display: flex;
-      gap: .3rem;
-      align-items: center;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    nav#app-navigation > ul > li > a.active {
-      background: radial-gradient(circle at top, rgba(10,132,255,.2), rgba(10,132,255,0));
-      border: 1px solid rgba(10,132,255,.32);
-      color: var(--text-color);
-      box-shadow: 0 4px 16px rgba(10,132,255,.24);
-    }
-    nav#app-navigation li ul.submenu {
+      /* Đây là container cho menu mobile */
+      display: none; /* Ẩn trên mobile */
       position: absolute;
       top: 100%;
-      left: 0;
+      left: .5rem;
+      right: .5rem;
       background: rgba(255,255,255,.85);
       border-radius: 1rem;
-      padding: .4rem;
-      list-style: none;
-      min-width: 195px;
-      display: none;
+      border: 1px solid rgba(255,255,255,.25);
+      flex-direction: column;
+      gap: 0;
+      padding: .4rem .2rem .5rem;
+      backdrop-filter: blur(10px);
       box-shadow: 0 12px 40px rgba(0,0,0,.12);
-      backdrop-filter: blur(12px);
-      z-index: 1000;
     }
-    [data-theme="dark"] nav#app-navigation li ul.submenu {
-      background: rgba(12,13,15,.8);
+    [data-theme="dark"] nav#app-navigation {
+      background: rgba(12,13,15,.9);
     }
-    nav#app-navigation li:hover ul.submenu,
-    nav#app-navigation li:focus-within ul.submenu {
-      display: block;
-    }
-    nav#app-navigation li ul.submenu a {
-      display: block;
-      padding: .5rem .65rem;
-      border-radius: .55rem;
-      font-size: .8rem;
-      color: var(--text-color);
-    }
-    nav#app-navigation li ul.submenu a:hover {
-      background: rgba(10,132,255,.18);
+    nav#app-navigation.open {
+      display: flex; /* Hiển thị khi có class .open */
     }
     .menu-toggle {
+      /* Nút toggle *bên ngoài* nav */
+      display: none; /* Ẩn trên desktop */
+    }
+    .menu-list {
+      display: flex; /* Đây là danh sách <ul> */
+      flex-direction: column;
+      list-style: none;
+      gap: 0.4rem;
+      margin: 0; padding: 0;
+      width: 100%;
+    }
+    .menu-list a,
+    .submenu-toggle {
+      text-decoration: none;
+      color: var(--text-color, #0c0d0f);
+      display: block;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+    }
+    .menu-list a:hover,
+    .menu-list a:focus,
+    .submenu-toggle:hover {
+      background: rgba(10,132,255,0.1);
+    }
+    .has-submenu { position: relative; }
+    .submenu-toggle {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      font: inherit;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .submenu {
       display: none;
+      flex-direction: column;
+      list-style: none;
+      margin: 0 0 0 1.6rem; /* Giống style cũ */
+      padding: 0 0 0 .3rem; /* Giống style cũ */
+      border-left: 2px solid rgba(10,132,255,0.1);
+    }
+    .has-submenu.open > .submenu {
+      display: flex; /* Hiển thị submenu mobile khi click */
+    }
+    
+    /* Desktop Styles (Sử dụng breakpoint 993px để khớp) */
+    @media (min-width: 993px) {
+      nav#app-navigation {
+        /* Reset style mobile */
+        display: flex !important; 
+        position: static;
+        background: transparent;
+        border: none;
+        backdrop-filter: none;
+        box-shadow: none;
+        padding: 0;
+        flex-direction: row; /* Desktop là hàng ngang */
+      }
+      .menu-list { 
+        flex-direction: row;
+        gap: .4rem; /* Giống style cũ */
+        width: auto;
+      }
+      .menu-list a,
+      .submenu-toggle {
+        padding: .45rem .75rem; /* Giống style cũ */
+        border-radius: .7rem; /* Giống style cũ */
+        transition: var(--transition);
+      }
+      .menu-toggle { display: none !important; } /* Ẩn nút mobile toggle */
+
+      .submenu-toggle .icon { display: none; } /* Ẩn mũi tên ▾ mobile */
+      .submenu-toggle {
+        display: flex;
+        gap: .3rem;
+        align-items: center;
+      }
+      .submenu-toggle::after {
+        /* Thêm lại mũi tên desktop */
+        content: 'expand_more';
+        font-family: 'Material Symbols Rounded';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        -webkit-font-feature-settings: 'liga';
+        -webkit-font-smoothing: antialiased;
+      }
+      .submenu-toggle[aria-expanded="true"]::after {
+         transform: rotate(180deg); /* Thêm hiệu ứng xoay */
+      }
+
+      .submenu {
+        position: absolute;
+        top: 100%; left: 0;
+        background: rgba(255,255,255,.85); /* Giống style cũ */
+        border-radius: 1rem;
+        padding: .4rem;
+        min-width: 195px;
+        box-shadow: 0 12px 40px rgba(0,0,0,.12);
+        backdrop-filter: blur(12px);
+        z-index: 1000;
+        display: none !important; /* Luôn ẩn, chỉ hover mới hiện */
+        margin: 0; border: none; /* Reset style mobile */
+      }
+      [data-theme="dark"] .submenu {
+          background: rgba(12,13,15,.8);
+      }
+      .has-submenu:hover > .submenu,
+      .has-submenu:focus-within > .submenu {
+        display: flex !important; /* Hiển thị khi hover desktop */
+      }
+      .submenu a {
+          display: block;
+          padding: .5rem .65rem;
+          border-radius: .55rem;
+          font-size: .8rem;
+          color: var(--text-color);
+      }
+      .submenu a:hover {
+        background: rgba(10,132,255,.18);
+      }
+    }
+    /* === END: CSS MENU MỚI === */
+
+
+    .menu-toggle {
+      /* Đây là style cho nút toggle mobile */
       background: rgba(255,255,255,.15);
       border: 1px solid rgba(255,255,255,.25);
       width: 36px; height: 36px;
@@ -598,45 +691,14 @@
       }
     }
     @media (max-width: 992px) {
+      /* Rule này đã được chuyển lên phần CSS menu mới */
+      /* .menu-toggle {
+        display: grid;
+      } */
       .hero-inner {
         grid-template-columns: 1fr;
       }
-      nav#app-navigation {
-        position: absolute;
-        top: 100%;
-        left: .5rem;
-        right: .5rem;
-        background: rgba(255,255,255,.85);
-        border-radius: 1rem;
-        border: 1px solid rgba(255,255,255,.25);
-        display: none;
-        flex-direction: column;
-        gap: 0;
-        padding: .4rem .2rem .5rem;
-      }
-      [data-theme="dark"] nav#app-navigation {
-        background: rgba(12,13,15,.9);
-      }
-      nav#app-navigation.active {
-        display: flex;
-      }
-      nav#app-navigation ul {
-        flex-direction: column;
-        width: 100%;
-      }
-      nav#app-navigation li ul.submenu {
-        position: static;
-        display: none;
-        background: transparent;
-        border: none;
-        backdrop-filter: none;
-        box-shadow: none;
-        margin-left: 1.6rem;
-        padding-left: .3rem;
-      }
-      nav#app-navigation li.expanded ul.submenu {
-        display: block;
-      }
+      /* CSS nav#app-navigation cũ đã bị xóa, CSS mới sẽ xử lý */
       .menu-toggle {
         display: grid;
       }
@@ -706,7 +768,31 @@
           <span class="brand-sub">Hoàn Kiếm, Long Biên, Hà Nội</span>
         </div>
       </div>
-      <nav id="app-navigation" aria-label="Điều hướng chính" role="navigation"></nav>
+      <!-- NAV MỚI (TĨNH) ĐƯỢC CHÈN VÀO ĐÂY -->
+      <nav id="app-navigation" role="navigation" aria-label="Điều hướng chính">
+        <ul class="menu-list">
+          <li><a href="./">🏠 Trang chủ</a></li>
+          <li><a href="gioithieu.html">📄 Giới thiệu</a></li>
+          <li class="has-submenu">
+            <button class="submenu-toggle" aria-expanded="false" aria-label="Mở Dịch vụ">
+              ⚙️ Dịch vụ <span class="icon">▾</span>
+            </button>
+            <ul class="submenu">
+              <li><a href="thutuc.html">📑 Thủ tục</a></li>
+              <li><a href="loaixe.html">🛵 Loại xe</a></li>
+              <li><a href="huongdan.html">📘 Hướng dẫn</a></li>
+              <li><a href="kinhnghiem.html">💡 Kinh nghiệm</a></li>
+              <li><a href="diadiem.html">📍 Địa điểm</a></li>
+              <li><a href="uudai.html">🎁 Ưu đãi</a></li>
+              <!-- Bạn có thể thêm các link con khác ở đây nếu muốn -->
+            </ul>
+          </li>
+          <li><a href="banggia.html">🏷️ Bảng giá</a></li>
+          <li><a href="faq.html">❓ FAQ</a></li>
+          <li><a href="lienhe.html">💬 Liên hệ</a></li>
+        </ul>
+      </nav>
+      <!-- NÚT TOGGLE CŨ VẪN ĐƯỢC GIỮ LẠI VÀ HOẠT ĐỘNG VỚI JS MỚI -->
       <div style="display:flex;gap:.4rem;align-items:center;">
         <button id="mode-toggle" class="mode-toggle" type="button" aria-label="Chuyển chủ đề sáng/tối">🌙</button>
         <button class="menu-toggle" type="button" aria-label="Mở menu" aria-controls="app-navigation" aria-expanded="false">
@@ -816,6 +902,7 @@
   <script>
     (function() {
       "use strict";
+      // --- PHẦN DATA CŨ VẪN GIỮ NGUYÊN ---
       var NAP = {
         name: "Nguyễn Tú cho thuê xe máy Hà Nội",
         description: "Dịch vụ cho thuê xe máy uy tín tại Hoàn Kiếm, Hà Nội. Cung cấp xe ga, xe số, xe điện, giao tận nơi 20–40 phút, hỗ trợ 24/7, giá rẻ, chất lượng cao.",
@@ -847,6 +934,7 @@
         TWITTER_SITE: "@thuexemaynguyentu",
         PUBLISHER: "https://thuexemaynguyentu.com"
       };
+      // MENU array không còn được sử dụng để build menu chính, nhưng có thể giữ lại cho buildFooter
       var MENU = [
         {"🏠 Trang chủ": "./"},
         {"📄 Giới thiệu": "gioithieu.html"},
@@ -989,98 +1077,72 @@
       applyRandomTheme();
       var navEl = document.getElementById("app-navigation");
       var currentPath = (window.location && window.location.pathname) ? window.location.pathname.split("/").pop() : "index.html";
-      function buildMenu() {
-        var ul = document.createElement("ul");
-        ul.setAttribute("role", "menubar");
-        MENU.forEach(function(item) {
-          var key = Object.keys(item)[0];
-          var val = item[key];
-          var li = document.createElement("li");
-          li.setAttribute("role","none");
-          if (Array.isArray(val)) {
-            var btn = document.createElement("button");
-            btn.type = "button";
-            btn.innerHTML = key + '<span class="material-symbols-rounded" aria-hidden="true" style="font-size:1rem;">expand_more</span>';
-            btn.setAttribute("aria-expanded","false");
-            btn.setAttribute("role","menuitem");
-            btn.addEventListener("click", function(e) {
-              e.stopPropagation();
-              li.classList.toggle("expanded");
-              btn.setAttribute("aria-expanded", li.classList.contains("expanded"));
-            });
-            li.appendChild(btn);
-            var subUl = document.createElement("ul");
-            subUl.className = "submenu";
-            subUl.setAttribute("role","menu");
-            val.forEach(function(sub) {
-              var sKey = Object.keys(sub)[0];
-              var sVal = sub[sKey];
-              var sLi = document.createElement("li");
-              sLi.setAttribute("role","none");
-              var sA = document.createElement("a");
-              sA.href = sVal;
-              sA.setAttribute("role","menuitem");
-              sA.textContent = sKey;
-              sA.addEventListener("click", autoCloseMenu);
-              sLi.appendChild(sA);
-              subUl.appendChild(sLi);
-            });
-            li.appendChild(subUl);
-          } else {
-            var a = document.createElement("a");
-            a.href = val;
-            a.setAttribute("role","menuitem");
-            a.textContent = key;
-            if (val === "./" && (currentPath === "" || currentPath === "index.html")) {
-              a.classList.add("active");
-            } else if (val === currentPath) {
-              a.classList.add("active");
-            }
-            a.addEventListener("click", autoCloseMenu);
-            li.appendChild(a);
-          }
-          ul.appendChild(li);
+
+      // --- LOGIC buildMenu() VÀ CÁC EVENT LISTENER CŨ ĐÃ BỊ XÓA ---
+
+      // --- START: LOGIC JAVASCRIPT MỚI CHO MENU ---
+      (() => {
+        const nav = document.getElementById('app-navigation');
+        const menuToggle = document.querySelector('.menu-toggle'); // Nút này nằm ngoài nav
+        let isMenuOpen = false;
+
+        const closeMenu = () => {
+          isMenuOpen = false;
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.innerHTML = '<span class="material-symbols-rounded" aria-hidden="true">menu</span>';
+          menuToggle.setAttribute('aria-label', 'Mở menu');
+          nav.classList.remove('open');
+          // Đóng tất cả submenu
+          nav.querySelectorAll('.has-submenu.open').forEach(el => {
+            el.classList.remove('open');
+            el.querySelector('.submenu-toggle').setAttribute('aria-expanded', 'false');
+          });
+        };
+
+        menuToggle.addEventListener('click', () => {
+          isMenuOpen = !isMenuOpen;
+          menuToggle.setAttribute('aria-expanded', String(isMenuOpen));
+          menuToggle.setAttribute('aria-label', isMenuOpen ? 'Đóng menu' : 'Mở menu');
+          menuToggle.innerHTML = isMenuOpen ? '<span class="material-symbols-rounded" aria-hidden="true">close</span>' : '<span class="material-symbols-rounded" aria-hidden="true">menu</span>';
+          nav.classList.toggle('open', isMenuOpen);
         });
-        navEl.innerHTML = "";
-        navEl.appendChild(ul);
-      }
-      var isMenuOpen = false;
-      var menuToggle = document.querySelector(".menu-toggle");
-      function autoCloseMenu(e) {
-        if (window.innerWidth <= 992) {
-          navEl.classList.remove("active");
-          isMenuOpen = false;
-          menuToggle.setAttribute("aria-expanded","false");
-          menuToggle.setAttribute("aria-label","Mở menu");
-          menuToggle.innerHTML = '<span class="material-symbols-rounded" aria-hidden="true">menu</span>';
-        }
-      }
-      menuToggle.addEventListener("click", function() {
-        isMenuOpen = !isMenuOpen;
-        navEl.classList.toggle("active", isMenuOpen);
-        menuToggle.setAttribute("aria-expanded", String(isMenuOpen));
-        menuToggle.setAttribute("aria-label", isMenuOpen ? "Đóng menu" : "Mở menu");
-        menuToggle.innerHTML = isMenuOpen ? '<span class="material-symbols-rounded" aria-hidden="true">close</span>' : '<span class="material-symbols-rounded" aria-hidden="true">menu</span>';
-      });
-      document.addEventListener("click", function(e) {
-        if (window.innerWidth <= 992 && isMenuOpen && !navEl.contains(e.target) && !menuToggle.contains(e.target)) {
-          autoCloseMenu();
-        }
-      });
-      document.addEventListener("keydown", function(e) {
-        if (e.key === "Escape" && isMenuOpen) {
-          autoCloseMenu();
-        }
-      });
-      window.addEventListener("resize", function() {
-        if (window.innerWidth > 992) {
-          navEl.classList.remove("active");
-          isMenuOpen = false;
-          menuToggle.setAttribute("aria-expanded","false");
-          menuToggle.setAttribute("aria-label","Mở menu");
-          menuToggle.innerHTML = '<span class="material-symbols-rounded" aria-hidden="true">menu</span>';
-        }
-      });
+
+        nav.addEventListener('click', e => {
+          // Chỉ xử lý click trên submenu-toggle khi ở chế độ mobile
+          if (window.innerWidth <= 992) {
+             const btn = e.target.closest('.submenu-toggle');
+             if (btn) {
+              e.preventDefault();
+              const parent = btn.closest('.has-submenu');
+              const isOpen = parent.classList.toggle('open');
+              btn.setAttribute('aria-expanded', String(isOpen));
+              return;
+            }
+          }
+         
+          const link = e.target.closest('a');
+          if (link && link.getAttribute('href') && link.getAttribute('href') !== '#') {
+            // Nếu click vào link (kể cả link trong submenu), đóng menu chính
+            if (isMenuOpen) {
+               closeMenu();
+            }
+          }
+        });
+
+        window.addEventListener('keydown', e => {
+          if (e.key === 'Escape' && isMenuOpen) closeMenu();
+        });
+        
+        window.addEventListener('resize', () => {
+          // Sử dụng breakpoint 992px
+          if (window.innerWidth > 992 && isMenuOpen) {
+            closeMenu();
+          }
+        });
+      })();
+      // --- END: LOGIC JAVASCRIPT MỚI CHO MENU ---
+
+
       function buildSections() {
         var container = document.getElementById("dynamic-sections");
         BODY_SECTIONS.SECTIONS.forEach(function(section) {
@@ -1238,7 +1300,7 @@
           grid.appendChild(col);
         }
       }
-      buildMenu();
+      // buildMenu(); // <-- ĐÃ XÓA LỆNH GỌI NÀY
       buildSections();
       buildFooter();
       var qcaMain = document.getElementById("qca-main");
@@ -1302,3 +1364,4 @@
   </script>
 </body>
 </html>
+
