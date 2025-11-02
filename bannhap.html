@@ -1,3 +1,93 @@
+<!-- === QUICK CALL ULTRA APP === -->
+<div id="quickcall" class="qca">
+  <button class="qca-main" aria-label="Mở Quick Call" aria-expanded="false">
+    <i class="fa-solid fa-phone"></i>
+  </button>
+  <div class="qca-actions">
+    <a href="tel:0942467674" class="qca-btn" aria-label="Gọi"><i class="fa-solid fa-phone"></i></a>
+    <a href="https://zalo.me/0942467674" class="qca-btn" aria-label="Zalo">
+      <svg viewBox="0 0 48 48" width="20" height="20"><path fill="currentColor" d="M24 4C12 4 4 12 4 24s8 20 20 20 20-8 20-20S36 4 24 4z"/></svg>
+    </a>
+    <a href="https://wa.me/84942467674" class="qca-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+    <a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7" class="qca-btn" aria-label="Bản đồ"><i class="fa-solid fa-map-location-dot"></i></a>
+  </div>
+</div>
+
+<style>
+.qca {
+  position: fixed;
+  left: 1rem; bottom: 3.5rem;
+  z-index: 999;
+}
+.qca-main {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: var(--accent,#0A84FF);
+  color: #fff;
+  font-size: 1.4rem;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 18px rgba(10,132,255,0.4);
+  transition: all 0.3s ease;
+}
+.qca-main:hover { transform: scale(1.05); box-shadow: 0 6px 22px rgba(10,132,255,0.55); }
+
+.qca-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  position: absolute;
+  bottom: 70px; left: 6px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.25,1,0.5,1);
+}
+.qca.open .qca-actions {
+  pointer-events: auto;
+  opacity: 1;
+  transform: translateY(0);
+}
+.qca-btn {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+.qca-btn:hover { background: var(--accent,#0A84FF); transform: scale(1.1); }
+
+[data-theme='light'] .qca-btn { color:#111; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+[data-theme='light'] .qca-main { box-shadow:0 4px 18px rgba(10,132,255,0.4); }
+</style>
+
+<script>
+(()=>{  
+  const qc=document.querySelector('.qca'),
+        btn=qc.querySelector('.qca-main'),
+        actions=qc.querySelector('.qca-actions');
+  let open=false,scrollY=window.scrollY;
+  const toggle=()=>{open=!open;qc.classList.toggle('open',open);
+    btn.setAttribute('aria-expanded',open);btn.innerHTML=open?'<i class="fa-solid fa-xmark"></i>':'<i class="fa-solid fa-phone"></i>';};
+  btn.addEventListener('click',toggle);
+  window.addEventListener('keydown',e=>{if(e.key==='Escape'&&open){open=false;qc.classList.remove('open');btn.innerHTML='<i class="fa-solid fa-phone"></i>';}});
+
+  // Ẩn khi cuộn xuống, hiện khi cuộn lên
+  window.addEventListener('scroll',()=>{
+    const cur=window.scrollY;
+    qc.style.opacity=(cur>scrollY+20)?'0':'1';
+    qc.style.pointerEvents=(cur>scrollY+20)?'none':'auto';
+    scrollY=cur;
+  });
+})();
+</script>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -54,6 +144,8 @@
       --nav-h: 70px;
       --hero-h: 92vh;
       --max-w: 1140px;
+      /* Biến cho hero card mới (sẽ được định nghĩa trong dark mode) */
+      --glass-bg: rgba(255,255,255,0.55);
     }
     [data-theme="dark"] {
       --bg: #0c0d0f;
@@ -63,6 +155,8 @@
       --glass: rgba(12,13,15,0.35);
       --glass-dark: rgba(12,13,15,0.5);
       --shadow: 0 4px 30px rgba(0,0,0,0.4);
+      /* Biến dark mode cho hero card mới */
+      --glass-bg: rgba(20,20,20,0.5);
     }
     * {
       box-sizing: border-box;
@@ -77,6 +171,8 @@
       color: var(--text-color);
       min-height: 100vh;
       line-height: 1.5;
+      /* Hiệu ứng chuyển theme mượt */
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
     body[data-reduced="true"] * {
       transition: none !important;
@@ -107,7 +203,8 @@
       backdrop-filter: blur(10px);
       background: color-mix(in srgb, var(--glass) 75%, transparent);
       border-bottom: 1px solid rgba(255,255,255,0.02);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      box-shadow: 0 4px 20px rgba(0,0,0,.12);
+      transition: background-color .3s ease;
     }
     .nav-container {
       max-width: var(--max-w);
@@ -149,10 +246,9 @@
       color: var(--text-muted);
     }
 
-    /* === START: CSS MENU MỚI ĐÃ ĐIỀU CHỈNH === */
+    /* === START: CSS MENU === */
     nav#app-navigation {
-      /* Đây là container cho menu mobile */
-      display: none; /* Ẩn trên mobile */
+      display: none; 
       position: absolute;
       top: 100%;
       left: .5rem;
@@ -170,14 +266,13 @@
       background: rgba(12,13,15,.9);
     }
     nav#app-navigation.open {
-      display: flex; /* Hiển thị khi có class .open */
+      display: flex; 
     }
     .menu-toggle {
-      /* Nút toggle *bên ngoài* nav */
-      display: none; /* Ẩn trên desktop */
+      display: none; 
     }
     .menu-list {
-      display: flex; /* Đây là danh sách <ul> */
+      display: flex; 
       flex-direction: column;
       list-style: none;
       gap: 0.4rem;
@@ -187,7 +282,7 @@
     .menu-list a,
     .submenu-toggle {
       text-decoration: none;
-      color: var(--text-color, #0c0d0f);
+      color: var(--text-color);
       display: block;
       padding: 0.6rem 1rem;
       border-radius: 8px;
@@ -213,18 +308,16 @@
       display: none;
       flex-direction: column;
       list-style: none;
-      margin: 0 0 0 1.6rem; /* Giống style cũ */
-      padding: 0 0 0 .3rem; /* Giống style cũ */
+      margin: 0 0 0 1.6rem; 
+      padding: 0 0 0 .3rem; 
       border-left: 2px solid rgba(10,132,255,0.1);
     }
     .has-submenu.open > .submenu {
-      display: flex; /* Hiển thị submenu mobile khi click */
+      display: flex; 
     }
     
-    /* Desktop Styles (Sử dụng breakpoint 993px để khớp) */
     @media (min-width: 993px) {
       nav#app-navigation {
-        /* Reset style mobile */
         display: flex !important; 
         position: static;
         background: transparent;
@@ -232,29 +325,28 @@
         backdrop-filter: none;
         box-shadow: none;
         padding: 0;
-        flex-direction: row; /* Desktop là hàng ngang */
+        flex-direction: row; 
       }
       .menu-list { 
         flex-direction: row;
-        gap: .4rem; /* Giống style cũ */
+        gap: .4rem; 
         width: auto;
       }
       .menu-list a,
       .submenu-toggle {
-        padding: .45rem .75rem; /* Giống style cũ */
-        border-radius: .7rem; /* Giống style cũ */
+        padding: .45rem .75rem; 
+        border-radius: .7rem; 
         transition: var(--transition);
       }
-      .menu-toggle { display: none !important; } /* Ẩn nút mobile toggle */
+      .menu-toggle { display: none !important; } 
 
-      .submenu-toggle .icon { display: none; } /* Ẩn mũi tên ▾ mobile */
+      .submenu-toggle .icon { display: none; } 
       .submenu-toggle {
         display: flex;
         gap: .3rem;
         align-items: center;
       }
       .submenu-toggle::after {
-        /* Thêm lại mũi tên desktop */
         content: 'expand_more';
         font-family: 'Material Symbols Rounded';
         font-style: normal;
@@ -271,28 +363,28 @@
         -webkit-font-smoothing: antialiased;
       }
       .submenu-toggle[aria-expanded="true"]::after {
-         transform: rotate(180deg); /* Thêm hiệu ứng xoay */
+         transform: rotate(180deg); 
       }
 
       .submenu {
         position: absolute;
         top: 100%; left: 0;
-        background: rgba(255,255,255,.85); /* Giống style cũ */
+        background: rgba(255,255,255,.85); 
         border-radius: 1rem;
         padding: .4rem;
         min-width: 195px;
         box-shadow: 0 12px 40px rgba(0,0,0,.12);
         backdrop-filter: blur(12px);
         z-index: 1000;
-        display: none !important; /* Luôn ẩn, chỉ hover mới hiện */
-        margin: 0; border: none; /* Reset style mobile */
+        display: none !important; 
+        margin: 0; border: none; 
       }
       [data-theme="dark"] .submenu {
           background: rgba(12,13,15,.8);
       }
       .has-submenu:hover > .submenu,
       .has-submenu:focus-within > .submenu {
-        display: flex !important; /* Hiển thị khi hover desktop */
+        display: flex !important; 
       }
       .submenu a {
           display: block;
@@ -305,11 +397,9 @@
         background: rgba(10,132,255,.18);
       }
     }
-    /* === END: CSS MENU MỚI === */
-
+    /* === END: CSS MENU === */
 
     .menu-toggle {
-      /* Đây là style cho nút toggle mobile */
       background: rgba(255,255,255,.15);
       border: 1px solid rgba(255,255,255,.25);
       width: 36px; height: 36px;
@@ -338,151 +428,138 @@
     main {
       padding-top: calc(var(--nav-h) + .7rem);
     }
-    .hero {
-      min-height: var(--hero-h);
-      display: grid;
-      place-items: center;
-      padding: 1.2rem .9rem 2.8rem;
+
+    /* === HERO CŨ (ĐÃ BỊ XÓA) === */
+    /* .hero { ... } */
+
+    /* === HERO MỚI (ĐÃ THÊM VÀO) === */
+    .hero-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2.5rem 1rem;
       position: relative;
-      overflow: hidden;
-    }
-    .hero::before,
-    .hero::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(70px);
-      opacity: .5;
-      pointer-events: none;
-    }
-    .hero::before {
-      width: 480px; height: 480px;
-      background: radial-gradient(circle, rgba(10,132,255,0.35), rgba(10,132,255,0));
-      top: -140px; right: -100px;
-    }
-    .hero::after {
-      width: 360px; height: 360px;
-      background: radial-gradient(circle, rgba(0,196,154,0.35), rgba(0,196,154,0));
-      bottom: -120px; left: -60px;
+      z-index: 1; /* Để tilt-card hoạt động tốt */
     }
     .hero-inner {
-      width: min(100%, var(--max-w));
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 2.1rem;
-      position: relative;
-      z-index: 1;
-      background: color-mix(in srgb, rgba(255,255,255,.35) 70%, transparent);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,.32);
-      border-radius: 24px;
-      padding: 1.6rem 1.6rem 1.7rem;
-      box-shadow: 0 14px 50px rgba(0,0,0,.08);
+      max-width: 480px;
+      /* Đã đồng bộ: sử dụng --glass-bg từ :root, được control bởi [data-theme] */
+      background: var(--glass-bg); 
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      transition: all 0.4s ease;
+      /* Thêm transform-style cho hiệu ứng tilt */
+      transform-style: preserve-3d;
+      transform: perspective(1000px);
     }
-    [data-theme="dark"] .hero-inner {
-      background: rgba(12,13,15,.28);
-      border-color: rgba(255,255,255,.03);
+    .hero-card h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 0.6rem;
     }
-    .hero-left h1 {
-      font-size: clamp(1.95rem, 3.3vw, 2.6rem);
-      line-height: 1.02;
-      margin: 0 0 1.1rem;
-      letter-spacing: -.02em;
+    .hero-card .hero-desc {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 1.2rem;
     }
-    .hero-left p {
-      margin: 0 0 1rem;
-      color: var(--text-muted);
-      max-width: 50ch;
-    }
-    .hero-metadata {
+    .tabs {
       display: flex;
-      gap: 1rem;
-      margin-bottom: 1.1rem;
-      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
     }
-    .badges {
-      display: inline-flex;
-      gap: .4rem;
-      flex-wrap: wrap;
-    }
-    .badge {
-      background: rgba(255,255,255,.28);
-      border: 1px solid rgba(255,255,255,.2);
-      padding: .25rem .6rem;
-      border-radius: 999px;
-      font-size: .65rem;
-      font-weight: 500;
-      display: inline-flex;
-      gap: .35rem;
-      align-items: center;
-      color: var(--text-color);
-    }
-    [data-theme="dark"] .badge {
-      background: rgba(12,13,15,.4);
-    }
-    .cta-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .7rem;
-    }
-    .btn {
+    .tab {
+      flex: 1;
+      /* Đã đồng bộ: sử dụng var(--glass) từ theme cũ */
+      background: var(--glass);
       border: none;
-      border-radius: 999px;
-      padding: .6rem 1.1rem .7rem;
+      border-radius: 8px;
+      padding: 0.4rem 0.8rem;
+      color: inherit;
       font-weight: 600;
       cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .tab.active {
+      background: var(--accent);
+      color: #fff;
+    }
+    .tab:hover:not(.active) {
+      /* Đã đồng bộ: sử dụng var(--glass-dark) */
+      background: var(--glass-dark);
+    }
+    .price-line {
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1.4rem;
+    }
+    .chip {
       display: inline-flex;
-      gap: .4rem;
+      align-items: center;
+      gap: 0.4rem;
+      /* Đã đồng bộ: sử dụng var(--glass) */
+      background: var(--glass);
+      padding: 0.4rem 0.8rem;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      /* Đã đồng bộ: style border giống theme cũ */
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .cta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .hero-card .btn {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      transition: var(--transition);
+      gap: 0.4rem;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      /* Thêm cho ripple */
       position: relative;
       overflow: hidden;
     }
-    .btn-primary {
-      background: radial-gradient(circle at top, rgba(10,132,255,1) 0%, rgba(3,48,94,1) 90%);
+    .hero-card .btn.accent {
+      background: var(--accent);
       color: #fff;
+      box-shadow: 0 4px 12px rgba(10,132,255,0.4);
     }
-    .btn-outline {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(10,132,255,0.38);
-      color: var(--text-color);
+    .hero-card .btn.accent:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(10,132,255,0.5);
     }
-    .btn-soft {
-      background: rgba(10,132,255,0.08);
-      border: 1px solid rgba(10,132,255,0.06);
-      color: var(--text-color);
+    .hero-card .btn.outline {
+      /* Đã đồng bộ: Dùng --text-muted thay vì border */
+      border: 2px solid var(--text-muted);
+      color: inherit;
+      background: transparent;
+      opacity: 0.8;
     }
-    .btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 26px rgba(10,132,255,.28);
+    .hero-card .btn.outline:hover {
+      /* Đã đồng bộ: dùng var(--glass) */
+      background: var(--glass);
+      opacity: 1;
     }
-    .hero-right {
-      display: grid;
-      gap: .7rem;
-      align-content: space-between;
-    }
-    .info-card {
-      background: rgba(255,255,255,.25);
-      border: 1px solid rgba(255,255,255,.35);
-      border-radius: 1rem;
-      padding: .9rem .8rem;
-      display: flex;
-      gap: .7rem;
-      align-items: flex-start;
-    }
-    [data-theme="dark"] .info-card {
-      background: rgba(12,13,15,.3);
-    }
-    .info-card i {
-      width: 34px; height: 34px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      background: rgba(10,132,255,.18);
-      color: var(--text-color);
-      flex: 0 0 34px;
-    }
+    /* === END: HERO MỚI === */
+
+
     .sections {
       width: min(100%, var(--max-w));
       margin: 2.6rem auto 3.2rem;
@@ -497,6 +574,9 @@
       padding: 1.2rem 1rem 1.1rem;
       box-shadow: 0 5px 30px rgba(0,0,0,.05);
       transition: transform .3s ease, box-shadow .3s ease;
+      /* Thêm cho hiệu ứng tilt */
+      transform-style: preserve-3d;
+      transform: perspective(1000px);
     }
     [data-theme="dark"] .section-block {
       background: rgba(12,13,15,.28);
@@ -540,6 +620,7 @@
     }
     .faq-q {
       font-weight: 600;
+      cursor: pointer;
     }
     footer.site-footer {
       background: radial-gradient(circle, rgba(10,132,255,.06), transparent);
@@ -603,63 +684,9 @@
     .social-inline a:hover {
       transform: translateY(-2px);
     }
-    .quickcall {
-      position: fixed;
-      left: 14px;
-      top: 47%;
-      transform: translateY(-50%);
-      z-index: 888;
-    }
-    .quickcall-main {
-      width: 54px; height: 54px;
-      border-radius: 999px;
-      background: radial-gradient(circle at top, rgba(10,132,255,1), rgba(3,48,94,1) 80%);
-      box-shadow: 0 10px 35px rgba(10,132,255,.55);
-      border: 1px solid rgba(255,255,255,.42);
-      display: grid;
-      place-items: center;
-      color: #fff;
-      cursor: pointer;
-      transition: transform .25s ease;
-    }
-    .quickcall-main:hover {
-      transform: translateY(-3px);
-    }
-    .quickcall-items {
-      display: grid;
-      gap: .45rem;
-      margin-bottom: .5rem;
-      transition: max-height .25s ease;
-    }
-    .quickcall-item {
-      width: 44px; height: 44px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.75);
-      border: 1px solid rgba(255,255,255,.3);
-      display: grid;
-      place-items: center;
-      color: var(--text-color);
-      box-shadow: 0 6px 18px rgba(0,0,0,.12);
-    }
-    [data-theme="dark"] .quickcall-item {
-      background: rgba(12,13,15,.7);
-    }
-    .qs-badge {
-      position: absolute;
-      top: -10px; left: 50px;
-      background: rgba(32,197,129,1);
-      color: #fff;
-      padding: .09rem .45rem;
-      border-radius: 999px;
-      font-size: .6rem;
-      font-weight: 600;
-      letter-spacing: .7px;
-    }
-    .zalo-icon {
-      width: 20px;
-      height: 20px;
-      display: block;
-    }
+
+    /* === PHẦN CSS CỦA QUICKCALL CŨ ĐÃ BỊ XÓA === */
+    
     .miniqcall {
       display: inline-flex;
       gap: .45rem;
@@ -676,6 +703,8 @@
       padding: .2rem .5rem;
       border-radius: .65rem;
     }
+    
+    /* === RIPPLE EFFECT === */
     .ripple {
       position: absolute;
       border-radius: 50%;
@@ -690,39 +719,56 @@
         opacity: 0;
       }
     }
+
+    /* === FADE-IN ON SCROLL === */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      will-change: opacity, transform;
+    }
+    .fade-in.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* === TILT EFFECT === */
+    .tilt-card {
+      /* transition đã có trên .hero-inner và .section-block */
+      will-change: transform;
+    }
+
+
     @media (max-width: 992px) {
-      /* Rule này đã được chuyển lên phần CSS menu mới */
-      /* .menu-toggle {
-        display: grid;
-      } */
-      .hero-inner {
-        grid-template-columns: 1fr;
-      }
-      /* CSS nav#app-navigation cũ đã bị xóa, CSS mới sẽ xử lý */
       .menu-toggle {
         display: grid;
       }
       .footer-grid {
         grid-template-columns: repeat(2, minmax(0,1fr));
       }
-      .hero {
-        min-height: auto;
-        padding-top: 1.4rem;
-      }
-      .quickcall {
-        top: auto;
-        bottom: 14px;
-        transform: none;
-      }
+      /* Đã xóa .quickcall media query cũ */
     }
     @media (prefers-reduced-motion: reduce) {
+      body {
+        --transition: none;
+      }
       * {
         scroll-behavior: auto !important;
         transition-duration: .01ms !important;
+        animation: none !important;
       }
       .hero::before,
       .hero::after {
         display: none;
+      }
+      /* Tắt tilt khi reduce motion */
+      .tilt-card {
+        transform: none !important;
+      }
+      /* Tắt fade-in khi reduce motion */
+      .fade-in {
+        opacity: 1;
+        transform: none;
       }
     }
   </style>
@@ -768,7 +814,6 @@
           <span class="brand-sub">Hoàn Kiếm, Long Biên, Hà Nội</span>
         </div>
       </div>
-      <!-- NAV MỚI (TĨNH) ĐƯỢC CHÈN VÀO ĐÂY -->
       <nav id="app-navigation" role="navigation" aria-label="Điều hướng chính">
         <ul class="menu-list">
           <li><a href="./">🏠 Trang chủ</a></li>
@@ -784,7 +829,6 @@
               <li><a href="kinhnghiem.html">💡 Kinh nghiệm</a></li>
               <li><a href="diadiem.html">📍 Địa điểm</a></li>
               <li><a href="uudai.html">🎁 Ưu đãi</a></li>
-              <!-- Bạn có thể thêm các link con khác ở đây nếu muốn -->
             </ul>
           </li>
           <li><a href="banggia.html">🏷️ Bảng giá</a></li>
@@ -792,7 +836,6 @@
           <li><a href="lienhe.html">💬 Liên hệ</a></li>
         </ul>
       </nav>
-      <!-- NÚT TOGGLE CŨ VẪN ĐƯỢC GIỮ LẠI VÀ HOẠT ĐỘNG VỚI JS MỚI -->
       <div style="display:flex;gap:.4rem;align-items:center;">
         <button id="mode-toggle" class="mode-toggle" type="button" aria-label="Chuyển chủ đề sáng/tối">🌙</button>
         <button class="menu-toggle" type="button" aria-label="Mở menu" aria-controls="app-navigation" aria-expanded="false">
@@ -802,79 +845,42 @@
     </div>
   </header>
   <main id="main-content">
-    <section class="hero" id="hero">
-      <div class="hero-inner" aria-labelledby="hero-title">
-        <div class="hero-left">
-          <p class="badge" aria-label="Mở cửa từ 9h đến 21h, giao xe 24/7">🕒 Mở cửa 9h–21h • Giao xe 24/7</p>
-          <h1 id="hero-title">Thuê xe máy Hà Nội <span style="color:var(--accent);">uy tín – giao 20–40 phút</span></h1>
-          <p>Dịch vụ cho thuê xe máy tại khu Hoàn Kiếm, phố cổ và Long Biên. Xe ga, xe số, xe điện mới, thủ tục đơn giản, hỗ trợ khách du lịch và người đi công tác.</p>
-          <div class="hero-metadata">
-            <span class="badge"><i class="fa fa-shield-alt" aria-hidden="true"></i> Bảo dưỡng định kỳ</span>
-            <span class="badge"><i class="fa fa-bolt" aria-hidden="true"></i> Giao tận nơi</span>
-            <span class="badge"><i class="fa fa-phone-volume" aria-hidden="true"></i> Hotline 0942 467 674</span>
-          </div>
-          <div class="cta-group" role="group" aria-label="Hành động nhanh">
-            <a class="btn btn-primary ripple-btn" href="tel:0942467674">
-              <i class="fa fa-phone" aria-hidden="true"></i> Gọi ngay
-            </a>
-            <a class="btn btn-outline ripple-btn" href="https://zalo.me/0942467674" target="_blank" rel="noreferrer">
-              <i class="fa fa-comments" aria-hidden="true"></i> Chat Zalo
-            </a>
-            <a class="btn btn-soft ripple-btn" href="#lien-he">
-              <i class="fa fa-calendar-check" aria-hidden="true"></i> Đặt xe nhanh
-            </a>
-          </div>
+    
+    <!-- === HERO MỚI ĐÃ ĐƯỢC THAY THẾ VÀO ĐÂY === -->
+    <section class="hero-card fade-in" id="hero">
+      <div class="hero-inner tilt-card">
+        <h1>Thuê Xe Máy Hà Nội – Giao Tận Nơi, Giá Từ 150k/ngày</h1>
+        <p class="hero-desc">Xe số • Xe ga • 50cc/điện • Thuê ngày/tuần/tháng • Giao nhanh 20–40’, cọc nhẹ, xe bảo dưỡng kỹ.</p>
+    
+        <div class="tabs">
+          <button class="tab active">Ngày</button>
+          <button class="tab">Tuần</button>
+          <button class="tab">Tháng</button>
         </div>
-        <div class="hero-right" aria-label="Thông tin nhanh">
-          <article class="info-card" aria-label="Địa chỉ giao xe">
-            <i class="fa fa-location-dot" aria-hidden="true"></i>
-            <div>
-              <p style="font-weight:600;margin:.1rem 0 .25rem;">112 Nguyễn Văn Cừ, Long Biên, Hà Nội</p>
-              <p style="font-size:.8rem;margin:0;">Giao xe miễn phí khu Hoàn Kiếm, phố cổ (3km) • <a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7" style="color:var(--accent)">xem bản đồ</a></p>
-            </div>
-          </article>
-          <article class="info-card" aria-label="Thời gian giao xe">
-            <i class="fa fa-clock" aria-hidden="true"></i>
-            <div>
-              <p style="font-weight:600;margin:.1rem 0 .25rem;">Giao xe trong 20–40 phút</p>
-              <p style="font-size:.8rem;margin:0;">Nhận tại khách sạn, homestay, ga Hà Nội – theo yêu cầu.</p>
-            </div>
-          </article>
-          <article class="info-card" aria-label="Loại xe">
-            <i class="fa fa-motorcycle" aria-hidden="true"></i>
-            <div>
-              <p style="font-weight:600;margin:.1rem 0 .25rem;">Xe ga • Xe số • Xe điện</p>
-              <p style="font-size:.8rem;margin:0;">Giá từ <strong>120.000đ/ngày</strong>, thuê dài ngày ưu đãi hơn – <a href="banggia.html" style="color:var(--accent)">xem bảng giá</a></p>
-            </div>
-          </article>
+    
+        <p class="price-line">Giá dự kiến: <strong>150–200k/ngày</strong> • Cọc nhẹ</p>
+    
+        <div class="chips">
+          <span class="chip"><i class="fa-solid fa-file-contract"></i> Hợp đồng rõ ràng</span>
+          <span class="chip"><i class="fa-solid fa-truck-fast"></i> Giao nhanh 20–40’</span>
+          <span class="chip"><i class="fa-solid fa-screwdriver-wrench"></i> Xe bảo dưỡng kỹ</span>
+        </div>
+    
+        <div class="cta">
+          <!-- Đã thêm class ripple-btn -->
+          <a href="tel:0942467674" class="btn accent ripple-btn"><i class="fa-solid fa-phone"></i> Gọi thuê theo ngày</a>
+          <!-- Đã thêm class ripple-btn -->
+          <a href="#banggia" class="btn outline ripple-btn"><i class="fa-solid fa-tag"></i> Xem bảng giá</a>
         </div>
       </div>
     </section>
+    <!-- === KẾT THÚC HERO MỚI === -->
+
     <section id="dynamic-sections" class="sections" aria-label="Nội dung chính"></section>
   </main>
-  <div class="quickcall" aria-label="Cửa sổ gọi nhanh">
-    <div class="quickcall-items" id="qca-items" aria-hidden="true" style="max-height:0;overflow:hidden;">
-      <a class="quickcall-item" href="tel:0942467674" aria-label="Gọi cho Nguyễn Tú">
-        <i class="fa fa-phone" aria-hidden="true"></i>
-      </a>
-      <a class="quickcall-item" href="https://zalo.me/0942467674" target="_blank" rel="noreferrer" aria-label="Chat Zalo">
-        <svg class="zalo-icon" viewBox="0 0 64 64" aria-hidden="true">
-          <circle cx="32" cy="32" r="30" fill="#0068FF"/>
-          <text x="19" y="41" font-size="20" fill="white" font-family="Arial" font-weight="700">Z</text>
-        </svg>
-      </a>
-      <a class="quickcall-item" href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7" target="_blank" rel="noreferrer" aria-label="Xem bản đồ">
-        <i class="fa fa-map-location-dot" aria-hidden="true"></i>
-      </a>
-      <a class="quickcall-item" href="https://wa.me/84942467674" target="_blank" rel="noreferrer" aria-label="Chat WhatsApp">
-        <i class="fa fa-whatsapp" aria-hidden="true"></i>
-      </a>
-    </div>
-    <button class="quickcall-main" id="qca-main" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Mở gọi nhanh">
-      <i class="fa fa-phone-volume" aria-hidden="true"></i>
-      <span class="qs-badge" aria-hidden="true">24/7</span>
-    </button>
-  </div>
+  
+  <!-- === PHẦN HTML CỦA QUICKCALL CŨ ĐÃ BỊ XÓA === -->
+  
   <footer class="site-footer" id="footer" role="contentinfo" aria-label="Chân trang website Nguyễn Tú">
     <div class="footer-inner" id="footer-inner">
       <div class="footer-grid" id="footer-grid"></div>
@@ -902,59 +908,17 @@
   <script>
     (function() {
       "use strict";
-      // --- PHẦN DATA CŨ VẪN GIỮ NGUYÊN ---
+      // --- DATA ---
       var NAP = {
         name: "Nguyễn Tú cho thuê xe máy Hà Nội",
-        description: "Dịch vụ cho thuê xe máy uy tín tại Hoàn Kiếm, Hà Nội. Cung cấp xe ga, xe số, xe điện, giao tận nơi 20–40 phút, hỗ trợ 24/7, giá rẻ, chất lượng cao.",
         phone: "0942467674",
-        whatsapp: "https://wa.me/84942467674",
         zalo: "https://zalo.me/0942467674",
-        email: "thuexemaynguyentu@gmail.com",
-        website: "https://motoopen.github.io/thuexemayohoankiem/",
         address: "112 Nguyễn Văn Cừ, Long Biên, Hà Nội",
         map: "https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7",
-        hours: "Mở cửa: 9h00 – 21h00 (Giao xe 24/7 theo yêu cầu)",
-        social: {
-          facebook: "https://m.facebook.com/chothuexemaynguyentu/",
-          instagram: "https://www.instagram.com/thuexemaynguyentu/",
-          tripadvisor: "https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html"
-        }
       };
       var META = {
-        TITLE: "Dịch vụ cho thuê xe máy Hoàn Kiếm, Hà Nội – Nguyễn Tú",
-        DESCRIPTION: "Thuê xe máy Hà Nội giá rẻ, uy tín – Nguyễn Tú. Xe ga, xe số, xe điện, giao nhanh 20–40 phút, cọc nhẹ, hỗ trợ 24/7.",
-        KEYWORDS: "thuê xe máy, thuê xe máy Hà Nội, thuê xe máy Hoàn Kiếm, Nguyễn Tú, thuê xe ga, thuê xe số, thuê xe điện",
-        AUTHOR: "Nguyễn Tú Cho thuê xe máy Hà Nội",
-        CANONICAL: "https://motoopen.github.io/thuexemayohoankiem/index.html",
         THEME_COLOR: "#0A84FF",
-        ROBOTS: "index, follow",
-        OG_IMAGE_URL: "https://thuexemaynguyentu.com/wp-content/uploads/2025/09/BANNER-THUE-XE-MAY-1.png",
-        OG_TYPE: "website",
-        TWITTER_CARD: "summary_large_image",
-        TWITTER_SITE: "@thuexemaynguyentu",
-        PUBLISHER: "https://thuexemaynguyentu.com"
       };
-      // MENU array không còn được sử dụng để build menu chính, nhưng có thể giữ lại cho buildFooter
-      var MENU = [
-        {"🏠 Trang chủ": "./"},
-        {"📄 Giới thiệu": "gioithieu.html"},
-        {"⚙️ Dịch vụ": [
-          {"📑 Thủ tục": "thutuc.html"},
-          {"🛵 Loại xe": "loaixe.html"},
-          {"📘 Hướng dẫn": "huongdan.html"},
-          {"💡 Kinh nghiệm": "kinhnghiem.html"},
-          {"📍 Địa điểm": "diadiem.html"},
-          {"🎁 Ưu đãi": "uudai.html"},
-          {"📅 Theo ngày": "ngay.html"},
-          {"🗓️ Theo tuần": "tuan.html"},
-          {"📆 Theo tháng": "thang.html"}
-        ]},
-        {"🏷️ Bảng giá": "banggia.html"},
-        {"⚖️ Điều khoản": "https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html"},
-        {"🔒 Bảo mật": "https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html"},
-        {"❓ FAQ": "faq.html"},
-        {"💬 Liên hệ": "lienhe.html"}
-      ];
       var FOOTER_COLUMNS = [
         {"title": "🏠 Trang chủ", "href": "index.html"},
         {"title": "📄 Giới thiệu", "href": "gioithieu.html"},
@@ -985,8 +949,6 @@
         {"title": "📘 Facebook", "href": "https://m.facebook.com/chothuexemay0857255868/"}
       ];
       var BODY_SECTIONS = {
-        USE_FADEIN: true,
-        USE_SCROLL_ANIM: true,
         SECTIONS: [
           {
             TITLE: "Giới thiệu thuê xe máy Hoàn Kiếm, Hà Nội",
@@ -1034,9 +996,6 @@
               {"q": "Xe có được bảo dưỡng định kỳ không?", "a": "Tất cả xe đều được kiểm tra, bảo dưỡng kỹ trước khi giao khách."},
               {"q": "Tôi có thể thuê xe bao lâu?", "a": "Thời gian linh hoạt – theo ngày, tuần, hoặc tháng. Càng lâu giá càng tốt."},
               {"q": "Nếu xe bị hỏng giữa đường thì sao?", "a": "Liên hệ ngay hotline, sẽ có nhân viên hỗ trợ tận nơi trong thời gian ngắn."},
-              {"q": "Tôi có thể chọn dòng xe cụ thể không?", "a": "Có, bạn có thể chọn loại xe ga, xe số hoặc xe điện theo nhu cầu."},
-              {"q": "Có hỗ trợ giao xe đến khách sạn không?", "a": "Có, giao nhận tận nơi miễn phí trong bán kính 3km khu Hoàn Kiếm."},
-              {"q": "Có cần bằng lái xe không?", "a": "Có, khách cần có bằng lái hợp lệ khi thuê xe trên 50cc."}
             ]
           },
           {
@@ -1051,39 +1010,20 @@
           }
         ]
       };
-      var themePool = [
-        "UltraTitanGlass","FacebookUltra","GooglePure",
-        "HondaRedMotion","NeoMint","MidnightPurple",
-        "AeroGlassBlue","SunsetOrange","MotoDarkCarbon","MinimalWhite"
-      ];
-      var autoAccentMap = {
-        "UltraTitanGlass":"#0A84FF",
-        "FacebookUltra":"#1877F2",
-        "GooglePure":"#4285F4",
-        "HondaRedMotion":"#DA251D",
-        "NeoMint":"#9CF5B0",
-        "MidnightPurple":"#6C4AE4",
-        "AeroGlassBlue":"#4FC3F7",
-        "SunsetOrange":"#FF7043",
-        "MotoDarkCarbon":"#202020",
-        "MinimalWhite":"#DDDDDD"
-      };
+      var themePool = ["UltraTitanGlass","FacebookUltra","GooglePure","HondaRedMotion","NeoMint","MidnightPurple","AeroGlassBlue","SunsetOrange"];
+      var autoAccentMap = {"UltraTitanGlass":"#0A84FF","FacebookUltra":"#1877F2","GooglePure":"#4285F4","HondaRedMotion":"#DA251D","NeoMint":"#9CF5B0","MidnightPurple":"#6C4AE4","AeroGlassBlue":"#4FC3F7","SunsetOrange":"#FF7043"};
+      
       function applyRandomTheme() {
         var selected = themePool[Math.floor(Math.random() * themePool.length)];
         var accent = autoAccentMap[selected] || "#0A84FF";
         document.documentElement.style.setProperty("--accent", accent);
         document.documentElement.style.setProperty("--accent2", accent);
       }
-      applyRandomTheme();
-      var navEl = document.getElementById("app-navigation");
-      var currentPath = (window.location && window.location.pathname) ? window.location.pathname.split("/").pop() : "index.html";
 
-      // --- LOGIC buildMenu() VÀ CÁC EVENT LISTENER CŨ ĐÃ BỊ XÓA ---
-
-      // --- START: LOGIC JAVASCRIPT MỚI CHO MENU ---
-      (() => {
+      // --- MENU NAVIGATION ---
+      (function() {
         const nav = document.getElementById('app-navigation');
-        const menuToggle = document.querySelector('.menu-toggle'); // Nút này nằm ngoài nav
+        const menuToggle = document.querySelector('.menu-toggle'); 
         let isMenuOpen = false;
 
         const closeMenu = () => {
@@ -1092,7 +1032,6 @@
           menuToggle.innerHTML = '<span class="material-symbols-rounded" aria-hidden="true">menu</span>';
           menuToggle.setAttribute('aria-label', 'Mở menu');
           nav.classList.remove('open');
-          // Đóng tất cả submenu
           nav.querySelectorAll('.has-submenu.open').forEach(el => {
             el.classList.remove('open');
             el.querySelector('.submenu-toggle').setAttribute('aria-expanded', 'false');
@@ -1108,7 +1047,6 @@
         });
 
         nav.addEventListener('click', e => {
-          // Chỉ xử lý click trên submenu-toggle khi ở chế độ mobile
           if (window.innerWidth <= 992) {
              const btn = e.target.closest('.submenu-toggle');
              if (btn) {
@@ -1119,10 +1057,8 @@
               return;
             }
           }
-         
           const link = e.target.closest('a');
           if (link && link.getAttribute('href') && link.getAttribute('href') !== '#') {
-            // Nếu click vào link (kể cả link trong submenu), đóng menu chính
             if (isMenuOpen) {
                closeMenu();
             }
@@ -1134,20 +1070,19 @@
         });
         
         window.addEventListener('resize', () => {
-          // Sử dụng breakpoint 992px
           if (window.innerWidth > 992 && isMenuOpen) {
             closeMenu();
           }
         });
       })();
-      // --- END: LOGIC JAVASCRIPT MỚI CHO MENU ---
 
-
+      // --- DYNAMIC CONTENT BUILDERS ---
       function buildSections() {
         var container = document.getElementById("dynamic-sections");
         BODY_SECTIONS.SECTIONS.forEach(function(section) {
           var div = document.createElement("section");
-          div.className = "section-block";
+          // THÊM MỚI: Thêm class .tilt-card và .fade-in
+          div.className = "section-block tilt-card fade-in";
           var id = section.TITLE.toLowerCase().replace(/[^a-z0-9]+/g,"-");
           div.id = id;
           var head = document.createElement("div");
@@ -1234,6 +1169,7 @@
             (section.BUTTONS || []).forEach(function(b) {
               var link = document.createElement("a");
               link.href = b.href;
+              // GIỮ NGUYÊN: class .ripple-btn đã có sẵn
               link.className = "btn btn-primary ripple-btn";
               link.textContent = b.label;
               grp.appendChild(link);
@@ -1245,6 +1181,7 @@
           container.appendChild(div);
         });
       }
+      
       function chunkFooterColumns(cols, size) {
         var result = []; var temp = [];
         cols.forEach(function(c) {
@@ -1257,6 +1194,7 @@
         if (temp.length) result.push(temp);
         return result;
       }
+      
       function buildFooter() {
         var grid = document.getElementById("footer-grid");
         grid.innerHTML = "";
@@ -1300,29 +1238,28 @@
           grid.appendChild(col);
         }
       }
-      // buildMenu(); // <-- ĐÃ XÓA LỆNH GỌI NÀY
-      buildSections();
-      buildFooter();
-      var qcaMain = document.getElementById("qca-main");
-      var qcaItems = document.getElementById("qca-items");
-      var isQcaOpen = false;
-      qcaMain.addEventListener("click", function() {
-        isQcaOpen = !isQcaOpen;
-        qcaItems.style.maxHeight = isQcaOpen ? "300px" : "0";
-        qcaMain.setAttribute("aria-expanded", String(isQcaOpen));
-        qcaMain.innerHTML = isQcaOpen ? '<i class="fa fa-xmark" aria-hidden="true"></i><span class="qs-badge" aria-hidden="true">Đóng</span>' : '<i class="fa fa-phone-volume" aria-hidden="true"></i><span class="qs-badge" aria-hidden="true">24/7</span>';
-      });
-      document.addEventListener("keydown", function(e) {
-        if (e.key === "Escape" && isQcaOpen) {
-          isQcaOpen = false;
-          qcaItems.style.maxHeight = "0";
-          qcaMain.setAttribute("aria-expanded","false");
-          qcaMain.innerHTML = '<i class="fa fa-phone-volume" aria-hidden="true"></i><span class="qs-badge" aria-hidden="true">24/7</span>';
-        }
-      });
+
+      // --- WIDGETS & EFFECTS ---
+
+      // THÊM MỚI: Logic cho tab của hero card mới
+      function initHeroTabs() {
+        // Thêm selector .hero-card để tránh xung đột
+        const tabs = document.querySelectorAll('.hero-card .tab'); 
+        tabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+          });
+        });
+      }
+      
+      // === PHẦN JS CỦA QUICKCALL CŨ (initQuickCall) ĐÃ BỊ XÓA ===
+
+      // HỆ THỐNG THEME (GIỮ NGUYÊN)
       var modeToggle = document.getElementById("mode-toggle");
       function setTheme(mode) {
-        document.body.setAttribute("data-theme", mode);
+        // ĐỔI: set attribute trên <html> thay vì <body>
+        document.documentElement.setAttribute("data-theme", mode);
         localStorage.setItem("nt_theme", mode);
         modeToggle.textContent = mode === "dark" ? "☀️" : "🌙";
         document.querySelector('meta[name="theme-color"]').setAttribute("content", mode === "dark" ? "#0c0d0f" : META.THEME_COLOR);
@@ -1330,11 +1267,14 @@
       var savedTheme = localStorage.getItem("nt_theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
       setTheme(savedTheme);
       modeToggle.addEventListener("click", function() {
-        setTheme(document.body.getAttribute("data-theme") === "dark" ? "light" : "dark");
+        setTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark");
       });
+      
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         document.body.setAttribute("data-reduced","true");
       }
+
+      // HIỆU ỨNG RIPPLE (GIỮ NGUYÊN)
       function rippleListener(e) {
         var btn = e.currentTarget;
         var circle = document.createElement("span");
@@ -1348,18 +1288,79 @@
         btn.appendChild(circle);
         setTimeout(function(){ circle.remove(); }, 700);
       }
-      document.querySelectorAll(".ripple-btn").forEach(function(btn) {
-        btn.addEventListener("click", rippleListener);
-      });
+      function initRipple() {
+        // Query này sẽ tự động bắt cả nút cũ và nút mới (vì ta đã thêm class)
+        document.querySelectorAll(".ripple-btn").forEach(function(btn) {
+          btn.addEventListener("click", rippleListener);
+        });
+      }
+
+      // THÊM MỚI: HIỆU ỨNG FADE-IN
+      function initFadeIn() {
+        const faders = document.querySelectorAll('.fade-in');
+        if (!('IntersectionObserver' in window) || document.body.getAttribute('data-reduced') === 'true') {
+          faders.forEach(fader => fader.classList.add('is-visible'));
+          return;
+        }
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        faders.forEach(fader => observer.observe(fader));
+      }
+
+      // THÊM MỚI: HIỆU ỨNG TILT
+      function initTilt() {
+        if (document.body.getAttribute('data-reduced') === 'true') return;
+        
+        const tiltCards = document.querySelectorAll('.tilt-card');
+        const maxTilt = 5; // Độ nghiêng tối đa (degrees)
+
+        tiltCards.forEach(card => {
+          card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const { width, height } = rect;
+            
+            const rotateX = (y - height / 2) / (height / 2) * -maxTilt;
+            const rotateY = (x - width / 2) / (width / 2) * maxTilt;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+          });
+          card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+          });
+        });
+      }
+
+      // --- SCROLL EFFECTS ---
       document.addEventListener("scroll", function() {
-        var hero = document.getElementById("hero");
         var header = document.querySelector(".app-header");
-        if (hero && window.scrollY > 50) {
-          header.style.background = "rgba(255,255,255,0.4)";
+        if (window.scrollY > 50) {
+          // Đồng bộ với theme: dùng --bg-soft
+          header.style.background = "var(--bg-soft)";
+          header.style.backdropFilter = "blur(12px)";
         } else {
           header.style.background = "color-mix(in srgb, var(--glass) 75%, transparent)";
+          header.style.backdropFilter = "blur(10px)";
         }
       }, {passive: true});
+
+      // --- INITIALIZE ALL ---
+      applyRandomTheme();
+      buildSections();
+      buildFooter();
+      initHeroTabs(); // <- Gọi hàm mới
+      // Đã xóa initQuickCall();
+      initRipple();
+      initFadeIn(); // <- Gọi hàm mới
+      initTilt();   // <- Gọi hàm mới
+
     })();
   </script>
 </body>
