@@ -5,8 +5,8 @@ Kiểm tra và hoàn thiện file `index.html` (HTML + CSS + JS nội tuyến).
 Mục tiêu:
 ✅ Chuẩn hóa cấu trúc theo HTML5 & CSS3.  
 ✅ Giữ nguyên giao diện và hiệu ứng gốc.  
-✅ Kiểm tra, cập nhật và bổ sung **tất cả liên kết** (menu, hero, body, footer,
-
+✅ Kiểm tra, cập nhật và bổ sung **tất cả liên kết** (hero, body, footer,)
+yêu cầu giữ nguyên menu đang ổn định
 TONE:"chuyên nghiệp, chính xác, sáng tạo, không dư thừa",
   GOAL:"Sinh code website 1 file HTML sạch, nhẹ, đẹp, chuẩn SEO
 
@@ -32,13 +32,6 @@ https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html
 https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html
 
 
-Sắp xếp link hợp lý ở menu chính như sau
-trang chủ >> chính 
-giới thiệu >> chính
-dich vụ drop down những trang không chính
-Liên hệ  >>chính
-Chính sách bảo mật >> chính
-Điều khoản sử dụng >> chính
 
 
 Đường dẫn lỗi 404 
@@ -46,7 +39,7 @@ Chính sách bảo mật >> chính
 https://motoopen.github.io/thuexemayohoankiem/baomat.html
 
 
-Loại bỏ đường dẫn url >> https://motoopen.github.io/thuexemayohoankiem/index.html và thay thế đường dẫn chuẩn seo "https://motoopen.github.io/thuexễmayohoankiem ''
+Loại bỏ đường dẫn url >> https://motoopen.github.io/thuexemayohoankiem/index.html và thay thế đường dẫn chuẩn seo "https://motoopen.github.io/thuexemayohoankiem ''
 
 
 Cập nhật thêm địa chỉ :
@@ -58,8 +51,8 @@ Sửa luôn phần Bản quyền và phần bản quyền (©2025 Cho thuê xe m
 Tóm lại là bạn là chuyên gia seo nên làm
 
 Chuẩn hóa liên kết (SEO): Đã cập nhật canonical, og:url và tất cả các liên kết trang chủ (index.html) về URL gốc https://motoopen.github.io/thuexemayohoankiem/ theo yêu cầu.
-2. Tái cấu trúc Menu: Đã sắp xếp lại menu chính theo đúng yêu cầu của bạn (Trang chủ, Giới thiệu, Dịch vụ (dropdown), Liên hệ, Bảo mật, Điều khoản).
-3. Cập nhật Dropdown: Đã di chuyển các trang "không chính" (như Bảng giá, Thủ tục, Loại xe, Blog, FAQ, v.v.) vào bên trong dropdown "Dịch vụ".
+
+
 4. Sửa lỗi 404: Đã sửa các liên kết hỏng trong Footer (ví dụ: baomat.html -> chinhsachbaomat.html và dieukhoan.html -> dieukhoansudung.html).
 
 Phần hero thêm 1 CTA 
@@ -78,7 +71,6 @@ Hãy:
 	•	Viết Meta Title (≤60 ký tự) có từ khóa chính ở đầu, hấp dẫn, có CTA.
 	•	Viết Meta Description (≤155 ký tự) tự nhiên, có CTA rõ.
 	•	Thêm Meta Keywords, Open Graph, Twitter Card phù hợp.
-	
 	•	Giữ mật độ từ khóa 1–2%, dùng từ đồng nghĩa hợp lý.
 	•	Duy trì giọng văn tự nhiên, lôi cuốn, đúng style hiện tại
 
