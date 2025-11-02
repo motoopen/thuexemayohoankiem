@@ -399,6 +399,22 @@ DARKMODE_TUNER = {
 
 ---
 
+Tạo section hero glassmorphism phong cách mobile-app cho trang thuê xe máy Nguyễn Tú (HTML5 + CSS + JS inline, không dùng thư viện ngoài).
+
+Yêu cầu:
+- Có tiêu đề: “Thuê Xe Máy Hà Nội – Giao Tận Nơi, Giá Từ 150k/ngày”
+- Dưới tiêu đề là mô tả: “Xe số • Xe ga • 50cc/điện • Thuê ngày/tuần/tháng • Giao nhanh 20–40’, cọc nhẹ, xe bảo dưỡng kỹ.”
+- Có 3 tab chip: Ngày / Tuần / Tháng (tab đầu active, 2 tab còn lại xám)
+- Dưới tab là dòng giá dự kiến: “Giá dự kiến: 150–200k/ngày • Cọc nhẹ”
+- Dưới nữa là 3 chip đặc điểm: “Hợp đồng rõ ràng”, “Giao nhanh 20–40’”, “Xe bảo dưỡng kỹ”
+- Cuối cùng là 2 nút lớn: “📞 Gọi thuê theo ngày” (màu xanh accent) và “🏷️ Xem bảng giá” (viền đen)
+- Tất cả đặt trong card glass sáng (bo 20px, bóng nhẹ, nền trắng mờ)
+- Có khoảng trắng padding xung quanh hero, căn giữa nội dung.
+- Font: Inter, icon Font Awesome, màu chính #0A84FF
+- Responsive đẹp trên mobile.
+
+Kết quả chỉ cần section hero (HTML + CSS inline), không cần nav hay footer.
+
 Mục tiêu: 1 khối Ultra App liền mạch = Menu + Hero + QuickCall (glassmorphism cao cấp, dark/light, mượt trên mọi kích thước).
 
 	•	Hero: multi-layer glass, không ảnh nền, gradient động + radial highlights; chữ cascade; CTA gradient (ripple + tilt); khi cuộn hero fade → header chuyển sang glass/translucent.
