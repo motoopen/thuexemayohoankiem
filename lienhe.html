@@ -1164,7 +1164,8 @@
                     <li><a href="index.html" class="internal-link">🏠 Trang chủ</a></li>
                     <li><a href="gioithieu.html" class="internal-link">📄 Giới thiệu</a></li>
                     <li>
-                        <a href="dichvu.html" class="internal-link">⚙️ Dịch vụ</a> <!-- THAY ĐỔI: Link trỏ đến dichvu.html -->
+                        <!-- SỬA LỖI: Đã xóa href và thêm cursor:pointer để chỉ mở dropdown -->
+                        <a class="internal-link" style="cursor: pointer;">⚙️ Dịch vụ</a> 
                         <ul class="dropdown">
                             <li><a href="thutuc.html" class="internal-link">📑 Thủ tục</a></li>
                             <li><a href="loaixe.html" class="internal-link">🛵 Loại xe</a></li>
@@ -1200,7 +1201,8 @@
             <li><a href="index.html" class="internal-link">🏠 Trang chủ</a></li>
             <li><a href="gioithieu.html" class="internal-link">📄 Giới thiệu</a></li>
             <li>
-                <a href="dichvu.html" class="dropdown-toggle internal-link"> <!-- THAY ĐỔI: Link trỏ đến dichvu.html -->
+                <!-- SỬA LỖI: Đã xóa href để chỉ kích hoạt dropdown -->
+                <a class="dropdown-toggle internal-link" style="cursor: pointer;"> 
                     <span>⚙️ Dịch vụ</span>
                     <span class="material-symbols-rounded">expand_more</span>
                 </a>
@@ -1526,7 +1528,7 @@
             <!-- 5. Google Map Embed (Giữ nguyên) -->
             <div class="map-embed">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.911206107162!2d105.8702598!3d21.035704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9dd5f4cc73%3A0xdda6d835d7e1e1d5!2zMTEyIE5ndXnhu4VuIFbEg24gQ-G7qywgQ-G7rWEgRMSDbmcgTGEsIExvbmcgQmnDqm4sIEjDoCBO4buZaQ!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.911206107162!2d105.8702598!3d21.035704!2m3!1f0!2f0!3f0!3m2!i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9dd5f4cc73%3A0xdda6d835d7e1e1d5!2zMTEyIE5ndXnhu4VuIFbEg24gQ-G7qywgQ-G7rWEgRMSDbmcgTGEsIExvbmcgQmnDqm4sIEjDoCBO4buZaQ!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s"
                     width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
@@ -1622,10 +1624,12 @@
          */
         function smoothNavigate(e) {
             const a = e.currentTarget;
-            const href = a.href;
+            
+            // SỬA LỖI: Kiểm tra href TỒN TẠI trước khi truy cập
+            const href = a.getAttribute('href'); 
 
-            // Bỏ qua nếu là link ngoài, link neo, link đặc biệt
-            if (!href || a.target === '_blank' || a.href.startsWith('#') || 
+            // Bỏ qua nếu là link ngoài, link neo, link đặc biệt, HOẶC KHÔNG CÓ HREF
+            if (!href || a.target === '_blank' || href.startsWith('#') || 
                 a.protocol.startsWith('tel') || a.protocol.startsWith('mailto') || 
                 a.hasAttribute('download')) {
                 return;
@@ -1720,7 +1724,13 @@
                 // Xử lý dropdown trong mobile nav
                 mobileNav.querySelectorAll('.dropdown-toggle').forEach(toggle => {
                     toggle.addEventListener('click', (e) => {
-                        e.preventDefault();
+                        // CHỈ preventDefault nếu nó KHÔNG phải là link chuyển trang
+                        // (Mặc dù chúng ta đã xóa href, nhưng đây là cách phòng thủ tốt)
+                        const href = toggle.getAttribute('href');
+                        if (!href || href === '#') {
+                             e.preventDefault();
+                        }
+
                         const dropdown = toggle.nextElementSibling;
                         if (dropdown && dropdown.classList.contains('dropdown')) {
                             dropdown.classList.toggle('active');
