@@ -1,0 +1,234 @@
+Bạn là mô hình sinh mã giao diện rất chính xác và nhất quán, mình tin bạn giữ được cấu trúc và style nếu mô tả đủ chi tiết, nên hãy làm đúng theo đặc tả bên dưới, không tự ý đơn giản hóa.
+
+Bạn là trình tạo 1 file index.html duy nhất (HTML5 hợp lệ), CSS + JS nội tuyến, không dùng jQuery/Bootstrap/API ngoài.
+Bạn chỉ được link đúng 3 CDN font sau và phải preload + noscript fallback đầy đủ:
+
+	1.	Inter (Google Fonts)
+	2.	Material Symbols Rounded
+	3.	Font Awesome 6 Free
+
+❗Không giải thích, không mô tả, không chèn bình luận — chỉ in ra đúng 1 cấu trúc <html>...</html> hoàn chỉnh.
+❗Nếu có xung đột yêu cầu thì ưu tiên yêu cầu gần nhất.
+
+⸻
+
+1. Style / Visual Spec (bắt buộc)
+	•	Giao diện chuẩn “Mini App Ultra Navigation / Signature App Motion”.
+	•	Thiết kế glassmorphism cao cấp: nền mờ, viền mờ, đổ bóng nhẹ.
+	•	header blur 10px
+	•	mini app / quick call blur 12–16px
+	•	thẻ nội dung blur 10–14px
+	•	Dùng biến màu toàn trang:
+	•	--accent: #0A84FF;
+	•	--accent2: #00C49A;
+	•	--radius-lg: 20px;
+	•	--radius-md: 14px;
+	•	--shadow-light: 0 4px 20px rgba(0,0,0,0.1);
+	•	--shadow-dark: 0 4px 30px rgba(0,0,0,0.4);
+	•	Font Inter, line-height thoáng, letter-spacing nhẹ.
+	•	Mọi nút/thẻ/hero/menu/mini app phải có hover lift: scale ~1.03 + shadow mềm.
+	•	Hỗ trợ dark/light mode:
+	•	Có nút chuyển 🌙/☀️ ở header
+	•	Lưu localStorage
+	•	Đảo được nền, chữ, glass, icon, quick call, mini app, footer
+	•	Không flicker
+	•	Không đổi layout: header cố định 70px; quick call bên trái bottom: 3.5rem; left: 1rem;; mini app nav bên phải bottom: 4rem; right: 1.2rem;.
+
+⸻
+
+2. Animation / Motion (bắt buộc)
+
+Áp dụng hiệu ứng “Fade Ultra + Cascade (Signature App Motion)” cho:
+	•	hero card
+	•	các section nội dung
+	•	các item trong mini app nav (khi mở)
+	•	(có thể) các thẻ trong footer
+
+Chi tiết:
+	•	opacity: 0 → 1
+	•	transform: translateY(16px) → 0
+	•	blur: 6px → 0
+	•	easing: cubic-bezier(0.16,1,0.3,1)
+	•	duration: 0.8s
+	•	cascade / stagger: item 1 = 0.1s, item 2 = 0.18s, item 3 = 0.26s, item 4 = 0.34s…
+	•	Nếu prefers-reduced-motion: reduce → bỏ animation, hiển thị luôn.
+
+⸻
+
+3. SEO / HEAD (bắt buộc)
+
+Sinh <head> đầy đủ như sau:
+	•	<html lang="vi">
+	•	<meta charset="UTF-8">
+	•	<meta name="viewport" content="width=device-width,initial-scale=1">
+	•	<title>Dịch vụ cho thuê xe máy Hoàn Kiếm, Hà Nội – Nguyễn Tú</title>
+	•	<meta name="description" content="Thuê xe máy Hà Nội giá rẻ, uy tín – Nguyễn Tú. Xe ga, xe số, xe điện, giao nhanh 20–40 phút, cọc nhẹ, hỗ trợ 24/7.">
+	•	<meta name="keywords" content="thuê xe máy, thuê xe máy Hà Nội, thuê xe máy Hoàn Kiếm, Nguyễn Tú, thuê xe ga, thuê xe số, thuê xe điện">
+	•	<meta name="author" content="Nguyễn Tú Cho thuê xe máy Hà Nội">
+	•	<link rel="canonical" href="https://motoopen.github.io/thuexemayohoankiem/index.html">
+	•	<meta name="robots" content="index, follow">
+	•	<meta name="theme-color" content="#0A84FF">
+	•	OG / Twitter đầy đủ:
+	•	og:title, og:description, og:type=website, og:url, og:image, og:site_name
+	•	twitter:card=summary_large_image, twitter:title, twitter:description, twitter:image
+	•	Thêm JSON-LD dạng LocalBusiness với dữ liệu:
+	•	name: "Nguyễn Tú cho thuê xe máy Hà Nội"
+	•	description: "Dịch vụ cho thuê xe máy uy tín tại Hoàn Kiếm, Hà Nội. Cung cấp xe ga, xe số, xe điện, giao tận nơi 20–40 phút, hỗ trợ 24/7, giá rẻ, chất lượng cao."
+	•	telephone: "+84942467674"
+	•	email: "mailto:thuexemaynguyentu@gmail.com"
+	•	url: "https://motoopen.github.io/thuexemayohoankiem/"
+	•	address: "112 Nguyễn Văn Cừ, Long Biên, Hà Nội"
+	•	sameAs: facebook, instagram, tripadvisor
+
+⸻
+
+4. Header / Navigation (bắt buộc)
+	•	Header fixed, glass, cao 70px, full width.
+	•	Bên trái: brand nhỏ (icon “NT” trong khối glass tròn) + tên “Thuê xe máy – Nguyễn Tú” + sub “Hoàn Kiếm, Long Biên, Hà Nội”.
+	•	<nav id="app-navigation" role="navigation" aria-label="Điều hướng chính"> PHẢI nằm sẵn trong HTML (không tạo DOM bằng JS) để Googlebot thu thập.
+	•	Menu gồm chính xác:
+	1.	🏠 Trang chủ → ./
+	2.	📄 Giới thiệu → gioithieu.html
+	3.	⚙️ Dịch vụ → submenu gồm:
+	•	📑 Thủ tục → thutuc.html
+	•	🛵 Loại xe → loaixe.html
+	•	📘 Hướng dẫn → huongdan.html
+	•	💡 Kinh nghiệm → kinhnghiem.html
+	•	📍 Địa điểm → diadiem.html
+	•	🎁 Ưu đãi → uudai.html
+	4.	🏷️ Bảng giá → banggia.html
+	5.	❓ FAQ → faq.html
+	6.	💬 Liên hệ → lienhe.html
+	•	Mobile:
+	•	Có nút .menu-toggle với aria-controls="app-navigation" và aria-expanded="false" lúc đầu.
+	•	Bấm mở → đổi icon → aria-expanded="true".
+	•	Bấm link ≠ “#” → tự đóng.
+	•	Submenu mobile mở/đóng bằng JS, không dùng hover.
+	•	Desktop:
+	•	Submenu hiển thị bằng hover/focus-within
+	•	Glass riêng
+	•	Không phá layout
+	•	Không tự bọc vào wrapper khác.
+
+⸻
+
+5. Hero (bắt buộc)
+	•	Hero là card glass ở giữa, max-width 480px.
+	•	Nội dung:
+	•	H1: “Thuê Xe Máy Hà Nội – Giao Tận Nơi, Giá Từ 150k/ngày”
+	•	mô tả: “Xe số • Xe ga • 50cc/điện • Thuê ngày/tuần/tháng • Giao nhanh 20–40’, cọc nhẹ, xe bảo dưỡng kỹ.”
+	•	3 tab: “Ngày”, “Tuần”, “Tháng” (tab active rõ ràng, dùng cùng accent)
+	•	dòng giá: “Giá dự kiến: 150–200k/ngày • Cọc nhẹ”
+	•	3 chip: “Hợp đồng rõ ràng”, “Giao nhanh 20–40’”, “Xe bảo dưỡng kỹ”
+	•	2 CTA:
+	•	tel:0942467674 (nút chính, accent)
+	•	#banggia (nút viền)
+	•	Hero phải áp dụng Fade Ultra như mô tả trên (opacity + translate + blur + easing).
+
+⸻
+
+6. Quick Call (trái) – Ultra
+	•	HTML sẵn, không sinh bằng JS:
+	•	1 nút chính tròn (icon phone)
+	•	4 nút con: Gọi → tel:0942467674, Zalo → https://zalo.me/0942467674, WhatsApp → https://wa.me/84942467674, Bản đồ → https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7
+	•	Vị trí: left: 1rem; bottom: 3.5rem; z-index: 999;
+	•	Khi bấm: toggle class .open, cập nhật aria-expanded, đổi icon phone ↔ xmark.
+	•	Có ẩn/hiện khi scroll (xuống ẩn, lên hiện).
+	•	Nút con dạng glass tròn, hover đổi sang accent.
+
+⸻
+
+7. Mini App Nav (phải) – không tạo DOM bằng JS
+	•	HTML phải có sẵn:
+
+<div id="miniAppNav" class="mini-nav">
+  <button class="mini-btn" ...>...</button>
+  <nav class="mini-menu">...</nav>
+</div>
+
+
+	•	Vị trí: right: 1.2rem; bottom: 4rem; z-index: 999;
+	•	Bên trong .mini-menu phải có sẵn 5 link:
+	•	Trang chủ (./)
+	•	Loại xe (loaixe.html)
+	•	Bảng giá (banggia.html)
+	•	Liên hệ (lienhe.html)
+	•	Bản đồ (target=_blank)
+	•	Khi mở: menu trượt lên, dùng fade + translateY + cascade đúng easing cubic-bezier(0.16,1,0.3,1).
+	•	Không được tạo DOM mới bằng JS; JS chỉ toggle class và aria.
+
+⸻
+
+8. Footer Ultra (6 cột + Trust Strip + Icon đẹp)
+	•	Footer dạng glass, max-width = nội dung, có bo góc, blur.
+	•	Grid:
+	•	Desktop: 6 cột
+	•	Tablet: 3 cột
+	•	Mobile: 2 cột
+	•	Dữ liệu footer:
+	•	Trang chủ → index.html
+	•	Giới thiệu → gioithieu.html
+	•	Dịch vụ (có children như trên)
+	•	Bảng giá → banggia.html
+	•	Điều khoản → https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html
+	•	Bảo mật → https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html
+	•	FAQ → faq.html
+	•	Liên hệ → lienhe.html
+	•	Website → https://thuexemaynguyentu.com
+	•	Gọi → tel:0942467674
+	•	Zalo → https://zalo.me/0942467674
+	•	Instagram → link
+	•	TripAdvisor → link
+	•	Facebook → link
+	•	Trust Strip (nằm trên phần cuối footer, sau grid):
+⭐ 4.9/5 từ khách hàng • Giao xe 20–40 phút • Hỗ trợ 24/7 • Xe bảo dưỡng định kỳ
+	•	Icon mạng xã hội phải đẹp:
+	•	Đặt trong .social-inline
+	•	Mỗi icon là nút glass bo góc: width: 34px; height: 34px; border-radius: 14px; display: grid; place-items: center;
+	•	Nền: background: rgba(255,255,255,0.08); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12);
+	•	Màu icon: color: var(--text-color);
+	•	Hover: background: var(--accent); color: #fff; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(10,132,255,0.35);
+	•	Dark mode: nền glass tối rgba(12,13,15,0.35) nhưng vẫn có viền mờ.
+	•	Không được để icon dạng text link đơn giản.
+	•	Cuối footer có mini quickcall nhỏ 3 nút (Gọi / Zalo / Bản đồ) theo cùng style glass.
+
+⸻
+
+9. Nội dung thân trang
+
+Sinh một số section mẫu dạng glass, mỗi section là 1 card:
+	1.	“Giới thiệu thuê xe máy Hoàn Kiếm, Hà Nội”
+	2.	“Lý do nên chọn Nguyễn Tú” (4 gạch đầu dòng)
+	3.	“Quy trình thuê xe” (4 bước)
+	4.	“Khách hàng nói gì” (3 review, có sao ⭐)
+	5.	“Câu hỏi thường gặp (FAQ)” (dùng <details><summary>)
+	6.	“Liên hệ & Đặt xe ngay” (3 nút CTA)
+
+Mỗi section áp dụng Fade Ultra + spacing 1.6rem.
+
+⸻
+
+10. JavaScript (bắt buộc)
+	•	Tất cả JS inline, bọc IIFE.
+	•	Chỉ làm các việc sau:
+	•	toggle menu mobile
+	•	toggle submenu mobile
+	•	toggle quick call
+	•	toggle mini app nav
+	•	xử lý scroll ẩn/hiện
+	•	dark/light mode + localStorage
+	•	ripple effect cho nút
+	•	fade-in bằng IntersectionObserver nếu trình duyệt hỗ trợ
+	•	Không được tạo hoặc render menu/footer bằng JS — chỉ được thêm/xóa class.
+	•	Nếu thao tác cần thêm DOM thì chỉ mô tả, không chèn thêm thẻ.
+
+⸻
+
+Kết quả cần xuất ra:
+1 file HTML hoàn chỉnh, có đầy đủ các phần trên, đúng thứ tự, đúng style, đúng aria, đúng dark/light, đúng animation, icon footer đẹp dạng glass.
+
+PROMPT KẾT THÚC
+
+⸻
+
+“Nếu không áp dụng được style icon footer như trên thì dừng lại và sinh CSS tương đương, không xuất icon thô.”
