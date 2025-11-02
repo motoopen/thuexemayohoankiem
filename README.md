@@ -165,3 +165,14 @@ Repo này đang chạy thử ở 3 domain:
 “AI chỉ để khách hỏi nhanh, vẫn nên gọi điện để chốt xe cho chắc.” 😎
 
 Thế này là bản “đai” rồi đó – đủ thông tin cho người, cho bot, cho bạn 6 tháng sau quay lại vẫn hiểu mình đã làm cái gì 👌
+---
+
+## 11. Bản quyền & sử dụng lại
+
+Nếu bạn dùng lại đoạn chatbot / UI / cấu hình AI này ở website khác thì **bắt buộc** phải để một trong hai cách sau:
+
+1. Ở chân trang (footer) đặt dòng:  
+   **“Powered by AI thuê xe máy – https://thuexemaynguyentu.com”**
+2. Hoặc xin phép tác giả trước khi gỡ credit.
+
+Vi phạm sẽ coi như sao chép không có nguồn.
