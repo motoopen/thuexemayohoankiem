@@ -196,7 +196,33 @@ NAVIGATION_RULES = {
   }
 };
 
-
+FOOTER_RENDER_RULES = {
+  GRID: {
+    DESKTOP: 6,
+    TABLET: 3,
+    MOBILE: 2,
+    GAP: "24px"
+  },
+  DESIGN: {
+    GLASS: true,
+    BLUR: "12px",
+    RADIUS: "20px",
+    SHADOW: "0 4px 20px rgba(0,0,0,0.15)",
+    TEXT_COLOR: "var(--text-color)",
+    LINK_COLOR: "var(--text-muted)",
+    LINK_HOVER: "var(--accent)"
+  },
+  SEO: {
+    ROLE: "contentinfo",
+    STRUCTURED: true,
+    NOFOLLOW_EXTERNAL: true
+  },
+  DECORATION: {
+    TAGLINE: "Thuê xe máy Hà Nội – Nguyễn Tú • Uy tín • Giao nhanh 24/7",
+    SOCIAL_INLINE: true,
+    MINI_QCALL: true
+  }
+};
 // 🦶 FOOTER – Glass 6 Columns Responsive
 FOOTER_RENDER_RULES = {
   TYPE: "auto-generate",
