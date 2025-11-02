@@ -1172,6 +1172,65 @@
                 display: none;
             }
         }
+        
+        /* 21. MINI QUICK APP ULTRA (ĐÃ GỘP) */
+        .quick-app-ultra {
+          position: fixed;
+          left: 20px;
+          bottom: 20px;
+          z-index: 9999;
+        }
+        .quick-toggle {
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          border: none;
+          background: var(--accent, #007aff);
+          color: #fff;
+          font-size: 22px;
+          cursor: pointer;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+          transition: transform 0.25s ease, background 0.3s;
+        }
+        .quick-toggle:hover { transform: scale(1.1); background: #005be1; }
+
+        .quick-menu {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          position: absolute;
+          bottom: 70px;
+          left: 0;
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(20px);
+          transition: all 0.35s ease;
+        }
+        .quick-app-ultra.active .quick-menu {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+
+        .qa-btn {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          font-size: 20px;
+          text-decoration: none;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+          transition: transform 0.25s ease;
+        }
+        .qa-btn:hover { transform: scale(1.1); }
+        .qa-btn img { width: 26px; height: 26px; }
+        .qa-btn.phone { background: #2ecc71; }
+        .qa-btn.zalo { background: #0068ff; }
+        .qa-btn.whatsapp { background: #25d366; }
+        .qa-btn.map { background: #e74c3c; }
 
     </style>
 </head>
@@ -1673,6 +1732,25 @@
     </script>
     <script src="https://motoopen.github.io/chothuexemayhanoi/motoai_v36_smarttone_deep.js"></script>
     
+    <!-- ===================== MINI QUICK APP ULTRA (ĐÃ GỘP) ===================== -->
+    <div class="quick-app-ultra">
+      <button class="quick-toggle" aria-label="Liên hệ nhanh">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="quick-menu">
+        <a href="tel:0942467674" class="qa-btn phone" title="Gọi ngay"><i class="fas fa-phone"></i></a>
+        <a href="https://zalo.me/0942467674" target="_blank" class="qa-btn zalo" title="Chat Zalo">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo">
+        </a>
+        <a href="https://wa.me/84942467674" target="_blank" class="qa-btn whatsapp" title="Chat WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ic" target="_blank" class="qa-btn map" title="Xem bản đồ">
+          <i class="fas fa-map-marker-alt"></i>
+        </a>
+      </div>
+    </div>
+
 
     <!-- ===================== MAIN SCRIPT (IIFE) ===================== -->
     <script defer>
@@ -1985,6 +2063,14 @@
                         top: 0,
                         behavior: 'smooth'
                     });
+                });
+            }
+            
+            // --- 10. MINI QUICK APP ULTRA (ĐÃ GỘP) ---
+            const quickToggle = document.querySelector('.quick-toggle');
+            if (quickToggle) {
+                quickToggle.addEventListener('click', () => {
+                  document.querySelector('.quick-app-ultra').classList.toggle('active');
                 });
             }
 
