@@ -1,0 +1,112 @@
+<footer class="footer glass" role="contentinfo" aria-label="Chân trang Nguyễn Tú Motorbike Rental">
+  <div class="footer-columns">
+    <div class="footer-col">
+      <h4>Khám phá</h4>
+      <ul>
+        <li><a href="index.html">🏠 Trang chủ</a></li>
+        <li><a href="gioithieu.html">📄 Giới thiệu</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Dịch vụ</h4>
+      <ul>
+        <li><a href="dichvu.html">⚙️ Dịch vụ</a></li>
+        <li><a href="banggia.html">🏷️ Bảng giá</a></li>
+        <li><a href="huongdan.html">📘 Hướng dẫn</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Blog &amp; Ưu đãi</h4>
+      <ul>
+        <li><a href="kinhnghiem.html">💡 Kinh nghiệm</a></li>
+        <li><a href="uudai.html">🎁 Ưu đãi</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Chính sách</h4>
+      <ul>
+        <li><a href="https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html" target="_blank" rel="noopener noreferrer">⚖️ Điều khoản</a></li>
+        <li><a href="https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html" target="_blank" rel="noopener noreferrer">🔒 Bảo mật</a></li>
+        <li><a href="faq.html">❓ FAQ</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Liên hệ</h4>
+      <ul>
+        <li><a href="lienhe.html">💬 Liên hệ</a></li>
+        <li><a href="https://thuexemaynguyentu.com" target="_blank" rel="noopener noreferrer">🌐 Website</a></li>
+        <li><a href="tel:0942467674">📞 Gọi</a></li>
+        <li><a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer">💬 Zalo</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col social">
+      <h4>Mạng xã hội</h4>
+      <ul>
+        <li><a href="https://www.instagram.com/nguyentumotorbike/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+        <li><a href="https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tripadvisor" aria-hidden="true"></i> TripAdvisor</a></li>
+        <li><a href="https://m.facebook.com/chothuexemay0857255868/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook" aria-hidden="true"></i> Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-tagline">© 2025 Nguyễn Tú Motorbike Rental – Thuê xe máy Hà Nội 24/7.</div>
+</footer>
+
+/* --------- Biến & lớp nền kính (có thể bỏ nếu site đã có) --------- */
+:root{
+  --accent:#0A84FF;
+  --btn-text-color:#fff;
+  --text:#0c0d0f;
+  --surface:rgba(255,255,255,.6);
+}
+[data-theme-mode="dark"]{
+  --text:#f9fafa;
+  --surface:rgba(20,20,20,.6);
+}
+.glass{background:var(--surface);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+
+/* -------------------- Footer styles (chính) -------------------- */
+.footer{
+  position:relative;
+  padding:2em 1em 1em;
+  margin-top:2em;
+  color:var(--text);
+}
+.footer-columns{
+  display:grid; gap:1em; grid-template-columns:repeat(6,1fr);
+  align-items:start; text-align:center;
+}
+@media(max-width:992px){ .footer-columns{ grid-template-columns:repeat(3,1fr); } }
+@media(max-width:600px){ .footer-columns{ grid-template-columns:repeat(2,1fr); } }
+
+.footer-col h4{
+  margin-bottom:.6em; font-size:1.05em; font-weight:700;
+}
+.footer-col ul{ list-style:none; padding:0; margin:0; }
+.footer-col li{ margin:.35em 0; }
+.footer-col a{
+  color:var(--text); text-decoration:none; border-radius:.5rem; padding:.15rem .2rem; display:inline-block;
+  transition: color .2s ease, transform .2s ease;
+}
+.footer-col a:hover{ color:var(--accent); transform:translateX(2px); }
+
+.footer-col.social a{
+  display:inline-block; min-width:36px; height:36px; line-height:36px; border-radius:18px;
+  background:var(--accent); color:var(--btn-text-color); padding:0 .75em; margin:.15em .2em;
+}
+.footer-col.social a:hover{ filter:brightness(1.08); transform:none; }
+
+.footer-tagline{
+  margin-top:1em; font-size:.9em; text-align:center; opacity:.85;
+}
+
+/* Ẩn biểu tượng FA khỏi trình đọc màn hình nếu chỉ là trang trí */
+.footer .fa-brands[aria-hidden="true"]{ speak:none; }
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
