@@ -437,3 +437,5 @@ Mục tiêu: 1 khối Ultra App liền mạch = Menu + Hero + QuickCall (glassmo
 	•	Easing: cubic-bezier(0.16,1,0.3,1).
 	•	Các item xuất hiện tuần tự (cascade) mỗi 80ms.
 	•	Không đổi layout, không đổi spacing hiện tại.”**
+Hãy coi các khối dữ liệu dưới đây như file cấu hình nội bộ (giống config.js). 
+Không mô phỏng, không dịch, không giản lược. Chỉ dùng để render HTML.
