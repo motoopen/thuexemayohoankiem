@@ -108,5 +108,11 @@
 /* Ẩn biểu tượng FA khỏi trình đọc màn hình nếu chỉ là trang trí */
 .footer .fa-brands[aria-hidden="true"]{ speak:none; }
 
-
+.footer-col.social a{
+  width:36px; height:36px; line-height:36px;
+  border-radius:50%;
+  display:grid; place-items:center;
+  padding:0; gap:0;
+}
+.footer-col.social a i{ font-size:1rem; }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
