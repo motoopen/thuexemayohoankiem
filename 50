@@ -243,11 +243,16 @@ Mỗi section áp dụng Fade Ultra + spacing 1.6rem.
 Kết quả cần xuất ra:
 1 file HTML hoàn chỉnh, có đầy đủ các phần trên, đúng thứ tự, đúng style, đúng aria, đúng dark/light, đúng animation, icon footer đẹp dạng glass.
 
-PROMPT KẾT THÚC
+PROMPT
 
 ⸻
 
-
+Phần hero phải hiển thị đúng trên cả 3 loại thiết bị:
+- 🖥️ Desktop: bố cục ngang, nội dung căn giữa, hero chiếm khoảng 80vh, chữ lớn, CTA song song.
+- 💻 Tablet: bố cục dọc, các khối cách nhau 24px, text giữ tỷ lệ, CTA xếp dọc, icon vẫn hiển thị rõ.
+- 📱 Mobile: hero thu gọn gọn gàng, chữ và nút co theo chiều rộng, tab chip Ngày/Tuần/Tháng vẫn có thể cuộn ngang, không tràn khung.
+Yêu cầu: không được ẩn phần hero ở bất kỳ breakpoint nào; chỉ thay đổi bố cục và kích thước để phù hợp từng màn hình. 
+Nếu thiếu thông tin, hãy tự điều chỉnh bằng CSS flex hoặc grid để đảm bảo tính nhất quán glassmorphism, responsive và dark/light mode chuẩn.
 AI được phép tự chọn cách trình bày HTML/CSS (màu sắc, khoảng cách, responsive) để phù hợp màn hình,
 NHƯNG KHÔNG ĐƯỢC thay đổi nội dung, số lượng, thứ tự, hoặc icon của MENU và FOOTER.
 Tất cả mục trong MENU và FOOTER phải xuất hiện đúng như đã khai báo (gồm cả emoji ở đầu dòng).
