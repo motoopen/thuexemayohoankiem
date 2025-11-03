@@ -1,0 +1,199 @@
+Ok, mình gắn menu + footer bạn vừa chốt vào đúng “PROMPT HOÀN CHỈNH – ULTRA APP V2.0” của bạn, chỉ ở dạng câu lệnh/mô tả, không code nhé 👇
+
+⸻
+
+🌟 PROMPT HOÀN CHỈNH – ULTRA APP V2.0
+Bạn hãy tạo 1 file index.html duy nhất (HTML5, responsive, mobile-first) cho trang
+“Dịch vụ cho thuê xe máy Hà Nội – Nguyễn Tú”.
+
+⸻
+
+🧩 YÊU CẦU CƠ BẢN
+	•	Toàn bộ HTML + CSS + JS inline.
+	•	Không dùng jQuery, không Bootstrap, không API ngoài.
+	•	Chỉ được phép link đúng 3 font CDN (có preload + noscript):
+	1.	Inter
+	2.	Material Symbols Rounded
+	3.	Font Awesome 6 Free
+	•	Có đầy đủ meta SEO, OG, Twitter, canonical, robots, theme-color.
+	•	<html lang="vi">, tuân thủ a11y WCAG 2.1 AA.
+	•	Có dark / light mode tự động, toggle lưu localStorage.
+	•	Accent đồng bộ với theme.
+
+⸻
+
+🎨 PHONG CÁCH TỔNG THỂ – ULTRA APP STYLE
+	•	Màu chính (accent): #0A84FF, phụ #00C49A.
+	•	Nền glass: sáng rgba(255,255,255,0.25) – tối rgba(12,13,15,0.35)
+	•	Bóng & bo góc: box-shadow: 0 4px 20px rgba(0,0,0,0.1); border-radius: 20px;
+	•	Hover Lift: scale nhẹ 1.03, shadow mềm.
+	•	Gradient + Blur: cho hero, quick call, mini nav.
+	•	Animation easing: cubic-bezier(0.16,1,0.3,1)
+	•	Icon đẹp: nút tròn glass nền mờ, hover đổi sang accent, glow nhẹ.
+	•	Font: Inter, spacing thoáng, contrast cao.
+
+⸻
+
+🪄 AUTO_ACCENT_PALETTE (SYNC THEME)
+	•	Accent đổi theo theme hoặc ngẫu nhiên mỗi lần tải.
+
+Theme Name	Accent
+UltraTitanGlass	#0A84FF
+FacebookUltra	#1877F2
+GooglePure	#4285F4
+HondaRedMotion	#DA251D
+NeoMint	#9CF5B0
+MidnightPurple	#6C4AE4
+AeroGlassBlue	#4FC3F7
+SunsetOrange	#FF7043
+MotoDarkCarbon	#202020
+MinimalWhite	#DDDDDD
+
+Accent phải đồng bộ gradient trong hero, quick call, mini nav, và hover footer icon.
+Nếu prefers-color-scheme: dark, tự chọn accent tối tương phản.
+
+⸻
+
+⚙️ BỐ CỤC TRANG
+
+1️⃣ HEADER CỐ ĐỊNH
+	•	Cao khoảng 70px, glass blur, bóng nhẹ.
+	•	Bên trái: logo chữ “NT” + text “Thuê xe máy – Nguyễn Tú”.
+	•	Menu chính (desktop ngang, mobile ẩn sau hamburger):
+
+CẤU TRÚC MENU (theo đúng yêu cầu):
+	1.	🏠 Trang chủ → ./
+	2.	📄 Giới thiệu → gioithieu.html
+	3.	⚙️ Dịch vụ → submenu gồm:
+	•	📑 Thủ tục → thutuc.html
+	•	🛵 Loại xe → loaixe.html
+	•	📘 Hướng dẫn → huongdan.html
+	•	💡 Kinh nghiệm → kinhnghiem.html
+	•	📍 Địa điểm → diadiem.html
+	•	🎁 Ưu đãi → uudai.html
+	4.	🏷️ Bảng giá → submenu gồm:
+	•	📅 Theo ngày → ngay.html
+	•	🗓️ Theo tuần → tuan.html
+	•	📆 Theo tháng → thang.html
+	•	🧾 Chính sách → chinhsach.html
+	5.	❓ FAQ → faq.html
+	6.	💬 Liên hệ → lienhe.html
+	7.	📜 Điều khoản sử dụng → dieukhoansudung.html
+	8.	🔒 Chính sách bảo mật → chinhsachbaomat.html
+
+	•	Mobile có nút hamburger → toggle menu, nhấn ESC → đóng.
+	•	Khi click 1 link trong mobile menu → tự đóng menu.
+	•	Menu có hiệu ứng fade + slide nhẹ khi xuất hiện.
+
+⸻
+
+2️⃣ HERO GLASS MINI APP
+	•	Tiêu đề: “Thuê Xe Máy Hà Nội – Giao Tận Nơi, Giá Từ 150k/ngày”
+	•	Mô tả: “Xe ga, xe số, xe điện, giao 20–40 phút. Cọc nhẹ, hỗ trợ 24/7.”
+	•	Có 3 tab nhỏ: Ngày / Tuần / Tháng (liên quan đến bảng giá ở trên).
+	•	Dòng giá: “Giá dự kiến: 150–200k/ngày • Cọc nhẹ.”
+	•	2 CTA:
+	•	📞 Gọi ngay → tel:0942467674
+	•	💰 Xem bảng giá → #banggia
+	•	Animation: Fade Ultra + Cascade (blur nhẹ, delay tuần tự).
+
+⸻
+
+3️⃣ SECTION NỘI DUNG (các khối glass, fade khi cuộn)
+	•	Giới thiệu dịch vụ
+	•	Lý do nên chọn
+	•	Quy trình thuê
+	•	Đánh giá khách hàng
+	•	FAQ (dùng <details><summary>)
+	•	Liên hệ & Đặt xe ngay (nút Gọi / Zalo / Bản đồ)
+
+⸻
+
+4️⃣ QUICK CALL (CỐ ĐỊNH BÊN TRÁI)
+	•	Nút tròn glass cố định bên trái giữa.
+	•	Bấm mở 4 nút nhỏ:
+	•	📞 Gọi (tel:0942467674)
+	•	💬 Zalo (https://zalo.me/0942467674)
+	•	💬 WhatsApp (https://wa.me/84942467674)
+	•	📍 Bản đồ (https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7)
+	•	Có aria-expanded, icon đóng/mở, trượt mượt.
+
+⸻
+
+5️⃣ MINI APP NAV (BÊN PHẢI DƯỚI)
+	•	Nút tròn glass cố định góc phải dưới.
+	•	Khi mở → hiện menu mini 5 item:
+	•	Trang chủ
+	•	Loại xe
+	•	Bảng giá
+	•	Liên hệ
+	•	Bản đồ
+	•	Hiệu ứng fade + blur, cascade easing.
+
+⸻
+
+6️⃣ FOOTER (6 CỘT + TRUST STRIP)
+
+Yêu cầu đã chỉnh theo menu mới:
+	•	Phía trên footer có Trust Strip:
+	•	⭐ 4.9/5 khách hàng
+	•	• Giao xe 20–40 phút
+	•	• Hỗ trợ 24/7
+	•	• Xe bảo dưỡng định kỳ
+	•	Footer dạng grid glass: desktop 6 cột, tablet 3, mobile 2.
+	•	Nhóm liên kết trong footer phải bao gồm (dựa trên menu trên):
+	•	🏠 Trang chủ → ./
+	•	📄 Giới thiệu → gioithieu.html
+	•	⚙️ Dịch vụ → (liệt kê lại các mục con)
+	•	📑 Thủ tục → thutuc.html
+	•	🛵 Loại xe → loaixe.html
+	•	📘 Hướng dẫn → huongdan.html
+	•	💡 Kinh nghiệm → kinhnghiem.html
+	•	📍 Địa điểm → diadiem.html
+	•	🎁 Ưu đãi → uudai.html
+	•	🏷️ Bảng giá → banggia.html (anchor trong trang)
+	•	📅 Theo ngày → ngay.html
+	•	🗓️ Theo tuần → tuan.html
+	•	📆 Theo tháng → thang.html
+	•	🧾 Chính sách → chinhsach.html
+	•	📜 Điều khoản sử dụng → dieukhoansudung.html
+	•	🔒 Chính sách bảo mật → chinhsachbaomat.html
+	•	❓ FAQ → faq.html
+	•	💬 Liên hệ → lienhe.html
+	•	🌐 Website → https://motoopen.github.io/thuexemayohoankiem/
+	•	☎️ Gọi ngay → tel:0942467674
+	•	💬 Zalo → https://zalo.me/0942467674
+	•	💬 WhatsApp → https://wa.me/84942467674
+	•	📍 Bản đồ → https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7
+	•	Icon Social (theo mô tả của bạn):
+	•	Container .social-inline
+	•	Mỗi icon là nút 34×34px, bo 14px
+	•	Nền mờ, viền mờ
+	•	Hover: nền đổi sang accent, chữ trắng, glow
+	•	Kênh gợi ý: Facebook, Instagram, Zalo, TripAdvisor.
+	•	Có mini quick call nhỏ ở footer.
+
+⸻
+
+📞 THÔNG TIN DOANH NGHIỆP
+	•	Nguyễn Tú cho thuê xe máy Hà Nội
+	•	Địa chỉ: 112 Nguyễn Văn Cừ, Long Biên, Hà Nội
+	•	Hotline: 0942467674
+	•	Zalo: https://zalo.me/0942467674
+	•	WhatsApp: https://wa.me/84942467674
+	•	Email: thuexemaynguyentu@gmail.com
+	•	Website: https://motoopen.github.io/thuexemayohoankiem/
+	•	Giờ mở cửa: 9h00–21h00 (Giao xe 24/7)
+
+⸻
+
+🔒 QUY ĐỊNH
+	•	Được phép thêm <div> hoặc wrapper để căn layout.
+	•	Được phép dùng JS inline cho toggle menu, quick call, mini nav, theme.
+	•	Không được gọi API hay import thư viện khác ngoài 3 font trên.
+	•	Tất cả phải nằm trong 1 file index.html duy nhất.
+
+⸻
+
+💬 Cuối cùng:
+“Áp dụng hiệu ứng Fade Ultra + Cascade (Signature App Motion) cho menu, hero, section, và mini nav: blur nhẹ, easing cubic-bezier(0.16,1,0.3,1), delay tuần tự, không đổi layout.”
