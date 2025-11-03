@@ -439,3 +439,8 @@ Mục tiêu: 1 khối Ultra App liền mạch = Menu + Hero + QuickCall (glassmo
 	•	Không đổi layout, không đổi spacing hiện tại.”**
 Hãy coi các khối dữ liệu dưới đây như file cấu hình nội bộ (giống config.js). 
 Không mô phỏng, không dịch, không giản lược. Chỉ dùng để render HTML.
+AI có thể tự chọn cách trình bày HTML/CSS hợp lý nhất,
+nhưng phải giữ nguyên cấu trúc MENU, FOOTER, và hero đã mô tả.
+Nếu thiếu chi tiết, hãy tự sáng tạo theo phong cách glassmorphism iOS/macOS hiện đại,
+đảm bảo vẫn responsive, mượt và có dark/light mode chuẩn.
+Không được bỏ bớt mục, đổi icon, hoặc đổi logic điều hướng.
