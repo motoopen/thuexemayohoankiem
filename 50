@@ -247,7 +247,7 @@ PROMPT KẾT THÚC
 
 ⸻
 
-“Nếu không áp dụng được style icon footer như trên thì dừng lại và sinh CSS tương đương, không xuất icon thô.”
+
 AI được phép tự chọn cách trình bày HTML/CSS (màu sắc, khoảng cách, responsive) để phù hợp màn hình,
 NHƯNG KHÔNG ĐƯỢC thay đổi nội dung, số lượng, thứ tự, hoặc icon của MENU và FOOTER.
 Tất cả mục trong MENU và FOOTER phải xuất hiện đúng như đã khai báo (gồm cả emoji ở đầu dòng).
