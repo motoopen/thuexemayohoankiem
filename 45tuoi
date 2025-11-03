@@ -137,6 +137,14 @@ MENU = [
   {"💬 Liên hệ": "lienhe.html"}
 ];
 
+LƯU Ý QUAN TRỌNG VỚI MENU:
+- Không được thêm mục menu mới ngoài các mục có trong biến MENU.
+- Không được làm phẳng submenu “⚙️ Dịch vụ” và “🏷️ Bảng giá”.
+- Chỉ 2 mục có submenu: “⚙️ Dịch vụ” và “🏷️ Bảng giá”.
+- Các mục: “❓ FAQ”, “💬 Liên hệ”, “📜 Điều khoản sử dụng”, “🔒 Chính sách bảo mật” bắt buộc là cấp 1 (không submenu).
+- “🧾 Chính sách → chinhsach.html” phải nằm trong submenu “🏷️ Bảng giá”.
+- Nếu giao diện mobile cần rút gọn, vẫn phải giữ đúng thứ tự và icon như MENU.
+
 FOOTER_COLUMNS = [
   {"title": "🏠 Trang chủ", "href": "index.html"},
   {"title": "📄 Giới thiệu", "href": "gioithieu.html"},
