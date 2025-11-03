@@ -16,7 +16,7 @@ SEO_LINKING_HINT = {
   PURPOSE: "Tăng cường internal linking tự nhiên, cải thiện SEO và trải nghiệm người dùng.",
   RULES: [
     "Tự động chèn 4–5 liên kết nội bộ (internal links) trong phần nội dung.",
-    "Không cần đặt chính xác href; AI tự chọn hoặc để trống placeholder phù hợp với cấu trúc trang.",
+    "Không tự ý thay đổi style",
     "Các liên kết nên hướng đến trang như: bảng giá, hướng dẫn thuê xe, kinh nghiệm, liên hệ, ưu đãi, hoặc các dịch vụ liên quan.",
     "Giữ văn phong tự nhiên, không spam link, mỗi đoạn tối đa 1 liên kết.",
     "Không lặp lại anchor text, ưu tiên từ khóa có ngữ nghĩa rõ."
@@ -42,9 +42,9 @@ kiểm tra Đường dẫn lỗi 404
 
 **https://motoopen.github.io/thuexemayohoankiem/baomat.html nếu có loại bỏ ngay**
 
-Loại bỏ * Tiếng Anh Motorbike, Rental *
+
 Thêm 1 section seo cho từ khoá này, Thay đồi tiêu đề, Thay meta tag tổng hợp cho từ khoá, tối ưu seo từ khoá .
-** Không xoá bỏ các section**
+** Không xoá bỏ các section** không seo từ khoá tiếng anh
   ** Không được thay đổi style, cấu trúc HTML, CSS hoặc JS. Chỉ tập trung SEO **
 
 Chuyên gia SEO số 1” tiến hành rà soát, phân tích và tối ưu toàn diện tệp HTML.
