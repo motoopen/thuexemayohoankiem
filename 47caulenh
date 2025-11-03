@@ -87,18 +87,24 @@ Sinh <head> đầy đủ như sau:
 	•	Bên trái: brand nhỏ (icon “NT” trong khối glass tròn) + tên “Thuê xe máy – Nguyễn Tú” + sub “Hoàn Kiếm, Long Biên, Hà Nội”.
 	•	<nav id="app-navigation" role="navigation" aria-label="Điều hướng chính"> PHẢI nằm sẵn trong HTML (không tạo DOM bằng JS) để Googlebot thu thập.
 	•	Menu gồm chính xác:
-	1.	🏠 Trang chủ → ./
-	2.	📄 Giới thiệu → gioithieu.html
-	3.	⚙️ Dịch vụ → submenu gồm:
-	•	📑 Thủ tục → thutuc.html
-	•	🛵 Loại xe → loaixe.html
-	•	📘 Hướng dẫn → huongdan.html
-	•	💡 Kinh nghiệm → kinhnghiem.html
-	•	📍 Địa điểm → diadiem.html
-	•	🎁 Ưu đãi → uudai.html
-	4.	🏷️ Bảng giá → banggia.html
-	5.	❓ FAQ → faq.html
-	6.	💬 Liên hệ → lienhe.html
+	🏠 Trang chủ → ./
+2. 📄 Giới thiệu → gioithieu.html
+3. ⚙️ Dịch vụ → submenu gồm:
+ • 📑 Thủ tục → thutuc.html
+ • 🛵 Loại xe → loaixe.html
+ • 📘 Hướng dẫn → huongdan.html
+ • 💡 Kinh nghiệm → kinhnghiem.html
+ • 📍 Địa điểm → diadiem.html
+ • 🎁 Ưu đãi → uudai.html
+4. 🏷️ Bảng giá → submenu gồm:
+ • 📅 Theo ngày → ngay.html
+ • 🗓️ Theo tuần → tuan.html
+ • 📆 Theo tháng → thang.html
+ • 🧾 Chính sách → chinhsach.html
+5. ❓ FAQ → faq.html
+6. 💬 Liên hệ → lienhe.html
+7. 📜 Điều khoản sử dụng → dieukhoansudung.html
+8. 🔒 Chính sách bảo mật → chinhsachbaomat.html
 	•	Mobile:
 	•	Có nút .menu-toggle với aria-controls="app-navigation" và aria-expanded="false" lúc đầu.
 	•	Bấm mở → đổi icon → aria-expanded="true".
@@ -166,14 +172,24 @@ Sinh <head> đầy đủ như sau:
 	•	Tablet: 3 cột
 	•	Mobile: 2 cột
 	•	Dữ liệu footer:
-	•	Trang chủ → index.html
-	•	Giới thiệu → gioithieu.html
-	•	Dịch vụ (có children như trên)
-	•	Bảng giá → banggia.html
-	•	Điều khoản → https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html
-	•	Bảo mật → https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html
-	•	FAQ → faq.html
-	•	Liên hệ → lienhe.html
+	•	🏠 Trang chủ → ./
+2. 📄 Giới thiệu → gioithieu.html
+3. ⚙️ Dịch vụ → submenu gồm:
+ • 📑 Thủ tục → thutuc.html
+ • 🛵 Loại xe → loaixe.html
+ • 📘 Hướng dẫn → huongdan.html
+ • 💡 Kinh nghiệm → kinhnghiem.html
+ • 📍 Địa điểm → diadiem.html
+ • 🎁 Ưu đãi → uudai.html
+4. 🏷️ Bảng giá → submenu gồm:
+ • 📅 Theo ngày → ngay.html
+ • 🗓️ Theo tuần → tuan.html
+ • 📆 Theo tháng → thang.html
+ • 🧾 Chính sách → chinhsach.html
+5. ❓ FAQ → faq.html
+6. 💬 Liên hệ → lienhe.html
+7. 📜 Điều khoản sử dụng → dieukhoansudung.html
+8. 🔒 Chính sách bảo mật → chinhsachbaomat.html
 	•	Website → https://thuexemaynguyentu.com
 	•	Gọi → tel:0942467674
 	•	Zalo → https://zalo.me/0942467674
