@@ -198,18 +198,6 @@ BODY_SECTIONS={
   ]
 };
 
-KIEM_TRA_MENU_FOOTER = {
-  MENU_EXPECT: [
-    // --- MENU CHÍNH ---
-    "https://motoopen.github.io/thuexemayohoankiem/",
-    "gioithieu.html",
-    "dichvu.html",
-    "banggia.html",
-    "faq.html",
-    "lienhe.html",
-    "https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html",
-    "https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html"
-  ],
 
   FOOTER_EXPECT: {
     // --- 6 CỘT FOOTER ---
@@ -417,7 +405,7 @@ CREATIVE_HINTS_EXTRA={
   
   COLOR_SYNC: "Tự động đồng bộ accent màu chính (#0A84FF, #00C49A) giữa header, footer, hero, nút CTA và icon.",
   
-  GENERATOR_NOTE: "Khi render HTML, phải tự sinh menu và footer dựa trên JSON MENU và FOOTER_COLUMNS. Không được bỏ, gộp hay đổi tên link. Giữ semantic HTML (nav, ul/li, footer, h4)."
+  
 };
 
 
@@ -433,9 +421,6 @@ CREATIVE_HINTS_EXTRA={
 Tạo main menu glass fixed top theo MAIN_MENU=[...], có dropdown ‘Dịch vụ’ (không href). Menu tự đóng khi bấm link, không kẹt overflow, icon đổi menu/close đúng. Responsive, hover mượt, fade hiệu ứng đẹp, đồng bộ màu accent #0A84FF và #00C49A, hỗ trợ dark/light auto. Không lỗi JS, không delay, load an toàn (LSFM).”
 ---
 
-## 🎨 META + CẤU HÌNH
-(giữ nguyên như bạn đã gửi ở trên – Gemini đọc toàn bộ block JSON này để render)
-[📌 dán toàn bộ META, CONTACT, STYLE, FEATURES, APP_SHELL, MENU, FOOTER_COLUMNS, HERO_MINIAPP, BODY_SECTIONS, KIEM_TRA_MENU_FOOTER, THEME_DRIFT, STYLE_SELECTOR, SMART_INTERACT, GLASS_ANIM, LAZYLOAD_EXTEND, ADAPTIVE_MODE, SCRIPT_OPTIMIZER, CREATIVE_MODE_HINT, AI_DIRECTIVE, SMART_SEO, USER_FLOW_HINTS, VALIDATION, CREATIVE_HINTS_EXTRA — không thay đổi]
 
 ---
 
@@ -490,8 +475,8 @@ Tạo main menu glass fixed top theo MAIN_MENU=[...], có dropdown ‘Dịch v�
 
 🎯 **Kết thúc lệnh:**
 > Sinh ra 1 file `index.html` one-file hoàn chỉnh theo cấu hình trên, có:
-> - Menu glass fixed top (tự sinh từ JSON)
-> - Footer 6 cột glass mini-dock (tự sinh từ JSON)
+> - Menu glass fixed top 
+> - Footer 6 cột glass mini-dock 
 > - Hero miniapp Smart Hero Gateway – “Cổng truy cập nhanh thông minh”
 
 > - Body sections
