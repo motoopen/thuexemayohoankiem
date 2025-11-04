@@ -77,95 +77,42 @@ const STYLE = {
   }
 };
 
-const main_menu = [
-  {
-    title: "🏠 Trang chủ",
-    href: "https://motoopen.github.io/thuexemayohoankiem/"
-  },
-  {
-    title: "📄 Giới thiệu",
-    href: "https://motoopen.github.io/thuexemayohoankiem/gioithieu.html"
-  },
-  {
-    title: "⚙️ Dịch vụ",
-    children: [
-      { title: "📋 Thủ tục thuê xe", href: "https://motoopen.github.io/thuexemayohoankiem/thutuc.html" },
-      { title: "🏍️ Các loại xe", href: "https://motoopen.github.io/thuexemayohoankiem/loaixe.html" },
-      { title: "💡 Kinh nghiệm thuê xe", href: "https://motoopen.github.io/thuexemayohoankiem/kinhnghiem.html" },
-      { title: "📍 Địa điểm nổi bật", href: "https://motoopen.github.io/thuexemayohoankiem/diadiem.html" },
-      { title: "🔄 Quy trình thuê", href: "https://motoopen.github.io/thuexemayohoankiem/quytrinh.html" },
-      { title: "📰 Blog", href: "https://motoopen.github.io/thuexemayohoankiem/blog.html" },
-      { title: "🎁 Ưu đãi", href: "https://motoopen.github.io/thuexemayohoankiem/uudai.html" },
-      { title: "💸 Giảm giá", href: "https://motoopen.github.io/thuexemayohoankiem/giamgia.html" },
-      { title: "📅 Thuê theo ngày", href: "https://motoopen.github.io/thuexemayohoankiem/ngay.html" },
-      { title: "🗓️ Thuê theo tuần", href: "https://motoopen.github.io/thuexemayohoankiem/tuan.html" },
-      { title: "📆 Thuê theo tháng", href: "https://motoopen.github.io/thuexemayohoankiem/thang.html" },
-      { title: "🏷️ Bảng giá", href: "https://motoopen.github.io/thuexemayohoankiem/banggia.html" }
-    ]
-  },
-  {
-    title: "❓ FAQ",
-    href: "https://motoopen.github.io/thuexemayohoankiem/faq.html"
-  },
-  {
-    title: "💬 Liên hệ",
-    href: "https://motoopen.github.io/thuexemayohoankiem/lienhe.html"
-  },
-  {
-    title: "🔒 Chính sách bảo mật",
-    href: "https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html"
-  },
-  {
-    title: "⚖️ Điều khoản sử dụng",
-    href: "https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html"
-  }
-];
+4. Header / Navigation (bắt buộc)
+	•	Header fixed, glass, cao 70px, full width.
+	•	Bên trái: brand nhỏ (icon “NT” trong khối glass tròn) + tên “Thuê xe máy – Nguyễn Tú” + sub “Hoàn Kiếm, Long Biên, Hà Nội”.
+	•	<nav id="app-navigation" role="navigation" aria-label="Điều hướng chính"> PHẢI nằm sẵn trong HTML (không tạo DOM bằng JS) để Googlebot thu thập.
+	•	Menu gồm chính xác:
+	🏠 Trang chủ → ./
+2. 📄 Giới thiệu → gioithieu.html
+3. ⚙️ Dịch vụ → submenu gồm:
+ • 📑 Thủ tục → thutuc.html
+ • 🛵 Loại xe → loaixe.html
+ • 📘 Hướng dẫn → huongdan.html
+ • 💡 Kinh nghiệm → kinhnghiem.html
+ • 📍 Địa điểm → diadiem.html
+ • 🎁 Ưu đãi → uudai.html
+4. 🏷️ Bảng giá → submenu gồm:
+ • 📅 Theo ngày → ngay.html
+ • 🗓️ Theo tuần → tuan.html
+ • 📆 Theo tháng → thang.html
+ • 🧾 Chính sách → chinhsach.html
+5. ❓ FAQ → faq.html
+6. 💬 Liên hệ → lienhe.html
+7. 📜 Điều khoản sử dụng → dieukhoansudung.html
+8. 🔒 Chính sách bảo mật → chinhsachbaomat.html
+	•	Mobile:
+	•	Có nút .menu-toggle với aria-controls="app-navigation" và aria-expanded="false" lúc đầu.
+	•	Bấm mở → đổi icon → aria-expanded="true".
+	•	Bấm link ≠ “#” → tự đóng.
+	•	Submenu mobile mở/đóng bằng JS, không dùng hover.
+	•	Desktop:
+	•	Submenu hiển thị bằng hover/focus-within
+	•	Glass riêng
+	•	Không phá layout
+	•	Không tự bọc vào wrapper khác.
 
-const footer_columns = [
-  { title: "🏠 Trang chủ", href: "https://motoopen.github.io/thuexemayohoankiem/" },
-  { title: "📄 Giới thiệu", href: "https://motoopen.github.io/thuexemayohoankiem/gioithieu.html" },
-  { title: "📋 Thủ tục thuê xe", href: "https://motoopen.github.io/thuexemayohoankiem/thutuc.html" },
-  { title: "🏍️ Các loại xe", href: "https://motoopen.github.io/thuexemayohoankiem/loaixe.html" },
-  { title: "💡 Kinh nghiệm", href: "https://motoopen.github.io/thuexemayohoankiem/kinhnghiem.html" },
-  { title: "📍 Địa điểm nổi bật", href: "https://motoopen.github.io/thuexemayohoankiem/diadiem.html" },
-  { title: "🔄 Quy trình thuê", href: "https://motoopen.github.io/thuexemayohoankiem/quytrinh.html" },
-  { title: "📰 Blog", href: "https://motoopen.github.io/thuexemayohoankiem/blog.html" },
-  { title: "🎁 Ưu đãi", href: "https://motoopen.github.io/thuexemayohoankiem/uudai.html" },
-  { title: "💸 Giảm giá", href: "https://motoopen.github.io/thuexemayohoankiem/giamgia.html" },
-  { title: "📅 Thuê theo ngày", href: "https://motoopen.github.io/thuexemayohoankiem/ngay.html" },
-  { title: "🗓️ Thuê theo tuần", href: "https://motoopen.github.io/thuexemayohoankiem/tuan.html" },
-  { title: "📆 Thuê theo tháng", href: "https://motoopen.github.io/thuexemayohoankiem/thang.html" },
-  { title: "❓ FAQ", href: "https://motoopen.github.io/thuexemayohoankiem/faq.html" },
-  { title: "🏷️ Bảng giá", href: "https://motoopen.github.io/thuexemayohoankiem/banggia.html" },
-  { title: "💬 Liên hệ", href: "https://motoopen.github.io/thuexemayohoankiem/lienhe.html" },
-  { title: "📘 Chính sách chung", href: "https://motoopen.github.io/thuexemayohoankiem/chinhsach.html" },
-  { title: "🌐 Mạng xã hội", href: "https://motoopen.github.io/thuexemayohoankiem/social.html" },
-  { title: "🔒 Chính sách bảo mật", href: "https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html" },
-  { title: "⚖️ Điều khoản sử dụng", href: "https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html" },
-  { title: "🌍 Website", icon: "globe", href: "https://thuexemaynguyentu.com" },
-  { title: "📞 Gọi", icon: "phone", href: "tel:0942467674" },
-  { title: "💬 Zalo", icon: "zalo", href: "https://zalo.me/0942467674" },
-  { title: "📷 Instagram", icon: "instagram", href: "https://www.instagram.com/nguyentumotorbike/" },
-  { title: "⭐ TripAdvisor", icon: "tripadvisor", href: "https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html" },
-  { title: "📘 Facebook", icon: "facebook", href: "https://m.facebook.com/chothuexemay0857255868/" }
-];
+⸻
 
-HERO_MINIAPP = {
-  ENABLED: true,
-  TYPE: "service-grid-ultra", // Hero nâng cao Ultra không ảnh
-  TITLE: "Đặt xe nhanh cùng Nguyễn Tú",
-  SUBTITLE: "Chọn loại xe bạn cần và nhận xe trong 20–40 phút. Giao xe tận nơi, hỗ trợ 24/7.",
-  STYLE: "glass no-image accent-sync", // hiệu ứng glass, đồng bộ màu, không ảnh nền
-  BUTTONS: [
-    {"label": "🚀 Đặt xe ngay", "href": "lienhe.html"},
-    {"label": "⚙️ Dịch vụ", "href": "dichvu.html"},
-    {"label": "🏍️ Xem các loại xe", "href": "loaixe.html"},
-    {"label": "💸 Bảng giá", "href": "banggia.html"},
-    {"label": "🎁 Ưu đãi & Giảm giá", "href": "uudai.html"},
-    {"label": "📋 Thủ tục thuê xe", "href": "thutuc.html"},
-    {"label": "💬 Chat Zalo", "href": "https://zalo.me/0942467674"}
-  ]
-};
 
 BODY_SECTIONS={
   USE_FADEIN:true,
