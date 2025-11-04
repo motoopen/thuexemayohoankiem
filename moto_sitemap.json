@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "version": "1.3",
+    "lastUpdate": "2025-11-05",
+    "description": "Sitemap mở rộng cho AI Motoopen – phục vụ AutoLearn, SEO, và huấn luyện chatbot Nguyễn Tú cho hệ thống thuê xe máy Hoàn Kiếm, Hà Nội."
+  },
+  "categories": {
+    "pages": {
+      "type": "html",
+      "description": "Các trang chính của website hiển thị giao diện và nội dung người dùng",
+      "list": [
+        "https://motoopen.github.io/thuexemayohoankiem/",
+        "https://motoopen.github.io/thuexemayohoankiem/gioithieu.html",
+        "https://motoopen.github.io/thuexemayohoankiem/thutuc.html",
+        "https://motoopen.github.io/thuexemayohoankiem/loaixe.html",
+        "https://motoopen.github.io/thuexemayohoankiem/kinhnghiem.html",
+        "https://motoopen.github.io/thuexemayohoankiem/diadiem.html",
+        "https://motoopen.github.io/thuexemayohoankiem/quytrinh.html",
+        "https://motoopen.github.io/thuexemayohoankiem/blog.html",
+        "https://motoopen.github.io/thuexemayohoankiem/uudai.html",
+        "https://motoopen.github.io/thuexemayohoankiem/giamgia.html",
+        "https://motoopen.github.io/thuexemayohoankiem/ngay.html",
+        "https://motoopen.github.io/thuexemayohoankiem/tuan.html",
+        "https://motoopen.github.io/thuexemayohoankiem/thang.html",
+        "https://motoopen.github.io/thuexemayohoankiem/faq.html",
+        "https://motoopen.github.io/thuexemayohoankiem/banggia.html",
+        "https://motoopen.github.io/thuexemayohoankiem/lienhe.html",
+        "https://motoopen.github.io/thuexemayohoankiem/chinhsach.html",
+        "https://motoopen.github.io/thuexemayohoankiem/social.html",
+        "https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html",
+        "https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html"
+      ]
+    },
+    "datasets": {
+      "type": "txt",
+      "description": "Các tập dữ liệu text để MotoAI tự học và trả lời tự nhiên cho khách hàng",
+      "list": [
+        "https://motoopen.github.io/thuexemayohoankiem/du-lieu/thuengay.txt",
+        "https://motoopen.github.io/thuexemayohoankiem/du-lieu/tuan.txt",
+        "https://motoopen.github.io/thuexemayohoankiem/du-lieu/thang.txt",
+        "https://motoopen.github.io/thuexemayohoankiem/du-lieu/thutuc.txt",
+        "https://motoopen.github.io/thuexemayohoankiem/du-lieu/dieukien.txt"
+      ]
+    }
+  },
+  "training": {
+    "mode": "incremental",
+    "autoRefresh": "72h",
+    "preferredFormat": "markdown+utf8",
+    "enableSpellFix": true,
+    "enableAdaptiveLearn": true
+  },
+  "publisher": {
+    "name": "Motoopen — Nguyễn Tú",
+    "website": "https://motoopen.github.io/thuexemayohoankiem/",
+    "contact": "0942 467 674",
+    "email": "motoopen12@gmail.com",
+    "location": "114 Nguyễn Văn Cừ, Long Biên, Hà Nội",
+    "keywords": [
+      "thuê xe máy Hoàn Kiếm",
+      "thuê xe máy Hà Nội",
+      "Nguyễn Tú",
+      "thuê xe ga",
+      "thuê xe số",
+      "thuê xe tháng",
+      "giao xe tận nơi",
+      "thủ tục thuê xe máy"
+    ]
+  }
+}
