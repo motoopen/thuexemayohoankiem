@@ -408,18 +408,7 @@ CREATIVE_HINTS_EXTRA={
   PERFORMANCE_NOTE:"Giảm DOM load, inline CSS cần thiết, defer script, tránh repaint layout."
 };
 
-RENDER_HINTS = {
-  MENU_STRUCTURE: "Tạo menu chính theo cấu trúc trong MENU=[...] (có dropdown, icon emoji). Giữ nguyên thứ tự và nhóm 'Dịch vụ' là menu cha không có href. Menu dạng glass fixed top, hiệu ứng hover mượt, đồng bộ màu accent.",
-  
-  FOOTER_LAYOUT: "Tạo footer theo FOOTER_COLUMNS=[...] nhưng chia thành 6 cột responsive dạng grid: \
-1️⃣ Khám phá → Trang chủ, Giới thiệu; \
-2️⃣ Dịch vụ → Dịch vụ, Bảng giá, Hướng dẫn; \
-3️⃣ Blog & Ưu đãi → Kinh nghiệm, Ưu đãi; \
-4️⃣ Chính sách → Điều khoản, Bảo mật, FAQ; \
-5️⃣ Liên hệ → Liên hệ, Website, Gọi, Zalo; \
-6️⃣ Mạng xã hội → Facebook, Instagram, TripAdvisor. \
-Giữ nguyên emoji, href, icon. Dùng grid 6 cột, auto-collapse còn 2 cột trên mobile. Có tagline và quickcall bên trái.",
-  
+
   FOOTER_STYLE: "Footer dạng glass mini-dock, đồng bộ theme UltraTitanGlass, có shadow nhẹ, icon social tròn nhỏ, hover sáng nhẹ.",
   
   HEADER_STYLE: "Menu glass fixed top, có bóng mờ khi scroll, icon hiển thị rõ, đồng bộ theme.",
@@ -450,27 +439,53 @@ Tạo main menu glass fixed top theo MAIN_MENU=[...], có dropdown ‘Dịch v�
 
 ---
 
-## 🧩 RENDER_HINTS (chỉ đạo rõ ràng cho Gemini)
+## 🧩 RENDER_HINTS 
 
-RENDER_HINTS={
-  MENU_STRUCTURE:"Tạo <ul class='nav-menu'> theo JSON MENU=[...] — có dropdown cho nhóm Dịch vụ, giữ emoji icon, glass fixed top, blur nhẹ 6–8px, opacity ~0.9, hover sáng hơn.",
-  MENU_AUTO_ACTIVE:"Thêm class active cho trang hiện tại (so khớp href).",
-  FOOTER_LAYOUT:"Tạo footer từ FOOTER_COLUMNS=[...] — chia 6 cột responsive grid: \
-1️⃣ Khám phá (Trang chủ, Giới thiệu) \
-2️⃣ Dịch vụ (Dịch vụ, Bảng giá, Hướng dẫn) \
-3️⃣ Blog & Ưu đãi (Kinh nghiệm, Ưu đãi, Blog) \
-4️⃣ Chính sách (Điều khoản, Bảo mật, FAQ) \
-5️⃣ Liên hệ (Liên hệ, Website, Gọi, Zalo) \
-6️⃣ Mạng xã hội (Facebook, Instagram, TripAdvisor). \
-Có tagline và quickcall ở góc trái, giữ icon emoji hoặc Font Awesome tương ứng.",
-  FOOTER_STYLE:"Footer glass mini-dock, có blur nhẹ, border-top mảnh, icon social tròn, hover phát sáng, đồng bộ màu accent.",
-  HEADER_STYLE:"Header glass fixed-top, có shadow khi scroll, đồng bộ accent và blur. Khi scroll >120px, nền đậm hơn.",
-  THEME_MODE:"Hỗ trợ Light / Dark mode thực: dùng thuộc tính data-theme-mode='light' hoặc 'dark' để điều khiển CSS. Nút chuyển theme có biểu tượng ☀️ / 🌙, đặt trong header, toggle bằng JS trong IIFE.",
-  COLOR_SYNC:"Accent #0A84FF (chính) và #00C49A (phụ) được đồng bộ cho menu, footer, hero và nút CTA.",
-  HERO_STYLE:"Hero miniapp đồng bộ glass style, có CTA nổi bật và hiệu ứng hover ripple.",
-  GENERATOR_NOTE:"Gemini phải thực sự sinh menu và footer từ JSON (không hardcode). Toàn bộ code phải hợp lệ HTML5, semantic, inline CSS/JS, tương thích mobile."
-};
+8. Footer Ultra (6 cột + Trust Strip + Icon đẹp)
+	•	Footer dạng glass, max-width = nội dung, có bo góc, blur.
+	•	Grid:
+	•	Desktop: 6 cột
+	•	Tablet: 3 cột
+	•	Mobile: 2 cột
+	•	Dữ liệu footer:
+	•	🏠 Trang chủ → ./
+2. 📄 Giới thiệu → gioithieu.html
+3. ⚙️ Dịch vụ → submenu gồm:
+ • 📑 Thủ tục → thutuc.html
+ • 🛵 Loại xe → loaixe.html
+ • 📘 Hướng dẫn → huongdan.html
+ • 💡 Kinh nghiệm → kinhnghiem.html
+ • 📍 Địa điểm → diadiem.html
+ • 🎁 Ưu đãi → uudai.html
+4. 🏷️ Bảng giá → submenu gồm:
+ • 📅 Theo ngày → ngay.html
+ • 🗓️ Theo tuần → tuan.html
+ • 📆 Theo tháng → thang.html
+ • 🧾 Chính sách → chinhsach.html
+5. ❓ FAQ → faq.html
+6. 💬 Liên hệ → lienhe.html
+7. 📜 Điều khoản sử dụng → dieukhoansudung.html
+8. 🔒 Chính sách bảo mật → chinhsachbaomat.html
+	•	Website → https://thuexemaynguyentu.com
+	•	Gọi → tel:0942467674
+	•	Zalo → https://zalo.me/0942467674
+	•	Instagram → link
+	•	TripAdvisor → link
+	•	Facebook → link
+	•	Trust Strip (nằm trên phần cuối footer, sau grid):
+⭐ 4.9/5 từ khách hàng • Giao xe 20–40 phút • Hỗ trợ 24/7 • Xe bảo dưỡng định kỳ
+	•	Icon mạng xã hội phải đẹp:
+	•	Đặt trong .social-inline
+	•	Mỗi icon là nút glass bo góc: width: 34px; height: 34px; border-radius: 14px; display: grid; place-items: center;
+	•	Nền: background: rgba(255,255,255,0.08); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12);
+	•	Màu icon: color: var(--text-color);
+	•	Hover: background: var(--accent); color: #fff; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(10,132,255,0.35);
+	•	Dark mode: nền glass tối rgba(12,13,15,0.35) nhưng vẫn có viền mờ.
+	•	Không được để icon dạng text link đơn giản.
+	•	Cuối footer có mini quickcall nhỏ 3 nút (Gọi / Zalo / Bản đồ) theo cùng style glass.
 
+⸻
+  
 ---
 
 🎯 **Kết thúc lệnh:**
