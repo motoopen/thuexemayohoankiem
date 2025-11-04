@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test MotoAI v37.6 - Nguyễn Tú</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f3f6fa;
+      color: #222;
+      line-height: 1.6;
+      padding: 40px;
+    }
+    h1 {
+      color: #0084ff;
+      margin-bottom: 12px;
+    }
+    p.note {
+      color: #555;
+      font-size: 15px;
+    }
+    footer {
+      margin-top: 40px;
+      color: #777;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🛵 Test Chatbot MotoAI Nguyễn Tú</h1>
+  <p class="note">
+    Nếu cấu hình đúng, góc phải dưới sẽ hiện bong bóng 💬 sau khi tải trang 2–3 giây.<br>
+    Bạn có thể thử nhắn: <b>“Giá thuê xe số 2 ngày”</b> hoặc <b>“Thủ tục thuê xe máy”</b>.
+  </p>
+
+  <footer>
+    <p>© 2025 Nguyễn Tú - Thuê xe máy Hoàn Kiếm, Hà Nội</p>
+  </footer>
+
+  <!-- MotoAI v37.6 - Chatbot Nguyễn Tú -->
+  <script>
+  window.MotoAI_CONFIG = {
+    brand: "Nguyễn Tú",
+    phone: "0942467674",
+    zalo: "https://zalo.me/0942467674",
+    avatar: "🛵",
+    themeColor: "#0084FF",
+    extraSites: ["https://motoopen.github.io/thuexemayohoankiem/"],
+    autolearn: true
+  };
+  </script>
+
+  <!-- Đường dẫn đúng vì file JS nằm cùng cấp với index.html -->
+  <script src="https://motoopen.github.io/thuexemayohoankiem/motoai_v37_6_autositemap_pricing.js" defer></script>
+  <!-- /MotoAI -->
+</body>
+</html>
