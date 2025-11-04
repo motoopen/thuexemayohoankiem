@@ -496,3 +496,10 @@ FRAMEWORK_LOCK = {
   RESTRICT_API_OUTSIDE:true,
   AUTO_RECOVER:true
 };
+
+AI được phép tự chọn cách trình bày HTML/CSS (màu sắc, khoảng cách, responsive) để phù hợp màn hình,
+NHƯNG KHÔNG ĐƯỢC thay đổi nội dung, số lượng, thứ tự, hoặc icon của MENU và FOOTER.
+Tất cả mục trong MENU và FOOTER phải xuất hiện đúng như đã khai báo (gồm cả emoji ở đầu dòng).
+Nếu thiếu chi tiết, hãy tự sáng tạo bên trong từng mục, không được xóa hoặc gộp mục.
+MENU và FOOTER có thể có cùng icon hoặc tên mục (ví dụ: “🏠 Trang chủ”, “⚙️ Dịch vụ”). Đây là hai phần độc lập, không được hợp nhất hay lược bớt.
+AI phải render cả hai đầy đủ, kể cả khi icon và nhãn giống nhau.
