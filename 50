@@ -119,18 +119,7 @@ Sinh <head> đầy đủ như sau:
 ⸻
 
 5. Hero (bắt buộc)
-	•	Hero là card glass ở giữa, max-width 480px.
-	•	Nội dung:
-	•	H1: “Thuê Xe Máy Hà Nội – Giao Tận Nơi, Giá Từ 150k/ngày”
-	•	mô tả: “Xe số • Xe ga • 50cc/điện • Thuê ngày/tuần/tháng • Giao nhanh 20–40’, cọc nhẹ, xe bảo dưỡng kỹ.”
-	•	3 tab: “Ngày”, “Tuần”, “Tháng” (tab active rõ ràng, dùng cùng accent)
-	•	dòng giá: “Giá dự kiến: 150–200k/ngày • Cọc nhẹ”
-	•	3 chip: “Hợp đồng rõ ràng”, “Giao nhanh 20–40’”, “Xe bảo dưỡng kỹ”
-	•	2 CTA:
-	•	tel:0942467674 (nút chính, accent)
-	•	#banggia (nút viền)
-	•	Hero phải áp dụng Fade Ultra như mô tả trên (opacity + translate + blur + easing).
-
+	> - Hero miniapp Smart Hero Gateway – “Cổng truy cập nhanh thông minh”
 ⸻
 
 6. Quick Call (trái) – Ultra
