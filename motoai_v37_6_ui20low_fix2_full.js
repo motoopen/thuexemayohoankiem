@@ -815,23 +815,22 @@
     getIndex: getIndexFlat
   };
    // === Auto adjust input position when keyboard opens (iOS fix) ===
-if (window.visualViewport) {
-  const inputBar = document.getElementById('mta-input');
-  const updateInputPos = () => {
-    const vv = window.visualViewport;
-    if (!inputBar) return;
-    // khi bàn phím mở, viewport.height < window.innerHeight
-    const keyboardOpen = vv.height < window.innerHeight - 100;
-    if (keyboardOpen) {
-      inputBar.style.bottom = (window.innerHeight - vv.height + 10) + 'px';
-    } else {
-      inputBar.style.bottom = '50px';
-    }
-  };
-  window.visualViewport.addEventListener('resize', updateInputPos);
-  window.visualViewport.addEventListener('scroll', updateInputPos);
-  updateInputPos();
-}
-
-})();
-
+ready(() => {
+  if (window.visualViewport) {
+    const inputBar = document.getElementById('mta-input');
+    const updateInputPos = () => {
+      const vv = window.visualViewport;
+      if (!inputBar) return;
+      // khi bàn phím mở, viewport.height < window.innerHeight
+      const keyboardOpen = vv.height < window.innerHeight - 100;
+      if (keyboardOpen) {
+        inputBar.style.bottom = (window.innerHeight - vv.height + 10) + 'px';
+      } else {
+        inputBar.style.bottom = '50px';
+      }
+    };
+    window.visualViewport.addEventListener('resize', updateInputPos);
+    window.visualViewport.addEventListener('scroll', updateInputPos);
+    updateInputPos();
+  }
+});
