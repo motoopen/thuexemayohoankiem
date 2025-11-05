@@ -182,8 +182,8 @@
     border-radius:999px;padding:6px 12px;font-size:13px;
     cursor:pointer;
   }
-  #mta-input {
-  position: fixed; /* giúp nó bám theo màn hình thật */
+#mta-input {
+  position: absolute;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
@@ -197,7 +197,7 @@
   box-shadow: 0 2px 8px rgba(0,0,0,.1);
   transition: bottom 0.25s ease;
   z-index: 10;
-  }
+}
   #mta-in{
     flex:1;border:1px solid rgba(0,0,0,.1);border-radius:16px;
     padding:9px 10px 9px 12px;
@@ -814,30 +814,23 @@
     learnNow: ()=>learnFromSitemapOrSite(),
     getIndex: getIndexFlat
   };
-   // === Auto adjust input position when keyboard opens (mobile portrait fix) ===
-ready(() => {
-  if (window.visualViewport) {
-    const inputBar = document.getElementById('mta-input');
-    const card = document.getElementById('mta-card');
-    const updateInputPos = () => {
-      const vv = window.visualViewport;
-      if (!inputBar || !card) return;
-      const keyboardOpen = vv.height < window.innerHeight - 100;
+   // === Auto adjust input position when keyboard opens (iOS fix) ===
+if (window.visualViewport) {
+  const inputBar = document.getElementById('mta-input');
+  const updateInputPos = () => {
+    const vv = window.visualViewport;
+    if (!inputBar) return;
+    // khi bàn phím mở, viewport.height < window.innerHeight
+    const keyboardOpen = vv.height < window.innerHeight - 100;
+    if (keyboardOpen) {
+      inputBar.style.bottom = (window.innerHeight - vv.height + 10) + 'px';
+    } else {
+      inputBar.style.bottom = '50px';
+    }
+  };
+  window.visualViewport.addEventListener('resize', updateInputPos);
+  window.visualViewport.addEventListener('scroll', updateInputPos);
+  updateInputPos();
+}
 
-      if (keyboardOpen) {
-        // Trượt input lên ngay trên bàn phím
-        const offset = window.innerHeight - vv.height - 10;
-        inputBar.style.bottom = offset + 'px';
-        // Giảm chiều cao phần thân chat cho vừa màn hình dọc
-        card.style.height = vv.height - 40 + 'px';
-      } else {
-        inputBar.style.bottom = '16px';
-        card.style.height = '500px';
-      }
-    };
-
-    window.visualViewport.addEventListener('resize', updateInputPos);
-    window.visualViewport.addEventListener('scroll', updateInputPos);
-    updateInputPos();
-  }
-});
+})();
