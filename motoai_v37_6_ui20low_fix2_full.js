@@ -182,7 +182,7 @@
     border-radius:999px;padding:6px 12px;font-size:13px;
     cursor:pointer;
   }
-#mta-input {
+  #mta-input {
   position: fixed; /* giúp nó bám theo màn hình thật */
   left: 50%;
   transform: translateX(-50%);
@@ -197,7 +197,7 @@
   box-shadow: 0 2px 8px rgba(0,0,0,.1);
   transition: bottom 0.25s ease;
   z-index: 10;
-}
+  }
   #mta-in{
     flex:1;border:1px solid rgba(0,0,0,.1);border-radius:16px;
     padding:9px 10px 9px 12px;
