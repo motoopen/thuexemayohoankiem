@@ -178,7 +178,6 @@
   const SUGS = [
     {q:'Bảng giá', label:'💰 Bảng giá'},
     {q:'Thủ tục thuê xe', label:'⚙️ Thủ tục'},
-    {q:'Thuê Vision 2 ngày', label:'🏍️ Vision 2 ngày'},
     {q:'Liên hệ', label:'☎️ Liên hệ'}
   ];
   function buildSugs(){
