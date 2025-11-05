@@ -183,9 +183,21 @@
     cursor:pointer;
   }
   #mta-input{
-    background:#fff;border-top:1px solid rgba(0,0,0,.05);
-    padding:8px;display:flex;gap:8px;align-items:center;
-  }
+  position: absolute;
+  bottom: 50px; /* đẩy ô input lên cao khoảng 50px */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%; /* chiếm 90% chiều rộng khung chat */
+  background: #fff;
+  border-top: 1px solid rgba(0,0,0,.05);
+  padding: 8px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border-radius: 16px; /* bo nhẹ góc */
+  box-shadow: 0 2px 8px rgba(0,0,0,.1);
+  z-index: 10; /* đảm bảo nổi trên nền */
+}
   #mta-in{
     flex:1;border:1px solid rgba(0,0,0,.1);border-radius:16px;
     padding:9px 10px 9px 12px;
