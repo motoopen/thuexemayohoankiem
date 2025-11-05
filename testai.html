@@ -3,41 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Test MotoAI v20 UI100</title>
+  <title>Test MotoAI v38 UI100</title>
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#f7f9fc;margin:0}
-    .wrap{max-width:760px;margin:56px auto;padding:0 16px;text-align:center}
-    h1{color:#0084FF;margin-bottom:8px}
-    p{color:#39424e}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#f7f9fc;margin:0}
+    .wrap{max-width:780px;margin:56px auto;padding:0 16px;text-align:center}
+    h1{color:#0084FF;margin-bottom:6px}
+    p{color:#3a4452;line-height:1.6}
     code{background:#eef4ff;padding:2px 6px;border-radius:6px}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <h1>🛵 Test MotoAI v20 UI100</h1>
-    <p>Nếu mọi thứ ok, bạn sẽ thấy bong bóng 💬 ở góc phải dưới. Bấm để mở chat.</p>
-    <p>File JS: <code>motoai_v20_ui100.js</code></p>
+    <h1>🛵 Test MotoAI v38 UI100</h1>
+    <p>Bấm bong bóng 💬 ở góc phải dưới để mở chat. Khung chat sẽ cao ~85% màn hình.</p>
   </div>
 
-  <!-- MotoAI v20 UI100 - Config -->
+  <!-- MotoAI v38 UI100 - Config -->
   <script>
     window.MotoAI_CONFIG = {
       brand: "Nguyễn Tú",
       phone: "0942467674",
       zalo: "https://zalo.me/0942467674",
+      map: "https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7",
       avatar: "🛵",
       themeColor: "#0084FF",
-      extraSites: ["https://motoopen.github.io/thuexemayohoankiem/"],
-      autolearn: true
+      autolearn: true,
+      extraSites: ["https://motoopen.github.io/thuexemayohoankiem/"],  // ưu tiên domain của bạn
+      sitemapJson: "https://motoopen.github.io/thuexemayohoankiem/moto_sitemap.json", // nếu có
+      refreshHours: 24
     };
   </script>
 
-  <!-- MotoAI v20 UI100 - Embed -->
-  <script
-    src="https://motoopen.github.io/thuexemayohoankiem/motoai_v20_ui100.js?v=1"
-    defer
-    onerror="console.error('Không tải được motoai_v20_ui100.js'); alert('Không tải được motoai_v20_ui100.js – kiểm tra đường dẫn hoặc quyền public.');">
+  <!-- MotoAI v38 UI100 - Embed -->
+  <script src="https://motoopen.github.io/thuexemayohoankiem/motoai_v38_ui100_autositemap_pricing.js?v=1" defer
+          onerror="console.error('Không tải được JS'); alert('Không tải được motoai_v38_ui100_autositemap_pricing.js');">
   </script>
-  <!-- /MotoAI -->
 </body>
 </html>
