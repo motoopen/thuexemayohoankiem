@@ -1,0 +1,31 @@
+{
+  "includeExt": [".md", ".markdown", ".txt", ".html", ".json"],
+  "files": [
+    "README.md",
+    "index.html",
+    "gioithieu.html",
+    "thutuc.html",
+    "loaixe.html",
+    "kinhnghiem.html",
+    "diadiem.html",
+    "quytrinh.html",
+    "blog.html",
+    "uudai.html",
+    "giamgia.html",
+    "ngay.html",
+    "tuan.html",
+    "thang.html",
+    "faq.html",
+    "banggia.html",
+    "lienhe.html",
+    "chinhsach.html",
+    "social.html",
+    "chinhsachbaomat.html",
+    "dieukhoansudung.html",
+    "du-lieu/thuengay.txt",
+    "du-lieu/tuan.txt",
+    "du-lieu/thang.txt",
+    "du-lieu/thutuc.txt",
+    "du-lieu/giaoxenmay.txt"
+  ]
+}
