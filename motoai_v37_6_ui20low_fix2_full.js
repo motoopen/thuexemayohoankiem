@@ -182,21 +182,21 @@
     border-radius:999px;padding:6px 12px;font-size:13px;
     cursor:pointer;
   }
-  #mta-input{
+#mta-input {
   position: absolute;
-  bottom: 50px; /* đẩy ô input lên cao khoảng 50px */
   left: 50%;
   transform: translateX(-50%);
-  width: 90%; /* chiếm 90% chiều rộng khung chat */
+  width: 90%;
   background: #fff;
   border-top: 1px solid rgba(0,0,0,.05);
   padding: 8px;
   display: flex;
   gap: 8px;
   align-items: center;
-  border-radius: 16px; /* bo nhẹ góc */
+  border-radius: 16px;
   box-shadow: 0 2px 8px rgba(0,0,0,.1);
-  z-index: 10; /* đảm bảo nổi trên nền */
+  transition: bottom 0.25s ease;
+  z-index: 10;
 }
   #mta-in{
     flex:1;border:1px solid rgba(0,0,0,.1);border-radius:16px;
@@ -814,6 +814,24 @@
     learnNow: ()=>learnFromSitemapOrSite(),
     getIndex: getIndexFlat
   };
+   // === Auto adjust input position when keyboard opens (iOS fix) ===
+if (window.visualViewport) {
+  const inputBar = document.getElementById('mta-input');
+  const updateInputPos = () => {
+    const vv = window.visualViewport;
+    if (!inputBar) return;
+    // khi bàn phím mở, viewport.height < window.innerHeight
+    const keyboardOpen = vv.height < window.innerHeight - 100;
+    if (keyboardOpen) {
+      inputBar.style.bottom = (window.innerHeight - vv.height + 10) + 'px';
+    } else {
+      inputBar.style.bottom = '50px';
+    }
+  };
+  window.visualViewport.addEventListener('resize', updateInputPos);
+  window.visualViewport.addEventListener('scroll', updateInputPos);
+  updateInputPos();
+}
 
 })();
 
