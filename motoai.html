@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Test MotoAI v21 – Nguyễn Tú</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;padding:24px;line-height:1.55}
+    .wrap{max-width:820px;margin:auto}
+    h1{margin-top:0}
+    code{background:#f6f8fa;padding:2px 6px;border-radius:6px}
+    .hint{font-size:14px;opacity:.8}
+    .pill{display:inline-block;padding:6px 10px;border:1px solid #ddd;border-radius:999px;margin:4px 4px 0 0;font-size:14px;cursor:pointer}
+    .pill:hover{background:#f7f7f7}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Test MotoAI v21 – Repo AutoLearn</h1>
+    <p class="hint">
+      ✅ Trang này dùng để thử nhanh chatbot. Nhấn bong bóng <b>💬</b> ở góc phải để mở chat.<br>
+      ✅ Script sẽ đọc <code>moto_sitemap.json</code> và học nội dung HTML/TXT trong repo.<br>
+      🚩 Nếu vừa cập nhật sitemap/nội dung, hãy nhấn <b>Ctrl/Cmd + Shift + R</b> để tải lại (clear cache).
+    </p>
+
+    <h3>Gợi ý câu hỏi để test</h3>
+    <div id="quick" aria-label="Gợi ý nhanh">
+      <button class="pill" onclick="window.__demoSay?.('Thuê Vision 2 ngày giá bao nhiêu?')">Vision 2 ngày</button>
+      <button class="pill" onclick="window.__demoSay?.('Thuê Wave 1 tuần hết bao nhiêu?')">Wave 1 tuần</button>
+      <button class="pill" onclick="window.__demoSay?.('Thuê theo tháng có giảm không?')">Thuê theo tháng</button>
+      <button class="pill" onclick="window.__demoSay?.('Thủ tục thuê xe cần những gì?')">Thủ tục</button>
+      <button class="pill" onclick="window.__demoSay?.('Liên hệ Zalo ở đâu?')">Liên hệ</button>
+    </div>
+
+    <p class="hint">
+      🔗 Sitemap hiện tại: 
+      <a href="https://motoopen.github.io/thuexemayohoankiem/moto_sitemap.json" target="_blank" rel="noopener">
+        moto_sitemap.json
+      </a>
+    </p>
+  </div>
+
+  <!-- Nhúng đúng như bạn yêu cầu -->
+  <script src="https://motoopen.github.io/thuexemayohoankiem/motoai_repo_autolearn_v21_full.js"></script>
+
+  <!-- Helper nhỏ để click gợi ý tự điền vào khung chat -->
+  <script>
+    // Đợi chat render rồi bơm nội dung vào input
+    window.__demoSay = function (text) {
+      const trySend = () => {
+        const input = document.querySelector('#motoai-input');
+        const btn   = document.querySelector('#motoai-send');
+        if (!input || !btn) return false;
+        input.value = text;
+        btn.click();
+        return true;
+      };
+      if (!trySend()) setTimeout(trySend, 400);
+    };
+  </script>
+
+  <noscript>Vui lòng bật JavaScript để sử dụng chatbot.</noscript>
+</body>
+</html>
