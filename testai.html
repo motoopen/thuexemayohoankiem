@@ -1,46 +1,43 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Test MotoAI v20 UI100</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f8fafc;
-      color: #222;
-      text-align: center;
-      padding: 60px 20px;
-    }
-    h1 {
-      color: #0084FF;
-    }
-    p {
-      font-size: 17px;
-      margin: 12px auto;
-      max-width: 600px;
-    }
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#f7f9fc;margin:0}
+    .wrap{max-width:760px;margin:56px auto;padding:0 16px;text-align:center}
+    h1{color:#0084FF;margin-bottom:8px}
+    p{color:#39424e}
+    code{background:#eef4ff;padding:2px 6px;border-radius:6px}
   </style>
 </head>
 <body>
-  <h1>🛵 Test MotoAI v20 UI100</h1>
-  <p>Nếu chatbot hoạt động đúng, bạn sẽ thấy bong bóng 💬 ở góc phải dưới màn hình.  
-  Click vào đó để mở giao diện chat Nguyễn Tú.</p>
+  <div class="wrap">
+    <h1>🛵 Test MotoAI v20 UI100</h1>
+    <p>Nếu mọi thứ ok, bạn sẽ thấy bong bóng 💬 ở góc phải dưới. Bấm để mở chat.</p>
+    <p>File JS: <code>motoai_v20_ui100.js</code></p>
+  </div>
 
-  <!-- MotoAI v20 - UI100 -->
+  <!-- MotoAI v20 UI100 - Config -->
   <script>
-  window.MotoAI_CONFIG = {
-    brand: "Nguyễn Tú",
-    phone: "0942467674",
-    zalo: "https://zalo.me/0942467674",
-    avatar: "🛵",
-    themeColor: "#0084FF",
-    extraSites: ["https://motoopen.github.io/thuexemayohoankiem/"],
-    autolearn: true
-  };
+    window.MotoAI_CONFIG = {
+      brand: "Nguyễn Tú",
+      phone: "0942467674",
+      zalo: "https://zalo.me/0942467674",
+      avatar: "🛵",
+      themeColor: "#0084FF",
+      extraSites: ["https://motoopen.github.io/thuexemayohoankiem/"],
+      autolearn: true
+    };
   </script>
 
-  <script src="https://motoopen.github.io/thuexemayohoankiem/motoai_v20_ui100.js" defer></script>
+  <!-- MotoAI v20 UI100 - Embed -->
+  <script
+    src="https://motoopen.github.io/thuexemayohoankiem/motoai_v20_ui100.js?v=1"
+    defer
+    onerror="console.error('Không tải được motoai_v20_ui100.js'); alert('Không tải được motoai_v20_ui100.js – kiểm tra đường dẫn hoặc quyền public.');">
+  </script>
   <!-- /MotoAI -->
 </body>
 </html>
