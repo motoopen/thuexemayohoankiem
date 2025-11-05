@@ -183,7 +183,6 @@
     cursor:pointer;
   }
 #mta-input {
-  #mta-input {
   position: fixed; /* giúp nó bám theo màn hình thật */
   left: 50%;
   transform: translateX(-50%);
