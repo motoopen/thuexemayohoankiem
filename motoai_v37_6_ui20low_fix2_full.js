@@ -183,7 +183,8 @@
     cursor:pointer;
   }
 #mta-input {
-  position: absolute;
+  #mta-input {
+  position: fixed; /* giúp nó bám theo màn hình thật */
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
@@ -814,21 +815,28 @@
     learnNow: ()=>learnFromSitemapOrSite(),
     getIndex: getIndexFlat
   };
-   // === Auto adjust input position when keyboard opens (iOS fix) ===
+   // === Auto adjust input position when keyboard opens (mobile portrait fix) ===
 ready(() => {
   if (window.visualViewport) {
     const inputBar = document.getElementById('mta-input');
+    const card = document.getElementById('mta-card');
     const updateInputPos = () => {
       const vv = window.visualViewport;
-      if (!inputBar) return;
-      // khi bàn phím mở, viewport.height < window.innerHeight
+      if (!inputBar || !card) return;
       const keyboardOpen = vv.height < window.innerHeight - 100;
+
       if (keyboardOpen) {
-        inputBar.style.bottom = (window.innerHeight - vv.height + 10) + 'px';
+        // Trượt input lên ngay trên bàn phím
+        const offset = window.innerHeight - vv.height - 10;
+        inputBar.style.bottom = offset + 'px';
+        // Giảm chiều cao phần thân chat cho vừa màn hình dọc
+        card.style.height = vv.height - 40 + 'px';
       } else {
-        inputBar.style.bottom = '50px';
+        inputBar.style.bottom = '16px';
+        card.style.height = '500px';
       }
     };
+
     window.visualViewport.addEventListener('resize', updateInputPos);
     window.visualViewport.addEventListener('scroll', updateInputPos);
     updateInputPos();
