@@ -33,17 +33,6 @@ NAP = {
   }
 };
 
-### 🧭 Cấu trúc trang
-
-**Header cố định (glassmorphism)**  
-- `<nav id="app-navigation">` sinh từ JSON `MENU` (bên dưới)  
-- Có nút `<button class="menu-toggle" aria-controls="app-navigation" aria-expanded="false">`  
-- JS menu:
-  - Dùng biến `isMenuOpen`  
-  - Khi toggle, cập nhật `aria-expanded`, `aria-label`, class & icon  
-  - Tự đóng khi click link `href` ≠ "#"  
-  - Hỗ trợ phím Escape  
-  - Reset khi đổi breakpoint (mobile ↔ desktop)
 
 **Quick Call bên trái (glass-floating)**  
 - Biến `isQcaOpen`  
@@ -118,8 +107,6 @@ META = {
 };
 
 {
-  "NAV_FOOTER_COMMAND": {
-    "INSTRUCTION": "Pre-render sẵn NAV và FOOTER trong DOM. Giữ nguyên nhãn/emoji/thứ tự MENU. Footer phải là lưới 6 cột (desktop=6, tablet=3, mobile=2) kèm trust strip và tagline. Không thêm/bớt/mở rộng mục ngoài danh sách dưới.",
     "MENU": [
       { "🏠 Trang chủ": "./" },
       { "📄 Giới thiệu": "gioithieu.html" },
