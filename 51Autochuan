@@ -77,40 +77,45 @@ const STYLE = {
   }
 };
 
-4. Header / Navigation (bắt buộc)
-	•	Header fixed, glass, cao 70px, full width.
-	•	Bên trái: brand nhỏ (icon “NT” trong khối glass tròn) + tên “Thuê xe máy – Nguyễn Tú” + sub “Hoàn Kiếm, Long Biên, Hà Nội”.
-	•	<nav id="app-navigation" role="navigation" aria-label="Điều hướng chính"> PHẢI nằm sẵn trong HTML (không tạo DOM bằng JS) để Googlebot thu thập.
-	•	Menu gồm chính xác:
-	🏠 Trang chủ → ./
-2. 📄 Giới thiệu → gioithieu.html
-3. ⚙️ Dịch vụ → submenu gồm:
- • 📑 Thủ tục → thutuc.html
- • 🛵 Loại xe → loaixe.html
- • 📘 Hướng dẫn → huongdan.html
- • 💡 Kinh nghiệm → kinhnghiem.html
- • 📍 Địa điểm → diadiem.html
- • 🎁 Ưu đãi → uudai.html
-4. 🏷️ Bảng giá → submenu gồm:
- • 📅 Theo ngày → ngay.html
- • 🗓️ Theo tuần → tuan.html
- • 📆 Theo tháng → thang.html
- • 🧾 Chính sách → chinhsach.html
-5. ❓ FAQ → faq.html
-6. 💬 Liên hệ → lienhe.html
-7. 📜 Điều khoản sử dụng → dieukhoansudung.html
-8. 🔒 Chính sách bảo mật → chinhsachbaomat.html
-	•	Mobile:
-	•	Có nút .menu-toggle với aria-controls="app-navigation" và aria-expanded="false" lúc đầu.
-	•	Bấm mở → đổi icon → aria-expanded="true".
-	•	Bấm link ≠ “#” → tự đóng.
-	•	Submenu mobile mở/đóng bằng JS, không dùng hover.
-	•	Desktop:
-	•	Submenu hiển thị bằng hover/focus-within
-	•	Glass riêng
-	•	Không phá layout
-	•	Không tự bọc vào wrapper khác.
+MENU = [
+  {"🏠 Trang chủ": "./"},
 
+  {"📄 Giới thiệu": "gioithieu.html"},
+
+  {
+    "⚙️ Dịch vụ": [
+      {"🏷️ Bảng giá": "banggia.html"},
+      {"📅 Theo ngày": "ngay.html"},
+      {"🗓️ Theo tuần": "tuan.html"},
+      {"📆 Theo tháng": "thang.html"},
+      {"🎁 Ưu đãi": "uudai.html"},
+      {"📑 Thủ tục": "thutuc.html"},
+      {"💰 Đặt cọc": "datcoc.html"}
+    ]
+  },
+
+  {
+    "📍 Địa điểm": [
+      {"Long Biên": "longbien.html"},
+      {"Gia Lâm": "gialam.html"},
+      {"Phố Cổ": "phoco.html"},
+      {"Hoàn Kiếm": "hoankiem.html"},
+      {"Ba Đình": "badinh.html"},
+      {"Tây Hồ": "tayho.html"},
+      {"Đống Đa": "dongda.html"},
+      {"Cầu Giấy": "caugiay.html"},
+      {"Hà Đông": "hadong.html"},
+      {"Thanh Xuân": "thanhxuan.html"},
+      {"Từ Liêm": "tuliem.html"},
+      {"Ga Hà Nội": "gahn.html"}
+    ]
+  },
+
+  {"❓ FAQ": "faq.html"},
+  {"💬 Liên hệ": "lienhe.html"},
+  {"📜 Điều khoản": "dieukhoansudung.html"},
+  {"🔒 Chính sách": "chinhsachbaomat.html"}
+]
 ⸻
 
 
@@ -199,46 +204,68 @@ BODY_SECTIONS={
 };
 
 
-  FOOTER_EXPECT: {
-    // --- 6 CỘT FOOTER ---
-    "1️⃣ Khám phá": [
-      "https://motoopen.github.io/thuexemayohoankiem/",
+  FOOTER_CONFIG={
+  "tagline":{
+    "title":"Thuê xe máy uy tín – Nguyễn Tú",
+    "desc":"Giao xe tận nơi • Giá minh bạch • Giấy tờ đầy đủ • Hỗ trợ 24/7 tại Hà Nội"
+  },
+  "cols":{
+    "col1_TrangChu":[
+      "./",
       "gioithieu.html"
     ],
-    "2️⃣ Dịch vụ": [
-      "dichvu.html",
+    "col2_DichVu":[
       "banggia.html",
-      "thutuc.html"
+      "ngay.html",
+      "tuan.html",
+      "thang.html",
+      "uudai.html",
+      "thutuc.html",
+      "datcoc.html"
     ],
-    "3️⃣ Blog & Ưu đãi": [
+    "col3_DiaDiem":[
+      "longbien.html",
+      "gialam.html",
+      "phoco.html",
+      "hoankiem.html",
+      "badinh.html",
+      "tayho.html",
+      "dongda.html",
+      "caugiay.html",
+      "hadong.html",
+      "thanhxuan.html",
+      "tuliem.html",
+      "gahn.html"
+    ],
+    "col4_Blog":[
       "kinhnghiem.html",
-      "uudai.html"
+      "huongdan.html"
     ],
-    "4️⃣ Chính sách": [
-      "https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html",
-      "https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html",
+    "col5_ChinhSach":[
+      "dieukhoansudung.html",
+      "chinhsachbaomat.html",
+      "chinhsach.html",
       "faq.html"
     ],
-    "5️⃣ Liên hệ": [
+    "col6_LienHe":[
       "lienhe.html",
       "https://thuexemaynguyentu.com",
       "tel:0942467674",
       "https://zalo.me/0942467674"
     ],
-    "6️⃣ Mạng xã hội": [
+    "col7_Social":[
       "https://m.facebook.com/chothuexemay0857255868/",
       "https://www.instagram.com/nguyentumotorbike/",
       "https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html"
+    ],
+    "col8_CongTy":[
+      "about-nt.html",
+      "tuyendung.html",
+      "khachhang.html"
     ]
-  },
-
-  RULES: {
-    MUST_MATCH: true,
-    REPORT_OLD: ["index.html", "dieukhoan.html", "baomat.html", "chinhsachcu.html"],
-    ON_ERROR: "đổi sang link GitHub Pages mới",
-    auto_fix: true
   }
-};
+}
+
 
 THEME_DRIFT={
   ENABLED:true,
