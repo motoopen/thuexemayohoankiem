@@ -77,45 +77,42 @@ const STYLE = {
   }
 };
 
-MENU = [
-  {"🏠 Trang chủ": "./"},
-
-  {"📄 Giới thiệu": "gioithieu.html"},
-
-  {
-    "⚙️ Dịch vụ": [
-      {"🏷️ Bảng giá": "banggia.html"},
-      {"📅 Theo ngày": "ngay.html"},
-      {"🗓️ Theo tuần": "tuan.html"},
-      {"📆 Theo tháng": "thang.html"},
-      {"🎁 Ưu đãi": "uudai.html"},
-      {"📑 Thủ tục": "thutuc.html"},
-      {"💰 Đặt cọc": "datcoc.html"}
+"MENU": [
+      { "🏠 Trang chủ": "./" },
+      { "📄 Giới thiệu": "gioithieu.html" },
+      {
+        "⚙️ Dịch vụ": [
+          { "🏷️ Bảng giá": "banggia.html" },
+          { "📅 Theo ngày": "ngay.html" },
+          { "🗓️ Theo tuần": "tuan.html" },
+          { "📆 Theo tháng": "thang.html" },
+          { "🎁 Ưu đãi": "uudai.html" },
+          { "📑 Thủ tục": "thutuc.html" },
+          { "💰 Đặt cọc": "datcoc.html" },
+          { "📍 Địa điểm (hub)": "diadiem.html" }
+        ]
+      },
+      {
+        "📍 Địa điểm": [
+          { "Long Biên": "longbien.html" },
+          { "Gia Lâm": "gialam.html" },
+          { "Phố Cổ": "phoco.html" },
+          { "Hoàn Kiếm": "hoankiem.html" },
+          { "Ba Đình": "badinh.html" },
+          { "Tây Hồ": "tayho.html" },
+          { "Đống Đa": "dongda.html" },
+          { "Cầu Giấy": "caugiay.html" },
+          { "Hà Đông": "hadong.html" },
+          { "Thanh Xuân": "thanhxuan.html" },
+          { "Từ Liêm": "tuliem.html" },
+          { "Ga Hà Nội": "gahn.html" }
+        ]
+      },
+      { "❓ FAQ": "faq.html" },
+      { "💬 Liên hệ": "lienhe.html" },
+      { "📜 Điều khoản": "dieukhoansudung.html" },
+      { "🔒 Chính sách": "chinhsachbaomat.html" }
     ]
-  },
-
-  {
-    "📍 Địa điểm": [
-      {"Long Biên": "longbien.html"},
-      {"Gia Lâm": "gialam.html"},
-      {"Phố Cổ": "phoco.html"},
-      {"Hoàn Kiếm": "hoankiem.html"},
-      {"Ba Đình": "badinh.html"},
-      {"Tây Hồ": "tayho.html"},
-      {"Đống Đa": "dongda.html"},
-      {"Cầu Giấy": "caugiay.html"},
-      {"Hà Đông": "hadong.html"},
-      {"Thanh Xuân": "thanhxuan.html"},
-      {"Từ Liêm": "tuliem.html"},
-      {"Ga Hà Nội": "gahn.html"}
-    ]
-  },
-
-  {"❓ FAQ": "faq.html"},
-  {"💬 Liên hệ": "lienhe.html"},
-  {"📜 Điều khoản": "dieukhoansudung.html"},
-  {"🔒 Chính sách": "chinhsachbaomat.html"}
-]
 ⸻
 
 
