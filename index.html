@@ -34,7 +34,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
     
-    <!-- Font Awesome -->
+    <!-- Font Awesome (Giữ lại cho các icon Social khác) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     <style>
@@ -51,6 +51,9 @@
             --c-bg: #f7f9fb;
             --c-bg-card: #ffffff;
             --c-border: #d0d7de;
+            
+            /* Brand Colors */
+            --zalo-blue: #0068FF;
             
             /* UI Elements */
             --radius: 14px;
@@ -131,6 +134,7 @@
         }
         .w-100 { width: 100%; }
 
+        /* Zalo Icon SVG Style */
         .icon-zalo-svg {
             width: 1em;
             height: 1em;
@@ -140,29 +144,16 @@
 
         /* 2. LAYOUT & TYPOGRAPHY */
         .container {
-            width: 100%;
+            max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
             padding-left: 1.25rem;
             padding-right: 1.25rem;
         }
-        
-        /* TỐI ƯU CONTAINER CHO TABLET & DESKTOP */
-        @media (min-width: 640px) { .container { max-width: 640px; } }
-        @media (min-width: 768px) { .container { max-width: 768px; padding-left: 2rem; padding-right: 2rem; } }
-        @media (min-width: 1024px) { .container { max-width: 1024px; } }
-        @media (min-width: 1280px) { .container { max-width: 1280px; } } /* Mở rộng container trên màn to */
 
         .section {
             padding-top: 4rem;
             padding-bottom: 4rem;
-        }
-        /* Tăng khoảng cách section trên màn hình lớn cho thoáng */
-        @media (min-width: 1024px) {
-            .section {
-                padding-top: 6rem;
-                padding-bottom: 6rem;
-            }
         }
 
         .section-title {
@@ -171,10 +162,6 @@
             text-align: center;
             margin-bottom: 2.5rem;
             color: var(--c-text);
-            line-height: 1.2;
-        }
-        @media (min-width: 768px) {
-             .section-title { font-size: 2.75rem; margin-bottom: 3.5rem; }
         }
 
         img, picture, video, canvas, svg {
@@ -239,7 +226,7 @@
             transform: translateY(-2px);
         }
 
-        /* 4. HEADER & NAV (GIỮ NGUYÊN) */
+        /* 4. HEADER & NAV */
         .main-header {
             position: sticky;
             top: 0;
@@ -278,6 +265,7 @@
             border: 2px solid var(--c-border);
         }
 
+        /* Status Badge */
         .shop-status {
             font-size: 0.75rem;
             font-weight: 600;
@@ -309,6 +297,7 @@
             background-color: currentColor;
         }
 
+        /* Desktop Menu */
         .nav-menu {
             display: none;
             list-style: none;
@@ -361,11 +350,11 @@
             font-size: 2rem;
         }
 
-        /* 5. SIDEBAR & MENU (GIỮ NGUYÊN) */
+        /* 5. AI MOBILE SIDEBAR */
         .mobile-nav-panel {
             position: fixed;
             top: 0;
-            right: -120%;
+            right: -120%; /* Hidden by default */
             width: 85vw;
             max-width: 400px;
             height: 100vh;
@@ -423,6 +412,7 @@
         }
         @keyframes blink { 50% { opacity: 0; } }
 
+        /* Shortcuts Grid */
         .ai-smart-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -457,6 +447,8 @@
             color: white;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
+        
+        /* Specific adjustments for Zalo in grid */
         .smart-icon-box svg { width: 24px; height: 24px; fill: white; }
 
         .bg-gradient-blue { background: linear-gradient(135deg, #0078D4, #00B2FF); }
@@ -464,6 +456,7 @@
         .bg-gradient-orange { background: linear-gradient(135deg, #D83B01, #ff8c00); }
         .bg-gradient-purple { background: linear-gradient(135deg, #5C2D91, #b4a0ff); }
 
+        /* Mobile Menu Items */
         .mobile-nav-menu {
             list-style: none;
             padding: 0 1rem 2rem;
@@ -545,6 +538,7 @@
             transform: rotate(90deg);
         }
 
+        /* Mobile Submenu */
         .mobile-submenu {
             list-style: none;
             max-height: 0;
@@ -600,6 +594,7 @@
             visibility: visible;
         }
 
+        /* Desktop Dropdown */
         .nav-item-dropdown {
             position: relative;
         }
@@ -663,62 +658,31 @@
             .nav-menu { display: flex; }
         }
 
-        /* 6. HERO SECTION - TỐI ƯU HIỂN THỊ 3 THIẾT BỊ */
+        /* 6. HERO SECTION */
         .hero {
             padding-top: 4rem;
             padding-bottom: 5rem;
             text-align: center;
             background: linear-gradient(180deg, #ffffff 0%, #f7f9fb 100%);
-            /* Add min-height for desktop to make it look "full" */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
         html[data-theme="dark"] .hero {
             background: var(--c-bg);
         }
 
-        @media (min-width: 768px) {
-            .hero {
-                min-height: 60vh; /* Tablet Height */
-                padding-top: 6rem;
-                padding-bottom: 6rem;
-            }
-        }
-        @media (min-width: 1024px) {
-            .hero {
-                min-height: 85vh; /* Desktop Full Height */
-                padding-top: 8rem;
-                padding-bottom: 8rem;
-            }
-        }
-
         .hero h2 {
-            font-size: 2.25rem;
+            font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
             line-height: 1.2;
-            color: var(--c-text);
         }
-        @media (min-width: 768px) {
-            .hero h2 { font-size: 3rem; margin-bottom: 1.5rem; }
-        }
-        @media (min-width: 1024px) {
-            .hero h2 { font-size: 3.75rem; max-width: 900px; margin-left: auto; margin-right: auto; }
-        }
-
         .hero .subtitle {
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             color: var(--c-text-muted);
             margin-bottom: 2rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
-        @media (min-width: 1024px) {
-            .hero .subtitle { font-size: 1.4rem; max-width: 800px; margin-bottom: 3rem; }
-        }
-
         .hero .cta-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -743,9 +707,6 @@
             border: 1px solid var(--c-border);
             box-shadow: var(--shadow-xs);
         }
-        @media (min-width: 1024px) {
-             .chip { padding: 0.6rem 1.25rem; font-size: 1rem; }
-        }
 
         .mini-form {
             background-color: var(--c-bg-card);
@@ -755,24 +716,13 @@
             max-width: 700px;
             margin: 0 auto;
             text-align: left;
-            position: relative;
-            z-index: 2;
         }
-        @media (min-width: 1024px) {
-            .mini-form {
-                max-width: 900px;
-                padding: 2.5rem;
-                box-shadow: var(--shadow-lg);
-            }
-        }
-
         .mini-form h3 {
             font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
             text-align: center;
         }
-        
         .form-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -794,7 +744,6 @@
             border: 1px solid var(--c-border);
             background-color: var(--c-bg);
             color: var(--c-text);
-            width: 100%;
         }
         .form-group input:focus {
             outline: none;
@@ -806,32 +755,21 @@
             color: #ffffff;
             border: none;
             cursor: pointer;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-        .form-group button:hover {
-            background-color: var(--accent-dark);
         }
 
-        /* Form Responsive Tweak */
         @media (min-width: 640px) {
+            .hero h2 { font-size: 3rem; }
             .form-grid { grid-template-columns: repeat(2, 1fr); }
             .form-group-full { grid-column: 1 / -1; }
         }
         @media (min-width: 768px) {
-            /* Tablet & Desktop: 1 line form */
-            .form-grid { 
-                grid-template-columns: 1.5fr 1.5fr 1fr auto; 
-                align-items: end;
-            }
+            .form-grid { grid-template-columns: 1fr 1fr 1fr auto; }
             .form-group-full { grid-column: auto; }
             .form-group { margin-bottom: 0; }
-            .form-group button { height: 48px; white-space: nowrap; padding-left: 2rem; padding-right: 2rem;}
-            /* Align input heights */
-            .form-group input { height: 48px; }
+            .form-group button { align-self: end; height: 100%; }
         }
 
-        /* 7. CARDS & SECTIONS - GRID OPTIMIZATION */
+        /* 7. CARDS & SECTIONS */
         .card {
             background-color: var(--c-bg-card);
             border-radius: var(--radius);
@@ -841,27 +779,15 @@
         }
         .card:hover {
             box-shadow: var(--shadow-lg);
-            transform: translateY(-4px);
         }
 
         #why-us { background-color: var(--c-bg-card); }
         html[data-theme="dark"] #why-us { background-color: var(--c-bg); }
-        
         .benefits-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 1.5rem;
         }
-        /* Tablet: 2 columns */
-        @media (min-width: 640px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
-        /* Desktop: 3 columns */
-        @media (min-width: 1024px) { 
-            .benefits-grid { 
-                grid-template-columns: repeat(3, 1fr); 
-                gap: 2.5rem; /* Wider gap on desktop */
-            } 
-        }
-
         .benefit-item {
             display: flex;
             align-items: flex-start;
@@ -872,37 +798,26 @@
             font-size: 2.5rem;
             color: var(--accent);
             margin-top: 0.25rem;
-            flex-shrink: 0; /* Prevent icon shrinking */
         }
         .benefit-item h3 {
             font-size: 1.15rem;
             font-weight: 600;
             margin-bottom: 0.25rem;
         }
-        @media (min-width: 1024px) {
-            .benefit-item h3 { font-size: 1.35rem; margin-bottom: 0.5rem; }
-            .benefit-item p { font-size: 1.05rem; }
+        .benefit-item p {
+            font-size: 0.95rem;
+            color: var(--c-text-muted);
         }
+        @media (min-width: 640px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .benefits-grid { grid-template-columns: repeat(3, 1fr); } }
 
-        /* Services Grid */
+        /* Services */
         .services-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 1.5rem;
         }
-        @media (min-width: 640px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 1024px) { 
-            .services-grid { 
-                grid-template-columns: repeat(3, 1fr); 
-                gap: 2.5rem;
-            } 
-        }
-
-        .service-card { 
-            overflow: hidden; 
-            display: flex;
-            flex-direction: column;
-        }
+        .service-card { overflow: hidden; }
         .service-card img {
             width: 100%;
             height: 200px;
@@ -910,8 +825,6 @@
             border-radius: var(--radius-sm) var(--radius-sm) 0 0;
             margin-bottom: 1.5rem;
         }
-        @media (min-width: 1024px) { .service-card img { height: 240px; } }
-
         .service-card h3 {
             font-size: 1.25rem;
             font-weight: 600;
@@ -920,14 +833,14 @@
         .service-card p {
             color: var(--c-text-muted);
             margin-bottom: 1rem;
-            flex-grow: 1; /* Make description push button down */
         }
         .service-card .price {
             font-size: 1.1rem;
             font-weight: 600;
             color: var(--accent);
-            margin-top: auto; /* Align price/button to bottom */
         }
+        @media (min-width: 640px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
 
         /* Deals */
         .deal-highlight {
@@ -940,21 +853,28 @@
             align-items: center;
             text-align: center;
             box-shadow: var(--shadow-lg);
-            max-width: 1000px; /* Limit width on big screens */
-            margin: 0 auto;
         }
         .deal-highlight h2 {
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 1rem;
         }
-        @media (min-width: 1024px) {
-            .deal-highlight { padding: 4rem; }
-            .deal-highlight h2 { font-size: 2.5rem; }
-            .deal-highlight p { font-size: 1.25rem; max-width: 800px; }
+        .deal-highlight p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+        .deal-highlight .btn {
+            background-color: #ffffff;
+            color: var(--accent);
+            font-weight: 700;
+        }
+        .deal-highlight .btn:hover {
+            background-color: #f0f0f0;
+            color: var(--accent-dark);
         }
 
-        /* Process Steps */
+        /* Process */
         .process-steps {
             display: grid;
             grid-template-columns: 1fr;
@@ -981,13 +901,17 @@
             font-weight: 700;
             margin-bottom: 1rem;
             box-shadow: var(--shadow-fluent);
-            z-index: 2;
-            position: relative;
         }
+        .process-step h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .process-step p { color: var(--c-text-muted); }
         
         @media (min-width: 768px) {
-            .process-steps { grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-            .process-step { position: relative; padding: 0.5rem; }
+            .process-steps { grid-template-columns: repeat(4, 1fr); }
+            .process-step { position: relative; }
             .process-step:not(:last-child)::after {
                 content: '';
                 position: absolute;
@@ -998,15 +922,11 @@
                 background: linear-gradient(to right, var(--accent), var(--accent-light));
                 opacity: 0.5;
                 transform: translateX(50%);
-                z-index: 1;
+                z-index: -1;
             }
         }
-        @media (min-width: 1024px) {
-             .process-step h3 { font-size: 1.35rem; }
-             .process-step p { font-size: 1.05rem; }
-        }
 
-        /* Gallery - Better Grid */
+        /* Gallery */
         #gallery { background-color: var(--c-bg-card); }
         html[data-theme="dark"] #gallery { background-color: var(--c-bg); }
         .gallery-grid {
@@ -1027,19 +947,15 @@
             opacity: 0.9;
         }
         @media (min-width: 768px) {
-            .gallery-grid { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+            .gallery-grid { grid-template-columns: repeat(4, 1fr); }
             .gallery-item:first-child, .gallery-item:last-child {
                 grid-column: span 2;
-                height: 100%;
+                height: 400px;
             }
-            .gallery-item img { height: 250px; }
-            .gallery-item:first-child img, .gallery-item:last-child img { height: 100%; object-fit: cover; }
-        }
-        @media (min-width: 1024px) {
-            .gallery-item img { height: 300px; }
+            .gallery-item:first-child img, .gallery-item:last-child img { height: 100%; }
         }
 
-        /* Lightbox (Giữ nguyên) */
+        /* Lightbox */
         .lightbox {
             position: fixed;
             top: 0;
@@ -1107,9 +1023,6 @@
             margin-bottom: 1rem;
             border: none;
         }
-        @media (min-width: 1024px) {
-             .testimonial-card blockquote { font-size: 1.4rem; }
-        }
         .testimonial-card .author {
             font-weight: 600;
             color: var(--c-text);
@@ -1144,10 +1057,7 @@
             grid-template-columns: 1fr;
             gap: 1.5rem;
         }
-        /* Tablet: 2 cols */
-        @media (min-width: 640px) { .bonus-grid-3 { grid-template-columns: repeat(2, 1fr); } }
-        /* Desktop: 3 cols */
-        @media (min-width: 1024px) { .bonus-grid-3 { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; } }
+        @media (min-width: 768px) { .bonus-grid-3 { grid-template-columns: repeat(3, 1fr); } }
         
         #commitment { background-color: var(--c-bg-card); }
         html[data-theme="dark"] #commitment { background-color: var(--c-bg); }
@@ -1171,15 +1081,12 @@
         .location-card {
             position: relative;
             overflow: hidden;
-            padding: 0; /* Override default card padding */
-            border-radius: var(--radius);
         }
         .location-card img {
             width: 100%;
             height: 300px;
             object-fit: cover;
             transition: transform 0.4s ease;
-            border-radius: 0;
         }
         .location-card:hover img { transform: scale(1.05); }
         .location-card .content {
@@ -1241,7 +1148,7 @@
         .faq-item.active .faq-question .icon { transform: rotate(180deg); }
         .faq-item.active .faq-answer { grid-template-rows: 1fr; }
 
-        /* 8. FOOTER (GIỮ NGUYÊN) */
+        /* 8. FOOTER */
         .main-footer {
             background-color: var(--c-bg-card);
             color: var(--c-text-muted);
@@ -1328,6 +1235,7 @@
             color: var(--accent);
         }
 
+        /* Mobile Accordion Footer */
         @media (max-width: 767px) {
             .footer-grid { gap: 1rem; }
             .footer-col {
@@ -1385,7 +1293,7 @@
             .footer-grid { grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 1.5fr; }
         }
 
-        /* 9. QUICK CALL (GIỮ NGUYÊN) */
+        /* 9. QUICK CALL ULTRA */
         .quick-call-ultra-wrapper {
             position: fixed;
             bottom: 25px;
@@ -1499,7 +1407,7 @@
 
         body.keyboard-visible .quick-call-ultra-wrapper { display: none; }
 
-        /* 10. ANIMATIONS */
+        /* 10. ANIMATIONS & STATES */
         .animate-on-scroll {
             opacity: 0;
             transform: translateY(20px);
@@ -1521,6 +1429,7 @@
         @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
         @keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
         
+        /* Focus Styles */
         :focus-visible {
             outline: 2px solid var(--accent);
             outline-offset: 2px;
@@ -1609,8 +1518,10 @@
                     <div class="smart-icon-box bg-gradient-green"><span class="material-symbols-rounded" aria-hidden="true">call</span></div>
                     <span>Gọi Ngay</span>
                 </a>
+                <!-- Zalo Button with SVG Fix -->
                 <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" class="smart-icon-btn" aria-label="Chat Zalo">
                     <div class="smart-icon-box bg-gradient-blue">
+                         <!-- Zalo SVG Icon Inline -->
                          <svg viewBox="0 0 100 100" class="icon-zalo-svg">
                              <path d="M85.4 34.6c-1.5-6.6-6-12-12.4-14.8-19.4-8.5-44.5-2.7-56 14.6-9.1 13.8-6.1 33 6.9 43.1 3.5 2.7 7.5 4.6 11.7 5.6L32.2 92c-.3 1.2.9 2.1 1.9 1.4l14.2-9.6c4 .7 8.2.7 12.2-.1 13.2-2.6 23.3-12.5 24.9-25.9.6-5.1.5-10.2-.1-15.3l.1-7.9z" style="fill:white;"/>
                          </svg>
@@ -1676,6 +1587,7 @@
                         <span class="material-symbols-rounded" aria-hidden="true">call</span>
                         Gọi ngay 0942467674
                     </a>
+                    <!-- Zalo Text Badge Version for Buttons -->
                     <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
                         <span style="font-weight: 800; font-family: sans-serif; border: 2px solid currentColor; padding: 0 4px; border-radius: 4px; font-size: 0.8em; line-height: 1.2;">Zalo</span>
                         Chat Zalo
@@ -2059,6 +1971,7 @@
                     <h4>🌐 Mạng Xã Hội</h4>
                     <div class="social-links">
                         <a href="https://m.facebook.com/chothuexemay0857255868/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
+                        <!-- Zalo Footer Link -->
                         <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
                              <div style="display:inline-flex; align-items:center; border: 1px solid currentColor; padding: 0 4px; border-radius: 4px; font-size: 0.6em; font-weight: bold; font-family: sans-serif; height: 26px; vertical-align: middle;">
                                 Zalo
@@ -2085,6 +1998,7 @@
                 <span class="material-symbols-rounded" aria-hidden="true">call</span>
                 <span class="sr-only">Gọi ngay</span>
             </a>
+            <!-- Zalo Round Button SVG Fix -->
              <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" class="ultra-item zalo" data-label="Chat Zalo">
                 <svg viewBox="0 0 100 100" class="icon-zalo-svg">
                      <path d="M85.4 34.6c-1.5-6.6-6-12-12.4-14.8-19.4-8.5-44.5-2.7-56 14.6-9.1 13.8-6.1 33 6.9 43.1 3.5 2.7 7.5 4.6 11.7 5.6L32.2 92c-.3 1.2.9 2.1 1.9 1.4l14.2-9.6c4 .7 8.2.7 12.2-.1 13.2-2.6 23.3-12.5 24.9-25.9.6-5.1.5-10.2-.1-15.3l.1-7.9z" style="fill:white;"/>
@@ -2122,6 +2036,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
 
+            // --- 0. CACHE ELEMENTS ---
             const themeSwitcher = document.getElementById('theme-switcher');
             const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
             const mobileNavPanel = document.getElementById('mobile-nav-panel');
@@ -2140,6 +2055,7 @@
             const ultraToggleBtn = document.getElementById('ultra-toggle-btn');
             const quoteForm = document.getElementById('quote-form');
 
+            // --- 1. AI GREETING LOGIC ---
             const initAISmartMenu = () => {
                 const aiGreetingTime = document.getElementById('ai-greeting-time');
                 const aiTypewriterText = document.getElementById('ai-typewriter-text');
@@ -2189,6 +2105,7 @@
             };
             initAISmartMenu();
 
+            // --- 2. SHOP STATUS AUTO UPDATE ---
             const updateShopStatus = () => {
                 const now = new Date();
                 const currentHour = now.getHours();
@@ -2204,6 +2121,7 @@
             updateShopStatus();
             setInterval(updateShopStatus, 60000);
 
+            // --- 3. THEME SWITCHER ---
             if (themeSwitcher) {
                 const initTheme = () => {
                     const savedTheme = localStorage.getItem('theme');
@@ -2220,6 +2138,7 @@
                 initTheme();
             }
 
+            // --- 4. MOBILE MENU (FOCUS TRAP FIXED) ---
             if (mobileMenuToggle && mobileNavPanel && mobileNavClose && mobileNavOverlay) {
                 const toggleMobileNav = (show) => {
                     const isActive = show;
@@ -2243,10 +2162,11 @@
                     }
                 };
 
+                // Focus Trap Safe Check
                 mobileNavPanel.addEventListener('keydown', (e) => {
                     if (e.key === 'Tab') {
                         const focusableElements = mobileNavPanel.querySelectorAll('a[href], button:not([disabled]), textarea, input, select');
-                        if (!focusableElements.length) return;
+                        if (!focusableElements.length) return; // FIX: Defensive check
 
                         const firstElement = focusableElements[0];
                         const lastElement = focusableElements[focusableElements.length - 1];
@@ -2270,6 +2190,7 @@
                 mobileNavClose.addEventListener('click', () => toggleMobileNav(false));
                 mobileNavOverlay.addEventListener('click', () => toggleMobileNav(false));
                 
+                // Mobile Submenu
                 mobileNavPanel.addEventListener('click', (e) => {
                     const toggleBtn = e.target.closest('.mobile-dropdown-toggle');
                     if (toggleBtn) {
@@ -2285,6 +2206,7 @@
                 });
             }
 
+            // --- 5. DESKTOP DROPDOWN ---
             document.querySelectorAll('.nav-dropdown-toggle').forEach(toggle => {
                 toggle.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -2313,6 +2235,7 @@
                 }
             });
 
+            // --- 6. FORM & GENERAL ---
             if (quoteForm) {
                 quoteForm.addEventListener('submit', (e) => {
                     e.preventDefault();
@@ -2327,6 +2250,7 @@
                 });
             }
 
+            // --- 7. FAQ ACCORDION ---
             if (faqContainer) {
                 const faqItems = faqContainer.querySelectorAll('.faq-item');
                 if(faqItems[0]) {
@@ -2346,6 +2270,7 @@
                 });
             }
 
+            // --- 8. SLIDER ---
             if (sliderTrack && sliderDotsContainer) {
                 const slides = sliderTrack.children;
                 const slideCount = slides.length;
@@ -2401,6 +2326,7 @@
                 }
             }
 
+            // --- 9. TILT EFFECT ---
             const tiltSection = document.querySelector('[data-tilt="true"]');
             if (tiltSection && window.matchMedia('(min-width: 1024px)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 const tiltCards = tiltSection.querySelectorAll('.service-card');
@@ -2419,6 +2345,7 @@
                 });
             }
 
+            // --- 10. SCROLL ANIMATION ---
             const animatedElements = document.querySelectorAll('.animate-on-scroll');
             if (animatedElements.length > 0 && 'IntersectionObserver' in window) {
                 const observer = new IntersectionObserver((entries, obs) => {
@@ -2434,10 +2361,12 @@
                 animatedElements.forEach(el => observer.observe(el));
             }
 
+            // --- 11. LIGHTBOX (ARIA FIX) ---
             if (galleryGrid && lightbox && lightboxImg) {
                 const openLightbox = (src) => {
                     lightboxImg.src = src;
                     lightbox.classList.add('active');
+                    // ARIA Update
                     lightbox.setAttribute('aria-hidden', 'false');
                     lightbox.setAttribute('aria-modal', 'true');
                     lightboxClose.focus();
@@ -2445,6 +2374,7 @@
                 };
                 const closeLightbox = () => {
                     lightbox.classList.remove('active');
+                    // ARIA Revert
                     lightbox.setAttribute('aria-hidden', 'true');
                     lightbox.removeAttribute('aria-modal');
                     document.body.style.overflow = '';
@@ -2459,6 +2389,7 @@
                 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
             }
 
+            // --- 12. QUICK CALL ULTRA ---
             if (ultraToggleBtn && ultraWrapper) {
                 ultraToggleBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -2478,6 +2409,7 @@
                 });
             }
 
+            // --- 13. FOOTER ACCORDION (ADD EVENT LISTENER FIX) ---
             const mediaQueryMobile = window.matchMedia('(max-width: 767px)');
             let footerInitialized = false;
 
@@ -2529,9 +2461,11 @@
                 else destroyFooter();
             };
 
+            // FIX: Using modern addEventListener instead of addListener
             try {
                 mediaQueryMobile.addEventListener('change', handleFooterResponsive);
             } catch (e) {
+                // Fallback for very old browsers if necessary, though addEventListener is widely supported now
                 mediaQueryMobile.addListener(handleFooterResponsive);
             }
             handleFooterResponsive(mediaQueryMobile);
