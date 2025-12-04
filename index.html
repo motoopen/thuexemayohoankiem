@@ -1127,83 +1127,177 @@
         .faq-item.active .faq-question .icon { transform: rotate(180deg); }
         .faq-item.active .faq-answer { grid-template-rows: 1fr; }
 
-        /* 16. Footer */
+        /* 16. Footer – phiên bản đẹp hơn, có accordion trên mobile */
         .main-footer {
             background-color: var(--c-bg-card);
             color: var(--c-text-muted);
-            padding-top: 3.5rem;
+            padding: 3rem 0 1.5rem;
             border-top: 1px solid var(--c-border);
+            margin-top: 3rem;
         }
-        html[data-theme="dark"] .main-footer { background-color: #0D1117; }
+        html[data-theme="dark"] .main-footer {
+            background-color: #0D1117;
+        }
+
+        /* Layout chung */
         .footer-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 2rem;
+            gap: 1.5rem;
         }
+
         .footer-col h4 {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             color: var(--c-text);
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
-        .footer-col p, .footer-col ul {
+
+        .footer-col p,
+        .footer-col ul {
             font-size: 0.95rem;
             list-style: none;
         }
+
         .footer-col ul {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.45rem;
         }
-        .footer-col ul a { color: var(--c-text-muted); }
-        .footer-col ul a:hover { color: var(--accent); }
+
+        .footer-col ul a {
+            color: var(--c-text-muted);
+        }
+        .footer-col ul a:hover {
+            color: var(--accent);
+        }
+
         .footer-contact li {
             display: flex;
             align-items: flex-start;
             gap: 0.75rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.6rem;
         }
+
         .footer-contact .icon {
             font-size: 1.25rem;
             margin-top: 0.15rem;
             color: var(--c-text);
         }
+
         .social-links {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 0.75rem;
         }
         .social-links a {
-            font-size: 1.75rem;
+            font-size: 1.6rem;
             color: var(--c-text-muted);
         }
-        .social-links a:hover { color: var(--accent); }
-        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Dòng dưới cùng */
         .footer-bottom {
-            margin-top: 3rem;
-            padding: 1.5rem 0;
+            margin-top: 2.5rem;
+            padding-top: 1.25rem;
             border-top: 1px solid var(--c-border);
             display: flex;
             flex-direction: column-reverse;
             align-items: center;
             text-align: center;
-            gap: 1rem;
+            gap: 0.75rem;
             font-size: 0.9rem;
         }
-        .footer-bottom p { line-height: 1.5; }
         .footer-bottom a {
             color: var(--c-text-muted);
             font-weight: 500;
         }
-        .footer-bottom a:hover { color: var(--accent); }
-        
+        .footer-bottom a:hover {
+            color: var(--accent);
+        }
+
+        /* --- MOBILE: mỗi cột footer thành “thẻ” gập/mở --- */
+        @media (max-width: 767px) {
+            .footer-grid {
+                gap: 1rem;
+            }
+
+            .footer-col {
+                background: var(--c-bg);
+                border-radius: 12px;
+                padding: 0.9rem 1rem;
+                box-shadow: var(--shadow-sm);
+            }
+
+            .footer-col h4 {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 0;              /* nội dung sẽ có margin riêng */
+                cursor: pointer;
+            }
+
+            /* icon mũi tên */
+            .footer-toggle-icon {
+                font-family: "Material Symbols Rounded";
+                font-size: 1.4rem;
+                transition: transform 0.25s ease;
+            }
+
+            /* nội dung trong mỗi cột: mặc định thu gọn */
+            .footer-col p,
+            .footer-col ul,
+            .footer-col .footer-contact {
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+                transition: max-height 0.25s ease, opacity 0.25s ease, margin-top 0.25s ease;
+                margin-top: 0;
+            }
+
+            /* khi mở */
+            .footer-col.is-open p,
+            .footer-col.is-open ul,
+            .footer-col.is-open .footer-contact {
+                max-height: 500px; /* đủ lớn cho mọi trường hợp */
+                opacity: 1;
+                margin-top: 0.6rem;
+            }
+
+            .footer-col.is-open .footer-toggle-icon {
+                transform: rotate(180deg);
+            }
+
+            .footer-bottom {
+                border-top: none;
+                margin-top: 1.5rem;
+            }
+        }
+
+        /* TABLET & DESKTOP: giữ layout nhiều cột nhưng nhìn “thở” hơn */
         @media (min-width: 640px) {
-            .footer-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-bottom { flex-direction: row; justify-content: space-between; }
+            .footer-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 2rem;
+            }
+            .footer-col {
+                padding-right: 1.5rem;
+            }
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
         }
+
         @media (min-width: 1024px) {
-            .footer-grid { grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 1.5fr; }
+            .footer-grid {
+                grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 1.5fr;
+            }
         }
+
 
         /* 17. === QUICK CALL ULTRA MODE === */
         
@@ -2332,6 +2426,43 @@
                     }
                 });
             }
+
+            // --- 12. Footer accordion trên mobile ---
+            const initFooterAccordion = () => {
+                if (window.innerWidth >= 768) return; // chỉ chạy trên mobile
+
+                const footerCols = document.querySelectorAll('.main-footer .footer-col');
+
+                footerCols.forEach(col => {
+                    const heading = col.querySelector('h4');
+                    const content = col.querySelector('ul, p, .footer-contact');
+
+                    if (!heading || !content) return;
+
+                    // thêm icon mũi tên
+                    const icon = document.createElement('span');
+                    icon.className = 'footer-toggle-icon';
+                    icon.textContent = 'expand_more';
+                    heading.appendChild(icon);
+
+                    // trạng thái mặc định: đóng
+                    col.classList.remove('is-open');
+
+                    heading.addEventListener('click', () => {
+                        // đóng các cột khác cho gọn
+                        footerCols.forEach(other => {
+                            if (other !== col) other.classList.remove('is-open');
+                        });
+                        col.classList.toggle('is-open');
+                    });
+                });
+
+                // mở sẵn 1 block đầu cho đỡ “trống”
+                const firstCol = footerCols[0];
+                if (firstCol) firstCol.classList.add('is-open');
+            };
+
+            initFooterAccordion();
         });
     })();
     </script>
