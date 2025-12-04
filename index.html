@@ -550,6 +550,7 @@
             transform: rotate(180deg);
         }
 
+        /* FIX 1: Mobile Overlay Visibility */
         .mobile-nav-overlay {
             position: fixed;
             top: 0;
@@ -562,6 +563,11 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.4s ease;
+        }
+        /* Rule mới để hiển thị overlay khi active */
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
         .mobile-nav-panel.active + .mobile-nav-overlay {
             opacity: 1;
@@ -1559,8 +1565,11 @@
                     <div class="smart-icon-box bg-gradient-green"><span class="material-symbols-rounded">call</span></div>
                     <span>Gọi Ngay</span>
                 </a>
+                <!-- FIX ZALO ICON HERE -->
                 <a href="https://zalo.me/0942467674" target="_blank" class="smart-icon-btn">
-                    <div class="smart-icon-box bg-gradient-blue"><i class="fa-brands fa-zalo"></i></div>
+                    <div class="smart-icon-box bg-gradient-blue">
+                        <i class="fa-brands fa-zalo" style="font-family: sans-serif; font-style: normal; font-weight: bold;">Zalo</i>
+                    </div>
                     <span>Chat Zalo</span>
                 </a>
                 <a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc" target="_blank" class="smart-icon-btn">
@@ -2007,7 +2016,10 @@
                     <h4>🌐 Mạng Xã Hội</h4>
                     <div class="social-links">
                         <a href="https://m.facebook.com/chothuexemay0857255868/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
-                        <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" aria-label="Zalo"><i class="fa-brands fa-zalo" aria-hidden="true"></i></a>
+                        <!-- FIX ZALO ICON HERE -->
+                        <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" aria-label="Zalo">
+                             <i class="fa-brands fa-zalo" style="font-family: sans-serif; font-style: normal; font-weight: bold; font-size: 0.8em; border: 1px solid currentColor; padding: 0 4px; border-radius: 4px;">Zalo</i>
+                        </a>
                         <a href="https://wa.me/84942467674" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
                         <a href="https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html" target="_blank" rel="noopener noreferrer" aria-label="TripAdvisor"><i class="fa-brands fa-tripadvisor" aria-hidden="true"></i></a>
                         <a href="https://motoopen.github.io/chothuexemayhanoi" target="_blank" rel="noopener noreferrer" aria-label="Website"><i class="fa-solid fa-globe" aria-hidden="true"></i></a>
@@ -2028,6 +2040,7 @@
             <a href="tel:0942467674" class="ultra-item call" data-label="Gọi ngay">
                 <span class="material-symbols-rounded">call</span>
             </a>
+            <!-- FIX ZALO ICON HERE -->
              <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" class="ultra-item zalo" data-label="Chat Zalo">
                 <i class="fa-brands fa-zalo" style="font-family: Arial, sans-serif; font-weight: bold; font-style: normal;">Zalo</i>
             </a>
@@ -2121,14 +2134,16 @@
                 };
                 
                 // Only start typing when menu opens
-                mobileMenuToggle.addEventListener('click', () => {
-                    if (!mobileNavPanel.classList.contains('active')) {
-                        // Reset and type again
-                        i = 0;
-                        aiTypewriterText.textContent = "";
-                        setTimeout(typeWriter, 300); // Slight delay after animation
-                    }
-                });
+                if (mobileMenuToggle) {
+                    mobileMenuToggle.addEventListener('click', () => {
+                        if (!mobileNavPanel.classList.contains('active')) {
+                            // Reset and type again
+                            i = 0;
+                            aiTypewriterText.textContent = "";
+                            setTimeout(typeWriter, 300); // Slight delay after animation
+                        }
+                    });
+                }
             };
             initAISmartMenu();
 
@@ -2427,42 +2442,71 @@
                 });
             }
 
-            // --- 12. Footer accordion trên mobile ---
-            const initFooterAccordion = () => {
-                if (window.innerWidth >= 768) return; // chỉ chạy trên mobile
+            // --- 12. Footer accordion trên mobile (Cải tiến - Xử lý resize) ---
+            const initFooterAccordion = (() => {
+                let initialized = false;
+                let footerCols = [];
+                const setup = () => {
+                    footerCols = document.querySelectorAll('.main-footer .footer-col');
+                    if (!footerCols.length) return;
+                    footerCols.forEach(col => {
+                        if (col.dataset.footerInit === '1') return;
 
-                const footerCols = document.querySelectorAll('.main-footer .footer-col');
+                        const heading = col.querySelector('h4');
+                        const content = col.querySelector('ul, p, .footer-contact');
+                        if (!heading || !content) return;
 
-                footerCols.forEach(col => {
-                    const heading = col.querySelector('h4');
-                    const content = col.querySelector('ul, p, .footer-contact');
+                        // thêm icon mũi tên với class chính xác
+                        const icon = document.createElement('span');
+                        icon.className = 'material-symbols-rounded footer-toggle-icon';
+                        icon.textContent = 'expand_more';
+                        heading.appendChild(icon);
 
-                    if (!heading || !content) return;
+                        // trạng thái mặc định: đóng
+                        col.classList.remove('is-open');
+                        col.dataset.footerInit = '1';
 
-                    // thêm icon mũi tên
-                    const icon = document.createElement('span');
-                    icon.className = 'footer-toggle-icon';
-                    icon.textContent = 'expand_more';
-                    heading.appendChild(icon);
-
-                    // trạng thái mặc định: đóng
-                    col.classList.remove('is-open');
-
-                    heading.addEventListener('click', () => {
-                        // đóng các cột khác cho gọn
-                        footerCols.forEach(other => {
-                            if (other !== col) other.classList.remove('is-open');
+                        heading.addEventListener('click', () => {
+                            footerCols.forEach(other => {
+                                if (other !== col) other.classList.remove('is-open');
+                            });
+                            col.classList.toggle('is-open');
                         });
-                        col.classList.toggle('is-open');
                     });
+
+                    // mở sẵn 1 block đầu (mobile)
+                    const firstCol = footerCols[0];
+                    if (firstCol) firstCol.classList.add('is-open');
+                    initialized = true;
+                };
+
+                const destroy = () => {
+                    footerCols = document.querySelectorAll('.main-footer .footer-col');
+                    footerCols.forEach(col => {
+                        col.classList.remove('is-open');
+                        col.removeAttribute('data-footer-init');
+                        const icon = col.querySelector('.footer-toggle-icon');
+                        if (icon) icon.remove();
+                    });
+                    initialized = false;
+                };
+
+                // responsive handler
+                const handle = () => {
+                    const isMobile = window.innerWidth < 768;
+                    if (isMobile && !initialized) setup();
+                    if (!isMobile && initialized) destroy();
+                };
+
+                // run initial and attach resize
+                handle();
+                window.addEventListener('resize', () => {
+                    clearTimeout(window._footerResizeTimer);
+                    window._footerResizeTimer = setTimeout(handle, 120);
                 });
 
-                // mở sẵn 1 block đầu cho đỡ “trống”
-                const firstCol = footerCols[0];
-                if (firstCol) firstCol.classList.add('is-open');
-            };
-
-            initFooterAccordion();
+                return () => {};
+            })();
         });
     })();
     </script>
