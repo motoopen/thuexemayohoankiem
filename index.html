@@ -1,75 +1,83 @@
+html
 <!DOCTYPE html>
 <html lang="vi" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- === TỐI ƯU SEO ULTRA MODE === -->
+    <!-- === TỐI ƯU SEO & META TAGS === -->
     <title>Cho Thuê Xe Máy Hoàn Kiếm Hà Nội - Nguyễn Hào | AI Smart App</title>
-    
     <meta name="description" content="Dịch vụ cho thuê xe máy Hoàn Kiếm, Hà Nội uy tín tại Nguyễn Hào. Xe mới, giao xe Phố Cổ chỉ 20 phút. Thủ tục cọc 0 đồng hoặc giấy tờ tùy thân. Gọi ngay!">
     <meta name="keywords" content="cho thuê xe máy hoàn kiếm hà nội, thuê xe máy hà nội, thuê xe máy phố cổ, thuê xe máy nguyễn hào, thuê xe máy không cọc hà nội">
     <meta name="author" content="Nguyễn Hào">
-
-    <!-- === CANONICAL & OG TAGS === -->
-    <link rel="canonical" href="https://motoopen.github.io/thuexemayohoankiem/">
     <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://motoopen.github.io/thuexemayohoankiem/">
 
-    <!-- FAVICON -->
-    <link rel="icon" href="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_0477.jpeg">
-    
+    <!-- OPEN GRAPH / FACEBOOK -->
+    <meta property="og:type" content="website">
     <meta property="og:title" content="Cho Thuê Xe Máy Hoàn Kiếm Hà Nội - Nguyễn Hào | Giao Xe 20'">
     <meta property="og:description" content="Nguyễn Hào chuyên cho thuê xe máy tại Hoàn Kiếm, Phố Cổ. Xe ga, xe số đời mới. Giao xe tận nơi miễn phí bán kính gần.">
     <meta property="og:image" content="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/BANNER-THUE-XE-MAY-1.png">
     <meta property="og:site_name" content="Cho thuê xe máy Nguyễn Hào">
     
+    <!-- TWITTER -->
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Cho Thuê Xe Máy Hoàn Kiếm Hà Nội - Nguyễn Hào">
+    
     <meta name="theme-color" content="#0078D4">
 
-    <!-- === FONTS & ICONS === -->
+    <!-- FAVICON -->
+    <link rel="icon" href="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_0477.jpeg">
+
+    <!-- === PRECONNECT & FONTS === -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <!-- Font Awesome with Integrity/Crossorigin -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     <style>
-        /* 1. Reset và Biến Root */
+        /* ========================================= */
+        /* 1. CORE UTILITIES & RESET */
+        /* ========================================= */
         :root {
+            /* Colors */
             --accent: #0078D4;
             --accent-light: #00B2FF;
             --accent-dark: #005A9E;
-            --radius: 14px;
-            --radius-sm: 8px;
-            
             --c-text: #0D1117;
             --c-text-muted: #57606a;
             --c-bg: #f7f9fb;
             --c-bg-card: #ffffff;
             --c-border: #d0d7de;
             
-            /* AI Gradient Colors */
+            /* UI Elements */
+            --radius: 14px;
+            --radius-sm: 8px;
+            --transition-speed: 0.3s;
+            
+            /* AI / Glassmorphism */
             --ai-gradient-1: linear-gradient(135deg, #0078D4 0%, #00B2FF 100%);
             --ai-glass: rgba(255, 255, 255, 0.7);
             --ai-glass-border: rgba(255, 255, 255, 0.5);
             --ai-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
             
-            /* Status Colors (Light Mode) */
+            /* Status Indicators */
             --status-open-bg: rgba(46, 164, 79, 0.15);
             --status-open-text: #2ea44f;
             --status-open-border: rgba(46, 164, 79, 0.4);
-            
             --status-closed-bg: rgba(207, 34, 46, 0.15);
             --status-closed-text: #cf222e;
             --status-closed-border: rgba(207, 34, 46, 0.4);
 
+            /* Shadows */
             --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
             --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
             --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
             --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.07), 0 4px 10px rgba(0, 0, 0, 0.04);
             --shadow-fluent: 0 4px 12px rgba(0, 120, 212, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05);
-
-            --transition-speed: 0.3s;
         }
 
         html[data-theme="dark"] {
@@ -79,15 +87,12 @@
             --c-bg-card: #0D1117;
             --c-border: #30363d;
             
-            /* AI Dark Mode */
             --ai-glass: rgba(13, 17, 23, 0.7);
             --ai-glass-border: rgba(255, 255, 255, 0.1);
             --ai-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 
-            /* Status Colors (Dark Mode) */
             --status-open-bg: rgba(63, 185, 80, 0.2);
             --status-open-text: #3fb950;
-            
             --status-closed-bg: rgba(248, 81, 73, 0.2);
             --status-closed-text: #f85149;
         }
@@ -113,7 +118,20 @@
             padding-bottom: 80px; 
         }
 
-        /* 2. Layout Chung */
+        /* Accessibility Utility: Visually Hidden */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* 2. LAYOUT & TYPOGRAPHY */
         .container {
             max-width: 1200px;
             margin-left: auto;
@@ -154,7 +172,7 @@
             color: var(--accent-light);
         }
 
-        /* 3. Nút Bấm (Buttons) */
+        /* 3. BUTTONS */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -197,7 +215,7 @@
             transform: translateY(-2px);
         }
 
-        /* 4. Header & Navigation */
+        /* 4. HEADER & NAV */
         .main-header {
             position: sticky;
             top: 0;
@@ -236,7 +254,7 @@
             border: 2px solid var(--c-border);
         }
 
-        /* TRẠNG THÁI MỞ/ĐÓNG CỬA */
+        /* Status Badge */
         .shop-status {
             font-size: 0.75rem;
             font-weight: 600;
@@ -249,19 +267,16 @@
             align-items: center;
             gap: 4px;
         }
-        
         .status-open {
             background-color: var(--status-open-bg);
             color: var(--status-open-text);
             border: 1px solid var(--status-open-border);
         }
-        
         .status-closed {
             background-color: var(--status-closed-bg);
             color: var(--status-closed-text);
             border: 1px solid var(--status-closed-border);
         }
-        
         .shop-status::before {
             content: '';
             display: inline-block;
@@ -271,6 +286,7 @@
             background-color: currentColor;
         }
 
+        /* Desktop Menu */
         .nav-menu {
             display: none;
             list-style: none;
@@ -323,10 +339,7 @@
             font-size: 2rem;
         }
 
-        /* ========================================= */
-        /* === AI ULTRA MINI APP SIDEBAR (NEW) === */
-        /* ========================================= */
-        
+        /* 5. AI MOBILE SIDEBAR */
         .mobile-nav-panel {
             position: fixed;
             top: 0;
@@ -339,7 +352,7 @@
             -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-left: 1px solid var(--ai-glass-border);
             box-shadow: var(--ai-shadow);
-            z-index: 9999; /* Top level */
+            z-index: 9999;
             transition: right 0.6s cubic-bezier(0.19, 1, 0.22, 1);
             display: flex;
             flex-direction: column;
@@ -353,7 +366,6 @@
             visibility: visible;
         }
 
-        /* AI Header Section */
         .ai-sidebar-header {
             padding: 2rem 1.5rem 1rem;
             background: linear-gradient(to bottom, rgba(0,120,212,0.05), transparent);
@@ -389,7 +401,7 @@
         }
         @keyframes blink { 50% { opacity: 0; } }
 
-        /* Smart Shortcut Grid (AI Suggested) */
+        /* Shortcuts Grid */
         .ai-smart-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -425,13 +437,12 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* Gradient backgrounds for icons */
         .bg-gradient-blue { background: linear-gradient(135deg, #0078D4, #00B2FF); }
         .bg-gradient-green { background: linear-gradient(135deg, #107C10, #2ea44f); }
         .bg-gradient-orange { background: linear-gradient(135deg, #D83B01, #ff8c00); }
         .bg-gradient-purple { background: linear-gradient(135deg, #5C2D91, #b4a0ff); }
 
-        /* Navigation List Styles (Stagger Animation) */
+        /* Mobile Menu Items */
         .mobile-nav-menu {
             list-style: none;
             padding: 0 1rem 2rem;
@@ -451,7 +462,6 @@
             transform: translateX(0);
         }
         
-        /* Stagger delays handled in JS or CSS nth-child */
         .mobile-nav-panel.active .mobile-nav-menu > li:nth-child(1) { transition-delay: 0.1s; }
         .mobile-nav-panel.active .mobile-nav-menu > li:nth-child(2) { transition-delay: 0.15s; }
         .mobile-nav-panel.active .mobile-nav-menu > li:nth-child(3) { transition-delay: 0.2s; }
@@ -468,7 +478,7 @@
             font-size: 1rem;
             color: var(--c-text);
             border-radius: var(--radius);
-            background: rgba(255,255,255,0.01); /* Subtle */
+            background: rgba(255,255,255,0.01);
             border: 1px solid transparent;
             width: 100%;
             cursor: pointer;
@@ -492,7 +502,6 @@
             border-color: rgba(0, 120, 212, 0.2);
         }
 
-        /* Close Button Floating */
         #mobile-nav-close {
             position: absolute;
             top: 1.5rem;
@@ -539,7 +548,6 @@
         }
         
         .mobile-nav-dropdown.active .mobile-submenu {
-            /* Handled by JS height calculation */
             margin-top: 5px;
             margin-bottom: 10px;
         }
@@ -550,7 +558,6 @@
             transform: rotate(180deg);
         }
 
-        /* FIX 1: Mobile Overlay Visibility */
         .mobile-nav-overlay {
             position: fixed;
             top: 0;
@@ -559,12 +566,11 @@
             height: 100%;
             background: rgba(0,0,0,0.3);
             backdrop-filter: blur(4px);
-            z-index: 9990; /* Just below menu */
+            z-index: 9990;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.4s ease;
         }
-        /* Rule mới để hiển thị overlay khi active */
         .mobile-nav-overlay.active {
             opacity: 1;
             visibility: visible;
@@ -619,9 +625,7 @@
             transform: rotate(180deg);
         }
         
-        .dropdown-menu li {
-            width: 100%;
-        }
+        .dropdown-menu li { width: 100%; }
         .dropdown-menu a {
             display: block;
             padding: 0.6rem 1.25rem;
@@ -633,7 +637,6 @@
         .dropdown-menu a:hover {
             background-color: var(--c-bg);
             color: var(--c-text);
-            border-bottom: none;
         }
 
         @media (min-width: 1024px) {
@@ -641,7 +644,7 @@
             .nav-menu { display: flex; }
         }
 
-        /* 5. Hero Section */
+        /* 6. HERO SECTION */
         .hero {
             padding-top: 4rem;
             padding-bottom: 5rem;
@@ -752,7 +755,7 @@
             .form-group button { align-self: end; height: 100%; }
         }
 
-        /* 6. Thẻ (Card) Chung */
+        /* 7. CARDS & SECTIONS */
         .card {
             background-color: var(--c-bg-card);
             border-radius: var(--radius);
@@ -764,7 +767,6 @@
             box-shadow: var(--shadow-lg);
         }
 
-        /* 7. Section: Benefits */
         #why-us { background-color: var(--c-bg-card); }
         html[data-theme="dark"] #why-us { background-color: var(--c-bg); }
         .benefits-grid {
@@ -795,7 +797,7 @@
         @media (min-width: 640px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (min-width: 1024px) { .benefits-grid { grid-template-columns: repeat(3, 1fr); } }
 
-        /* 8. Section: Services */
+        /* Services */
         .services-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -826,7 +828,7 @@
         @media (min-width: 640px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
 
-        /* 9. Section: Deals */
+        /* Deals */
         .deal-highlight {
             background: linear-gradient(135deg, var(--accent), var(--accent-light));
             border-radius: var(--radius);
@@ -858,7 +860,7 @@
             color: var(--accent-dark);
         }
 
-        /* 10. Section: Process */
+        /* Process */
         .process-steps {
             display: grid;
             grid-template-columns: 1fr;
@@ -910,7 +912,7 @@
             }
         }
 
-        /* 11. Section: Gallery */
+        /* Gallery */
         #gallery { background-color: var(--c-bg-card); }
         html[data-theme="dark"] #gallery { background-color: var(--c-bg); }
         .gallery-grid {
@@ -939,7 +941,7 @@
             .gallery-item:first-child img, .gallery-item:last-child img { height: 100%; }
         }
 
-        /* 12. Lightbox */
+        /* Lightbox */
         .lightbox {
             position: fixed;
             top: 0;
@@ -984,7 +986,7 @@
             display: block;
         }
 
-        /* 13. Testimonials */
+        /* Testimonials */
         .testimonial-slider {
             position: relative;
             max-width: 800px;
@@ -1035,7 +1037,7 @@
             transform: scale(1.2);
         }
 
-        /* 14. Bonus Sections */
+        /* Bonus Sections & Checklist */
         .bonus-grid-3 {
             display: grid;
             grid-template-columns: 1fr;
@@ -1052,15 +1054,15 @@
             padding-left: 2rem;
             margin-bottom: 1rem;
         }
-        .checklist li::before {
-            content: '\e86c'; /* check_circle */
-            font-family: 'Material Symbols Rounded';
-            font-weight: 600;
-            color: var(--accent);
+        /* REFACTOR: Using child span instead of pseudo-element content hack */
+        .checklist li .check-icon {
             position: absolute;
             left: 0;
-            top: 0;
+            top: 2px;
             font-size: 1.4rem;
+            color: var(--accent);
+            font-weight: 600;
+            user-select: none;
         }
         
         .location-card {
@@ -1088,7 +1090,7 @@
             margin-bottom: 0;
         }
 
-        /* 15. FAQ Accordion */
+        /* FAQ */
         .faq-container {
             max-width: 800px;
             margin: 0 auto;
@@ -1133,7 +1135,7 @@
         .faq-item.active .faq-question .icon { transform: rotate(180deg); }
         .faq-item.active .faq-answer { grid-template-rows: 1fr; }
 
-        /* 16. Footer – phiên bản đẹp hơn, có accordion trên mobile */
+        /* 8. FOOTER */
         .main-footer {
             background-color: var(--c-bg-card);
             color: var(--c-text-muted);
@@ -1145,7 +1147,6 @@
             background-color: #0D1117;
         }
 
-        /* Layout chung */
         .footer-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -1159,8 +1160,7 @@
             margin-bottom: 0.75rem;
         }
 
-        .footer-col p,
-        .footer-col ul {
+        .footer-col p, .footer-col ul {
             font-size: 0.95rem;
             list-style: none;
         }
@@ -1184,7 +1184,6 @@
             gap: 0.75rem;
             margin-bottom: 0.6rem;
         }
-
         .footer-contact .icon {
             font-size: 1.25rem;
             margin-top: 0.15rem;
@@ -1204,7 +1203,6 @@
             color: var(--accent);
         }
 
-        /* Dòng dưới cùng */
         .footer-bottom {
             margin-top: 2.5rem;
             padding-top: 1.25rem;
@@ -1224,89 +1222,65 @@
             color: var(--accent);
         }
 
-        /* --- MOBILE: mỗi cột footer thành “thẻ” gập/mở --- */
+        /* Mobile Accordion Footer */
         @media (max-width: 767px) {
-            .footer-grid {
-                gap: 1rem;
-            }
-
+            .footer-grid { gap: 1rem; }
             .footer-col {
                 background: var(--c-bg);
                 border-radius: 12px;
                 padding: 0.9rem 1rem;
                 box-shadow: var(--shadow-sm);
             }
-
             .footer-col h4 {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                margin-bottom: 0;              /* nội dung sẽ có margin riêng */
+                margin-bottom: 0;
                 cursor: pointer;
             }
-
-            /* icon mũi tên */
             .footer-toggle-icon {
                 font-family: "Material Symbols Rounded";
                 font-size: 1.4rem;
                 transition: transform 0.25s ease;
             }
-
-            /* nội dung trong mỗi cột: mặc định thu gọn */
-            .footer-col p,
-            .footer-col ul,
-            .footer-col .footer-contact {
+            .footer-col p, .footer-col ul, .footer-col .footer-contact {
                 max-height: 0;
                 overflow: hidden;
                 opacity: 0;
                 transition: max-height 0.25s ease, opacity 0.25s ease, margin-top 0.25s ease;
                 margin-top: 0;
             }
-
-            /* khi mở */
-            .footer-col.is-open p,
-            .footer-col.is-open ul,
-            .footer-col.is-open .footer-contact {
-                max-height: 500px; /* đủ lớn cho mọi trường hợp */
+            .footer-col.is-open p, .footer-col.is-open ul, .footer-col.is-open .footer-contact {
+                max-height: 500px;
                 opacity: 1;
                 margin-top: 0.6rem;
             }
-
             .footer-col.is-open .footer-toggle-icon {
                 transform: rotate(180deg);
             }
-
             .footer-bottom {
                 border-top: none;
                 margin-top: 1.5rem;
             }
         }
 
-        /* TABLET & DESKTOP: giữ layout nhiều cột nhưng nhìn “thở” hơn */
         @media (min-width: 640px) {
             .footer-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 2rem;
             }
-            .footer-col {
-                padding-right: 1.5rem;
-            }
+            .footer-col { padding-right: 1.5rem; }
             .footer-bottom {
                 flex-direction: row;
                 justify-content: space-between;
                 text-align: left;
             }
         }
-
         @media (min-width: 1024px) {
-            .footer-grid {
-                grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 1.5fr;
-            }
+            .footer-grid { grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 1.5fr; }
         }
 
-
-        /* 17. === QUICK CALL ULTRA MODE === */
-        
+        /* 9. QUICK CALL ULTRA */
         .quick-call-ultra-wrapper {
             position: fixed;
             bottom: 25px;
@@ -1338,12 +1312,8 @@
             transition: transform 0.3s ease, background-color 0.3s ease;
             overflow: hidden;
         }
-        
-        .ultra-main-btn .main-icon {
-            transition: transform 0.3s ease;
-        }
+        .ultra-main-btn .main-icon { transition: transform 0.3s ease; }
 
-        /* Sub buttons */
         .ultra-menu {
             display: flex;
             flex-direction: column-reverse; 
@@ -1387,54 +1357,29 @@
             visibility: hidden;
             transition: opacity 0.3s;
         }
-        .ultra-item:hover::after {
-            opacity: 1;
-            visibility: visible;
-        }
+        .ultra-item:hover::after { opacity: 1; visibility: visible; }
 
         .ultra-item.call { background: #4CAF50; color: white; }
         .ultra-item.zalo { background: #0068FF; color: white; }
         .ultra-item.map { background: #EA4335; color: white; }
         .ultra-item.messenger { background: #0084FF; color: white; }
 
-        /* --- ACTIVE STATE --- */
         .quick-call-ultra-wrapper.active .ultra-main-btn {
             background-color: var(--c-text);
             transform: rotate(45deg);
             animation: none;
         }
-        
-        .quick-call-ultra-wrapper.active .ultra-menu {
-            pointer-events: auto;
-        }
-
-        .quick-call-ultra-wrapper.active .ultra-item:nth-child(1) {
-            transform: translateY(-80px) scale(1);
-            opacity: 1;
-            transition-delay: 0.05s;
-        }
-        .quick-call-ultra-wrapper.active .ultra-item:nth-child(2) {
-            transform: translateY(-145px) scale(1);
-            opacity: 1;
-            transition-delay: 0.1s;
-        }
-        .quick-call-ultra-wrapper.active .ultra-item:nth-child(3) {
-            transform: translateY(-210px) scale(1);
-            opacity: 1;
-            transition-delay: 0.15s;
-        }
-        .quick-call-ultra-wrapper.active .ultra-item:nth-child(4) {
-            transform: translateY(-275px) scale(1);
-            opacity: 1;
-            transition-delay: 0.2s;
-        }
+        .quick-call-ultra-wrapper.active .ultra-menu { pointer-events: auto; }
+        .quick-call-ultra-wrapper.active .ultra-item:nth-child(1) { transform: translateY(-80px) scale(1); opacity: 1; transition-delay: 0.05s; }
+        .quick-call-ultra-wrapper.active .ultra-item:nth-child(2) { transform: translateY(-145px) scale(1); opacity: 1; transition-delay: 0.1s; }
+        .quick-call-ultra-wrapper.active .ultra-item:nth-child(3) { transform: translateY(-210px) scale(1); opacity: 1; transition-delay: 0.15s; }
+        .quick-call-ultra-wrapper.active .ultra-item:nth-child(4) { transform: translateY(-275px) scale(1); opacity: 1; transition-delay: 0.2s; }
 
         @keyframes pulse-glow {
             0% { box-shadow: 0 0 0 0 rgba(0, 120, 212, 0.7); }
             70% { box-shadow: 0 0 0 20px rgba(0, 120, 212, 0); }
             100% { box-shadow: 0 0 0 0 rgba(0, 120, 212, 0); }
         }
-
         @keyframes vibrate-soft {
             0%, 85% { transform: rotate(0); }
             87% { transform: rotate(-10deg); }
@@ -1447,7 +1392,7 @@
 
         body.keyboard-visible .quick-call-ultra-wrapper { display: none; }
 
-        /* 18. Scroll Animation */
+        /* 10. ANIMATIONS & STATES */
         .animate-on-scroll {
             opacity: 0;
             transform: translateY(20px);
@@ -1459,9 +1404,7 @@
             transform: translateY(0);
         }
         
-        /* 19. View Transitions */
-        ::view-transition-old(root),
-        ::view-transition-new(root) {
+        ::view-transition-old(root), ::view-transition-new(root) {
             animation-duration: 0.3s;
             animation-timing-function: ease-in-out;
             animation-fill-mode: forwards;
@@ -1471,7 +1414,7 @@
         @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
         @keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
         
-        /* 20. Focus States */
+        /* Focus Styles */
         :focus-visible {
             outline: 2px solid var(--accent);
             outline-offset: 2px;
@@ -1490,9 +1433,8 @@
             <nav class="main-nav">
                 <a href="https://motoopen.github.io/thuexemayohoankiem/" class="logo">
                     <img src="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_0477.jpeg" alt="Logo Nguyễn Hào">
-                    <h1 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">
-                        Cho thuê xe máy Hoàn Kiếm, Hà Nội - Nguyễn Hào
-                    </h1>
+                    <!-- Refactor: H1 hidden with .sr-only -->
+                    <h1 class="sr-only">Cho thuê xe máy Hoàn Kiếm, Hà Nội - Nguyễn Hào</h1>
                     <span aria-hidden="true">Nguyễn Hào</span>
                 </a>
                 
@@ -1528,13 +1470,13 @@
                     <li><a href="dieukhoansudung.html">⚖️ Điều khoản</a></li>
                 </ul>
                 <div class="nav-actions">
-                    <!-- TRẠNG THÁI MỞ CỬA PC -->
                     <div id="shop-status-desktop" class="shop-status" style="display: none;"></div>
 
                     <button class="theme-switcher" id="theme-switcher" aria-label="Chuyển đổi giao diện Sáng/Tối">
                         <span class="material-symbols-rounded light-icon" aria-hidden="true">light_mode</span>
                         <span class="material-symbols-rounded dark-icon" aria-hidden="true">dark_mode</span>
                     </button>
+                    <!-- Refactor: Initial state hidden -->
                     <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Mở menu" aria-expanded="false" aria-controls="mobile-nav-panel">
                         <span class="material-symbols-rounded" aria-hidden="true">menu</span>
                     </button>
@@ -1544,13 +1486,12 @@
     </header>
 
     <!-- === AI ULTRA MINI APP MENU === -->
-    <nav class="mobile-nav-panel" id="mobile-nav-panel" aria-label="AI Ultra Menu" role="dialog" aria-modal="true">
-        <!-- Close Button -->
+    <!-- Refactor: Default to hidden, role added via JS when open -->
+    <nav class="mobile-nav-panel" id="mobile-nav-panel" aria-label="AI Ultra Menu" aria-hidden="true">
         <button id="mobile-nav-close" aria-label="Đóng menu">
             <span class="material-symbols-rounded" aria-hidden="true">close</span>
         </button>
 
-        <!-- AI Header & Smart Shortcuts -->
         <div class="ai-sidebar-header">
             <div class="ai-greeting-box">
                 <div class="ai-greeting-title" id="ai-greeting-time">Xin chào,</div>
@@ -1559,25 +1500,25 @@
                 </div>
             </div>
             
-            <!-- Smart Grid Shortcuts -->
             <div class="ai-smart-grid">
                 <a href="tel:0942467674" class="smart-icon-btn">
-                    <div class="smart-icon-box bg-gradient-green"><span class="material-symbols-rounded">call</span></div>
+                    <div class="smart-icon-box bg-gradient-green"><span class="material-symbols-rounded" aria-hidden="true">call</span></div>
                     <span>Gọi Ngay</span>
                 </a>
-                <!-- FIX ZALO ICON HERE -->
-                <a href="https://zalo.me/0942467674" target="_blank" class="smart-icon-btn">
+                <!-- Refactor: Zalo Icon Semantic Fix -->
+                <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" class="smart-icon-btn" aria-label="Chat Zalo">
                     <div class="smart-icon-box bg-gradient-blue">
-                        <i class="fa-brands fa-zalo" style="font-family: sans-serif; font-style: normal; font-weight: bold;">Zalo</i>
+                        <i class="fa-brands fa-zalo" aria-hidden="true"></i>
+                        <span style="font-family: sans-serif; font-weight: bold; margin-left: 2px;">Zalo</span>
                     </div>
                     <span>Chat Zalo</span>
                 </a>
-                <a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc" target="_blank" class="smart-icon-btn">
-                    <div class="smart-icon-box bg-gradient-orange"><span class="material-symbols-rounded">location_on</span></div>
+                <a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc" target="_blank" rel="noopener noreferrer" class="smart-icon-btn">
+                    <div class="smart-icon-box bg-gradient-orange"><span class="material-symbols-rounded" aria-hidden="true">location_on</span></div>
                     <span>Bản đồ</span>
                 </a>
                 <a href="banggia.html" class="smart-icon-btn">
-                    <div class="smart-icon-box bg-gradient-purple"><span class="material-symbols-rounded">payments</span></div>
+                    <div class="smart-icon-box bg-gradient-purple"><span class="material-symbols-rounded" aria-hidden="true">payments</span></div>
                     <span>Bảng giá</span>
                 </a>
             </div>
@@ -1616,7 +1557,7 @@
             <li><a href="dieukhoansudung.html">⚖️ Điều khoản sử dụng</a></li>
         </ul>
     </nav>
-    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay" aria-hidden="true"></div>
 
     <main>
 
@@ -1722,7 +1663,7 @@
                 <h2 id="services-title" class="section-title animate-on-scroll">Dịch Vụ Cho Thuê Xe Máy Nổi Bật</h2>
                 <div class="services-grid">
                     <div class="card service-card animate-on-scroll">
-                        <img loading="lazy" src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/Cho-thue-xe-may-Ba-Dinh.jpg" alt="Cho thuê xe ga Vision Hà Nội">
+                        <img loading="lazy" decoding="async" src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/Cho-thue-xe-may-Ba-Dinh.jpg" alt="Cho thuê xe ga Vision Hà Nội" width="600" height="200">
                         <h3>Cho Thuê Xe Ga (Vision/Lead)</h3>
                         <p>Dòng xe ga cốp rộng, chạy êm, tiết kiệm xăng, rất phù hợp để dạo quanh Phố Cổ và West Lake.</p>
                         <div class="price">Từ 120.000đ / ngày</div>
@@ -1730,7 +1671,7 @@
                         <a href="loaixe.html" class="btn btn-secondary" style="width: 100%">Xem chi tiết</a>
                     </div>
                     <div class="card service-card animate-on-scroll" data-delay="100">
-                        <img loading="lazy" src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/Muon-xe-may-Ha-Noi.jpg" alt="Cho thuê xe số Wave Hà Nội">
+                        <img loading="lazy" decoding="async" src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/Muon-xe-may-Ha-Noi.jpg" alt="Cho thuê xe số Wave Hà Nội" width="600" height="200">
                         <h3>Cho Thuê Xe Số (Wave/Sirius)</h3>
                         <p>Xe số khỏe, leo dốc tốt, bền bỉ. Lựa chọn số 1 cho các bạn sinh viên hoặc đi phượt Ba Vì.</p>
                         <div class="price">Từ 100.000đ / ngày</div>
@@ -1738,7 +1679,7 @@
                         <a href="loaixe.html" class="btn btn-secondary" style="width: 100%">Xem chi tiết</a>
                     </div>
                     <div class="card service-card animate-on-scroll" data-delay="200">
-                        <img loading="lazy" src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/Cho-thue-xe-may-Dong-Da-Ha-Noi.jpg" alt="Cho thuê xe côn tay Winner Hà Nội">
+                        <img loading="lazy" decoding="async" src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/Cho-thue-xe-may-Dong-Da-Ha-Noi.jpg" alt="Cho thuê xe côn tay Winner Hà Nội" width="600" height="200">
                         <h3>Cho Thuê Xe Côn Tay (Winner)</h3>
                         <p>Trải nghiệm cảm giác lái thể thao, chinh phục mọi cung đường với xe côn tay phân khối nhỏ.</p>
                         <div class="price">Từ 150.000đ / ngày</div>
@@ -1795,16 +1736,16 @@
                 <h2 id="gallery-title" class="section-title animate-on-scroll">Hình Ảnh Xe & Khách Hàng Thực Tế</h2>
                 <div class="gallery-grid" id="gallery-grid">
                     <div class="gallery-item animate-on-scroll">
-                        <img loading="lazy" src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/Muon-xe-may-Ha-Noi.jpg" alt="Mượn xe máy Hà Nội tại Nguyễn Hào">
+                        <img loading="lazy" decoding="async" src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/Muon-xe-may-Ha-Noi.jpg" alt="Mượn xe máy Hà Nội tại Nguyễn Hào">
                     </div>
                     <div class="gallery-item animate-on-scroll" data-delay="100">
-                        <img loading="lazy" src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/Cho-thue-xe-may-Ba-Dinh.jpg" alt="Cho thuê xe máy Ba Đình uy tín">
+                        <img loading="lazy" decoding="async" src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/Cho-thue-xe-may-Ba-Dinh.jpg" alt="Cho thuê xe máy Ba Đình uy tín">
                     </div>
                     <div class="gallery-item animate-on-scroll" data-delay="200">
-                        <img loading="lazy" src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/Cho-thue-xe-may-Dong-Da-Ha-Noi.jpg" alt="Cho thuê xe máy Đống Đa Hà Nội">
+                        <img loading="lazy" decoding="async" src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/Cho-thue-xe-may-Dong-Da-Ha-Noi.jpg" alt="Cho thuê xe máy Đống Đa Hà Nội">
                     </div>
                     <div class="gallery-item animate-on-scroll" data-delay="300">
-                        <img loading="lazy" src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/Dia-chi-cho-thue-xe-may-ha-noi.jpg" alt="Địa chỉ cho thuê xe máy Hà Nội giá rẻ">
+                        <img loading="lazy" decoding="async" src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/Dia-chi-cho-thue-xe-may-ha-noi.jpg" alt="Địa chỉ cho thuê xe máy Hà Nội giá rẻ">
                     </div>
                 </div>
             </div>
@@ -1813,7 +1754,7 @@
         <section id="testimonials" class="section" aria-labelledby="testimonials-title">
             <div class="container">
                 <h2 id="testimonials-title" class="section-title animate-on-scroll">Khách Hàng Nói Gì Về Nguyễn Hào?</h2>
-                <div class="testimonial-slider animate-on-scroll">
+                <div class="testimonial-slider animate-on-scroll" tabindex="0" aria-label="Khu vực đánh giá khách hàng">
                     <div class="slider-track" id="slider-track" aria-live="polite">
                         <div class="testimonial-card" role="group" aria-label="Đánh giá 1 của 3">
                             <div class="stars" aria-label="5 trên 5 sao">★★★★★</div>
@@ -1841,10 +1782,11 @@
                 <h2 id="commitment-title" class="section-title">🎯 Cam Kết Vàng Từ Nguyễn Hào</h2>
                 <div class="card">
                     <ul class="checklist">
-                        <li><strong>Đổi xe miễn phí:</strong> Hỗ trợ 1 đổi 1 ngay lập tức nếu xe phát sinh lỗi kỹ thuật.</li>
-                        <li><strong>Hỗ trợ 24/7:</strong> Luôn có mặt khi bạn cần, xử lý sự cố nhanh chóng.</li>
-                        <li><strong>Bảo dưỡng định kỳ:</strong> 100% xe được kiểm tra phanh, lốp, dầu nhớt trước khi giao.</li>
-                        <li><strong>Phụ kiện đầy đủ:</strong> Tặng kèm 02 mũ bảo hiểm đạt chuẩn và áo mưa khi thuê xe.</li>
+                        <!-- Refactor: Replaced CSS content with semantic span -->
+                        <li><span class="material-symbols-rounded check-icon" aria-hidden="true">check_circle</span> <strong>Đổi xe miễn phí:</strong> Hỗ trợ 1 đổi 1 ngay lập tức nếu xe phát sinh lỗi kỹ thuật.</li>
+                        <li><span class="material-symbols-rounded check-icon" aria-hidden="true">check_circle</span> <strong>Hỗ trợ 24/7:</strong> Luôn có mặt khi bạn cần, xử lý sự cố nhanh chóng.</li>
+                        <li><span class="material-symbols-rounded check-icon" aria-hidden="true">check_circle</span> <strong>Bảo dưỡng định kỳ:</strong> 100% xe được kiểm tra phanh, lốp, dầu nhớt trước khi giao.</li>
+                        <li><span class="material-symbols-rounded check-icon" aria-hidden="true">check_circle</span> <strong>Phụ kiện đầy đủ:</strong> Tặng kèm 02 mũ bảo hiểm đạt chuẩn và áo mưa khi thuê xe.</li>
                     </ul>
                 </div>
             </div>
@@ -1855,19 +1797,19 @@
                 <h2 id="locations-title" class="section-title animate-on-scroll">🌆 Gợi Ý Địa Điểm Phượt Quanh Hà Nội</h2>
                 <div class="bonus-grid-3">
                     <div class="card location-card animate-on-scroll">
-                        <img loading="lazy" src="https://placehold.co/600x400/D83B01/FFFFFF?text=Phố+Cổ+Hà+Nội" alt="Khám phá Phố Cổ Hà Nội bằng xe máy">
+                        <img loading="lazy" decoding="async" src="https://placehold.co/600x400/D83B01/FFFFFF?text=Phố+Cổ+Hà+Nội" alt="Khám phá Phố Cổ Hà Nội bằng xe máy">
                         <div class="content">
                             <h3>Phố Cổ Hà Nội</h3>
                         </div>
                     </div>
                     <div class="card location-card animate-on-scroll" data-delay="100">
-                        <img loading="lazy" src="https://placehold.co/600x400/107C10/FFFFFF?text=Vườn+Quốc+Gia+Ba+Vì" alt="Phượt xe máy Vườn Quốc Gia Ba Vì">
+                        <img loading="lazy" decoding="async" src="https://placehold.co/600x400/107C10/FFFFFF?text=Vườn+Quốc+Gia+Ba+Vì" alt="Phượt xe máy Vườn Quốc Gia Ba Vì">
                         <div class="content">
                             <h3>Vườn Quốc Gia Ba Vì</h3>
                         </div>
                     </div>
                     <div class="card location-card animate-on-scroll" data-delay="200">
-                        <img loading="lazy" src="https://placehold.co/600x400/515151/FFFFFF?text=Làng+Gốm+Bát+Tràng" alt="Du lịch xe máy Bát Tràng">
+                        <img loading="lazy" decoding="async" src="https://placehold.co/600x400/515151/FFFFFF?text=Làng+Gốm+Bát+Tràng" alt="Du lịch xe máy Bát Tràng">
                         <div class="content">
                             <h3>Làng Gốm Bát Tràng</h3>
                         </div>
@@ -1935,9 +1877,8 @@
 
     <footer class="main-footer" aria-labelledby="footer-title">
         <div class="container">
-            <h2 id="footer-title" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">
-                Thông tin liên hệ Nguyễn Hào
-            </h2>
+            <!-- Refactor: H2 hidden properly -->
+            <h2 id="footer-title" class="sr-only">Thông tin liên hệ Nguyễn Hào</h2>
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>🏢 Về Nguyễn Hào</h4>
@@ -2016,9 +1957,12 @@
                     <h4>🌐 Mạng Xã Hội</h4>
                     <div class="social-links">
                         <a href="https://m.facebook.com/chothuexemay0857255868/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
-                        <!-- FIX ZALO ICON HERE -->
-                        <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" aria-label="Zalo">
-                             <i class="fa-brands fa-zalo" style="font-family: sans-serif; font-style: normal; font-weight: bold; font-size: 0.8em; border: 1px solid currentColor; padding: 0 4px; border-radius: 4px;">Zalo</i>
+                        <!-- Refactor: Correct Zalo Icon Semantic -->
+                        <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
+                             <div style="display:inline-flex; align-items:center; border: 1px solid currentColor; padding: 0 4px; border-radius: 4px; font-size: 0.8em;">
+                                <i class="fa-brands fa-zalo" aria-hidden="true" style="margin-right:2px"></i>
+                                <span style="font-family: sans-serif; font-weight: bold; font-style: normal;">Zalo</span>
+                             </div>
                         </a>
                         <a href="https://wa.me/84942467674" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
                         <a href="https://www.tripadvisor.com/Attraction_Review-g21333608-d9826317-Reviews-Nguyen_Tu_Motorbike_Rental-Long_Bien_Hanoi.html" target="_blank" rel="noopener noreferrer" aria-label="TripAdvisor"><i class="fa-brands fa-tripadvisor" aria-hidden="true"></i></a>
@@ -2034,32 +1978,37 @@
         </div>
     </footer>
 
-    <!-- === QUICK CALL ULTRA MODE (REFACTORED) === -->
+    <!-- === QUICK CALL ULTRA MODE === -->
     <div class="quick-call-ultra-wrapper" id="quick-call-ultra">
         <div class="ultra-menu">
             <a href="tel:0942467674" class="ultra-item call" data-label="Gọi ngay">
-                <span class="material-symbols-rounded">call</span>
+                <span class="material-symbols-rounded" aria-hidden="true">call</span>
+                <span class="sr-only">Gọi ngay</span>
             </a>
-            <!-- FIX ZALO ICON HERE -->
+            <!-- Refactor: Zalo -->
              <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" class="ultra-item zalo" data-label="Chat Zalo">
-                <i class="fa-brands fa-zalo" style="font-family: Arial, sans-serif; font-weight: bold; font-style: normal;">Zalo</i>
+                <i class="fa-brands fa-zalo" aria-hidden="true"></i>
+                <span class="sr-only">Chat Zalo</span>
             </a>
             <a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc" target="_blank" rel="noopener noreferrer" class="ultra-item map" data-label="Chỉ đường">
-                <span class="material-symbols-rounded">location_on</span>
+                <span class="material-symbols-rounded" aria-hidden="true">location_on</span>
+                <span class="sr-only">Chỉ đường</span>
             </a>
             <a href="https://m.me/chothuexemay0857255868" target="_blank" rel="noopener noreferrer" class="ultra-item messenger" data-label="Messenger">
-                <i class="fa-brands fa-facebook-messenger"></i>
+                <i class="fa-brands fa-facebook-messenger" aria-hidden="true"></i>
+                <span class="sr-only">Messenger</span>
             </a>
         </div>
         
         <button class="ultra-main-btn" id="ultra-toggle-btn" aria-label="Liên hệ nhanh" aria-expanded="false">
-            <span class="material-symbols-rounded main-icon">add</span>
+            <span class="material-symbols-rounded main-icon" aria-hidden="true">add</span>
         </button>
     </div>
 
-    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Trình xem ảnh phóng to">
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Trình xem ảnh phóng to" aria-hidden="true">
         <div class="lightbox-content">
-            <img src="" alt="Hình ảnh phóng to" class="lightbox-img" id="lightbox-img">
+            <img src="" alt="" class="lightbox-img" id="lightbox-img">
             <button class="lightbox-close" id="lightbox-close" aria-label="Đóng ảnh">
                 <span class="material-symbols-rounded" aria-hidden="true">close</span>
             </button>
@@ -2072,7 +2021,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
 
-            // --- Cache DOM Elements ---
+            // --- 0. CACHE ELEMENTS ---
             const themeSwitcher = document.getElementById('theme-switcher');
             const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
             const mobileNavPanel = document.getElementById('mobile-nav-panel');
@@ -2091,11 +2040,10 @@
             const ultraToggleBtn = document.getElementById('ultra-toggle-btn');
             const quoteForm = document.getElementById('quote-form');
 
-            // --- AI SIMULATION FEATURES ---
-            const aiGreetingTime = document.getElementById('ai-greeting-time');
-            const aiTypewriterText = document.getElementById('ai-typewriter-text');
-
+            // --- 1. AI GREETING LOGIC ---
             const initAISmartMenu = () => {
+                const aiGreetingTime = document.getElementById('ai-greeting-time');
+                const aiTypewriterText = document.getElementById('ai-typewriter-text');
                 if (!aiGreetingTime || !aiTypewriterText) return;
 
                 const now = new Date();
@@ -2103,7 +2051,6 @@
                 let greeting = "Xin chào,";
                 let suggestions = [];
 
-                // 1. Smart Greeting Logic
                 if (hour >= 5 && hour < 11) {
                     greeting = "Chào buổi sáng!";
                     suggestions = ["Bạn cần xe đi làm?", "Thuê xe đi cafe sáng?", "Giao xe gấp trong 20p"];
@@ -2120,64 +2067,51 @@
 
                 aiGreetingTime.textContent = greeting;
 
-                // 2. Typing Effect Simulation
                 const textToType = suggestions[Math.floor(Math.random() * suggestions.length)];
                 let i = 0;
-                aiTypewriterText.textContent = "";
-                
+                let typingTimer;
+
                 const typeWriter = () => {
                     if (i < textToType.length) {
                         aiTypewriterText.textContent += textToType.charAt(i);
                         i++;
-                        setTimeout(typeWriter, 50); // Speed of typing
+                        typingTimer = setTimeout(typeWriter, 50);
                     }
                 };
                 
-                // Only start typing when menu opens
                 if (mobileMenuToggle) {
                     mobileMenuToggle.addEventListener('click', () => {
-                        if (!mobileNavPanel.classList.contains('active')) {
-                            // Reset and type again
-                            i = 0;
-                            aiTypewriterText.textContent = "";
-                            setTimeout(typeWriter, 300); // Slight delay after animation
-                        }
+                        clearTimeout(typingTimer);
+                        i = 0;
+                        aiTypewriterText.textContent = "";
+                        setTimeout(typeWriter, 300);
                     });
                 }
             };
             initAISmartMenu();
 
-
-            // --- 0. FEATURE: AUTO OPEN/CLOSE STATUS (8H - 18H) ---
+            // --- 2. SHOP STATUS AUTO UPDATE ---
             const updateShopStatus = () => {
                 const now = new Date();
                 const currentHour = now.getHours();
                 const isOpen = currentHour >= 8 && currentHour < 18;
                 
-                const statusText = isOpen ? "ĐANG MỞ CỬA" : "ĐÃ ĐÓNG CỬA";
-                const statusClass = isOpen ? "status-open" : "status-closed";
-                const removeClass = isOpen ? "status-closed" : "status-open";
-
                 const desktopStatus = document.getElementById('shop-status-desktop');
-
                 if (desktopStatus) {
+                    desktopStatus.textContent = isOpen ? "ĐANG MỞ CỬA" : "ĐÃ ĐÓNG CỬA";
+                    desktopStatus.className = `shop-status ${isOpen ? "status-open" : "status-closed"}`;
                     desktopStatus.style.display = 'flex';
-                    desktopStatus.textContent = statusText;
-                    desktopStatus.classList.add(statusClass);
-                    desktopStatus.classList.remove(removeClass);
                 }
             };
             updateShopStatus();
             setInterval(updateShopStatus, 60000);
 
-
-            // --- 1. Giao diện Sáng/Tối ---
+            // --- 3. THEME SWITCHER ---
             if (themeSwitcher) {
                 const initTheme = () => {
                     const savedTheme = localStorage.getItem('theme');
                     const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                    const theme = savedTheme || preferredTheme;
-                    document.documentElement.setAttribute('data-theme', theme);
+                    document.documentElement.setAttribute('data-theme', savedTheme || preferredTheme);
                 };
                 
                 themeSwitcher.addEventListener('click', () => {
@@ -2186,35 +2120,60 @@
                     document.documentElement.setAttribute('data-theme', newTheme);
                     localStorage.setItem('theme', newTheme);
                 });
-                
                 initTheme();
             }
 
-            // --- 2. Menu Mobile (AI ULTRA MODE) ---
+            // --- 4. MOBILE MENU (ACCESSIBILITY ENHANCED) ---
             if (mobileMenuToggle && mobileNavPanel && mobileNavClose && mobileNavOverlay) {
                 const toggleMobileNav = (show) => {
-                    mobileNavPanel.classList.toggle('active', show);
-                    mobileNavOverlay.classList.toggle('active', show);
-                    mobileMenuToggle.setAttribute('aria-expanded', show);
-                    if (show) {
-                        mobileNavClose.focus();
+                    const isActive = show;
+                    
+                    mobileNavPanel.classList.toggle('active', isActive);
+                    mobileNavOverlay.classList.toggle('active', isActive);
+                    mobileMenuToggle.setAttribute('aria-expanded', isActive);
+                    
+                    if (isActive) {
+                        mobileNavPanel.setAttribute('role', 'dialog');
+                        mobileNavPanel.setAttribute('aria-modal', 'true');
+                        mobileNavPanel.removeAttribute('aria-hidden');
                         document.body.style.overflow = 'hidden';
+                        mobileNavClose.focus();
                     } else {
-                        mobileMenuToggle.focus();
+                        mobileNavPanel.removeAttribute('role');
+                        mobileNavPanel.removeAttribute('aria-modal');
+                        mobileNavPanel.setAttribute('aria-hidden', 'true');
                         document.body.style.overflow = '';
+                        mobileMenuToggle.focus();
                     }
                 };
+
+                // Focus Trap
+                mobileNavPanel.addEventListener('keydown', (e) => {
+                    if (e.key === 'Tab') {
+                        const focusableElements = mobileNavPanel.querySelectorAll('a[href], button:not([disabled]), textarea, input, select');
+                        const firstElement = focusableElements[0];
+                        const lastElement = focusableElements[focusableElements.length - 1];
+
+                        if (e.shiftKey) {
+                            if (document.activeElement === firstElement) {
+                                lastElement.focus();
+                                e.preventDefault();
+                            }
+                        } else {
+                            if (document.activeElement === lastElement) {
+                                firstElement.focus();
+                                e.preventDefault();
+                            }
+                        }
+                    }
+                    if (e.key === 'Escape') toggleMobileNav(false);
+                });
                 
                 mobileMenuToggle.addEventListener('click', () => toggleMobileNav(true));
                 mobileNavClose.addEventListener('click', () => toggleMobileNav(false));
                 mobileNavOverlay.addEventListener('click', () => toggleMobileNav(false));
                 
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && mobileNavPanel.classList.contains('active')) {
-                        toggleMobileNav(false);
-                    }
-                });
-
+                // Mobile Submenu Toggle
                 mobileNavPanel.addEventListener('click', (e) => {
                     const toggleBtn = e.target.closest('.mobile-dropdown-toggle');
                     if (toggleBtn) {
@@ -2225,19 +2184,13 @@
                         
                         dropdown.classList.toggle('active');
                         toggleBtn.setAttribute('aria-expanded', !isExpanded);
-                        
-                        if (!isExpanded) {
-                            submenu.style.maxHeight = submenu.scrollHeight + 'px';
-                        } else {
-                            submenu.style.maxHeight = null;
-                        }
+                        submenu.style.maxHeight = !isExpanded ? submenu.scrollHeight + 'px' : null;
                     }
                 });
             }
 
-            // --- 3. Desktop Dropdown Logic ---
-            const desktopDropdownToggles = document.querySelectorAll('.nav-dropdown-toggle');
-            desktopDropdownToggles.forEach(toggle => {
+            // --- 5. DESKTOP DROPDOWN ---
+            document.querySelectorAll('.nav-dropdown-toggle').forEach(toggle => {
                 toggle.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -2247,23 +2200,13 @@
                     document.querySelectorAll('.nav-item-dropdown.is-open').forEach(item => {
                         if (item !== dropdownItem) {
                             item.classList.remove('is-open');
-                            const btn = item.querySelector('.nav-dropdown-toggle');
-                            if (btn) btn.setAttribute('aria-expanded', 'false');
+                            item.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'false');
                         }
                     });
 
                     dropdownItem.classList.toggle('is-open');
                     toggle.setAttribute('aria-expanded', !isOpen);
                 });
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    document.querySelectorAll('.nav-item-dropdown.is-open').forEach(item => {
-                        item.classList.remove('is-open');
-                        item.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'false');
-                    });
-                }
             });
 
             document.addEventListener('click', (e) => {
@@ -2274,18 +2217,15 @@
                     });
                 }
             });
-            
-            // --- 4. Form Submit ---
+
+            // --- 6. FORM & GENERAL ---
             if (quoteForm) {
                 quoteForm.addEventListener('submit', (e) => {
                     e.preventDefault();
                     alert('Cảm ơn! Chúng tôi sẽ sớm liên hệ tư vấn lịch trình cho bạn.');
                 });
             }
-            
-            // --- 5. Common Scripts ---
             if (currentYearEl) currentYearEl.textContent = new Date().getFullYear();
-            
             if (backToTop) {
                 backToTop.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -2293,9 +2233,14 @@
                 });
             }
 
-            // --- 6. FAQ ---
+            // --- 7. FAQ ACCORDION ---
             if (faqContainer) {
                 const faqItems = faqContainer.querySelectorAll('.faq-item');
+                if(faqItems[0]) {
+                    faqItems[0].classList.add('active');
+                    faqItems[0].querySelector('.faq-question').setAttribute('aria-expanded', 'true');
+                }
+                
                 faqContainer.addEventListener('click', (e) => {
                     const questionButton = e.target.closest('.faq-question');
                     if (!questionButton) return;
@@ -2306,86 +2251,94 @@
                     faqItem.classList.toggle('active', !isActive);
                     questionButton.setAttribute('aria-expanded', !isActive);
                 });
-                
-                if(faqItems[0]) {
-                    faqItems[0].classList.add('active');
-                    faqItems[0].querySelector('.faq-question').setAttribute('aria-expanded', 'true');
-                }
             }
 
-            // --- 7. Slider ---
+            // --- 8. SLIDER (PAUSE ON HOVER/FOCUS) ---
             if (sliderTrack && sliderDotsContainer) {
-                let currentIndex = 0;
                 const slides = sliderTrack.children;
                 const slideCount = slides.length;
+                let currentIndex = 0;
+                let intervalId;
 
                 if (slideCount > 0) {
                     for (let i = 0; i < slideCount; i++) {
                         const dot = document.createElement('button');
-                        dot.classList.add('slider-dot');
+                        dot.className = `slider-dot ${i === 0 ? 'active' : ''}`;
                         dot.setAttribute('role', 'tab');
-                        dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-                        dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+                        dot.setAttribute('aria-label', `Xem đánh giá ${i + 1}`);
+                        dot.setAttribute('aria-selected', i === 0);
                         dot.dataset.index = i;
-                        if (i === 0) dot.classList.add('active');
                         sliderDotsContainer.appendChild(dot);
                     }
                     
-                    const dots = sliderDotsContainer.children;
                     const updateSlider = (index) => {
                         sliderTrack.style.transform = `translateX(-${index * 100}%)`;
-                        Array.from(dots).forEach((dot, idx) => {
+                        Array.from(sliderDotsContainer.children).forEach((dot, idx) => {
                             dot.classList.toggle('active', idx === index);
                             dot.setAttribute('aria-selected', idx === index);
                         });
                         currentIndex = index;
                     };
 
+                    const startAutoPlay = () => {
+                        if (intervalId) return;
+                        intervalId = setInterval(() => {
+                            updateSlider((currentIndex + 1) % slideCount);
+                        }, 5000);
+                    };
+
+                    const stopAutoPlay = () => {
+                        clearInterval(intervalId);
+                        intervalId = null;
+                    };
+
+                    // Event Listeners for Control
                     sliderDotsContainer.addEventListener('click', (e) => {
                         const dot = e.target.closest('.slider-dot');
-                        if (!dot) return;
-                        updateSlider(parseInt(dot.dataset.index, 10));
+                        if (dot) updateSlider(parseInt(dot.dataset.index, 10));
                     });
 
-                    setInterval(() => {
-                        const nextIndex = (currentIndex + 1) % slideCount;
-                        updateSlider(nextIndex);
-                    }, 5000);
+                    // Pause logic
+                    const sliderArea = document.querySelector('.testimonial-slider');
+                    if (sliderArea) {
+                        sliderArea.addEventListener('mouseenter', stopAutoPlay);
+                        sliderArea.addEventListener('mouseleave', startAutoPlay);
+                        sliderArea.addEventListener('focusin', stopAutoPlay);
+                        sliderArea.addEventListener('focusout', startAutoPlay);
+                    }
+
+                    startAutoPlay();
                 }
             }
 
-            // --- 8. Tilt Effect ---
+            // --- 9. TILT EFFECT (DESKTOP ONLY) ---
             const tiltSection = document.querySelector('[data-tilt="true"]');
-            if (tiltSection && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            if (tiltSection && window.matchMedia('(min-width: 1024px)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 const tiltCards = tiltSection.querySelectorAll('.service-card');
                 tiltCards.forEach(card => {
                     card.addEventListener('mousemove', (e) => {
                         const rect = card.getBoundingClientRect();
                         const x = e.clientX - rect.left;
                         const y = e.clientY - rect.top;
-                        const { width, height } = rect;
-                        const rotateX = (y - height / 2) / (height / 2) * -5;
-                        const rotateY = (x - width / 2) / (width / 2) * 5; 
+                        const rotateX = (y - rect.height / 2) / (rect.height / 2) * -5;
+                        const rotateY = (x - rect.width / 2) / (rect.width / 2) * 5; 
                         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
-                        card.style.transition = 'transform 0.1s linear';
                     });
                     card.addEventListener('mouseleave', () => {
                         card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-                        card.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)';
                     });
                 });
             }
-            
-            // --- 9. Scroll Animation ---
+
+            // --- 10. SCROLL ANIMATION ---
             const animatedElements = document.querySelectorAll('.animate-on-scroll');
             if (animatedElements.length > 0 && 'IntersectionObserver' in window) {
                 const observer = new IntersectionObserver((entries, obs) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            const delay = parseInt(entry.target.dataset.delay || '0', 10);
                             setTimeout(() => {
                                 entry.target.classList.add('is-visible');
-                            }, delay);
+                            }, parseInt(entry.target.dataset.delay || '0', 10));
                             obs.unobserve(entry.target);
                         }
                     });
@@ -2393,125 +2346,116 @@
                 animatedElements.forEach(el => observer.observe(el));
             }
 
-            // --- 10. Lightbox ---
-            if (galleryGrid && lightbox && lightboxImg && lightboxClose) {
+            // --- 11. LIGHTBOX ---
+            if (galleryGrid && lightbox && lightboxImg) {
+                const openLightbox = (src) => {
+                    lightboxImg.src = src;
+                    lightbox.classList.add('active');
+                    lightbox.setAttribute('aria-hidden', 'false');
+                    lightboxClose.focus();
+                    document.body.style.overflow = 'hidden';
+                };
+                const closeLightbox = () => {
+                    lightbox.classList.remove('active');
+                    lightbox.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = '';
+                };
+
                 galleryGrid.addEventListener('click', (e) => {
                     const img = e.target.closest('img');
-                    if (img) {
-                        e.preventDefault();
-                        lightboxImg.src = img.src;
-                        lightbox.classList.add('active');
-                        lightboxClose.focus();
-                    }
+                    if (img) openLightbox(img.src);
                 });
-                
-                const closeLightbox = () => lightbox.classList.remove('active');
                 lightboxClose.addEventListener('click', closeLightbox);
-                lightbox.addEventListener('click', (e) => {
-                    if (e.target === lightbox) closeLightbox();
-                });
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                        closeLightbox();
-                    }
-                });
+                lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+                document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
             }
-            
-            // --- 11. Quick Call Ultra ---
+
+            // --- 12. QUICK CALL ULTRA ---
             if (ultraToggleBtn && ultraWrapper) {
                 ultraToggleBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const isActive = ultraWrapper.classList.toggle('active');
                     ultraToggleBtn.setAttribute('aria-expanded', isActive);
                 });
-
                 document.addEventListener('click', (e) => {
                     if (ultraWrapper.classList.contains('active') && !ultraWrapper.contains(e.target)) {
                         ultraWrapper.classList.remove('active');
                         ultraToggleBtn.setAttribute('aria-expanded', 'false');
                     }
                 });
-
-                let initialHeight = window.innerHeight;
+                // Hide on keyboard open (Mobile)
+                const initialHeight = window.innerHeight;
                 window.addEventListener('resize', () => {
-                    if (window.innerHeight < initialHeight * 0.8) {
-                        document.body.classList.add('keyboard-visible');
-                    } else {
-                        document.body.classList.remove('keyboard-visible');
-                    }
+                    if (window.innerHeight < initialHeight * 0.8) document.body.classList.add('keyboard-visible');
+                    else document.body.classList.remove('keyboard-visible');
                 });
             }
 
-            // --- 12. Footer accordion trên mobile (Cải tiến - Xử lý resize) ---
-            const initFooterAccordion = (() => {
-                let initialized = false;
-                let footerCols = [];
-                const setup = () => {
-                    footerCols = document.querySelectorAll('.main-footer .footer-col');
-                    if (!footerCols.length) return;
-                    footerCols.forEach(col => {
-                        if (col.dataset.footerInit === '1') return;
+            // --- 13. FOOTER ACCORDION (MOBILE ONLY) ---
+            const mediaQueryMobile = window.matchMedia('(max-width: 767px)');
+            let footerInitialized = false;
 
-                        const heading = col.querySelector('h4');
-                        const content = col.querySelector('ul, p, .footer-contact');
-                        if (!heading || !content) return;
+            const initFooter = () => {
+                if (footerInitialized) return;
+                const cols = document.querySelectorAll('.main-footer .footer-col');
+                cols.forEach((col, index) => {
+                    const heading = col.querySelector('h4');
+                    const content = col.querySelector('ul, p, .footer-contact');
+                    if (!heading || !content) return;
 
-                        // thêm icon mũi tên với class chính xác
+                    // Add icon
+                    if (!col.querySelector('.footer-toggle-icon')) {
                         const icon = document.createElement('span');
                         icon.className = 'material-symbols-rounded footer-toggle-icon';
+                        icon.setAttribute('aria-hidden', 'true');
                         icon.textContent = 'expand_more';
                         heading.appendChild(icon);
+                    }
 
-                        // trạng thái mặc định: đóng
-                        col.classList.remove('is-open');
-                        col.dataset.footerInit = '1';
-
-                        heading.addEventListener('click', () => {
-                            footerCols.forEach(other => {
-                                if (other !== col) other.classList.remove('is-open');
-                            });
-                            col.classList.toggle('is-open');
-                        });
+                    // Event
+                    heading.addEventListener('click', () => {
+                        const isOpen = col.classList.contains('is-open');
+                        cols.forEach(c => c.classList.remove('is-open'));
+                        if (!isOpen) col.classList.add('is-open');
                     });
 
-                    // mở sẵn 1 block đầu (mobile)
-                    const firstCol = footerCols[0];
-                    if (firstCol) firstCol.classList.add('is-open');
-                    initialized = true;
-                };
-
-                const destroy = () => {
-                    footerCols = document.querySelectorAll('.main-footer .footer-col');
-                    footerCols.forEach(col => {
-                        col.classList.remove('is-open');
-                        col.removeAttribute('data-footer-init');
-                        const icon = col.querySelector('.footer-toggle-icon');
-                        if (icon) icon.remove();
-                    });
-                    initialized = false;
-                };
-
-                // responsive handler
-                const handle = () => {
-                    const isMobile = window.innerWidth < 768;
-                    if (isMobile && !initialized) setup();
-                    if (!isMobile && initialized) destroy();
-                };
-
-                // run initial and attach resize
-                handle();
-                window.addEventListener('resize', () => {
-                    clearTimeout(window._footerResizeTimer);
-                    window._footerResizeTimer = setTimeout(handle, 120);
+                    // Open first by default
+                    if (index === 0) col.classList.add('is-open');
                 });
+                footerInitialized = true;
+            };
 
-                return () => {};
-            })();
+            const destroyFooter = () => {
+                if (!footerInitialized) return;
+                const cols = document.querySelectorAll('.main-footer .footer-col');
+                cols.forEach(col => {
+                    col.classList.remove('is-open');
+                    // Remove listeners is hard without named functions, but CSS handles visibility reset
+                    // Just removing the icon visually cleans it up
+                    const icon = col.querySelector('.footer-toggle-icon');
+                    if (icon) icon.remove();
+                    // Clone node to strip listeners
+                    const heading = col.querySelector('h4');
+                    if (heading) {
+                        const newHeading = heading.cloneNode(true);
+                        heading.parentNode.replaceChild(newHeading, heading);
+                    }
+                });
+                footerInitialized = false;
+            };
+
+            const handleFooterResponsive = (e) => {
+                if (e.matches) initFooter();
+                else destroyFooter();
+            };
+
+            mediaQueryMobile.addListener(handleFooterResponsive);
+            handleFooterResponsive(mediaQueryMobile);
+
         });
     })();
     </script>
     
-    <!-- MotoAI 38.1 Messenger (Nguyen Hao) -->
     <script src="https://motoopen.github.io/thuexemayohoankiem/motoai_v38_1_debug_semantic_pricing.js" defer></script>
 </body>
 </html>
