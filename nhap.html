@@ -31,10 +31,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- FIX: Removed invalid xintegrity, kept standard CDN link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-    <!-- SECURITY: DOMPurify -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js" xintegrity="sha512-H+rglfhg2dPrKqNHiz5UqBK0vXQvMmdTBMN3F2P9P5k5LzU5I4x5mX9kM7Vl6Qz6Qz6Qz6Qz6Qz6Qz6Qz6Qz6Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- SECURITY: DOMPurify (Fixed CDN Link) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
 
     <style>
         /* 1. Reset và Biến Root */
@@ -322,15 +323,15 @@
             position: fixed;
             top: 0;
             right: -100%;
-            width: 320px; /* Wider for luxury feel */
+            width: 320px;
             max-width: 85%;
             height: 100%;
             background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(15px); /* Glassmorphism */
+            backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             box-shadow: -5px 0 30px rgba(0,0,0,0.1);
             z-index: 110;
-            transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1); /* Smoother bezier */
+            transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
             padding: 2rem;
@@ -455,7 +456,7 @@
             visibility: visible;
         }
 
-        /* Desktop Dropdown */
+        /* Desktop Dropdown - FIX: Support click toggle and hover */
         .nav-item-dropdown {
             position: relative;
         }
@@ -488,14 +489,19 @@
             max-height: 70vh;
             overflow-y: auto;
         }
-        .nav-item-dropdown:hover .dropdown-menu {
+        
+        /* Show dropdown on Hover OR when class 'is-open' is present (for Click/Keyboard) */
+        .nav-item-dropdown:hover .dropdown-menu,
+        .nav-item-dropdown.is-open .dropdown-menu {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
-        .nav-item-dropdown:hover .nav-dropdown-toggle .dropdown-icon {
+        .nav-item-dropdown:hover .nav-dropdown-toggle .dropdown-icon,
+        .nav-item-dropdown.is-open .nav-dropdown-toggle .dropdown-icon {
             transform: rotate(180deg);
         }
+        
         .dropdown-menu li {
             width: 100%;
         }
@@ -513,10 +519,10 @@
             border-bottom: none;
         }
 
-        /* Mobile Dropdown */
+        /* Mobile Dropdown - FIX: maxHeight transition via JS */
         .mobile-submenu {
             list-style: none;
-            max-height: 0;
+            max-height: 0; /* Default closed */
             overflow: hidden;
             transition: max-height 0.4s ease-out;
             padding-left: 1rem;
@@ -533,8 +539,8 @@
             padding: 0.75rem 1rem;
             font-weight: 500;
         }
+        /* Removed fixed 800px rule. JS will set inline style. */
         .mobile-nav-dropdown.active .mobile-submenu {
-            max-height: 800px;
             margin-top: 5px;
             margin-bottom: 10px;
         }
@@ -845,7 +851,7 @@
             .gallery-item:first-child img, .gallery-item:last-child img { height: 100%; }
         }
 
-        /* 12. Lightbox */
+        /* 12. Lightbox - FIX: Close button icon */
         .lightbox {
             position: fixed;
             top: 0;
@@ -877,14 +883,17 @@
         }
         .lightbox-close {
             position: absolute;
-            top: -2rem;
+            top: -2.5rem;
             right: -1rem;
             background: none;
             border: none;
             color: #ffffff;
-            font-size: 2.5rem;
             cursor: pointer;
-            font-family: 'Material Symbols Rounded';
+            padding: 5px;
+        }
+        .lightbox-close .material-symbols-rounded {
+            font-size: 2.5rem;
+            display: block;
         }
 
         /* 13. Testimonials */
@@ -1114,17 +1123,16 @@
             .footer-grid { grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr 1.5fr; }
         }
 
-        /* 17. === QUICK CALL ULTRA MODE (LEFT SIDE) === */
+        /* 17. === QUICK CALL ULTRA MODE (FIXED & REFACTORED) === */
         
         .quick-call-ultra-wrapper {
             position: fixed;
             bottom: 25px;
-            /* CHANGE: Move to Left */
             left: 25px;
             right: auto;
             z-index: 999;
             display: flex;
-            flex-direction: column-reverse;
+            flex-direction: column-reverse; /* Button ở dưới, menu bung lên trên */
             align-items: center;
             gap: 15px;
         }
@@ -1144,14 +1152,12 @@
             font-size: 28px;
             position: relative;
             z-index: 20;
-            /* Glow effect (Phát sáng) */
             box-shadow: 0 4px 15px rgba(0, 120, 212, 0.5);
             animation: pulse-glow 2s infinite; 
             transition: transform 0.3s ease, background-color 0.3s ease;
             overflow: hidden;
         }
         
-        /* Icon trong nút chính */
         .ultra-main-btn .main-icon {
             transition: transform 0.3s ease;
         }
@@ -1159,12 +1165,12 @@
         /* Nút con (Sub buttons) */
         .ultra-menu {
             display: flex;
-            flex-direction: column-reverse;
+            flex-direction: column-reverse; /* Stack items from bottom up */
             gap: 15px;
-            position: absolute;
+            position: absolute; /* Keep absolute to allow translation effect */
             bottom: 0;
             z-index: 10;
-            pointer-events: none; /* Không bấm được khi ẩn */
+            pointer-events: none;
         }
 
         .ultra-item {
@@ -1185,11 +1191,9 @@
             position: relative;
         }
 
-        /* CHANGE: Tooltip flip to Right side because button is on Left */
         .ultra-item::after {
             content: attr(data-label);
             position: absolute;
-            /* Swap right to left */
             left: 60px;
             right: auto;
             background: rgba(0,0,0,0.7);
@@ -1207,24 +1211,25 @@
             visibility: visible;
         }
 
-        /* Màu sắc riêng cho từng nút con */
         .ultra-item.call { background: #4CAF50; color: white; }
         .ultra-item.zalo { background: #0068FF; color: white; }
         .ultra-item.map { background: #EA4335; color: white; }
         .ultra-item.messenger { background: #0084FF; color: white; }
 
-        /* --- ACTIVE STATE (Khi bấm nút chính) --- */
+        /* --- ACTIVE STATE --- */
         .quick-call-ultra-wrapper.active .ultra-main-btn {
-            background-color: var(--c-text); /* Đổi màu khi mở */
-            transform: rotate(45deg); /* Xoay nút thành dấu X */
-            animation: none; /* Tắt rung/glow khi đang mở */
+            background-color: var(--c-text);
+            transform: rotate(45deg);
+            animation: none;
         }
         
         .quick-call-ultra-wrapper.active .ultra-menu {
             pointer-events: auto;
         }
 
-        /* Hiệu ứng sổ ra 4 nút */
+        /* Hiệu ứng sổ ra 4 nút - FIXED Logic: 
+           nth-child(1) is the one closest to the main button (due to column-reverse in HTML/CSS interaction)
+        */
         .quick-call-ultra-wrapper.active .ultra-item:nth-child(1) {
             transform: translateY(-80px) scale(1);
             opacity: 1;
@@ -1247,15 +1252,12 @@
         }
 
         /* --- KEYFRAMES --- */
-        
-        /* Hiệu ứng Phát sáng (Glow) */
         @keyframes pulse-glow {
             0% { box-shadow: 0 0 0 0 rgba(0, 120, 212, 0.7); }
             70% { box-shadow: 0 0 0 20px rgba(0, 120, 212, 0); }
             100% { box-shadow: 0 0 0 0 rgba(0, 120, 212, 0); }
         }
 
-        /* Hiệu ứng Rung rung (Vibrate) - Chạy kết hợp với Glow */
         .ultra-main-btn {
             animation: pulse-glow 2s infinite, vibrate-soft 4s infinite ease-in-out;
         }
@@ -1270,9 +1272,7 @@
             100% { transform: rotate(0); }
         }
 
-        /* Ẩn khi bàn phím mở trên mobile */
         body.keyboard-visible .quick-call-ultra-wrapper { display: none; }
-
 
         /* 18. Scroll Animation */
         .animate-on-scroll {
@@ -1330,11 +1330,12 @@
                     <li><a href="gioithieu.html">📄 Giới thiệu</a></li>
                     
                     <li class="nav-item-dropdown">
-                        <button class="nav-dropdown-toggle" onclick="event.preventDefault();" aria-haspopup="true" aria-expanded="false" style="background:none; border:none; font:inherit; color:inherit; padding:0.5rem 0;">
+                        <!-- FIX: Removed inline onclick/style logic, handled in JS below. Added type="button". -->
+                        <button class="nav-dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="desktop-service-menu" style="background:none; border:none; font:inherit; color:inherit; padding:0.5rem 0;">
                             ⚙️ Dịch vụ
                             <span class="material-symbols-rounded dropdown-icon" aria-hidden="true">expand_more</span>
                         </button>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" id="desktop-service-menu">
                             <li><a href="banggia.html">🏷️ Bảng giá</a></li>
                             <li><a href="thutuc.html">📑 Thủ tục</a></li>
                             <li><a href="loaixe.html">🛵 Loại xe</a></li>
@@ -1364,7 +1365,7 @@
                         <span class="material-symbols-rounded light-icon" aria-hidden="true">light_mode</span>
                         <span class="material-symbols-rounded dark-icon" aria-hidden="true">dark_mode</span>
                     </button>
-                    <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Mở menu">
+                    <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Mở menu" aria-expanded="false" aria-controls="mobile-nav-panel">
                         <span class="material-symbols-rounded" aria-hidden="true">menu</span>
                     </button>
                 </div>
@@ -1376,11 +1377,9 @@
         <div class="mobile-nav-header">
             <div class="logo-container">
                 <a href="https://motoopen.github.io/thuexemayohoankiem/" class="logo">
-                    <!-- LOGO MỚI CẬP NHẬT -->
                     <img src="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_0477.jpeg" alt="Logo Nguyễn Hào">
                     <span>Nguyễn Hào</span>
                 </a>
-                <!-- REMOVED: shop-status-mobile (Theo yêu cầu) -->
             </div>
             
             <button id="mobile-nav-close" aria-label="Đóng menu">
@@ -1426,7 +1425,6 @@
 
         <section class="hero" aria-labelledby="hero-title">
             <div class="container">
-                <!-- H2 thay thế H1 cũ để tối ưu cấu trúc nội dung, chứa từ khóa chính -->
                 <h2 id="hero-title" class="animate-on-scroll">Cho Thuê Xe Máy Hoàn Kiếm, Hà Nội – Nguyễn Hào</h2>
                 <p class="subtitle animate-on-scroll" data-delay="100">
                     📍 Dịch vụ uy tín số 1 Phố Cổ. Giao xe nhanh 20 phút, xe mới, thủ tục đơn giản chỉ cần CCCD.
@@ -1447,10 +1445,11 @@
                     <span class="chip">🛵 Xe ga/xe số mới</span>
                     <span class="chip">🚚 Giao tận khách sạn</span>
                 </div>
-                <form class="mini-form animate-on-scroll" data-delay="400" onsubmit="event.preventDefault(); alert('Cảm ơn! Chúng tôi sẽ sớm liên hệ tư vấn lịch trình cho bạn.');" aria-labelledby="form-title">
+                <form class="mini-form animate-on-scroll" data-delay="400" id="quote-form" aria-labelledby="form-title">
                     <h3 id="form-title">🧭 Bạn cần xe đi đâu?</h3>
-                    <!-- Honeypot Anti-Spam -->
-                    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+                    <!-- FIX: Honeypot Anti-Spam hidden using off-screen technique for better A11y -->
+                    <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="opacity: 0; position: absolute; top: 0; left: 0; height: 0; width: 0; z-index: -1;">
+                    
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="destination">Điểm đến</label>
@@ -1836,38 +1835,42 @@
         </div>
     </footer>
 
-    <!-- === QUICK CALL ULTRA MODE (MOVED TO LEFT) === -->
+    <!-- === QUICK CALL ULTRA MODE (REFACTORED) === -->
     <div class="quick-call-ultra-wrapper" id="quick-call-ultra">
+        <!-- REORDERED ITEMS for correct visual stacking from bottom up -->
         <div class="ultra-menu">
-            <!-- Nút 4: Messenger (Trên cùng khi mở) -->
-            <a href="https://m.me/chothuexemay0857255868" target="_blank" rel="noopener noreferrer" class="ultra-item messenger" data-label="Messenger">
-                <i class="fa-brands fa-facebook-messenger"></i>
+            <!-- Nút 1: Gọi điện (Gần nút chính nhất) -->
+            <a href="tel:0942467674" class="ultra-item call" data-label="Gọi ngay">
+                <span class="material-symbols-rounded">call</span>
+            </a>
+             <!-- Nút 2: Zalo -->
+             <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" class="ultra-item zalo" data-label="Chat Zalo">
+                <i class="fa-brands fa-zalo" style="font-family: Arial, sans-serif; font-weight: bold; font-style: normal;">Zalo</i>
             </a>
             <!-- Nút 3: Chỉ đường -->
             <a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc" target="_blank" rel="noopener noreferrer" class="ultra-item map" data-label="Chỉ đường">
                 <span class="material-symbols-rounded">location_on</span>
             </a>
-            <!-- Nút 2: Zalo -->
-            <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" class="ultra-item zalo" data-label="Chat Zalo">
-                <i class="fa-brands fa-zalo" style="font-family: Arial, sans-serif; font-weight: bold; font-style: normal;">Zalo</i>
-            </a>
-            <!-- Nút 1: Gọi điện (Gần nút chính nhất) -->
-            <a href="tel:0942467674" class="ultra-item call" data-label="Gọi ngay">
-                <span class="material-symbols-rounded">call</span>
+            <!-- Nút 4: Messenger (Xa nhất) -->
+            <a href="https://m.me/chothuexemay0857255868" target="_blank" rel="noopener noreferrer" class="ultra-item messenger" data-label="Messenger">
+                <i class="fa-brands fa-facebook-messenger"></i>
             </a>
         </div>
         
         <!-- Nút chính trung tâm -->
-        <button class="ultra-main-btn" id="ultra-toggle-btn" aria-label="Liên hệ nhanh">
+        <button class="ultra-main-btn" id="ultra-toggle-btn" aria-label="Liên hệ nhanh" aria-expanded="false">
             <span class="material-symbols-rounded main-icon">add</span>
         </button>
     </div>
 
+    <!-- FIX: Updated Close Button Icon -->
     <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Trình xem ảnh phóng to">
         <div class="lightbox-content">
             <img src="" alt="Hình ảnh phóng to" class="lightbox-img" id="lightbox-img">
+            <button class="lightbox-close" id="lightbox-close" aria-label="Đóng ảnh">
+                <span class="material-symbols-rounded" aria-hidden="true">close</span>
+            </button>
         </div>
-        <button class="lightbox-close" id="lightbox-close" aria-label="Đóng ảnh"><span aria-hidden="true">close</span></button>
     </div>
     
     <script>
@@ -1895,6 +1898,9 @@
             // Elements for Ultra Call
             const ultraWrapper = document.getElementById('quick-call-ultra');
             const ultraToggleBtn = document.getElementById('ultra-toggle-btn');
+            
+            // Elements for Forms
+            const quoteForm = document.getElementById('quote-form');
 
             // --- 0. FEATURE: AUTO OPEN/CLOSE STATUS (8H - 18H) ---
             const updateShopStatus = () => {
@@ -1907,26 +1913,16 @@
                 const statusClass = isOpen ? "status-open" : "status-closed";
                 const removeClass = isOpen ? "status-closed" : "status-open";
 
-                // NOTE: Mobile status div was removed per user request, so we check existence
-                const mobileStatus = document.getElementById('shop-status-mobile');
                 const desktopStatus = document.getElementById('shop-status-desktop');
 
-                if (mobileStatus) {
-                    mobileStatus.textContent = statusText;
-                    mobileStatus.classList.add(statusClass);
-                    mobileStatus.classList.remove(removeClass);
-                }
-
                 if (desktopStatus) {
-                    desktopStatus.style.display = 'flex'; // Hiện trên PC nếu cần
+                    desktopStatus.style.display = 'flex';
                     desktopStatus.textContent = statusText;
                     desktopStatus.classList.add(statusClass);
                     desktopStatus.classList.remove(removeClass);
                 }
             };
-            // Chạy ngay khi load
             updateShopStatus();
-            // Cập nhật mỗi phút
             setInterval(updateShopStatus, 60000);
 
 
@@ -1949,7 +1945,7 @@
                 initTheme();
             }
 
-            // --- 2. Menu Mobile (Accessibility Improved) ---
+            // --- 2. Menu Mobile (Accessibility & Smooth Height) ---
             if (mobileMenuToggle && mobileNavPanel && mobileNavClose && mobileNavOverlay) {
                 const toggleMobileNav = (show) => {
                     mobileNavPanel.classList.toggle('active', show);
@@ -1957,7 +1953,6 @@
                     mobileMenuToggle.setAttribute('aria-expanded', show);
                     if (show) {
                         mobileNavClose.focus();
-                        // Trap Focus Logic (Simple)
                         document.body.style.overflow = 'hidden';
                     } else {
                         mobileMenuToggle.focus();
@@ -1969,30 +1964,89 @@
                 mobileNavClose.addEventListener('click', () => toggleMobileNav(false));
                 mobileNavOverlay.addEventListener('click', () => toggleMobileNav(false));
                 
-                // Close on Escape key
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape' && mobileNavPanel.classList.contains('active')) {
                         toggleMobileNav(false);
                     }
                 });
 
+                // Xử lý Submenu Mobile với scrollHeight
                 mobileNavPanel.addEventListener('click', (e) => {
                     const toggleBtn = e.target.closest('.mobile-dropdown-toggle');
                     if (toggleBtn) {
                         e.preventDefault();
                         const dropdown = toggleBtn.parentElement;
-                        const isActive = dropdown.classList.toggle('active');
-                        toggleBtn.setAttribute('aria-expanded', isActive);
+                        const submenu = dropdown.querySelector('.mobile-submenu');
+                        const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+                        
+                        // Toggle states
+                        dropdown.classList.toggle('active');
+                        toggleBtn.setAttribute('aria-expanded', !isExpanded);
+                        
+                        // Height animation logic
+                        if (!isExpanded) {
+                            submenu.style.maxHeight = submenu.scrollHeight + 'px';
+                        } else {
+                            submenu.style.maxHeight = null;
+                        }
                     }
                 });
             }
-            
-            // --- 3. Cập nhật năm hiện tại ---
-            if (currentYearEl) {
-                currentYearEl.textContent = new Date().getFullYear();
-            }
 
-            // --- 4. Nút Lên đầu trang ---
+            // --- 3. Desktop Dropdown Toggle Logic ---
+            const desktopDropdownToggles = document.querySelectorAll('.nav-dropdown-toggle');
+            desktopDropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const dropdownItem = toggle.closest('.nav-item-dropdown');
+                    const isOpen = dropdownItem.classList.contains('is-open');
+                    
+                    // Close others
+                    document.querySelectorAll('.nav-item-dropdown.is-open').forEach(item => {
+                        if (item !== dropdownItem) {
+                            item.classList.remove('is-open');
+                            const btn = item.querySelector('.nav-dropdown-toggle');
+                            if (btn) btn.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+
+                    // Toggle current
+                    dropdownItem.classList.toggle('is-open');
+                    toggle.setAttribute('aria-expanded', !isOpen);
+                });
+            });
+
+            // Close desktop dropdown on Escape or Outside Click
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.nav-item-dropdown.is-open').forEach(item => {
+                        item.classList.remove('is-open');
+                        item.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'false');
+                    });
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.nav-item-dropdown')) {
+                    document.querySelectorAll('.nav-item-dropdown.is-open').forEach(item => {
+                        item.classList.remove('is-open');
+                        item.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'false');
+                    });
+                }
+            });
+            
+            // --- 4. Form Submit Prevention ---
+            if (quoteForm) {
+                quoteForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Cảm ơn! Chúng tôi sẽ sớm liên hệ tư vấn lịch trình cho bạn.');
+                });
+            }
+            
+            // --- 5. Common UI Scripts ---
+            if (currentYearEl) currentYearEl.textContent = new Date().getFullYear();
+            
             if (backToTop) {
                 backToTop.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -2000,7 +2054,7 @@
                 });
             }
 
-            // --- 5. FAQ Accordion ---
+            // --- 6. FAQ Accordion ---
             if (faqContainer) {
                 const faqItems = faqContainer.querySelectorAll('.faq-item');
                 
@@ -2023,14 +2077,13 @@
                 }
             }
 
-            // --- 6. Testimonial Slider ---
+            // --- 7. Testimonial Slider ---
             if (sliderTrack && sliderDotsContainer) {
                 let currentIndex = 0;
                 const slides = sliderTrack.children;
                 const slideCount = slides.length;
 
                 if (slideCount > 0) {
-                    // Tạo dots
                     for (let i = 0; i < slideCount; i++) {
                         const dot = document.createElement('button');
                         dot.classList.add('slider-dot');
@@ -2043,7 +2096,6 @@
                     }
                     
                     const dots = sliderDotsContainer.children;
-                    
                     const updateSlider = (index) => {
                         sliderTrack.style.transform = `translateX(-${index * 100}%)`;
                         Array.from(dots).forEach((dot, idx) => {
@@ -2059,7 +2111,6 @@
                         updateSlider(parseInt(dot.dataset.index, 10));
                     });
 
-                    // Tự động chuyển slide
                     setInterval(() => {
                         const nextIndex = (currentIndex + 1) % slideCount;
                         updateSlider(nextIndex);
@@ -2067,25 +2118,21 @@
                 }
             }
 
-            // --- 7. Hiệu ứng nghiêng Card ---
+            // --- 8. Tilt Effect ---
             const tiltSection = document.querySelector('[data-tilt="true"]');
             if (tiltSection && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 const tiltCards = tiltSection.querySelectorAll('.service-card');
-                
                 tiltCards.forEach(card => {
                     card.addEventListener('mousemove', (e) => {
                         const rect = card.getBoundingClientRect();
                         const x = e.clientX - rect.left;
                         const y = e.clientY - rect.top;
-                        
                         const { width, height } = rect;
                         const rotateX = (y - height / 2) / (height / 2) * -5;
                         const rotateY = (x - width / 2) / (width / 2) * 5; 
-                        
                         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
                         card.style.transition = 'transform 0.1s linear';
                     });
-                    
                     card.addEventListener('mouseleave', () => {
                         card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
                         card.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)';
@@ -2093,7 +2140,7 @@
                 });
             }
             
-            // --- 8. Scroll Animation ---
+            // --- 9. Scroll Animation ---
             const animatedElements = document.querySelectorAll('.animate-on-scroll');
             if (animatedElements.length > 0 && 'IntersectionObserver' in window) {
                 const observer = new IntersectionObserver((entries, obs) => {
@@ -2107,11 +2154,10 @@
                         }
                     });
                 }, { threshold: 0.1 });
-                
                 animatedElements.forEach(el => observer.observe(el));
             }
 
-            // --- 9. Gallery Lightbox ---
+            // --- 10. Gallery Lightbox ---
             if (galleryGrid && lightbox && lightboxImg && lightboxClose) {
                 galleryGrid.addEventListener('click', (e) => {
                     const img = e.target.closest('img');
@@ -2135,40 +2181,39 @@
                 });
             }
 
-            // --- 10. View Transitions (SPA-like feel) ---
+            // --- 11. View Transitions ---
             if ('startViewTransition' in document) {
                 const internalLinks = document.querySelectorAll('a[href^="/"], a[href^="' + window.location.origin + '"], a[href^="."], a[href^="index.html"], a[href$=".html"]');
-                
                 internalLinks.forEach(link => {
                     link.addEventListener('click', (e) => {
                         if (link.hash || link.target === '_blank' || link.closest('.no-transition') || link.closest('.nav-dropdown-toggle') || !link.href.includes('.html')) {
                             return;
                         }
-
                         const url = new URL(link.href, window.location.origin);
                         if (url.origin !== window.location.origin || url.pathname === window.location.pathname) {
                             return;
                         }
+                        // Simple check to pass, logic handled by browser
                     });
                 });
             }
             
-            // --- 11. QUICK CALL ULTRA LOGIC ---
+            // --- 12. QUICK CALL ULTRA LOGIC (Fix: Aria Expanded) ---
             if (ultraToggleBtn && ultraWrapper) {
-                // Toggle mở/đóng menu
                 ultraToggleBtn.addEventListener('click', (e) => {
-                    e.stopPropagation(); // Ngăn sự kiện lan ra body
-                    ultraWrapper.classList.toggle('active');
+                    e.stopPropagation();
+                    const isActive = ultraWrapper.classList.toggle('active');
+                    ultraToggleBtn.setAttribute('aria-expanded', isActive);
                 });
 
-                // Đóng menu khi click ra ngoài
                 document.addEventListener('click', (e) => {
                     if (ultraWrapper.classList.contains('active') && !ultraWrapper.contains(e.target)) {
                         ultraWrapper.classList.remove('active');
+                        ultraToggleBtn.setAttribute('aria-expanded', 'false');
                     }
                 });
 
-                // Ẩn/Hiện dựa trên bàn phím ảo (Mobile)
+                // Ẩn khi bàn phím mở trên mobile
                 let initialHeight = window.innerHeight;
                 window.addEventListener('resize', () => {
                     if (window.innerHeight < initialHeight * 0.8) {
