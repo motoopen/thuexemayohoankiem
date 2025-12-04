@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- === TỐI ƯU SEO & META TAGS === -->
-    <title>Cho Thuê Xe Máy Hoàn Kiếm Hà Nội - Nguyễn Hào | AI Smart App</title>
+    <title>Cho Thuê Xe Máy Hoàn Kiếm Hà Nội - Nguyễn Hào | Giao Xe 20'</title>
     <meta name="description" content="Dịch vụ cho thuê xe máy Hoàn Kiếm, Hà Nội uy tín tại Nguyễn Hào. Xe mới, giao xe Phố Cổ chỉ 20 phút. Thủ tục cọc 0 đồng hoặc giấy tờ tùy thân. Gọi ngay!">
     <meta name="keywords" content="cho thuê xe máy hoàn kiếm hà nội, thuê xe máy hà nội, thuê xe máy phố cổ, thuê xe máy nguyễn hào, thuê xe máy không cọc hà nội">
     <meta name="author" content="Nguyễn Hào">
@@ -34,7 +34,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
     
-    <!-- Font Awesome with Integrity/Crossorigin -->
+    <!-- Font Awesome (Giữ lại cho các icon Social khác) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     <style>
@@ -51,6 +51,9 @@
             --c-bg: #f7f9fb;
             --c-bg-card: #ffffff;
             --c-border: #d0d7de;
+            
+            /* Brand Colors */
+            --zalo-blue: #0068FF;
             
             /* UI Elements */
             --radius: 14px;
@@ -117,7 +120,7 @@
             padding-bottom: 80px; 
         }
 
-        /* Accessibility Utility: Visually Hidden */
+        /* Utilities */
         .sr-only {
             position: absolute;
             width: 1px;
@@ -128,6 +131,15 @@
             clip: rect(0, 0, 0, 0);
             white-space: nowrap;
             border: 0;
+        }
+        .w-100 { width: 100%; }
+
+        /* Zalo Icon SVG Style */
+        .icon-zalo-svg {
+            width: 1em;
+            height: 1em;
+            fill: currentColor;
+            vertical-align: -0.125em;
         }
 
         /* 2. LAYOUT & TYPOGRAPHY */
@@ -187,7 +199,7 @@
             white-space: nowrap;
             text-decoration: none;
         }
-        .btn .material-symbols-rounded, .btn .fa-brands {
+        .btn .material-symbols-rounded, .btn .fa-brands, .btn .icon-zalo-svg {
             font-size: 1.25em;
         }
 
@@ -435,6 +447,9 @@
             color: white;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
+        
+        /* Specific adjustments for Zalo in grid */
+        .smart-icon-box svg { width: 24px; height: 24px; fill: white; }
 
         .bg-gradient-blue { background: linear-gradient(135deg, #0078D4, #00B2FF); }
         .bg-gradient-green { background: linear-gradient(135deg, #107C10, #2ea44f); }
@@ -1053,7 +1068,6 @@
             padding-left: 2rem;
             margin-bottom: 1rem;
         }
-        /* REFACTOR: Using child span instead of pseudo-element content hack */
         .checklist li .check-icon {
             position: absolute;
             left: 0;
@@ -1340,6 +1354,8 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
         }
+        
+        .ultra-item svg { width: 22px; height: 22px; fill: currentColor; }
 
         .ultra-item::after {
             content: attr(data-label);
@@ -1432,7 +1448,6 @@
             <nav class="main-nav">
                 <a href="https://motoopen.github.io/thuexemayohoankiem/" class="logo">
                     <img src="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_0477.jpeg" alt="Logo Nguyễn Hào">
-                    <!-- Refactor: H1 hidden with .sr-only -->
                     <h1 class="sr-only">Cho thuê xe máy Hoàn Kiếm, Hà Nội - Nguyễn Hào</h1>
                     <span aria-hidden="true">Nguyễn Hào</span>
                 </a>
@@ -1475,7 +1490,7 @@
                         <span class="material-symbols-rounded light-icon" aria-hidden="true">light_mode</span>
                         <span class="material-symbols-rounded dark-icon" aria-hidden="true">dark_mode</span>
                     </button>
-                    <!-- Refactor: Initial state hidden -->
+                    
                     <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Mở menu" aria-expanded="false" aria-controls="mobile-nav-panel">
                         <span class="material-symbols-rounded" aria-hidden="true">menu</span>
                     </button>
@@ -1485,7 +1500,6 @@
     </header>
 
     <!-- === AI ULTRA MINI APP MENU === -->
-    <!-- Refactor: Default to hidden, role added via JS when open -->
     <nav class="mobile-nav-panel" id="mobile-nav-panel" aria-label="AI Ultra Menu" aria-hidden="true">
         <button id="mobile-nav-close" aria-label="Đóng menu">
             <span class="material-symbols-rounded" aria-hidden="true">close</span>
@@ -1504,13 +1518,15 @@
                     <div class="smart-icon-box bg-gradient-green"><span class="material-symbols-rounded" aria-hidden="true">call</span></div>
                     <span>Gọi Ngay</span>
                 </a>
-                <!-- Refactor: Zalo Icon Semantic Fix -->
+                <!-- Zalo Button with SVG Fix -->
                 <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" class="smart-icon-btn" aria-label="Chat Zalo">
                     <div class="smart-icon-box bg-gradient-blue">
-                        <i class="fa-brands fa-zalo" aria-hidden="true"></i>
-                        <span style="font-family: sans-serif; font-weight: bold; margin-left: 2px;">Zalo</span>
+                         <!-- Zalo SVG Icon Inline -->
+                         <svg viewBox="0 0 100 100" class="icon-zalo-svg">
+                             <path d="M85.4 34.6c-1.5-6.6-6-12-12.4-14.8-19.4-8.5-44.5-2.7-56 14.6-9.1 13.8-6.1 33 6.9 43.1 3.5 2.7 7.5 4.6 11.7 5.6L32.2 92c-.3 1.2.9 2.1 1.9 1.4l14.2-9.6c4 .7 8.2.7 12.2-.1 13.2-2.6 23.3-12.5 24.9-25.9.6-5.1.5-10.2-.1-15.3l.1-7.9z" style="fill:white;"/>
+                         </svg>
                     </div>
-                    <span>Chat Zalo</span>
+                    <span>Zalo</span>
                 </a>
                 <a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc" target="_blank" rel="noopener noreferrer" class="smart-icon-btn">
                     <div class="smart-icon-box bg-gradient-orange"><span class="material-symbols-rounded" aria-hidden="true">location_on</span></div>
@@ -1571,8 +1587,9 @@
                         <span class="material-symbols-rounded" aria-hidden="true">call</span>
                         Gọi ngay 0942467674
                     </a>
+                    <!-- Zalo Text Badge Version for Buttons -->
                     <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-                        <span class="material-symbols-rounded" aria-hidden="true">chat</span>
+                        <span style="font-weight: 800; font-family: sans-serif; border: 2px solid currentColor; padding: 0 4px; border-radius: 4px; font-size: 0.8em; line-height: 1.2;">Zalo</span>
                         Chat Zalo
                     </a>
                 </div>
@@ -1600,7 +1617,7 @@
                             <input type="number" id="days" placeholder="2" min="1" required>
                         </div>
                         <div class="form-group form-group-full">
-                            <button type="submit" class="btn btn-primary">Nhận Báo Giá Ngay</button>
+                            <button type="submit" class="btn btn-primary w-100">Nhận Báo Giá Ngay</button>
                         </div>
                     </div>
                 </form>
@@ -1667,7 +1684,7 @@
                         <p>Dòng xe ga cốp rộng, chạy êm, tiết kiệm xăng, rất phù hợp để dạo quanh Phố Cổ và West Lake.</p>
                         <div class="price">Từ 120.000đ / ngày</div>
                         <br>
-                        <a href="loaixe.html" class="btn btn-secondary" style="width: 100%">Xem chi tiết</a>
+                        <a href="loaixe.html" class="btn btn-secondary w-100">Xem chi tiết</a>
                     </div>
                     <div class="card service-card animate-on-scroll" data-delay="100">
                         <img loading="lazy" decoding="async" src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/Muon-xe-may-Ha-Noi.jpg" alt="Cho thuê xe số Wave Hà Nội" width="600" height="200">
@@ -1675,7 +1692,7 @@
                         <p>Xe số khỏe, leo dốc tốt, bền bỉ. Lựa chọn số 1 cho các bạn sinh viên hoặc đi phượt Ba Vì.</p>
                         <div class="price">Từ 100.000đ / ngày</div>
                         <br>
-                        <a href="loaixe.html" class="btn btn-secondary" style="width: 100%">Xem chi tiết</a>
+                        <a href="loaixe.html" class="btn btn-secondary w-100">Xem chi tiết</a>
                     </div>
                     <div class="card service-card animate-on-scroll" data-delay="200">
                         <img loading="lazy" decoding="async" src="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/Cho-thue-xe-may-Dong-Da-Ha-Noi.jpg" alt="Cho thuê xe côn tay Winner Hà Nội" width="600" height="200">
@@ -1683,7 +1700,7 @@
                         <p>Trải nghiệm cảm giác lái thể thao, chinh phục mọi cung đường với xe côn tay phân khối nhỏ.</p>
                         <div class="price">Từ 150.000đ / ngày</div>
                         <br>
-                        <a href="loaixe.html" class="btn btn-secondary" style="width: 100%">Xem chi tiết</a>
+                        <a href="loaixe.html" class="btn btn-secondary w-100">Xem chi tiết</a>
                     </div>
                 </div>
             </div>
@@ -1781,7 +1798,6 @@
                 <h2 id="commitment-title" class="section-title">🎯 Cam Kết Vàng Từ Nguyễn Hào</h2>
                 <div class="card">
                     <ul class="checklist">
-                        <!-- Refactor: Replaced CSS content with semantic span -->
                         <li><span class="material-symbols-rounded check-icon" aria-hidden="true">check_circle</span> <strong>Đổi xe miễn phí:</strong> Hỗ trợ 1 đổi 1 ngay lập tức nếu xe phát sinh lỗi kỹ thuật.</li>
                         <li><span class="material-symbols-rounded check-icon" aria-hidden="true">check_circle</span> <strong>Hỗ trợ 24/7:</strong> Luôn có mặt khi bạn cần, xử lý sự cố nhanh chóng.</li>
                         <li><span class="material-symbols-rounded check-icon" aria-hidden="true">check_circle</span> <strong>Bảo dưỡng định kỳ:</strong> 100% xe được kiểm tra phanh, lốp, dầu nhớt trước khi giao.</li>
@@ -1876,7 +1892,6 @@
 
     <footer class="main-footer" aria-labelledby="footer-title">
         <div class="container">
-            <!-- Refactor: H2 hidden properly -->
             <h2 id="footer-title" class="sr-only">Thông tin liên hệ Nguyễn Hào</h2>
             <div class="footer-grid">
                 <div class="footer-col">
@@ -1956,11 +1971,10 @@
                     <h4>🌐 Mạng Xã Hội</h4>
                     <div class="social-links">
                         <a href="https://m.facebook.com/chothuexemay0857255868/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
-                        <!-- Refactor: Correct Zalo Icon Semantic -->
+                        <!-- Zalo Footer Link -->
                         <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
-                             <div style="display:inline-flex; align-items:center; border: 1px solid currentColor; padding: 0 4px; border-radius: 4px; font-size: 0.8em;">
-                                <i class="fa-brands fa-zalo" aria-hidden="true" style="margin-right:2px"></i>
-                                <span style="font-family: sans-serif; font-weight: bold; font-style: normal;">Zalo</span>
+                             <div style="display:inline-flex; align-items:center; border: 1px solid currentColor; padding: 0 4px; border-radius: 4px; font-size: 0.6em; font-weight: bold; font-family: sans-serif; height: 26px; vertical-align: middle;">
+                                Zalo
                              </div>
                         </a>
                         <a href="https://wa.me/84942467674" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
@@ -1984,9 +1998,11 @@
                 <span class="material-symbols-rounded" aria-hidden="true">call</span>
                 <span class="sr-only">Gọi ngay</span>
             </a>
-            <!-- Refactor: Zalo -->
+            <!-- Zalo Round Button SVG Fix -->
              <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" class="ultra-item zalo" data-label="Chat Zalo">
-                <i class="fa-brands fa-zalo" aria-hidden="true"></i>
+                <svg viewBox="0 0 100 100" class="icon-zalo-svg">
+                     <path d="M85.4 34.6c-1.5-6.6-6-12-12.4-14.8-19.4-8.5-44.5-2.7-56 14.6-9.1 13.8-6.1 33 6.9 43.1 3.5 2.7 7.5 4.6 11.7 5.6L32.2 92c-.3 1.2.9 2.1 1.9 1.4l14.2-9.6c4 .7 8.2.7 12.2-.1 13.2-2.6 23.3-12.5 24.9-25.9.6-5.1.5-10.2-.1-15.3l.1-7.9z" style="fill:white;"/>
+                </svg>
                 <span class="sr-only">Chat Zalo</span>
             </a>
             <a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc" target="_blank" rel="noopener noreferrer" class="ultra-item map" data-label="Chỉ đường">
@@ -2122,7 +2138,7 @@
                 initTheme();
             }
 
-            // --- 4. MOBILE MENU (ACCESSIBILITY ENHANCED) ---
+            // --- 4. MOBILE MENU (FOCUS TRAP FIXED) ---
             if (mobileMenuToggle && mobileNavPanel && mobileNavClose && mobileNavOverlay) {
                 const toggleMobileNav = (show) => {
                     const isActive = show;
@@ -2146,10 +2162,12 @@
                     }
                 };
 
-                // Focus Trap
+                // Focus Trap Safe Check
                 mobileNavPanel.addEventListener('keydown', (e) => {
                     if (e.key === 'Tab') {
                         const focusableElements = mobileNavPanel.querySelectorAll('a[href], button:not([disabled]), textarea, input, select');
+                        if (!focusableElements.length) return; // FIX: Defensive check
+
                         const firstElement = focusableElements[0];
                         const lastElement = focusableElements[focusableElements.length - 1];
 
@@ -2172,7 +2190,7 @@
                 mobileNavClose.addEventListener('click', () => toggleMobileNav(false));
                 mobileNavOverlay.addEventListener('click', () => toggleMobileNav(false));
                 
-                // Mobile Submenu Toggle
+                // Mobile Submenu
                 mobileNavPanel.addEventListener('click', (e) => {
                     const toggleBtn = e.target.closest('.mobile-dropdown-toggle');
                     if (toggleBtn) {
@@ -2252,7 +2270,7 @@
                 });
             }
 
-            // --- 8. SLIDER (PAUSE ON HOVER/FOCUS) ---
+            // --- 8. SLIDER ---
             if (sliderTrack && sliderDotsContainer) {
                 const slides = sliderTrack.children;
                 const slideCount = slides.length;
@@ -2291,13 +2309,11 @@
                         intervalId = null;
                     };
 
-                    // Event Listeners for Control
                     sliderDotsContainer.addEventListener('click', (e) => {
                         const dot = e.target.closest('.slider-dot');
                         if (dot) updateSlider(parseInt(dot.dataset.index, 10));
                     });
 
-                    // Pause logic
                     const sliderArea = document.querySelector('.testimonial-slider');
                     if (sliderArea) {
                         sliderArea.addEventListener('mouseenter', stopAutoPlay);
@@ -2310,7 +2326,7 @@
                 }
             }
 
-            // --- 9. TILT EFFECT (DESKTOP ONLY) ---
+            // --- 9. TILT EFFECT ---
             const tiltSection = document.querySelector('[data-tilt="true"]');
             if (tiltSection && window.matchMedia('(min-width: 1024px)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 const tiltCards = tiltSection.querySelectorAll('.service-card');
@@ -2345,18 +2361,22 @@
                 animatedElements.forEach(el => observer.observe(el));
             }
 
-            // --- 11. LIGHTBOX ---
+            // --- 11. LIGHTBOX (ARIA FIX) ---
             if (galleryGrid && lightbox && lightboxImg) {
                 const openLightbox = (src) => {
                     lightboxImg.src = src;
                     lightbox.classList.add('active');
+                    // ARIA Update
                     lightbox.setAttribute('aria-hidden', 'false');
+                    lightbox.setAttribute('aria-modal', 'true');
                     lightboxClose.focus();
                     document.body.style.overflow = 'hidden';
                 };
                 const closeLightbox = () => {
                     lightbox.classList.remove('active');
+                    // ARIA Revert
                     lightbox.setAttribute('aria-hidden', 'true');
+                    lightbox.removeAttribute('aria-modal');
                     document.body.style.overflow = '';
                 };
 
@@ -2382,7 +2402,6 @@
                         ultraToggleBtn.setAttribute('aria-expanded', 'false');
                     }
                 });
-                // Hide on keyboard open (Mobile)
                 const initialHeight = window.innerHeight;
                 window.addEventListener('resize', () => {
                     if (window.innerHeight < initialHeight * 0.8) document.body.classList.add('keyboard-visible');
@@ -2390,7 +2409,7 @@
                 });
             }
 
-            // --- 13. FOOTER ACCORDION (MOBILE ONLY) ---
+            // --- 13. FOOTER ACCORDION (ADD EVENT LISTENER FIX) ---
             const mediaQueryMobile = window.matchMedia('(max-width: 767px)');
             let footerInitialized = false;
 
@@ -2402,7 +2421,6 @@
                     const content = col.querySelector('ul, p, .footer-contact');
                     if (!heading || !content) return;
 
-                    // Add icon
                     if (!col.querySelector('.footer-toggle-icon')) {
                         const icon = document.createElement('span');
                         icon.className = 'material-symbols-rounded footer-toggle-icon';
@@ -2411,14 +2429,12 @@
                         heading.appendChild(icon);
                     }
 
-                    // Event
                     heading.addEventListener('click', () => {
                         const isOpen = col.classList.contains('is-open');
                         cols.forEach(c => c.classList.remove('is-open'));
                         if (!isOpen) col.classList.add('is-open');
                     });
 
-                    // Open first by default
                     if (index === 0) col.classList.add('is-open');
                 });
                 footerInitialized = true;
@@ -2429,11 +2445,8 @@
                 const cols = document.querySelectorAll('.main-footer .footer-col');
                 cols.forEach(col => {
                     col.classList.remove('is-open');
-                    // Remove listeners is hard without named functions, but CSS handles visibility reset
-                    // Just removing the icon visually cleans it up
                     const icon = col.querySelector('.footer-toggle-icon');
                     if (icon) icon.remove();
-                    // Clone node to strip listeners
                     const heading = col.querySelector('h4');
                     if (heading) {
                         const newHeading = heading.cloneNode(true);
@@ -2448,7 +2461,13 @@
                 else destroyFooter();
             };
 
-            mediaQueryMobile.addListener(handleFooterResponsive);
+            // FIX: Using modern addEventListener instead of addListener
+            try {
+                mediaQueryMobile.addEventListener('change', handleFooterResponsive);
+            } catch (e) {
+                // Fallback for very old browsers if necessary, though addEventListener is widely supported now
+                mediaQueryMobile.addListener(handleFooterResponsive);
+            }
             handleFooterResponsive(mediaQueryMobile);
 
         });
