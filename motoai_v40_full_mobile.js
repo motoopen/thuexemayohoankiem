@@ -1,31 +1,27 @@
-/* motoai_v40_full_mobile.js
- ✅ UPDATE v40: FULL FEATURES + MOBILE UI FIX
+/* motoai_v41_messenger_ultimate.js
+ ✅ UPDATE v41: MESSENGER UI CLONE + MARKDOWN FIX + AUTO DODGE
  
- [CORE FEATURES - GIỮ NGUYÊN TỪ V38]:
- - AutoLearn: ưu tiên moto_sitemap.json; fallback sitemap.xml / crawl nông (BFS)
- - Học NHIỀU site (extraSites) + cache per-domain (localStorage)
- - BM25 mini + Extractive QA (chích câu “đinh”)
- - Auto-Price Learn (trích giá từ HTML) + nhập về PRICE_TABLE (percentile)
+ [CORE FEATURES - GIỮ NGUYÊN]:
+ - AutoLearn (Sitemap/Crawl), BM25, QA Extraction, Price Learning.
  
- [UI/UX UPGRADE - MOBILE FIRST]:
- - iOS Fix: Input font-size 16px (chống zoom tự động).
- - VisualViewport: Tính toán chiều cao thực tế khi bàn phím bật để không che input/header.
- - Bottom Sheet: Giao diện dính đáy, full width trên mobile.
- 
- Public API: window.MotoAI_v40.{open,close,send,learnNow,getIndex,clearLearnCache,debugDump}
+ [NEW UI/UX v41]:
+ - Messenger Clone: Header trắng, Input dạng viên thuốc (Pill shape), Icon xanh chuẩn Meta.
+ - Markdown Parser: Hỗ trợ **đậm**, *nghiêng*, [link], - list.
+ - Smart Dodge: Tự động phát hiện Footer/QuickCall để đôn vị trí nút chat lên.
+ - Safe Input: Chống XSS khi render HTML.
 */
 (function(){
-if (window.MotoAI_v40_LOADED) return;
-window.MotoAI_v40_LOADED = true;
+if (window.MotoAI_v41_LOADED) return;
+window.MotoAI_v41_LOADED = true;
 
 /* ====== CONFIG ====== */
 const DEF = {
-  brand: "Nguyen Tu",
+  brand: "Hỗ Trợ Viên", // Tên hiển thị chuẩn Messenger
   phone: "0942467674",
   zalo:  "",
   map:   "",
-  avatar: "👩‍💼",
-  themeColor: "#0084FF",
+  avatar: "https://cdn-icons-png.flaticon.com/512/6024/6024190.png", // Icon mặc định đẹp hơn
+  themeColor: "#0084FF", // Messenger Blue
 
   autolearn: true,
   viOnly: true,
@@ -41,15 +37,15 @@ const DEF = {
   fetchTimeoutMs: 10000,
   fetchPauseMs: 160,
   disableQuickMap: false,
+  
+  // UI Config
+  bottomOffset: 0, // Khoảng cách đệm thêm từ đáy (nếu cần chỉnh tay)
 
-  // Smart flags
   smart: {
-    semanticSearch: true,   // BM25
-    extractiveQA:   true,   // chích câu “đinh”
-    autoPriceLearn: true    // trích giá từ HTML
+    semanticSearch: true,
+    extractiveQA:   true,
+    autoPriceLearn: true
   },
-
-  // Debug / profiling
   debug: true
 };
 const ORG = (window.MotoAI_CONFIG||{});
@@ -66,6 +62,8 @@ const pick = a => a[Math.floor(Math.random()*a.length)];
 const nfVND = n => (n||0).toLocaleString('vi-VN');
 const clamp = (n,min,max)=> Math.max(min, Math.min(max,n));
 const sameHost = (u, origin)=> { try{ return new URL(u).host.replace(/^www\./,'') === new URL(origin).host.replace(/^www\./,''); }catch{ return false; } };
+
+/* --- Markdown & Text Process --- */
 function naturalize(t){
   if(!t) return t;
   let s = " "+t+" ";
@@ -78,225 +76,252 @@ function looksVN(s){
   return hits >= 2;
 }
 
+// ✅ NEW: Simple Markdown Parser (Bold, Italic, Link, List, Break)
+function renderMarkdown(text) {
+  if (!text) return '';
+  // 1. Sanitize HTML tags (Anti XSS)
+  let html = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  
+  // 2. Format Syntax
+  html = html
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')       // Bold
+    .replace(/__(.*?)__/g, '<u>$1</u>')                    // Underline
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')                  // Italic
+    .replace(/`(.*?)`/g, '<code>$1</code>')                // Code inline
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>') // Link
+    .replace(/\n\s*-\s+(.*)/g, '<br>• $1')                 // Bullet list
+    .replace(/\n/g, '<br>');                               // Line break
+    
+  return html;
+}
+
 /* ====== STORAGE KEYS ====== */
 const K = {
-  sess:  "MotoAI_v40_session",
-  ctx:   "MotoAI_v40_ctx",
-  learn: "MotoAI_v40_learn",      
-  autoprices: "MotoAI_v40_auto_prices",
-  stamp: "MotoAI_v40_learnStamp",
-  clean: "MotoAI_v40_lastClean",
-  dbg:   "MotoAI_v40_debug_stats"
+  sess:  "MotoAI_v41_session",
+  ctx:   "MotoAI_v41_ctx",
+  learn: "MotoAI_v41_learn",      
+  autoprices: "MotoAI_v41_auto_prices",
+  stamp: "MotoAI_v41_learnStamp",
+  clean: "MotoAI_v41_lastClean",
+  dbg:   "MotoAI_v41_debug_stats"
 };
 
-/* ====== UI UPGRADE (MOBILE OPTIMIZED) ====== */
+/* ====== UI STYLE - MESSENGER CLONE ====== */
 const CSS = `
 :root{
   --mta-z: 2147483647;
   --m-blue: ${CFG.themeColor};
-  --m-bg: #fff;
-  --m-text: #0b1220;
-
+  --m-bg: #FFFFFF;
+  --m-head-bg: #FFFFFF;
+  --m-head-text: #050505;
+  --m-text: #050505;
+  --m-gray-bg: #F0F2F5;
+  --m-bubble-user: ${CFG.themeColor};
+  --m-bubble-bot: #F0F2F5;
+  --m-text-bot: #050505;
+  --m-text-user: #FFFFFF;
+  --m-input-bg: #F0F2F5;
+  --m-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  
   /* Input sizing: 16px is CRITICAL for iOS to prevent auto-zoom */
-  --m-in-h: 44px;
+  --m-in-h: 36px;
   --m-in-fs: 16px;
-  --m-send-size: 38px;
-
-  /* Dynamic Viewport Variables */
   --m-vv-height: 100vh;
-  --m-vv-offset: 0px;
+  --m-safe-bottom: env(safe-area-inset-bottom);
+}
+
+@media(prefers-color-scheme:dark){
+  :root{
+    --m-bg: #18191A; /* FB Dark BG */
+    --m-head-bg: #18191A;
+    --m-head-text: #E4E6EB;
+    --m-text: #E4E6EB;
+    --m-gray-bg: #242526;
+    --m-bubble-bot: #242526; /* FB Dark Bubble */
+    --m-text-bot: #E4E6EB;
+    --m-input-bg: #3A3B3C;
+    --m-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
 }
 
 #mta-root {
-  position: fixed; right: 20px; bottom: 20px;
+  position: fixed; right: 24px; bottom: 24px;
   z-index: var(--mta-z);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  transition: bottom 0.3s ease; /* For Auto-Dodge */
 }
 
-/* Bubble Button */
+/* Bubble Button - Messenger Style */
 #mta-bubble {
   width: 60px; height: 60px; border: none; border-radius: 50%;
-  background: linear-gradient(135deg, var(--m-blue), #00B2FF);
+  background: var(--m-blue);
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 8px 24px rgba(0, 132, 255, 0.35);
-  cursor: pointer; transition: transform 0.2s;
-  font-size: 28px; color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 132, 255, 0.4);
+  cursor: pointer; transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
 }
-#mta-bubble:hover { transform: scale(1.05); }
+#mta-bubble svg { width: 32px; height: 32px; fill: #fff; }
+#mta-bubble:hover { transform: scale(1.08); }
 #mta-bubble:active { transform: scale(0.95); }
 
-/* Backdrop */
-#mta-backdrop {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.3);
-  opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
-  backdrop-filter: blur(2px);
-  z-index: -1;
-}
-#mta-backdrop.show { opacity: 1; pointer-events: auto; }
-
-/* Main Card - Desktop Default */
+/* Main Card */
 #mta-card {
   position: fixed;
-  right: 20px; bottom: 90px;
-  width: 380px; max-width: calc(100vw - 40px);
-  height: 650px; max-height: calc(85vh - 20px);
+  right: 24px; bottom: 96px;
+  width: 360px; max-width: calc(100vw - 32px);
+  height: 600px; max-height: calc(80vh - 20px);
   background: var(--m-bg); color: var(--m-text);
-  border-radius: 20px;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+  border-radius: 16px;
+  box-shadow: var(--m-shadow);
   display: flex; flex-direction: column; overflow: hidden;
-  transform: translateY(20px) scale(0.95); opacity: 0; pointer-events: none;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(15px) scale(0.95); opacity: 0; pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.1, 0.9, 0.2, 1);
   transform-origin: bottom right;
+  border: 1px solid rgba(0,0,0,0.08);
 }
+@media(prefers-color-scheme:dark){ #mta-card { border: 1px solid #333; } }
 #mta-card.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
 
-/* Header */
-#mta-header { background: linear-gradient(135deg, var(--m-blue), #00B2FF); color: #fff; flex-shrink: 0; }
-#mta-header .bar { display: flex; align-items: center; gap: 12px; padding: 14px 16px; }
-#mta-header .avatar { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+/* Header - Clean FB Style */
+#mta-header { 
+  background: var(--m-head-bg); color: var(--m-head-text); 
+  flex-shrink: 0; padding: 12px 16px; 
+  display: flex; align-items: center; gap: 12px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06); z-index: 2;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+#mta-header .avatar { 
+  width: 40px; height: 40px; border-radius: 50%; overflow: hidden; position: relative;
+  background: #eee;
+}
+#mta-header .avatar img { width: 100%; height: 100%; object-fit: cover; }
+#mta-header .avatar::after {
+  content:''; position: absolute; bottom: 2px; right: 2px; width: 10px; height: 10px;
+  background: #31A24C; border: 2px solid var(--m-head-bg); border-radius: 50%;
+}
 #mta-header .info { flex: 1; min-width: 0; }
-#mta-header .name { font-weight: 700; font-size: 15px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-#mta-header .status { font-size: 12px; opacity: 0.9; display: flex; align-items: center; gap: 4px; }
-#mta-header .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #4bff7d; box-shadow: 0 0 4px rgba(75, 255, 125, 0.6); }
-#mta-header .actions { display: flex; gap: 8px; }
-#mta-header .act { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 16px; transition: background 0.2s; }
-#mta-header .act:hover { background: rgba(255,255,255,0.3); }
-#mta-close { background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; padding: 0 4px; opacity: 0.8; }
-#mta-close:hover { opacity: 1; }
+#mta-header .name { font-weight: 700; font-size: 16px; line-height: 1.2; }
+#mta-header .status { font-size: 13px; opacity: 0.7; margin-top: 2px; }
+#mta-close { 
+  background: var(--m-gray-bg); width: 32px; height: 32px; border-radius: 50%; border:none;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--m-text); font-size: 20px; cursor: pointer; transition: 0.2s;
+}
+#mta-close:hover { filter: brightness(0.95); }
 
 /* Chat Body */
 #mta-body {
   flex: 1; overflow-y: auto; overflow-x: hidden;
-  background: #f4f6f9;
+  background: var(--m-bg);
   padding: 16px 12px;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
-.m-msg { max-width: 80%; margin: 6px 0; padding: 10px 14px; border-radius: 18px; font-size: 15px; line-height: 1.5; word-wrap: break-word; position: relative; animation: mta-pop 0.2s ease-out; }
-@keyframes mta-pop { from{ opacity: 0; transform: translateY(5px); } to{ opacity: 1; transform: translateY(0); } }
-.m-msg.bot { background: #fff; color: #1d1d1d; border-bottom-left-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
-.m-msg.user { background: var(--m-blue); color: #fff; margin-left: auto; border-bottom-right-radius: 4px; box-shadow: 0 1px 4px rgba(0,132,255,0.3); }
+.m-msg { 
+  max-width: 75%; margin: 4px 0; padding: 8px 12px; 
+  border-radius: 18px; font-size: 15px; line-height: 1.4; 
+  position: relative; word-wrap: break-word;
+  animation: mta-slide 0.2s ease-out;
+}
+@keyframes mta-slide { from{ opacity:0; transform: translateY(8px); } to{ opacity:1; transform:translateY(0); } }
+.m-msg.bot { 
+  background: var(--m-bubble-bot); color: var(--m-text-bot); 
+  border-bottom-left-radius: 4px; margin-right: auto; 
+}
+.m-msg.user { 
+  background: var(--m-bubble-user); color: var(--m-text-user); 
+  border-bottom-right-radius: 4px; margin-left: auto; 
+}
+/* Link in chat */
+.m-msg a { color: inherit; text-decoration: underline; font-weight: 500; }
 
 /* Tags */
-#mta-tags { background: #fff; border-top: 1px solid #eee; flex-shrink: 0; transition: max-height 0.2s, opacity 0.2s; max-height: 60px; overflow: hidden; opacity: 1; }
-#mta-tags.hidden { max-height: 0; opacity: 0; padding: 0; margin: 0; pointer-events: none; }
-#mta-tags .track { display: flex; overflow-x: auto; padding: 10px; gap: 8px; scrollbar-width: none; }
-#mta-tags .track::-webkit-scrollbar { display: none; }
-#mta-tags button { white-space: nowrap; background: #f0f2f5; border: 1px solid transparent; border-radius: 16px; padding: 6px 14px; font-size: 13px; color: #444; cursor: pointer; transition: all 0.2s; }
-#mta-tags button:active { background: #e4e6eb; transform: scale(0.96); }
-
-/* Input Area */
-#mta-input {
-  background: #fff; padding: 10px; border-top: 1px solid #f0f0f0;
-  display: flex; gap: 8px; align-items: center; flex-shrink: 0;
-  /* An toan tren iPhone X+ */
-  padding-bottom: max(10px, env(safe-area-inset-bottom));
+#mta-tags { padding: 8px 12px; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
+#mta-tags::-webkit-scrollbar { display: none; }
+#mta-tags button { 
+  white-space: nowrap; background: var(--m-input-bg); color: var(--m-text);
+  border: none; border-radius: 16px; padding: 6px 12px; font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: 0.2s;
 }
+#mta-tags button:active { opacity: 0.7; transform: scale(0.98); }
+
+/* Footer Input - Messenger Style */
+#mta-footer {
+  padding: 12px; padding-bottom: calc(12px + var(--m-safe-bottom));
+  background: var(--m-bg); border-top: 1px solid rgba(0,0,0,0.05);
+  display: flex; align-items: center; gap: 8px;
+}
+#mta-input-wrap {
+  flex: 1; height: 36px; background: var(--m-input-bg);
+  border-radius: 18px; display: flex; align-items: center; padding: 0 12px;
+  transition: 0.2s;
+}
+#mta-input-wrap:focus-within { background: rgba(0,0,0,0.05); }
+@media(prefers-color-scheme:dark){ #mta-input-wrap:focus-within { background: rgba(255,255,255,0.1); } }
 #mta-in {
-  flex: 1; height: var(--m-in-h); border-radius: 22px; border: 1px solid #ddd;
-  padding: 0 16px; font-size: var(--m-in-fs); background: #f9f9f9; outline: none;
-  transition: border-color 0.2s; color: #333;
+  flex: 1; background: transparent; border: none; outline: none;
+  font-size: var(--m-in-fs); color: var(--m-text);
+  padding: 0; margin: 0; height: 100%;
 }
-#mta-in:focus { border-color: var(--m-blue); background: #fff; }
 #mta-send {
-  width: var(--m-send-size); height: var(--m-send-size); border-radius: 50%; border: none;
-  background: var(--m-blue); color: #fff; font-size: 16px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; transition: transform 0.2s;
+  background: none; border: none; cursor: pointer; color: var(--m-blue);
+  font-weight: 600; font-size: 15px; padding: 4px 8px;
+  opacity: 0.5; pointer-events: none; transition: 0.2s;
 }
-#mta-send:active { transform: scale(0.9); }
+#mta-in:not(:placeholder-shown) + #mta-send { opacity: 1; pointer-events: auto; }
 
-/* Typing Indicator */
-#mta-typing { display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; background: #fff; border-radius: 14px; margin-bottom: 8px; font-size: 12px; color: #888; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
-#mta-typing span { width: 4px; height: 4px; background: #bbb; border-radius: 50%; animation: mta-blink 1.4s infinite both; }
-#mta-typing span:nth-child(2) { animation-delay: 0.2s; }
-#mta-typing span:nth-child(3) { animation-delay: 0.4s; }
-@keyframes mta-blink { 0%, 80%, 100% { opacity: 0; } 40% { opacity: 1; } }
-
-/* ====== MOBILE SPECIFIC (WIDTH < 480px) ====== */
+/* Mobile Adapt */
 @media (max-width: 480px) {
-  #mta-root {
-    right: 0; left: 0; bottom: 0;
-  }
-  #mta-bubble {
-    position: absolute; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom));
-  }
- 
-  /* Card chuyen thanh Bottom Sheet */
+  #mta-root { right: 16px; bottom: 16px; }
   #mta-card {
-    right: 0; left: 0; bottom: 0;
-    width: 100%; max-width: 100%;
-    border-radius: 16px 16px 0 0;
+    right: 0; left: 0; bottom: 0; width: 100%; max-width: 100%;
+    border-radius: 16px 16px 0 0; border: none;
     transform: translateY(100%);
-   
-    /* QUAN TRONG: Chieu cao dua tren Visual Viewport de tranh ban phim che */
-    height: var(--m-vv-height);
-    max-height: 85vh;
+    height: var(--m-vv-height); max-height: 85vh;
   }
- 
-  #mta-card.open {
-    transform: translateY(0);
+  #mta-card.open { transform: translateY(0); }
+  body.mta-kb-open #mta-card { height: var(--m-vv-height); border-radius: 0; }
+  /* Backdrop */
+  #mta-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: calc(var(--mta-z) - 1);
+    opacity: 0; pointer-events: none; transition: 0.2s;
   }
-
-  /* Khi ban phim mo, Card se full chieu cao Visual Viewport */
-  body.mta-kb-open #mta-card {
-     max-height: none;
-     height: var(--m-vv-height);
-     border-radius: 0;
-  }
-  #mta-close { font-size: 28px; padding: 4px 12px; }
-}
-
-@media(prefers-color-scheme:dark){
-  :root{--m-bg:#1a1c20;--m-text:#ecf0f5}
-  #mta-card{border:1px solid #333}
-  #mta-body{background:#111}
-  .m-msg.bot{background:#262626;color:#fff}
-  #mta-tags{background:#1a1c20;border-top:1px solid #333}
-  #mta-tags button{background:#2a2a2a;color:#ddd}
-  #mta-input{background:#1a1c20;border-top:1px solid #333}
-  #mta-in{background:#2a2a2a;border-color:#444;color:#fff}
+  #mta-backdrop.show { opacity: 1; pointer-events: auto; }
 }`;
 
 const HTML = `
 <div id="mta-root" aria-live="polite">
-  <button id="mta-bubble" aria-label="Mở chat cùng ${CFG.brand}">💬</button>
+  <button id="mta-bubble" aria-label="Chat">
+    <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.145 2 11.25c0 2.91 1.458 5.518 3.75 7.25.137.104.225.263.225.438v2.793c0 .546.64.84 1.05.52l3.078-2.4a.735.735 0 0 1 .458-.16c.47.045.952.07 1.439.07 5.523 0 10-4.145 10-9.25S17.523 2 12 2zm1 13.5l-2.5-2.75-4.5 2.75 5-5.25 2.5 2.75 4.5-2.75-5 5.25z"/></svg>
+  </button>
   <div id="mta-backdrop"></div>
-  <section id="mta-card" role="dialog" aria-label="Chat ${CFG.brand}" aria-hidden="true">
+  <section id="mta-card" role="dialog" aria-hidden="true">
     <header id="mta-header">
-      <div class="bar">
-        <div class="avatar">${CFG.avatar||"👩‍💼"}</div>
-        <div class="info">
-          <div class="name">${CFG.brand} — Đang hoạt động</div>
-          <div class="status"><span class="status-dot"></span>Trực tuyến</div>
-        </div>
-        <div class="actions">
-          ${CFG.phone?`<a class="act" href="tel:${CFG.phone}" title="Gọi nhanh">📞</a>`:""}
-          ${CFG.zalo?`<a class="act" href="${CFG.zalo}" target="_blank" rel="noopener" title="Zalo">Z</a>`:""}
-          ${CFG.map?`<a class="act q-map" href="${CFG.map}" target="_blank" rel="noopener" title="Bản đồ">📍</a>`:""}
-        </div>
-        <button id="mta-close" aria-label="Đóng">×</button>
+      <div class="avatar"><img src="${CFG.avatar}" alt="Bot"></div>
+      <div class="info">
+        <div class="name">${CFG.brand}</div>
+        <div class="status">Thường trả lời ngay</div>
       </div>
+      <button id="mta-close">×</button>
     </header>
-    <main id="mta-body" role="log"></main>
-    <div id="mta-tags" role="toolbar" aria-label="Gợi ý nhanh">
-      <div class="track" id="mta-tag-track">
-        <button data-q="Giá thuê xe máy">💰 Giá thuê</button>
-        <button data-q="Thuê xe ga">🛵 Xe ga</button>
-        <button data-q="Thuê xe số">🏍 Xe số</button>
-        <button data-q="Thuê theo tháng">📆 Theo tháng</button>
-        <button data-q="Giao xe tận nơi">🚚 Giao tận nơi</button>
-        <button data-q="Thủ tục">📄 Thủ tục</button>
-      </div>
+    <main id="mta-body"></main>
+    <div id="mta-tags">
+      <button data-q="Giá thuê xe">💰 Giá thuê</button>
+      <button data-q="Thủ tục thế nào?">📄 Thủ tục</button>
+      <button data-q="Có giao tận nơi không?">🚚 Giao xe</button>
+      <button data-q="Tư vấn xe ga">🛵 Xe ga</button>
     </div>
-    <footer id="mta-input">
-      <input id="mta-in" placeholder="Nhắn cho ${CFG.brand}..." autocomplete="off" />
-      <button id="mta-send" aria-label="Gửi tin">➤</button>
+    <footer id="mta-footer">
+      <div id="mta-input-wrap">
+        <input id="mta-in" placeholder="Nhắn tin..." autocomplete="off" inputmode="text" />
+        <button id="mta-send">Gửi</button>
+      </div>
     </footer>
   </section>
 </div>`;
 
 /* ====== SESSION / CONTEXT ====== */
-const MAX_MSG = 10;
+const MAX_MSG = 15;
 function getSess(){ const arr = safe(localStorage.getItem(K.sess))||[]; return Array.isArray(arr)?arr:[]; }
 function saveSess(a){ try{ localStorage.setItem(K.sess, JSON.stringify(a.slice(-MAX_MSG))); }catch{} }
 
@@ -305,20 +330,30 @@ function scrollToBottom(){
    if(body) setTimeout(() => body.scrollTop = body.scrollHeight, 50);
 }
 
-function addMsg(role,text){
-  if(!text) return;
+// ✅ UPDATED: Render Markdown & HTML Safe
+function addMsg(role, rawText){
+  if(!rawText) return;
   const body=$("#mta-body"); if(!body) return;
-  const el=document.createElement("div"); el.className="m-msg "+(role==="user"?"user":"bot"); el.textContent=text;
-  body.appendChild(el);
+  
+  const div = document.createElement("div");
+  div.className = "m-msg " + (role==="user"?"user":"bot");
+  
+  // Render HTML tu Markdown Parser
+  div.innerHTML = renderMarkdown(rawText);
+  
+  body.appendChild(div);
   scrollToBottom();
-  const arr=getSess(); arr.push({role,text,t:Date.now()}); saveSess(arr);
+  
+  const arr=getSess(); 
+  arr.push({role, text: rawText, t:Date.now()}); 
+  saveSess(arr);
 }
 
 function renderSess(){
   const body=$("#mta-body"); body.innerHTML="";
   const arr=getSess();
-  if(arr.length) arr.forEach(m=> addMsg(m.role,m.text));
-  else addMsg("bot", naturalize(`Xin chào 👋, em là nhân viên hỗ trợ của ${CFG.brand}. Anh/chị cần thuê xe số, xe ga hay theo tháng?`));
+  if(arr.length) arr.forEach(m=> addMsg(m.role, m.text));
+  else addMsg("bot", naturalize(`Xin chào! Em là trợ lý ảo của ${CFG.brand}. Em có thể giúp gì cho anh/chị ạ?`));
 }
 
 function getCtx(){ return safe(localStorage.getItem(K.ctx)) || {turns:[]}; }
@@ -330,7 +365,7 @@ function pushCtx(delta){
   }catch{}
 }
 
-/* ====== NLP (loại xe / số ngày) ====== */
+/* ====== NLP & PRICE ENGINE (CORE KEPT 100%) ====== */
 const TYPE_MAP = [
   {k:'xe số',     re:/xe số|wave|blade|sirius|jupiter|future|dream/i, canon:'xe số'},
   {k:'xe ga',     re:/xe ga|vision|air\s*blade|lead|liberty|vespa|grande|janus|sh\b/i, canon:'xe ga'},
@@ -401,7 +436,7 @@ function extractPricesFromText(txt){
   return out;
 }
 
-/* ====== SIMPLE INDEX + BM25 mini ====== */
+/* ====== INDEX + BM25 ====== */
 function tk(s){ return (s||"").toLowerCase().normalize('NFC').replace(/[^\p{L}\p{N}\s]+/gu,' ').split(/\s+/).filter(Boolean); }
 function loadLearn(){ return safe(localStorage.getItem(K.learn)) || {}; }
 function saveLearn(o){ try{ localStorage.setItem(K.learn, JSON.stringify(o)); }catch{} }
@@ -449,7 +484,7 @@ function bestSentences(text, query, k=2){
   return scored.slice(0,k).map(x=>x.s);
 }
 
-/* ====== FETCH / PARSE ====== */
+/* ====== FETCH / CRAWL ====== */
 async function fetchText(url){
   const ctl = new AbortController(); const id = setTimeout(()=>ctl.abort(), CFG.fetchTimeoutMs);
   try{
@@ -460,12 +495,8 @@ async function fetchText(url){
 }
 function parseXML(t){ try{ return (new DOMParser()).parseFromString(t,'text/xml'); }catch{ return null; } }
 function parseHTML(t){ try{ return (new DOMParser()).parseFromString(t,'text/html'); }catch{ return null; } }
-
-/* ====== DEBUG COUNTERS ====== */
 function newDomainStats(domain){
-  return {
-    domain, startedAt: Date.now(), durationMs: 0, urlsSeen: 0, pagesKept: 0, txtPages: 0, htmlPages: 0, nonVNSkipped: 0, noindexSkipped: 0, autoPriceHits: 0
-  };
+  return { domain, startedAt: Date.now(), durationMs: 0, urlsSeen: 0, pagesKept: 0, txtPages: 0, htmlPages: 0, nonVNSkipped: 0, noindexSkipped: 0, autoPriceHits: 0 };
 }
 function finishStats(st){ st.durationMs = Date.now() - st.startedAt; return st; }
 function saveStatsAll(all){ try{ localStorage.setItem(K.dbg, JSON.stringify(all)); }catch{} }
@@ -475,20 +506,15 @@ async function readSitemap(url){
   const xml = await fetchText(url); if(!xml) return [];
   const doc = parseXML(xml); if(!doc) return [];
   const items = Array.from(doc.getElementsByTagName('item'));
-  if(items.length){
-    return items.map(it=> it.getElementsByTagName('link')[0]?.textContent?.trim()).filter(Boolean);
-  }
-  const sm = Array.from(doc.getElementsByTagName('sitemap'))
-    .map(x=> x.getElementsByTagName('loc')[0]?.textContent?.trim()).filter(Boolean);
+  if(items.length){ return items.map(it=> it.getElementsByTagName('link')[0]?.textContent?.trim()).filter(Boolean); }
+  const sm = Array.from(doc.getElementsByTagName('sitemap')).map(x=> x.getElementsByTagName('loc')[0]?.textContent?.trim()).filter(Boolean);
   if(sm.length){
     const all=[]; for(const loc of sm){ try{ const child = await readSitemap(loc); if(child && child.length) all.push(...child); }catch{} }
     return Array.from(new Set(all));
   }
-  const urls = Array.from(doc.getElementsByTagName('url'))
-    .map(u=> u.getElementsByTagName('loc')[0]?.textContent?.trim()).filter(Boolean);
+  const urls = Array.from(doc.getElementsByTagName('url')).map(u=> u.getElementsByTagName('loc')[0]?.textContent?.trim()).filter(Boolean);
   return urls;
 }
-
 async function fallbackCrawl(origin){
   const start = origin.endsWith('/')? origin : origin + '/';
   const html = await fetchText(start); if(!html) return [start];
@@ -496,53 +522,29 @@ async function fallbackCrawl(origin){
   const links = Array.from(doc.querySelectorAll('a[href]')).map(a=> a.getAttribute('href')).filter(Boolean);
   const set = new Set([start]);
   for(const href of links){
-    try{
-      const u = new URL(href, start).toString().split('#')[0];
-      if(sameHost(u, origin)) set.add(u);
-      if(set.size>=40) break;
-    }catch{}
+    try{ const u = new URL(href, start).toString().split('#')[0]; if(sameHost(u, origin)) set.add(u); if(set.size>=40) break; }catch{}
   }
   return Array.from(set);
 }
-
 async function pullPages(urls, stats){
-  const out=[];
-  stats.urlsSeen += urls.length;
+  const out=[]; stats.urlsSeen += urls.length;
   for(const u of urls.slice(0, CFG.maxPagesPerDomain)){
     const txt = await fetchText(u); if(!txt) continue;
     if (/\bname=(?:"|')robots(?:"|')[^>]*content=(?:"|')[^"']*noindex/i.test(txt)) { stats.noindexSkipped++; continue; }
-   
-    let title = (txt.match(/<title[^>]*>([^<]+)<\/title>/i)||[])[1]||"";
-    title = title.replace(/\s+/g,' ').trim();
+    let title = (txt.match(/<title[^>]*>([^<]+)<\/title>/i)||[])[1]||""; title = title.replace(/\s+/g,' ').trim();
     let desc = (txt.match(/<meta[^>]+name=(?:"|')description(?:"|')[^>]+content=(?:"|')([\s\S]*?)(?:"|')/i)||[])[1]||"";
-    if(!desc){
-      desc = txt.replace(/<script[\s\S]*?<\/script>/gi,' ').replace(/<style[\s\S]*?<\/style>/gi,' ')
-                .replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim().slice(0,600);
-    }
+    if(!desc){ desc = txt.replace(/<script[\s\S]*?<\/script>/gi,' ').replace(/<style[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim().slice(0,600); }
     const sample = (title+' '+desc).toLowerCase();
     if(CFG.viOnly && !looksVN(sample)) { stats.nonVNSkipped++; await sleep(CFG.fetchPauseMs); continue; }
-
     if(CFG.smart.autoPriceLearn){
-      try{
-        const autos = extractPricesFromText(txt);
-        if(autos && autos.length){
-          stats.autoPriceHits += autos.length;
-          const stash = safe(localStorage.getItem(K.autoprices))||[];
-          stash.push(...autos.map(a=> Object.assign({url:u}, a)));
-          localStorage.setItem(K.autoprices, JSON.stringify(stash.slice(-500)));
-        }
+      try{ const autos = extractPricesFromText(txt);
+        if(autos && autos.length){ stats.autoPriceHits += autos.length; const stash = safe(localStorage.getItem(K.autoprices))||[]; stash.push(...autos.map(a=> Object.assign({url:u}, a))); localStorage.setItem(K.autoprices, JSON.stringify(stash.slice(-500))); }
       }catch{}
     }
-
-    stats.htmlPages++;
-    out.push({url:u, title, text:desc});
-    stats.pagesKept++;
-    await sleep(CFG.fetchPauseMs);
+    stats.htmlPages++; out.push({url:u, title, text:desc}); stats.pagesKept++; await sleep(CFG.fetchPauseMs);
   }
   return out;
 }
-
-/* ====== AUTOLEARN ====== */
 function loadLearnCache(){ return loadLearn(); }
 function saveLearnCache(obj){ saveLearn(obj); }
 function isExpired(ts, hrs){ if(!ts) return true; return ((nowSec()-ts)/3600) >= (hrs||CFG.refreshHours); }
@@ -550,51 +552,32 @@ function isExpired(ts, hrs){ if(!ts) return true; return ((nowSec()-ts)/3600) >=
 async function learnOneOrigin(origin, stats){
   try{
     const key = new URL(origin).origin;
-    // 1) moto_sitemap.json
-    const candidatesJSON = [
-      key + "/moto_sitemap.json",
-      location.origin + (location.pathname.replace(/\/[^\/]*$/,'') || '') + "/moto_sitemap.json"
-    ];
+    const candidatesJSON = [ key + "/moto_sitemap.json", location.origin + (location.pathname.replace(/\/[^\/]*$/,'') || '') + "/moto_sitemap.json" ];
     for(const j of Array.from(new Set(candidatesJSON))){
       try{
         const r = await fetch(j);
         if(r && r.ok){
-          const json = await r.json();
-          const ds = [ ...(json.categories?.datasets?.list || []), ...(json.categories?.pages?.list || []) ];
+          const json = await r.json(); const ds = [ ...(json.categories?.datasets?.list || []), ...(json.categories?.pages?.list || []) ];
           const pages = []; stats.urlsSeen += ds.length;
           for(const u of ds){
             const txt = await fetchText(u); if(!txt) continue;
-            if(/\.txt($|\?)/i.test(u)){
-              const title = u.split("/").slice(-1)[0];
-              const text  = txt.replace(/\s+/g," ").trim().slice(0,2000);
-              pages.push({url:u,title,text}); stats.txtPages++; stats.pagesKept++;
-            }else{
+            if(/\.txt($|\?)/i.test(u)){ const title = u.split("/").slice(-1)[0]; const text = txt.replace(/\s+/g," ").trim().slice(0,2000); pages.push({url:u,title,text}); stats.txtPages++; stats.pagesKept++; }
+            else{
               let title=(txt.match(/<title[^>]*>([^<]+)<\/title>/i)||[])[1]||""; title=title.replace(/\s+/g,' ').trim();
               let desc=(txt.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"]+)["']/i)||[])[1]||"";
               if(!desc) desc = txt.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim().slice(0,600);
               const sample=(title+' '+desc).toLowerCase();
               if(CFG.viOnly && !looksVN(sample)) { stats.nonVNSkipped++; continue; }
-              if(CFG.smart.autoPriceLearn){
-                const autos = extractPricesFromText(txt);
-                if(autos && autos.length){
-                  stats.autoPriceHits += autos.length;
-                  const stash = safe(localStorage.getItem(K.autoprices))||[];
-                  stash.push(...autos.map(a=> Object.assign({url:u}, a)));
-                  localStorage.setItem(K.autoprices, JSON.stringify(stash.slice(-500)));
-                }
-              }
+              if(CFG.smart.autoPriceLearn){ const autos = extractPricesFromText(txt); if(autos && autos.length){ stats.autoPriceHits += autos.length; const stash = safe(localStorage.getItem(K.autoprices))||[]; stash.push(...autos.map(a=> Object.assign({url:u}, a))); localStorage.setItem(K.autoprices, JSON.stringify(stash.slice(-500))); } }
               pages.push({url:u,title,text:desc}); stats.htmlPages++; stats.pagesKept++;
             }
-            if(pages.length >= CFG.maxPagesPerDomain) break;
-            await sleep(CFG.fetchPauseMs);
+            if(pages.length >= CFG.maxPagesPerDomain) break; await sleep(CFG.fetchPauseMs);
           }
           if(pages.length) return {domain:j, ts: nowSec(), pages};
         }
       }catch{}
     }
-    // 2) Sitemap XML / Crawl
-    let urls=[];
-    const smc = [key+'/sitemap.xml', key+'/sitemap_index.xml'];
+    let urls=[]; const smc = [key+'/sitemap.xml', key+'/sitemap_index.xml'];
     for(const c of smc){ try{ const u=await readSitemap(c); if(u && u.length){ urls=u; break; } }catch{} }
     if(!urls.length) urls = await fallbackCrawl(key);
     const uniq = Array.from(new Set(urls.map(u=>{ try{ return new URL(u).toString().split('#')[0]; }catch{ return null; } }).filter(Boolean).filter(u=> sameHost(u, key))));
@@ -604,176 +587,142 @@ async function learnOneOrigin(origin, stats){
 }
 
 async function learnSites(origins, force){
-  const list = Array.from(new Set(origins||[])).slice(0, 12);
-  const cache = loadLearnCache(); const results = {}; let total=0;
-  const allStats = loadStatsAll();
-
+  const list = Array.from(new Set(origins||[])).slice(0, 12); const cache = loadLearnCache(); const results = {}; let total=0; const allStats = loadStatsAll();
   for(const origin of list){
     try{
-      const key = new URL(origin).origin;
-      const stats = newDomainStats(key);
-      const cached = cache[key];
+      const key = new URL(origin).origin; const stats = newDomainStats(key); const cached = cache[key];
       if(!force && cached && !isExpired(cached.ts, CFG.refreshHours) && cached.pages?.length){
-        results[key] = cached; total += cached.pages.length;
-        stats.pagesKept = cached.pages.length; finishStats(stats); allStats[key] = stats; saveStatsAll(allStats);
+        results[key] = cached; total += cached.pages.length; stats.pagesKept = cached.pages.length; finishStats(stats); allStats[key] = stats; saveStatsAll(allStats);
         if(total>=CFG.maxTotalPages) break; continue;
       }
-      const data = await learnOneOrigin(origin, stats);
-      finishStats(stats); allStats[key] = stats; saveStatsAll(allStats);
-      if(data && data.pages?.length){
-        cache[key] = data;
-        try{ saveLearnCache(cache); } catch(e){ const ks=Object.keys(cache); if(ks.length) delete cache[ks[0]]; saveLearnCache(cache); }
-        results[key] = data; total += data.pages.length;
-      }
+      const data = await learnOneOrigin(origin, stats); finishStats(stats); allStats[key] = stats; saveStatsAll(allStats);
+      if(data && data.pages?.length){ cache[key] = data; try{ saveLearnCache(cache); } catch(e){ const ks=Object.keys(cache); if(ks.length) delete cache[ks[0]]; saveLearnCache(cache); } results[key] = data; total += data.pages.length; }
       if(total >= CFG.maxTotalPages) break;
     }catch(e){}
     await sleep(CFG.fetchPauseMs);
   }
   if(CFG.debug) console.table(Object.values(allStats));
-  localStorage.setItem(K.stamp, Date.now());
-  return results;
+  localStorage.setItem(K.stamp, Date.now()); return results;
 }
 
 /* ====== ANSWER ENGINE ====== */
 const PREFIX = ["Chào anh/chị,","Xin chào 👋,","Em chào anh/chị,","Em ở "+CFG.brand+" đây,"];
-function polite(s){ s = s || "em chưa nhận được câu hỏi, anh/chị nhập lại giúp em."; return naturalize(`${pick(PREFIX)} ${s}`); }
+function polite(s){ s = s || "em chưa rõ câu hỏi, anh/chị nhắn lại nhé."; return naturalize(`${pick(PREFIX)} ${s}`); }
 
 function composePrice(type, qty){
   if(!type) type = 'xe số';
-  if(!qty)  return naturalize(`Anh/chị thuê ${type} theo ngày, tuần hay tháng để em báo đúng giá nhé.`);
+  if(!qty)  return naturalize(`Anh/chị thuê **${type}** theo ngày hay theo tháng ạ?`);
   const base = baseFor(type, qty.unit);
-  if(!base)  return naturalize(`Giá thuê ${type} theo ${qty.unit} cần kiểm tra. Anh/chị nhắn Zalo ${CFG.phone} để em chốt theo mẫu xe.`);
+  if(!base)  return naturalize(`Giá thuê **${type}** theo **${qty.unit}** cần kiểm tra. Anh/chị gọi em số ${CFG.phone} nhé.`);
   const total = base * qty.n;
   const label = qty.unit==="ngày"?"ngày":(qty.unit==="tuần"?"tuần":"tháng");
-  let text = qty.n===1 ? `Giá thuê ${type} 1 ${label} khoảng ${nfVND(base)}đ` : `Giá thuê ${type} ${qty.n} ${label} khoảng ${nfVND(total)}đ`;
-  if(qty.unit==="ngày" && qty.n>=3) text += " Nếu thuê theo tuần sẽ tiết kiệm hơn";
-  return naturalize(`${text}. Anh/chị cần em giữ xe và gửi ảnh xe qua Zalo ${CFG.phone} không?`);
+  let text = qty.n===1 ? `Giá thuê **${type}** 1 ${label} khoảng **${nfVND(base)}đ**` : `Giá thuê **${type}** ${qty.n} ${label} khoảng **${nfVND(total)}đ**`;
+  if(qty.unit==="ngày" && qty.n>=3) text += " Thuê tuần sẽ rẻ hơn ạ.";
+  return naturalize(`${text}. Anh/chị cần giữ xe thì nhắn Zalo [Tại đây](${CFG.zalo}) cho em nhé.`);
 }
 
 async function deepAnswer(userText){
-  const q = (userText||"").trim();
-  const intents = detectIntent(q);
-  let type = detectType(q);
-  const qty  = detectQty(q);
-  // Deep context
-  if(CFG.deepContext){
-    const ctx = getCtx();
-    for(let i=ctx.turns.length-1;i>=0;i--){
-      const t = ctx.turns[i];
-      if(!type && t.type) type=t.type;
-      if(!qty && t.qty)   return composePrice(type||t.type, t.qty);
-      if(type && qty) break;
-    }
-  }
-  if(intents.needContact) return polite(`anh/chị gọi ${CFG.phone} hoặc Zalo ${CFG.zalo||CFG.phone} là có người nhận ngay.`);
-  if(intents.needDocs)    return polite(`thủ tục gọn: CCCD/hộ chiếu + cọc theo xe. Có phương án giảm cọc khi đủ giấy tờ.`);
-  if(intents.needPolicy)  return polite(`đặt cọc tham khảo: xe số 2–3 triệu; xe ga 2–5 triệu; 50cc khoảng 4 triệu. Liên hệ Zalo ${CFG.phone} để chốt theo mẫu xe.`);
-  if(intents.needDelivery)return polite(`thuê 1–4 ngày vui lòng đến cửa hàng chọn xe; thuê tuần/tháng em giao tận nơi. Phí nội thành 20–100k tuỳ quận. Nhắn Zalo ${CFG.phone} để em set lịch.`);
-  if(intents.needReturn)  return polite(`trả xe tại cửa hàng hoặc hẹn trả tận nơi (thoả thuận). Báo trước 30 phút để em sắp xếp, hoàn cọc nhanh.`);
+  const q = (userText||"").trim(); const intents = detectIntent(q); let type = detectType(q); const qty  = detectQty(q);
+  if(CFG.deepContext){ const ctx = getCtx(); for(let i=ctx.turns.length-1;i>=0;i--){ const t = ctx.turns[i]; if(!type && t.type) type=t.type; if(!qty && t.qty) return composePrice(type||t.type, t.qty); if(type && qty) break; } }
+  if(intents.needContact) return polite(`Hotline bên em: **${CFG.phone}**\nZalo: [Nhắn Zalo](${CFG.zalo||CFG.phone})`);
+  if(intents.needDocs)    return polite(`Thủ tục đơn giản: **CCCD/Hộ chiếu** + cọc. Nếu đủ giấy tờ có thể giảm cọc ạ.`);
+  if(intents.needPolicy)  return polite(`Cọc tham khảo: Xe số 2-3tr, Xe ga 2-5tr. Hoàn cọc ngay khi trả xe.`);
+  if(intents.needDelivery)return polite(`Thuê tuần/tháng bên em giao tận nơi (20-100k tuỳ xa gần).`);
+  if(intents.needReturn)  return polite(`Trả xe tại cửa hàng hoặc tận nơi (có phí). Anh/chị báo trước 30p nhé.`);
   if(intents.needPrice)   return composePrice(type, qty);
 
-  // Semantic retrieval
   try{
     const top = searchIndex(q, 3);
     if(top && top.length){
       const t0 = top[0];
-      if(CFG.smart.extractiveQA){
-        const sn = bestSentences((t0.title? (t0.title+'. ') : '') + (t0.text||''), q, 2).join(' ');
-        if(sn) return naturalize(`${sn} — Xem thêm: ${t0.url}`);
-      }
+      if(CFG.smart.extractiveQA){ const sn = bestSentences((t0.title? (t0.title+'. ') : '') + (t0.text||''), q, 2).join(' '); if(sn) return naturalize(`${sn}\n\n👉 Chi tiết: [Xem thêm](${t0.url})`); }
       const fallback = ((t0.title? (t0.title+' — ') : '') + (t0.text||'')).slice(0,180);
-      return polite(`${fallback} ... Xem thêm: ${t0.url}`);
+      return polite(`${fallback}...\n\n👉 [Xem chi tiết](${t0.url})`);
     }
   }catch(e){}
-  if(/(chào|xin chào|hello|hi|alo)/i.test(q)) return polite(`em là nhân viên hỗ trợ của ${CFG.brand}. Anh/chị muốn xem 🏍️ Xe số, 🛵 Xe ga, ⚡ Xe điện hay 📄 Thủ tục thuê xe?`);
-  return polite(`anh/chị quan tâm loại xe nào (xe số, Vision, Air Blade, 50cc, côn tay…) và thuê mấy ngày để em báo giá phù hợp.`);
+  if(/(chào|xin chào|hello|hi|alo)/i.test(q)) return polite(`Em hỗ trợ được gì cho anh/chị? Em có Xe số, Xe ga, Xe 50cc, Côn tay...`);
+  return polite(`Anh/chị muốn thuê loại xe nào (Vision, Wave, 50cc...) và đi mấy ngày ạ?`);
 }
 
 function mergeAutoPrices(){
   if(!CFG.smart.autoPriceLearn) return;
-  try{
-    const autos = safe(localStorage.getItem(K.autoprices))||[];
-    if(!autos.length) return;
+  try{ const autos = safe(localStorage.getItem(K.autoprices))||[]; if(!autos.length) return;
     const byType = autos.reduce((m,a)=>{ (m[a.type]||(m[a.type]=[])).push(a.price); return m; },{});
     Object.keys(byType).forEach(t=>{
-      const arr = byType[t].sort((a,b)=>a-b);
-      const p25 = arr[Math.floor(arr.length*0.25)];
-      const p50 = arr[Math.floor(arr.length*0.50)];
-      if(PRICE_TABLE[t]){
-        const dayRange = [p25, p50].filter(Boolean);
-        if(dayRange.length) PRICE_TABLE[t].day = dayRange;
-      }
+      const arr = byType[t].sort((a,b)=>a-b); const p25 = arr[Math.floor(arr.length*0.25)]; const p50 = arr[Math.floor(arr.length*0.50)];
+      if(PRICE_TABLE[t]){ const dayRange = [p25, p50].filter(Boolean); if(dayRange.length) PRICE_TABLE[t].day = dayRange; }
     });
   }catch{}
 }
 
-/* ====== SEND / UI CONTROL ====== */
+/* ====== LOGIC & EVENT HANDLERS ====== */
 let isOpen=false, sending=false;
 function showTyping(){
   const body=$("#mta-body"); if(!body) return;
-  const box=document.createElement("div"); box.id="mta-typing"; box.innerHTML=`<span></span><span></span><span></span>`;
-  body.appendChild(box); scrollToBottom();
+  const box=document.createElement("div"); box.id="mta-typing"; 
+  // Typing animation dot style
+  box.innerHTML=`<div class="m-msg bot" style="width:40px;height:24px;display:flex;align-items:center;justify-content:center;gap:3px">
+   <span style="width:4px;height:4px;background:#999;border-radius:50%;animation:mta-blink 1s infinite"></span>
+   <span style="width:4px;height:4px;background:#999;border-radius:50%;animation:mta-blink 1s infinite .2s"></span>
+   <span style="width:4px;height:4px;background:#999;border-radius:50%;animation:mta-blink 1s infinite .4s"></span>
+  </div>`;
+  const st=document.createElement("style"); st.textContent="@keyframes mta-blink{0%,100%{opacity:.3}50%{opacity:1}}";
+  box.appendChild(st); body.appendChild(box); scrollToBottom();
 }
 function hideTyping(){ const t=$("#mta-typing"); if(t) t.remove(); }
-function ensureInputVisible(){
-  const inp=$("#mta-in"); if(inp) try{ inp.scrollIntoView({block:'nearest', inline:'nearest'}); }catch{}
-  scrollToBottom();
-}
 
 async function sendUser(text){
-  if(sending) return;
-  const v=(text||"").trim(); if(!v) return;
+  if(sending) return; const v=(text||"").trim(); if(!v) return;
   sending=true; addMsg("user", v);
- 
-  // Hide tags on mobile if typing
   if(window.innerWidth < 480) $("#mta-tags")?.classList.add("hidden");
-
   pushCtx({from:"user", raw:v, type:detectType(v), qty:detectQty(v)});
-  const isMobile = window.innerWidth < 480; const wait = (isMobile? 1200 : 1800) + Math.random()*500;
+  const isMobile = window.innerWidth < 480; const wait = (isMobile? 1000 : 1500) + Math.random()*500;
   showTyping(); await sleep(wait);
   const ans = await deepAnswer(v);
   hideTyping(); addMsg("bot", ans); pushCtx({from:"bot", raw:ans});
-  sending=false; ensureInputVisible();
+  sending=false;
 }
 
-/* ====== MOBILE VIEWPORT HANDLE ====== */
 function handleViewport(){
    if(!window.visualViewport) return;
-   const vv = window.visualViewport;
-   const root = $("#mta-root");
-   
-   // Set variable height thuc te
+   const vv = window.visualViewport; const root = $("#mta-root");
    root.style.setProperty('--m-vv-height', vv.height + 'px');
-   root.style.setProperty('--m-vv-offset', vv.offsetTop + 'px');
+   if(window.innerWidth < 480 && (vv.height < window.innerHeight * 0.85)){
+       document.body.classList.add('mta-kb-open'); setTimeout(scrollToBottom, 100);
+   } else { document.body.classList.remove('mta-kb-open'); }
+}
 
-   const isMobile = window.innerWidth < 480;
-   const isKeyboardOpen = isMobile && (vv.height < window.innerHeight * 0.85);
+// ✅ NEW: Auto Dodge (Tự né Footer/Quick Call)
+function autoDodge(){
+  if(window.innerWidth > 480) return; // Chỉ chạy trên Mobile
+  const root = $("#mta-root"); if(!root) return;
+  
+  // Tìm các phần tử "dính" ở đáy thường gặp
+  const obstacles = document.querySelectorAll('.footer-nav, .quick-call, .call-now, [class*="bottom-nav"], [id*="footer-bar"]');
+  let maxH = 0;
+  
+  obstacles.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    // Nếu phần tử đang hiện và dính ở đáy màn hình
+    if(rect.height > 0 && rect.bottom >= window.innerHeight - 10){
+      maxH = Math.max(maxH, rect.height);
+    }
+  });
 
-   if(isKeyboardOpen){
-       document.body.classList.add('mta-kb-open');
-       setTimeout(scrollToBottom, 100);
-   } else {
-       document.body.classList.remove('mta-kb-open');
-   }
+  const baseBottom = 16;
+  // Set bottom offset an toàn
+  root.style.bottom = (baseBottom + maxH + CFG.bottomOffset) + "px";
 }
 
 function openChat(){
-  if(isOpen) return;
-  $("#mta-card").classList.add("open");
-  $("#mta-backdrop").classList.add("show");
-  $("#mta-bubble").style.transform="scale(0)";
-  isOpen=true; renderSess();
- 
+  if(isOpen) return; $("#mta-card").classList.add("open"); $("#mta-backdrop").classList.add("show");
+  $("#mta-bubble").style.transform="scale(0)"; isOpen=true; renderSess();
   if(window.innerWidth > 480) setTimeout(()=>$("#mta-in").focus(), 160);
   handleViewport();
 }
 function closeChat(){
-  if(!isOpen) return;
-  $("#mta-card").classList.remove("open");
-  $("#mta-backdrop").classList.remove("show");
-  $("#mta-bubble").style.transform="scale(1)";
-  isOpen=false; hideTyping();
-  document.activeElement?.blur();
+  if(!isOpen) return; $("#mta-card").classList.remove("open"); $("#mta-backdrop").classList.remove("show");
+  $("#mta-bubble").style.transform="scale(1)"; isOpen=false; hideTyping(); document.activeElement?.blur();
 }
 
 function bindEvents(){
@@ -781,58 +730,32 @@ function bindEvents(){
   $("#mta-backdrop").addEventListener("click", closeChat);
   $("#mta-close").addEventListener("click", closeChat);
   $("#mta-send").addEventListener("click", ()=>{ const i=$("#mta-in"); const v=i.value.trim(); if(v){ i.value=""; sendUser(v); i.focus(); } });
-
-  const inp = $("#mta-in");
-  inp.addEventListener("keydown", e=>{
-    if(e.key==="Enter" && !e.shiftKey){ e.preventDefault(); const v=e.target.value.trim(); if(v){ e.target.value=""; sendUser(v); } }
-  });
- 
-  // iOS Visual Viewport hooks
-  if(window.visualViewport){
-    window.visualViewport.addEventListener("resize", handleViewport);
-    window.visualViewport.addEventListener("scroll", handleViewport);
-  }
+  $("#mta-in").addEventListener("keydown", e=>{ if(e.key==="Enter" && !e.shiftKey){ e.preventDefault(); const v=e.target.value.trim(); if(v){ e.target.value=""; sendUser(v); } } });
+  
+  if(window.visualViewport){ window.visualViewport.addEventListener("resize", handleViewport); window.visualViewport.addEventListener("scroll", handleViewport); }
   window.addEventListener("resize", handleViewport);
+  
+  // Chạy Auto Dodge khi load và resize
+  autoDodge(); window.addEventListener("resize", autoDodge);
 
-  const track=$("#mta-tag-track");
-  if(track){
-     track.querySelectorAll("button").forEach(btn=> btn.addEventListener("click", ()=>{
-         sendUser(btn.dataset.q||btn.textContent);
-     }));
-  }
+  const track=$("#mta-tags");
+  if(track){ track.querySelectorAll("button").forEach(btn=> btn.addEventListener("click", ()=>{ sendUser(btn.dataset.q||btn.textContent); })); }
 }
 
-function maybeDisableQuickMap(){ if(CFG.disableQuickMap){ const m=$(".q-map"); if(m){ m.removeAttribute("href"); m.style.opacity=".4"; m.style.pointerEvents="none"; } } }
 function ready(fn){ if(document.readyState==="complete"||document.readyState==="interactive") fn(); else document.addEventListener("DOMContentLoaded", fn); }
 
-/* ====== BOOT ====== */
 ready(async ()=>{
   const lastClean = parseInt(localStorage.getItem(K.clean)||0);
-  if(!lastClean || (Date.now()-lastClean) > 7*24*3600*1000){
-    localStorage.removeItem(K.ctx); localStorage.setItem(K.clean, Date.now());
-  }
+  if(!lastClean || (Date.now()-lastClean) > 7*24*3600*1000){ localStorage.removeItem(K.ctx); localStorage.setItem(K.clean, Date.now()); }
   const wrap=document.createElement("div"); wrap.innerHTML=HTML; document.body.appendChild(wrap.firstElementChild);
   const st=document.createElement("style"); st.textContent=CSS; document.head.appendChild(st);
-  bindEvents(); maybeDisableQuickMap(); mergeAutoPrices();
-
-  if(CFG.autolearn){
-    try{
-      const origins = Array.from(new Set([location.origin, ...(CFG.extraSites||[])]));
-      const last = parseInt(localStorage.getItem(K.stamp)||0);
-      if(!last || (Date.now()-last) >= CFG.refreshHours*3600*1000){
-        if(CFG.debug) console.log("%cMotoAI v40: Learning...","color:orange");
-        await learnSites(origins, false);
-      }
-    }catch(e){}
-  }
+  bindEvents(); mergeAutoPrices();
+  if(CFG.autolearn){ try{ const origins = Array.from(new Set([location.origin, ...(CFG.extraSites||[])])); const last = parseInt(localStorage.getItem(K.stamp)||0); if(!last || (Date.now()-last) >= CFG.refreshHours*3600*1000){ await learnSites(origins, false); } }catch(e){} }
 });
 
-window.MotoAI_v40 = {
+window.MotoAI_v41 = {
   open: openChat, close: closeChat, send: (t)=> sendUser(t),
-  learnNow: async (sites, force)=>{
-    const list = Array.isArray(sites)&&sites.length?sites:([location.origin, ...(CFG.extraSites||[])]);
-    return await learnSites(Array.from(new Set(list)), !!force);
-  },
+  learnNow: async (sites, force)=>{ const list = Array.isArray(sites)&&sites.length?sites:([location.origin, ...(CFG.extraSites||[])]); return await learnSites(Array.from(new Set(list)), !!force); },
   getIndex: getIndexFlat,
   clearLearnCache: ()=> { try{ localStorage.removeItem(K.learn); localStorage.removeItem(K.autoprices); localStorage.removeItem(K.dbg);}catch{} },
   debugDump: ()=> ({stats: loadStatsAll(), indexSize: getIndexFlat().length})
