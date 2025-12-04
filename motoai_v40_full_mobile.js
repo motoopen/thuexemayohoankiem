@@ -1,786 +1,714 @@
-/**
- * MotoAI v39.0 - Refactored Semantic & Accessibility
- * 
- * Core Features (Preserved):
- * - AutoLearn (Sitemap/Crawl), Multi-site, BM25 Search, Extractive QA.
- * - Auto-Price Learn (Percentile), Deep Context.
- * 
- * New UI/UX:
- * - Mobile-first Bottom Sheet.
- * - iOS Keyboard Safe (VisualViewport).
- * - Dark/Light Auto Theme.
- * - Accessibility (WCAG 2.1).
- */
-(function () {
-    'use strict';
-    if (window.MotoAI_v39_LOADED) return;
-    window.MotoAI_v39_LOADED = true;
+/* =================================================================
+   MOTOAI v38.2 FULL RELEASE (Brain v38.1 + UI v38.2)
+   =================================================================
+   1. LOGIC (Giữ nguyên v38.1):
+      - AutoLearn Multi-site (Sitemap + BFS Crawl)
+      - BM25 Search + Extractive QA
+      - Auto-Price Learn (Trích xuất giá từ HTML)
+      - Deep Context (Ghi nhớ ngữ cảnh hội thoại)
+      - Debug Counters & Console.table
 
-    // ==========================================
-    // 1. CONFIGURATION & STATE
-    // ==========================================
-    const DEF = {
-        brand: "Nguyen Tu",
-        phone: "0942467674",
-        zalo: "",
-        map: "",
-        avatar: "👩‍💼",
-        themeColor: "#0084FF",
-        autolearn: true,
-        viOnly: true,
-        deepContext: true,
-        maxContextTurns: 5,
-        extraSites: [location.origin],
-        crawlDepth: 1,
-        refreshHours: 24,
-        maxPagesPerDomain: 80,
-        maxTotalPages: 300,
-        fetchTimeoutMs: 10000,
-        fetchPauseMs: 160,
-        disableQuickMap: false,
-        smart: { semanticSearch: true, extractiveQA: true, autoPriceLearn: true },
-        debug: true
-    };
+   2. UI/UX (Nâng cấp v38.2):
+      - Fix Input Zoom iOS (Font 16px)
+      - VisualViewport Logic (Chống bàn phím che input)
+      - Auto Dark/Light Mode (System aware)
+      - Bottom Sheet Animation (Mobile friendly)
+   ================================================================= */
 
-    const ORG = window.MotoAI_CONFIG || {};
-    if (!ORG.zalo && (ORG.phone || DEF.phone)) {
-        ORG.zalo = 'https://zalo.me/' + String(ORG.phone || DEF.phone).replace(/\s+/g, '');
+(function(){
+  if (window.MotoAI_v38_LOADED) return;
+  window.MotoAI_v38_LOADED = true;
+
+  /* ================= CONFIGURATION ================= */
+  const DEF = {
+    brand: "Nguyen Tu",
+    phone: "0942467674",
+    zalo:  "",
+    map:   "",
+    avatar: "👩‍💼",
+    themeColor: "#0084FF", // Màu chủ đạo
+
+    autolearn: true,
+    viOnly: true,
+    deepContext: true,
+    maxContextTurns: 5,
+
+    extraSites: [location.origin],
+    crawlDepth: 1,
+    refreshHours: 24,
+    maxPagesPerDomain: 80,
+    maxTotalPages: 300,
+
+    fetchTimeoutMs: 10000,
+    fetchPauseMs: 160,
+    disableQuickMap: false,
+
+    smart: {
+      semanticSearch: true,   // BM25
+      extractiveQA:   true,   // Trích xuất câu trả lời
+      autoPriceLearn: true    // Học giá tự động
+    },
+
+    debug: true
+  };
+  const ORG = (window.MotoAI_CONFIG||{});
+  if(!ORG.zalo && (ORG.phone||DEF.phone)) ORG.zalo = 'https://zalo.me/' + String(ORG.phone||DEF.phone).replace(/\s+/g,'');
+  const CFG = Object.assign({}, DEF, ORG);
+  CFG.smart = Object.assign({}, DEF.smart, (ORG.smart||{}));
+
+
+  /* ================= HELPERS ================= */
+  const $  = s => document.querySelector(s);
+  const safe = s => { try{ return JSON.parse(s); }catch{ return null; } };
+  const sleep = ms => new Promise(r=>setTimeout(r,ms));
+  const nowSec = ()=> Math.floor(Date.now()/1000);
+  const pick = a => a[Math.floor(Math.random()*a.length)];
+  const nfVND = n => (n||0).toLocaleString('vi-VN');
+  const clamp = (n,min,max)=> Math.max(min, Math.min(max,n));
+  const sameHost = (u, origin)=> { try{ return new URL(u).host.replace(/^www\./,'') === new URL(origin).host.replace(/^www\./,''); }catch{ return false; } };
+  
+  function naturalize(t){
+    if(!t) return t;
+    let s = " "+t+" ";
+    s = s.replace(/\s+ạ([.!?,\s]|$)/gi, "$1").replace(/\s+nhé([.!?,\s]|$)/gi, "$1").replace(/\s+nha([.!?,\s]|$)/gi, "$1");
+    s = s.replace(/\s{2,}/g," ").trim(); if(!/[.!?]$/.test(s)) s+="."; return s.replace(/\.\./g,".");
+  }
+  function looksVN(s){
+    if(/[ăâêôơưđà-ỹ]/i.test(s)) return true;
+    const hits = (s.match(/\b(xe|thuê|giá|liên hệ|hà nội|cọc|giấy tờ)\b/gi)||[]).length;
+    return hits >= 2;
+  }
+
+  /* ================= STORAGE KEYS ================= */
+  const K = {
+    sess:  "MotoAI_v38_session",
+    ctx:   "MotoAI_v38_ctx",
+    learn: "MotoAI_v38_learn",
+    autoprices: "MotoAI_v38_auto_prices",
+    stamp: "MotoAI_v38_learnStamp",
+    clean: "MotoAI_v38_lastClean",
+    dbg:   "MotoAI_v38_debug_stats"
+  };
+
+  /* ================= UI / UX (NEW v38.2) ================= */
+  const CSS = `
+  :root {
+    --m-primary: ${CFG.themeColor};
+    --m-bg: #ffffff;
+    --m-text: #1f2937;
+    --m-sub-text: #6b7280;
+    --m-input-bg: #f3f4f6;
+    --m-input-text: #111827;
+    --m-border: #e5e7eb;
+    --m-msg-bot: #f3f4f6;
+    --m-msg-bot-text: #1f2937;
+    --m-msg-user: var(--m-primary);
+    --m-msg-user-text: #ffffff;
+    --m-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --m-z: 2147483647;
+  }
+
+  /* Dark Mode Support */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --m-bg: #1f2937;
+      --m-text: #f9fafb;
+      --m-sub-text: #9ca3af;
+      --m-input-bg: #374151;
+      --m-input-text: #f9fafb;
+      --m-border: #374151;
+      --m-msg-bot: #374151;
+      --m-msg-bot-text: #f3f4f6;
     }
-    const CFG = Object.assign({}, DEF, ORG);
-    CFG.smart = Object.assign({}, DEF.smart, (ORG.smart || {}));
+  }
 
-    const K = {
-        sess: "MotoAI_v39_sess",
-        ctx: "MotoAI_v39_ctx",
-        learn: "MotoAI_v39_learn",
-        autoprices: "MotoAI_v39_autoprices",
-        stamp: "MotoAI_v39_stamp",
-        clean: "MotoAI_v39_clean",
-        dbg: "MotoAI_v39_dbg"
-    };
+  #mta-root { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; z-index: var(--m-z); position: relative; }
+  
+  /* Bubble Button */
+  #mta-bubble {
+    position: fixed; right: 20px; bottom: 20px; width: 56px; height: 56px;
+    background: linear-gradient(135deg, var(--m-primary), #00B2FF);
+    border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 26px; z-index: var(--m-z); transition: transform 0.2s;
+  }
+  #mta-bubble:active { transform: scale(0.95); }
 
-    // ==========================================
-    // 2. UTILITIES & HELPERS
-    // ==========================================
-    const $ = s => document.querySelector(s);
-    const safe = s => { try { return JSON.parse(s); } catch { return null; } };
-    const sleep = ms => new Promise(r => setTimeout(r, ms));
-    const nowSec = () => Math.floor(Date.now() / 1000);
-    const pick = a => a[Math.floor(Math.random() * a.length)];
-    const nfVND = n => (n || 0).toLocaleString('vi-VN');
-    const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+  /* Main Card (Responsive) */
+  #mta-card {
+    position: fixed; right: 20px; bottom: 20px;
+    width: 380px; max-width: calc(100vw - 32px);
+    height: 600px; max-height: 80vh;
+    background: var(--m-bg); border-radius: 16px;
+    box-shadow: var(--m-shadow);
+    display: flex; flex-direction: column;
+    z-index: var(--m-z);
+    transform: translateY(120%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid var(--m-border); overflow: hidden;
+  }
+  #mta-card.open { transform: translateY(0); }
+
+  /* Mobile: Bottom Sheet Style */
+  @media (max-width: 480px) {
+    #mta-bubble { right: 16px; bottom: 16px; }
+    #mta-card {
+      right: 0; left: 0; bottom: 0;
+      width: 100%; max-width: 100%;
+      height: 100%; /* Sẽ được VisualViewport override */
+      max-height: none; border-radius: 16px 16px 0 0;
+      border: none; border-top: 1px solid var(--m-border);
+    }
+  }
+
+  /* Header */
+  #mta-header {
+    padding: 12px 16px; background: var(--m-bg);
+    border-bottom: 1px solid var(--m-border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .m-head-info { display: flex; align-items: center; gap: 10px; }
+  .m-avatar { width: 32px; height: 32px; background: rgba(0,0,0,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .m-title h3 { margin: 0; font-size: 15px; font-weight: 600; color: var(--m-text); }
+  .m-title span { font-size: 11px; color: #10b981; display: block; margin-top: 2px; }
+  .m-actions { display: flex; gap: 8px; }
+  .m-btn-icon { width: 30px; height: 30px; border-radius: 50%; background: var(--m-input-bg); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--m-text); text-decoration: none; font-size: 14px; transition: background 0.2s; }
+  .m-btn-icon:hover { background: var(--m-border); }
+
+  /* Body */
+  #mta-body {
+    flex: 1; padding: 16px; overflow-y: auto; overflow-x: hidden;
+    background: var(--m-bg); scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  .m-msg { max-width: 80%; padding: 10px 14px; margin-bottom: 10px; border-radius: 18px; font-size: 14px; line-height: 1.5; word-wrap: break-word; }
+  .m-msg.bot { background: var(--m-msg-bot); color: var(--m-msg-bot-text); border-bottom-left-radius: 4px; align-self: flex-start; }
+  .m-msg.user { background: var(--m-msg-user); color: var(--m-msg-user-text); border-bottom-right-radius: 4px; margin-left: auto; }
+  #mta-typing { font-size: 12px; color: var(--m-sub-text); margin-left: 10px; margin-bottom: 10px; font-style: italic; }
+
+  /* Tags */
+  #mta-tags { padding: 8px 16px; background: var(--m-bg); white-space: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; border-top: 1px solid var(--m-border); display: none; }
+  #mta-tags.show { display: block; }
+  #mta-tags::-webkit-scrollbar { display: none; }
+  .m-tag { display: inline-block; padding: 6px 12px; margin-right: 8px; background: var(--m-input-bg); color: var(--m-text); border-radius: 99px; font-size: 13px; border: 1px solid transparent; cursor: pointer; user-select: none; }
+  .m-tag:active { background: var(--m-border); }
+
+  /* Input Area - Anti Zoom 16px */
+  #mta-footer {
+    padding: 10px 16px; background: var(--m-bg);
+    border-top: 1px solid var(--m-border);
+    display: flex; gap: 8px; align-items: center;
+    flex-shrink: 0;
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+  }
+  #mta-input-wrap {
+    flex: 1; position: relative; display: flex; align-items: center;
+    background: var(--m-input-bg); border-radius: 24px;
+    border: 1px solid transparent; transition: border-color 0.2s;
+  }
+  #mta-input-wrap:focus-within { border-color: var(--m-primary); }
+  
+  #mta-in {
+    width: 100%; border: none; background: transparent;
+    padding: 10px 14px; 
+    font-size: 16px; /* CRITICAL FOR IOS NO-ZOOM */
+    line-height: 20px;
+    color: var(--m-input-text); border-radius: 24px;
+    outline: none; -webkit-appearance: none; margin: 0;
+  }
+  #mta-in::placeholder { color: var(--m-sub-text); opacity: 0.7; }
+  
+  #mta-send {
+    width: 36px; height: 36px; border-radius: 50%; border: none;
+    background: var(--m-primary); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; flex-shrink: 0; font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+
+  /* Backdrop */
+  #mta-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 2147483646; opacity: 0; pointer-events: none; transition: opacity 0.3s; backdrop-filter: blur(1px); }
+  #mta-backdrop.show { opacity: 1; pointer-events: auto; }
+  `;
+
+  const HTML = `
+  <div id="mta-root">
+    <button id="mta-bubble" aria-label="Chat">💬</button>
+    <div id="mta-backdrop"></div>
+    <div id="mta-card">
+      <div id="mta-header">
+        <div class="m-head-info">
+          <div class="m-avatar">${CFG.avatar}</div>
+          <div class="m-title">
+            <h3>${CFG.brand}</h3>
+            <span>● Trực tuyến</span>
+          </div>
+        </div>
+        <div class="m-actions">
+          ${CFG.phone ? `<a href="tel:${CFG.phone}" class="m-btn-icon" title="Gọi">📞</a>` : ''}
+          ${CFG.zalo ? `<a href="${CFG.zalo}" target="_blank" class="m-btn-icon" title="Zalo">Z</a>` : ''}
+          <button id="mta-close" class="m-btn-icon" title="Đóng">✕</button>
+        </div>
+      </div>
+      <div id="mta-body"></div>
+      <div id="mta-tags" class="show">
+        <span class="m-tag" data-q="Giá thuê xe máy">💰 Giá thuê</span>
+        <span class="m-tag" data-q="Thủ tục">📄 Thủ tục</span>
+        <span class="m-tag" data-q="Thuê xe ga">🛵 Xe ga</span>
+        <span class="m-tag" data-q="Thuê xe số">🏍 Xe số</span>
+        <span class="m-tag" data-q="Giao xe tận nơi">🚚 Giao xe</span>
+      </div>
+      <div id="mta-footer">
+        <div id="mta-input-wrap">
+          <input id="mta-in" type="text" placeholder="Nhắn tin..." autocomplete="off">
+        </div>
+        <button id="mta-send">➤</button>
+      </div>
+    </div>
+  </div>`;
+
+  /* ================= SESSION & CONTEXT LOGIC ================= */
+  const MAX_MSG = 15;
+  function getSess(){ const arr = safe(localStorage.getItem(K.sess))||[]; return Array.isArray(arr)?arr:[]; }
+  function saveSess(a){ try{ localStorage.setItem(K.sess, JSON.stringify(a.slice(-MAX_MSG))); }catch{} }
+  
+  function addMsg(role,text){
+    if(!text) return;
+    const body=$("#mta-body"); if(!body) return;
+    const el=document.createElement("div"); 
+    el.className="m-msg "+(role==="user"?"user":"bot"); 
+    el.innerHTML=text.replace(/\n/g,"<br>");
+    body.appendChild(el); body.scrollTop=body.scrollHeight;
     
-    const sameHost = (u, origin) => {
-        try {
-            return new URL(u).host.replace(/^www\./, '') === new URL(origin).host.replace(/^www\./, '');
-        } catch { return false; }
+    const arr=getSess(); arr.push({role,text,t:Date.now()}); saveSess(arr);
+  }
+  
+  function renderSess(){
+    const body=$("#mta-body"); body.innerHTML="";
+    const arr=getSess();
+    if(arr.length) arr.forEach(m=> addMsg(m.role,m.text));
+    else addMsg("bot", naturalize(`Xin chào 👋, em là AI hỗ trợ của ${CFG.brand}. Anh/chị cần thuê xe số, xe ga hay tư vấn thủ tục ạ?`));
+  }
+
+  function getCtx(){ return safe(localStorage.getItem(K.ctx)) || {turns:[]}; }
+  function pushCtx(delta){
+    try{
+      const ctx=getCtx(); ctx.turns.push(Object.assign({t:Date.now()}, delta||{}));
+      ctx.turns = ctx.turns.slice(-clamp(CFG.maxContextTurns||5,3,8));
+      localStorage.setItem(K.ctx, JSON.stringify(ctx));
+    }catch{}
+  }
+
+  /* ================= CORE LOGIC: NLP, PRICING, CRAWL (From v38.1) ================= */
+  
+  /* --- NLP --- */
+  const TYPE_MAP = [
+    {k:'xe số',     re:/xe số|wave|blade|sirius|jupiter|future|dream/i},
+    {k:'xe ga',     re:/xe ga|vision|air\s*blade|lead|liberty|vespa|grande|janus|sh\b/i},
+    {k:'air blade', re:/air\s*blade|airblade|ab\b/i},
+    {k:'vision',    re:/vision/i},
+    {k:'xe điện',   re:/xe điện|vinfast|yadea|dibao|klara|evo/i},
+    {k:'50cc',      re:/50\s*cc|xe 50/i},
+    {k:'xe côn tay',re:/côn tay|tay côn|exciter|winner|raider/i}
+  ];
+  function detectType(t){ for(const it of TYPE_MAP){ if(it.re.test(t)) return it.k; } return null; }
+  function detectQty(t){
+    const m=(t||"").match(/(\d+)\s*(ngày|day|tuần|tuan|week|tháng|thang|month)?/i);
+    if(!m) return null; const n=parseInt(m[1],10); if(!n) return null;
+    let unit="ngày"; if(m[2]){ if(/tuần|tuan|week/i.test(m[2])) unit="tuần"; else if(/tháng|thang|month/i.test(m[2])) unit="tháng"; }
+    return {n,unit};
+  }
+  function detectIntent(t){
+    return {
+      needPrice:   /(giá|bao nhiêu|thuê|tính tiền|cost|price)/i.test(t),
+      needDocs:    /(thủ tục|giấy tờ|cccd|passport|hộ chiếu)/i.test(t),
+      needContact: /(liên hệ|zalo|gọi|hotline|sđt|sdt|phone)/i.test(t),
+      needDelivery:/(giao|ship|tận nơi|đưa xe|mang xe)/i.test(t),
+      needReturn:  /(trả xe|gia hạn|đổi xe|kết thúc thuê)/i.test(t),
+      needPolicy:  /(điều kiện|chính sách|bảo hiểm|hư hỏng|sự cố|đặt cọc|cọc)/i.test(t)
     };
+  }
 
-    function naturalize(t) {
-        if (!t) return t;
-        let s = " " + t + " ";
-        s = s.replace(/\s+ạ([.!?,\s]|$)/gi, "$1")
-             .replace(/\s+nhé([.!?,\s]|$)/gi, "$1")
-             .replace(/\s+nha([.!?,\s]|$)/gi, "$1");
-        s = s.replace(/\s{2,}/g, " ").trim();
-        if (!/[.!?]$/.test(s)) s += ".";
-        return s.replace(/\.\./g, ".");
-    }
-
-    function looksVN(s) {
-        if (/[ăâêôơưđà-ỹ]/i.test(s)) return true;
-        const hits = (s.match(/\b(xe|thuê|giá|liên hệ|hà nội|cọc|giấy tờ)\b/gi) || []).length;
-        return hits >= 2;
-    }
-
-    // ==========================================
-    // 3. CORE LOGIC (NLP, SEARCH, PRICE, CRAWLER)
-    // ==========================================
-    
-    // --- NLP ---
-    const TYPE_MAP = [
-        { k: 'xe số', re: /xe số|wave|blade|sirius|jupiter|future|dream/i, canon: 'xe số' },
-        { k: 'xe ga', re: /xe ga|vision|air\s*blade|lead|liberty|vespa|grande|janus|sh\b/i, canon: 'xe ga' },
-        { k: 'air blade', re: /air\s*blade|airblade|ab\b/i, canon: 'air blade' },
-        { k: 'vision', re: /vision/i, canon: 'vision' },
-        { k: 'xe điện', re: /xe điện|vinfast|yadea|dibao|klara|evo/i, canon: 'xe điện' },
-        { k: '50cc', re: /50\s*cc|xe 50/i, canon: '50cc' },
-        { k: 'xe côn tay', re: /côn tay|tay côn|exciter|winner|raider|cb150|cbf190|w175|msx/i, canon: 'xe côn tay' }
+  /* --- PRICE TABLE & LEARNING --- */
+  const PRICE_TABLE = {
+    'xe số':      { day:[150000],          week:[600000,700000], month:[850000,1200000] },
+    'xe ga':      { day:[150000,200000],   week:[600000,1000000], month:[1100000,2000000] },
+    'air blade':  { day:[200000],          week:[800000], month:[1600000,1800000] },
+    'vision':     { day:[200000],          week:[700000,850000], month:[1400000,1900000] },
+    'xe điện':    { day:[170000],          week:[800000], month:[1600000] },
+    '50cc':       { day:[200000],          week:[800000], month:[1700000] },
+    'xe côn tay': { day:[300000],          week:[1200000], month:null }
+  };
+  function baseFor(type,unit){
+    const it=PRICE_TABLE[type]; if(!it) return null;
+    const key = unit==="tuần"?"week":(unit==="tháng"?"month":"day");
+    const arr=it[key]; if(!arr) return null; return Array.isArray(arr)?arr[0]:arr;
+  }
+  function extractPricesFromText(txt){
+    const clean = String(txt||'');
+    const lines = clean.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').split(/[\n\.•\-–]|<br\s*\/?>/i);
+    const out = [];
+    const reNum = /(\d{2,3}(?:[\.\,]\d{3})+|\d{5,})(?:\s*(?:vnđ|vnd|đ|d|k))?/i;
+    const models = [
+      {key:/\bvision\b/i, type:'vision'}, {key:/air\s*blade|airblade|\bab\b/i, type:'air blade'},
+      {key:/\b50\s*cc\b|\b50cc\b/i, type:'50cc'}, {key:/côn\s*tay|tay\s*côn/i, type:'xe côn tay'},
+      {key:/xe\s*điện|vinfast|yadea|dibao/i, type:'xe điện'},
+      {key:/wave|sirius|blade|jupiter|xe\s*số/i, type:'xe số'},
+      {key:/xe\s*ga|vision|lead|vespa|liberty/i, type:'xe ga'}
     ];
-
-    function detectType(t) {
-        for (const it of TYPE_MAP) { if (it.re.test(t)) return it.canon; }
-        return null;
+    for(const raw of lines){
+      const line = String(raw||'');
+      const found = models.find(m=> m.key.test(line));
+      if(!found) continue;
+      const m = line.match(reNum);
+      if(!m) continue;
+      let val = m[1].replace(/[^\d]/g,'');
+      if(/k\b/i.test(line) && parseInt(val,10)<10000) val = String(parseInt(val,10)*1000);
+      const price = parseInt(val,10);
+      if(price && price<5000000){ out.push({type:found.type, unit:'day', price}); }
     }
-
-    function detectQty(t) {
-        const m = (t || "").match(/(\d+)\s*(ngày|day|tuần|tuan|week|tháng|thang|month)?/i);
-        if (!m) return null;
-        const n = parseInt(m[1], 10); if (!n) return null;
-        let unit = "ngày";
-        if (m[2]) {
-            if (/tuần|tuan|week/i.test(m[2])) unit = "tuần";
-            else if (/tháng|thang|month/i.test(m[2])) unit = "tháng";
+    return out;
+  }
+  function mergeAutoPrices(){
+    if(!CFG.smart.autoPriceLearn) return;
+    try{
+      const autos = safe(localStorage.getItem(K.autoprices))||[];
+      if(!autos.length) return;
+      const byType = autos.reduce((m,a)=>{ (m[a.type]||(m[a.type]=[])).push(a.price); return m; },{});
+      Object.keys(byType).forEach(t=>{
+        const arr = byType[t].sort((a,b)=>a-b);
+        const p25 = arr[Math.floor(arr.length*0.25)];
+        const p50 = arr[Math.floor(arr.length*0.50)];
+        if(PRICE_TABLE[t]){
+          const dayRange = [p25, p50].filter(Boolean);
+          if(dayRange.length) PRICE_TABLE[t].day = dayRange;
         }
-        return { n, unit };
+      });
+    }catch{}
+  }
+
+  /* --- CRAWLER & SEARCH INDEX --- */
+  function tk(s){ return (s||"").toLowerCase().normalize('NFC').replace(/[^\p{L}\p{N}\s]+/gu,' ').split(/\s+/).filter(Boolean); }
+  function loadLearn(){ return safe(localStorage.getItem(K.learn)) || {}; }
+  function saveLearn(o){ try{ localStorage.setItem(K.learn, JSON.stringify(o)); }catch{} }
+  function getIndexFlat(){
+    const cache=loadLearn(); const out=[];
+    Object.keys(cache).forEach(key=>{ (cache[key].pages||[]).forEach(pg=> out.push(Object.assign({source:key}, pg))); });
+    return out;
+  }
+  function buildBM25(docs){
+    const k1=1.5,b=0.75; const df=new Map(), tf=new Map(); let total=0;
+    docs.forEach(d=>{
+      const toks=tk(d.text); total+=toks.length;
+      const map=new Map(); toks.forEach(t=> map.set(t,(map.get(t)||0)+1));
+      tf.set(d.id,map); new Set(toks).forEach(t=> df.set(t,(df.get(t)||0)+1));
+    });
+    const N=docs.length||1, avgdl=total/Math.max(1,N); const idf=new Map();
+    df.forEach((c,t)=> idf.set(t, Math.log(1 + (N - c + .5)/(c + .5))));
+    function score(query, docId, docLen){
+      const qToks=new Set(tk(query)); const map=tf.get(docId)||new Map(); let s=0;
+      qToks.forEach(t=>{ const f=map.get(t)||0; if(!f) return; const idfv=idf.get(t)||0;
+        s += idfv*(f*(k1+1))/(f + k1*(1 - b + b*(docLen/avgdl)));
+      });
+      return s;
     }
+    return {score, tf, avgdl};
+  }
+  function searchIndex(query, k=3){
+    const idx = getIndexFlat(); if(!idx.length) return [];
+    const docs = idx.map((it,i)=>({id:String(i), text:((it.title||'')+' '+(it.text||'')), meta:it}));
+    const bm = CFG.smart.semanticSearch ? buildBM25(docs) : null;
+    const scored = bm
+      ? docs.map(d=>({score: bm.score(query, d.id, tk(d.text).length||1), meta:d.meta}))
+              .filter(x=>x.score>0).sort((a,b)=>b.score-a.score).slice(0,k).map(x=>x.meta)
+      : idx.map(it=> Object.assign({score: tk(it.title+" "+it.text).filter(t=> tk(query).includes(t)).length}, it))
+           .filter(x=>x.score>0).sort((a,b)=>b.score-a-score).slice(0,k);
+    return scored;
+  }
+  function bestSentences(text, query, k=2){
+    const sents = String(text||'').replace(/\s+/g,' ').split(/(?<=[\.\!\?])\s+/).slice(0,80);
+    const qToks=new Set(tk(query)); const scored = sents.map(s=>{
+      const toks=tk(s); let hit=0; qToks.forEach(t=>{ if(toks.includes(t)) hit++; });
+      const lenp = Math.max(0.5, 12/Math.max(12, toks.length));
+      return {s, score: hit*lenp};
+    }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score);
+    return scored.slice(0,k).map(x=>x.s);
+  }
 
-    function detectIntent(t) {
-        return {
-            needPrice: /(giá|bao nhiêu|thuê|tính tiền|cost|price)/i.test(t),
-            needDocs: /(thủ tục|giấy tờ|cccd|passport|hộ chiếu)/i.test(t),
-            needContact: /(liên hệ|zalo|gọi|hotline|sđt|sdt|phone)/i.test(t),
-            needDelivery: /(giao|ship|tận nơi|đưa xe|mang xe)/i.test(t),
-            needReturn: /(trả xe|gia hạn|đổi xe|kết thúc thuê)/i.test(t),
-            needPolicy: /(điều kiện|chính sách|bảo hiểm|hư hỏng|sự cố|đặt cọc|cọc)/i.test(t)
-        };
+  /* --- DATA FETCHING --- */
+  async function fetchText(url){
+    const ctl = new AbortController(); const id = setTimeout(()=>ctl.abort(), CFG.fetchTimeoutMs);
+    try{ const res = await fetch(url, {signal: ctl.signal, mode:'cors', credentials:'omit'}); clearTimeout(id); if(!res.ok) return null; return await res.text(); }
+    catch(e){ clearTimeout(id); return null; }
+  }
+  function parseXML(t){ try{ return (new DOMParser()).parseFromString(t,'text/xml'); }catch{ return null; } }
+  function parseHTML(t){ try{ return (new DOMParser()).parseFromString(t,'text/html'); }catch{ return null; } }
+  
+  /* Debug Stats Helpers */
+  function newDomainStats(domain){ return { domain, startedAt: Date.now(), durationMs: 0, urlsSeen: 0, pagesKept: 0, txtPages: 0, htmlPages: 0, nonVNSkipped: 0, noindexSkipped: 0, autoPriceHits: 0 }; }
+  function saveStatsAll(all){ try{ localStorage.setItem(K.dbg, JSON.stringify(all)); }catch{} }
+  function loadStatsAll(){ return safe(localStorage.getItem(K.dbg)) || {}; }
+
+  async function readSitemap(url){
+    const xml = await fetchText(url); if(!xml) return [];
+    const doc = parseXML(xml); if(!doc) return [];
+    const items = Array.from(doc.getElementsByTagName('item')).map(it=> it.getElementsByTagName('link')[0]?.textContent?.trim()).filter(Boolean);
+    if(items.length) return items;
+    const sm = Array.from(doc.getElementsByTagName('sitemap')).map(x=> x.getElementsByTagName('loc')[0]?.textContent?.trim()).filter(Boolean);
+    if(sm.length){
+      const all=[]; for(const loc of sm){ try{ const child = await readSitemap(loc); if(child && child.length) all.push(...child); }catch{} }
+      return Array.from(new Set(all));
     }
+    return Array.from(doc.getElementsByTagName('url')).map(u=> u.getElementsByTagName('loc')[0]?.textContent?.trim()).filter(Boolean);
+  }
 
-    // --- Pricing Engine ---
-    const PRICE_TABLE = {
-        'xe số': { day: [150000], week: [600000, 700000], month: [850000, 1200000] },
-        'xe ga': { day: [150000, 200000], week: [600000, 1000000], month: [1100000, 2000000] },
-        'air blade': { day: [200000], week: [800000], month: [1600000, 1800000] },
-        'vision': { day: [200000], week: [700000, 850000], month: [1400000, 1900000] },
-        'xe điện': { day: [170000], week: [800000], month: [1600000] },
-        '50cc': { day: [200000], week: [800000], month: [1700000] },
-        'xe côn tay': { day: [300000], week: [1200000], month: null }
-    };
-
-    function baseFor(type, unit) {
-        const it = PRICE_TABLE[type]; if (!it) return null;
-        const key = unit === "tuần" ? "week" : (unit === "tháng" ? "month" : "day");
-        const arr = it[key]; if (!arr) return null;
-        return Array.isArray(arr) ? arr[0] : arr;
+  async function pullPages(urls, stats){
+    const out=[]; stats.urlsSeen += urls.length;
+    for(const u of urls.slice(0, CFG.maxPagesPerDomain)){
+      const txt = await fetchText(u); if(!txt) continue;
+      if (/\bname=(?:"|')robots(?:"|')[^>]*content=(?:"|')[^"']*noindex/i.test(txt)) { stats.noindexSkipped++; continue; }
+      
+      let title = (txt.match(/<title[^>]*>([^<]+)<\/title>/i)||[])[1]||""; title = title.replace(/\s+/g,' ').trim();
+      let desc = (txt.match(/<meta[^>]+name=(?:"|')description(?:"|')[^>]+content=(?:"|')([\s\S]*?)(?:"|')/i)||[])[1]||"";
+      if(!desc){ desc = txt.replace(/<script[\s\S]*?<\/script>/gi,' ').replace(/<style[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim().slice(0,600); }
+      
+      const sample = (title+' '+desc).toLowerCase();
+      if(CFG.viOnly && !looksVN(sample)) { stats.nonVNSkipped++; await sleep(CFG.fetchPauseMs); continue; }
+      if(CFG.smart.autoPriceLearn){
+        try{ const autos = extractPricesFromText(txt); if(autos.length){ stats.autoPriceHits += autos.length; const stash = safe(localStorage.getItem(K.autoprices))||[]; stash.push(...autos.map(a=> Object.assign({url:u}, a))); localStorage.setItem(K.autoprices, JSON.stringify(stash.slice(-500))); } }catch{}
+      }
+      stats.htmlPages++; out.push({url:u, title, text:desc}); stats.pagesKept++; await sleep(CFG.fetchPauseMs);
     }
+    return out;
+  }
 
-    function extractPricesFromText(txt) {
-        const clean = String(txt || '').toLowerCase();
-        // Cải thiện regex để bắt giá chính xác hơn
-        const lines = clean.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').split(/[\n\.•\-–]|<br\s*\/?>/i);
-        const out = [];
-        const reNum = /(\d{2,3}(?:[\.\,]\d{3})+|\d{5,})(?:\s*(?:vnđ|vnd|đ|d|k))?/i;
-        const models = TYPE_MAP.map(m => ({key: m.re, type: m.canon}));
+  async function learnSites(origins, force){
+    const list = Array.from(new Set(origins||[])).slice(0, 12);
+    const cache = loadLearn(); const results = {}; let total=0; const allStats = loadStatsAll();
 
-        for (const line of lines) {
-            const found = models.find(m => m.key.test(line));
-            if (!found) continue;
-            const m = line.match(reNum);
-            if (!m) continue;
-            let val = m[1].replace(/[^\d]/g, '');
-            if (/k\b/i.test(line) && parseInt(val, 10) < 10000) val = String(parseInt(val, 10) * 1000);
-            const price = parseInt(val, 10);
-            if (price && price > 50000 && price < 5000000) { // Lọc nhiễu
-                out.push({ type: found.type, unit: 'day', price });
-            }
+    for(const origin of list){
+      try{
+        const key = new URL(origin).origin;
+        const stats = newDomainStats(key);
+        const cached = cache[key];
+        if(!force && cached && ((nowSec()-cached.ts)/3600) < CFG.refreshHours && cached.pages?.length){
+          results[key] = cached; total += cached.pages.length; continue;
         }
-        return out;
-    }
+        
+        // 1. Try moto_sitemap.json first, then 2. sitemap.xml, then 3. crawl
+        let urls=[];
+        try{
+           const jRes = await fetch(key + "/moto_sitemap.json");
+           if(jRes.ok){
+             const json = await jRes.json();
+             urls = [...(json.categories?.datasets?.list||[]), ...(json.categories?.pages?.list||[])];
+           }
+        }catch{}
+        
+        if(!urls.length){
+          const smc = [key+'/sitemap.xml', key+'/sitemap_index.xml'];
+          for(const c of smc){ try{ const u=await readSitemap(c); if(u && u.length){ urls=u; break; } }catch{} }
+        }
+        
+        if(!urls.length){ // Fallback crawl
+          const html = await fetchText(key+'/');
+          if(html){
+            const doc = parseHTML(html);
+            if(doc) urls = Array.from(doc.querySelectorAll('a[href]')).map(a=>a.getAttribute('href')).filter(h=> !h.startsWith('#') && !h.startsWith('javascript'));
+          }
+        }
 
-    // --- Search Engine (BM25) ---
-    function tk(s) { return (s || "").toLowerCase().normalize('NFC').replace(/[^\p{L}\p{N}\s]+/gu, ' ').split(/\s+/).filter(Boolean); }
+        const uniq = Array.from(new Set(urls.map(u=>{ try{ return new URL(u, key).toString().split('#')[0]; }catch{ return null; } }).filter(Boolean).filter(u=> sameHost(u, key))));
+        const pages = await pullPages(uniq, stats);
+        stats.durationMs = Date.now() - stats.startedAt;
+        
+        if(pages.length){ cache[key] = {domain:key, ts:nowSec(), pages}; results[key]=cache[key]; total+=pages.length; }
+        allStats[key] = stats; saveStatsAll(allStats);
+        if(total >= CFG.maxTotalPages) break;
+      }catch(e){}
+    }
+    try{ saveLearn(cache); }catch{} localStorage.setItem(K.stamp, Date.now());
     
-    function getIndexFlat() {
-        const cache = safe(localStorage.getItem(K.learn)) || {};
-        const out = [];
-        Object.keys(cache).forEach(key => { (cache[key].pages || []).forEach(pg => out.push(Object.assign({ source: key }, pg))); });
-        return out;
+    if(CFG.debug) {
+      console.groupCollapsed("%cMotoAI v38.2 Learn Stats", "color:green"); console.table(Object.values(allStats)); console.groupEnd();
+    }
+    return results;
+  }
+
+  /* --- ANSWER ENGINE --- */
+  const PREFIX = ["Chào anh/chị,","Xin chào 👋,","Em chào anh/chị,"];
+  function polite(s){ s = s || "em chưa nhận được câu hỏi, anh/chị nhập lại giúp em."; return naturalize(`${pick(PREFIX)} ${s}`); }
+
+  function composePrice(type, qty){
+    if(!type) type = 'xe số';
+    if(!qty)  return naturalize(`Anh/chị thuê ${type} theo ngày, tuần hay tháng để em báo đúng giá nhé.`);
+    const base = baseFor(type, qty.unit);
+    if(!base)  return naturalize(`Giá thuê ${type} theo ${qty.unit} cần kiểm tra. Anh/chị nhắn Zalo ${CFG.phone} để em chốt theo mẫu xe.`);
+    const total = base * qty.n;
+    const label = qty.unit==="ngày"?"ngày":(qty.unit==="tuần"?"tuần":"tháng");
+    let text = qty.n===1 ? `Giá thuê ${type} 1 ${label} khoảng ${nfVND(base)}đ` : `Giá thuê ${type} ${qty.n} ${label} khoảng ${nfVND(total)}đ`;
+    return naturalize(`${text}. Anh/chị cần em giữ xe và gửi ảnh xe qua Zalo ${CFG.phone} không?`);
+  }
+
+  async function deepAnswer(userText){
+    const q = (userText||"").trim();
+    const intents = detectIntent(q);
+    let type = detectType(q);
+    const qty  = detectQty(q);
+
+    // Deep context
+    if(CFG.deepContext){
+      const ctx = getCtx();
+      for(let i=ctx.turns.length-1;i>=0;i--){
+        const t = ctx.turns[i];
+        if(!type && t.type) type=t.type;
+        if(!qty && t.qty)   return composePrice(type||t.type, t.qty);
+        if(type && qty) break;
+      }
     }
 
-    function buildBM25(docs) {
-        const k1 = 1.5, b = 0.75;
-        const df = new Map(), tf = new Map();
-        let total = 0;
-        docs.forEach(d => {
-            const toks = tk(d.text); total += toks.length;
-            const map = new Map(); toks.forEach(t => map.set(t, (map.get(t) || 0) + 1));
-            tf.set(d.id, map);
-            new Set(toks).forEach(t => df.set(t, (df.get(t) || 0) + 1));
-        });
-        const N = docs.length || 1, avgdl = total / Math.max(1, N);
-        const idf = new Map();
-        df.forEach((c, t) => idf.set(t, Math.log(1 + (N - c + .5) / (c + .5))));
+    if(intents.needContact) return polite(`anh/chị gọi ${CFG.phone} hoặc Zalo ${CFG.zalo||CFG.phone} là có người nhận ngay.`);
+    if(intents.needDocs)    return polite(`thủ tục gọn: CCCD/hộ chiếu + cọc theo xe. Có phương án giảm cọc khi đủ giấy tờ.`);
+    if(intents.needPolicy)  return polite(`đặt cọc tham khảo: xe số 2–3 triệu; xe ga 2–5 triệu; 50cc khoảng 4 triệu. Liên hệ Zalo ${CFG.phone} để chốt theo mẫu xe.`);
+    if(intents.needDelivery)return polite(`thuê tuần/tháng em giao tận nơi. Phí nội thành 20–100k tuỳ quận.`);
+    if(intents.needPrice)   return composePrice(type, qty);
 
-        return {
-            score: (query, docId, docLen) => {
-                const qToks = new Set(tk(query));
-                const map = tf.get(docId) || new Map();
-                let s = 0;
-                qToks.forEach(t => {
-                    const f = map.get(t) || 0;
-                    if (!f) return;
-                    const idfv = idf.get(t) || 0;
-                    s += idfv * (f * (k1 + 1)) / (f + k1 * (1 - b + b * (docLen / avgdl)));
-                });
-                return s;
-            }
-        };
-    }
-
-    function searchIndex(query, k = 3) {
-        const idx = getIndexFlat(); if (!idx.length) return [];
-        const docs = idx.map((it, i) => ({ id: String(i), text: ((it.title || '') + ' ' + (it.text || '')), meta: it }));
-        const bm = CFG.smart.semanticSearch ? buildBM25(docs) : null;
-        
-        const scored = bm
-            ? docs.map(d => ({ score: bm.score(query, d.id, tk(d.text).length || 1), meta: d.meta }))
-                  .filter(x => x.score > 0).sort((a, b) => b.score - a.score).slice(0, k).map(x => x.meta)
-            : idx.map(it => Object.assign({ score: tk(it.title + " " + it.text).filter(t => tk(query).includes(t)).length }, it))
-                 .filter(x => x.score > 0).sort((a, b) => b.score - a.score).slice(0, k);
-        return scored;
-    }
-
-    function bestSentences(text, query, k = 2) {
-        const sents = String(text || '').replace(/\s+/g, ' ').split(/(?<=[\.\!\?])\s+/).slice(0, 80);
-        const qToks = new Set(tk(query));
-        const scored = sents.map(s => {
-            const toks = tk(s);
-            let hit = 0; qToks.forEach(t => { if (toks.includes(t)) hit++; });
-            const lenp = Math.max(0.5, 12 / Math.max(12, toks.length));
-            return { s, score: hit * lenp };
-        }).filter(x => x.score > 0).sort((a, b) => b.score - a.score);
-        return scored.slice(0, k).map(x => x.s);
-    }
-
-    // --- Crawler ---
-    async function fetchText(url) {
-        const ctl = new AbortController();
-        const id = setTimeout(() => ctl.abort(), CFG.fetchTimeoutMs);
-        try {
-            const res = await fetch(url, { signal: ctl.signal, mode: 'cors', credentials: 'omit' });
-            clearTimeout(id); if (!res.ok) return null;
-            return await res.text();
-        } catch { clearTimeout(id); return null; }
-    }
-
-    async function readSitemap(url) {
-        const xml = await fetchText(url); if (!xml) return [];
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(xml, "text/xml");
-        
-        const items = Array.from(doc.getElementsByTagName('item')).map(it => it.getElementsByTagName('link')[0]?.textContent?.trim()).filter(Boolean);
-        if (items.length) return items;
-
-        const sm = Array.from(doc.getElementsByTagName('sitemap')).map(x => x.getElementsByTagName('loc')[0]?.textContent?.trim()).filter(Boolean);
-        if (sm.length) {
-            const all = [];
-            for (const loc of sm) { try { const child = await readSitemap(loc); if (child) all.push(...child); } catch {} }
-            return [...new Set(all)];
+    // Semantic retrieval
+    try{
+      const top = searchIndex(q, 3);
+      if(top && top.length){
+        const t0 = top[0];
+        if(CFG.smart.extractiveQA){
+          const sn = bestSentences((t0.title? (t0.title+'. ') : '') + (t0.text||''), q, 2).join(' ');
+          if(sn) return naturalize(`${sn} <br>👉 Xem thêm: <a href="${t0.url}" target="_blank">Chi tiết</a>`);
         }
-        
-        return Array.from(doc.getElementsByTagName('url')).map(u => u.getElementsByTagName('loc')[0]?.textContent?.trim()).filter(Boolean);
+        return polite(`${t0.text.slice(0,180)}... <a href="${t0.url}">Xem tiếp</a>`);
+      }
+    }catch(e){}
+    return polite(`anh/chị quan tâm loại xe nào (xe số, Vision, Air Blade, 50cc, côn tay…) và thuê mấy ngày để em báo giá phù hợp.`);
+  }
+
+  /* ================= UI CONTROLLER (NEW v38.2) ================= */
+  let isOpen = false;
+  let sending = false;
+
+  function showTyping(){
+    const body=$("#mta-body"); if(!body) return;
+    const box=document.createElement("div"); box.id="mta-typing"; box.textContent="Đang nhập...";
+    body.appendChild(box); body.scrollTop=body.scrollHeight;
+  }
+  function hideTyping(){ const t=$("#mta-typing"); if(t) t.remove(); }
+
+  /* VisualViewport Handler: Fix iOS Keyboard covering input */
+  function handleViewport(){
+    const card = $("#mta-card");
+    if(!card || !isOpen) return;
+    
+    if(window.visualViewport){
+      const vv = window.visualViewport;
+      // Chỉ áp dụng logic này trên màn hình nhỏ (Mobile)
+      if(window.innerWidth <= 480){
+        // Set chiều cao card = chiều cao vùng nhìn thấy (trừ bàn phím)
+        card.style.height = `${vv.height}px`;
+        // Đảm bảo card dính đáy viewport hiện tại
+        card.style.bottom = `0px`; 
+      }
     }
+  }
 
-    async function pullPages(urls, stats) {
-        const out = [];
-        stats.urlsSeen += urls.length;
-        for (const u of urls.slice(0, CFG.maxPagesPerDomain)) {
-            const txt = await fetchText(u); if (!txt) continue;
-            if (/\bnoindex\b/i.test(txt)) { stats.noindexSkipped++; continue; }
+  function openChat(){
+    isOpen = true;
+    $("#mta-card").classList.add("open");
+    $("#mta-backdrop").classList.add("show");
+    $("#mta-bubble").style.transform = "scale(0)";
+    renderSess();
+    
+    setTimeout(()=>{ 
+      const inp = $("#mta-in"); if(inp) inp.focus(); 
+    }, 300);
+    
+    if(window.visualViewport) window.visualViewport.addEventListener('resize', handleViewport);
+    handleViewport();
+  }
 
-            let title = (txt.match(/<title[^>]*>([^<]+)<\/title>/i) || [])[1] || "";
-            title = title.replace(/\s+/g, ' ').trim();
-            let desc = (txt.match(/<meta[^>]+name=(?:"|')description(?:"|')[^>]+content=(?:"|')([\s\S]*?)(?:"|')/i) || [])[1] || "";
-            
-            if (!desc) desc = txt.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 600);
-            
-            if (CFG.viOnly && !looksVN(title + ' ' + desc)) { stats.nonVNSkipped++; await sleep(CFG.fetchPauseMs); continue; }
+  function closeChat(){
+    isOpen = false;
+    $("#mta-card").classList.remove("open");
+    $("#mta-backdrop").classList.remove("show");
+    $("#mta-bubble").style.transform = "scale(1)";
+    if(window.visualViewport) window.visualViewport.removeEventListener('resize', handleViewport);
+  }
 
-            if (CFG.smart.autoPriceLearn) {
-                const autos = extractPricesFromText(txt);
-                if (autos.length) {
-                    stats.autoPriceHits += autos.length;
-                    const stash = safe(localStorage.getItem(K.autoprices)) || [];
-                    stash.push(...autos.map(a => Object.assign({ url: u }, a)));
-                    localStorage.setItem(K.autoprices, JSON.stringify(stash.slice(-500)));
-                }
-            }
+  async function sendUser(text){
+    if(sending) return;
+    const v=(text||"").trim(); if(!v) return;
+    
+    const inp=$("#mta-in"); if(inp) inp.value="";
+    $("#mta-tags").classList.remove("show");
+    
+    sending=true; 
+    addMsg("user", v);
+    pushCtx({from:"user", raw:v, type:detectType(v), qty:detectQty(v)});
+    
+    showTyping();
+    const wait = 600 + Math.random()*1200; 
+    await sleep(wait);
+    
+    const ans = await deepAnswer(v);
+    hideTyping(); 
+    addMsg("bot", ans); 
+    pushCtx({from:"bot", raw:ans});
+    
+    sending=false;
+    // Scroll to bottom
+    const body=$("#mta-body"); if(body) body.scrollTop = body.scrollHeight;
+  }
 
-            stats.htmlPages++;
-            out.push({ url: u, title, text: desc });
-            stats.pagesKept++;
-            await sleep(CFG.fetchPauseMs);
-        }
-        return out;
-    }
-
-    async function learnSites(origins, force) {
-        const list = [...new Set(origins)].slice(0, 12);
-        const cache = safe(localStorage.getItem(K.learn)) || {};
-        const allStats = safe(localStorage.getItem(K.dbg)) || {};
-        let total = 0;
-
-        for (const origin of list) {
-            try {
-                const key = new URL(origin).origin;
-                const stats = { domain: key, startedAt: Date.now(), urlsSeen: 0, pagesKept: 0, htmlPages: 0, autoPriceHits: 0, nonVNSkipped: 0, noindexSkipped: 0 };
-                
-                // Check cache expiration
-                if (!force && cache[key] && ((nowSec() - cache[key].ts) / 3600) < CFG.refreshHours) {
-                    total += cache[key].pages.length;
-                    if (total >= CFG.maxTotalPages) break;
-                    continue;
-                }
-
-                // Sitemap Strategy
-                let urls = [];
-                const smCandidates = [key + '/moto_sitemap.json', key + '/sitemap.xml', key + '/sitemap_index.xml'];
-                
-                // 1. JSON
-                try {
-                    const r = await fetch(smCandidates[0]);
-                    if(r.ok) {
-                       const json = await r.json();
-                       // ... (Giữ logic parse JSON như cũ nếu site hỗ trợ)
-                       // Trong bản rút gọn này ta focus sitemap.xml
-                    }
-                } catch {}
-
-                // 2. XML
-                for(const smUrl of smCandidates.slice(1)) {
-                    try { const u = await readSitemap(smUrl); if(u.length) { urls = u; break; } } catch {}
-                }
-
-                // 3. Fallback BFS
-                if(!urls.length) {
-                   const html = await fetchText(key);
-                   if(html) {
-                       const doc = new DOMParser().parseFromString(html, 'text/html');
-                       urls = Array.from(doc.querySelectorAll('a[href]')).map(a => a.href)
-                            .filter(u => sameHost(u, key)).slice(0, 40);
-                   }
-                }
-
-                const pages = await pullPages([...new Set(urls)], stats);
-                if (pages.length) {
-                    cache[key] = { ts: nowSec(), pages };
-                    localStorage.setItem(K.learn, JSON.stringify(cache));
-                    total += pages.length;
-                }
-                
-                stats.durationMs = Date.now() - stats.startedAt;
-                allStats[key] = stats;
-                localStorage.setItem(K.dbg, JSON.stringify(allStats));
-
-                if (total >= CFG.maxTotalPages) break;
-            } catch (e) { console.warn(e); }
-        }
-        localStorage.setItem(K.stamp, Date.now());
-        mergeAutoPrices();
-    }
-
-    function mergeAutoPrices() {
-        if (!CFG.smart.autoPriceLearn) return;
-        try {
-            const autos = safe(localStorage.getItem(K.autoprices)) || [];
-            const byType = autos.reduce((m, a) => { (m[a.type] || (m[a.type] = [])).push(a.price); return m; }, {});
-            Object.keys(byType).forEach(t => {
-                const arr = byType[t].sort((a, b) => a - b);
-                const p25 = arr[Math.floor(arr.length * 0.25)];
-                const p50 = arr[Math.floor(arr.length * 0.50)];
-                if (PRICE_TABLE[t]) {
-                    PRICE_TABLE[t].day = [p25, p50].filter(Boolean);
-                }
-            });
-        } catch {}
-    }
-
-    // --- Answer Engine ---
-    async function deepAnswer(userText) {
-        const q = (userText || "").trim();
-        const intent = detectIntent(q);
-        let type = detectType(q);
-        const qty = detectQty(q);
-
-        // Context
-        if (CFG.deepContext) {
-            const ctx = safe(localStorage.getItem(K.ctx)) || { turns: [] };
-            for (let i = ctx.turns.length - 1; i >= 0; i--) {
-                const t = ctx.turns[i];
-                if (!type && t.type) type = t.type;
-                if (!qty && t.qty) {
-                    return formatPriceMsg(type || t.type, t.qty);
-                }
-                if (type && qty) break;
-            }
-        }
-
-        if (intent.needContact) return naturalize(`Dạ anh/chị gọi ${CFG.phone} hoặc Zalo ${CFG.zalo} để bên em hỗ trợ nhanh nhất ạ.`);
-        if (intent.needDocs) return naturalize(`Thủ tục bên em đơn giản: Chỉ cần CCCD/Hộ chiếu + Tiền cọc (giảm cọc nếu đủ giấy tờ).`);
-        if (intent.needPrice || type) return formatPriceMsg(type, qty);
-
-        // Search
-        const top = searchIndex(q, 3);
-        if (top.length) {
-            const best = top[0];
-            if (CFG.smart.extractiveQA) {
-                const sents = bestSentences((best.title + ". " + best.text), q, 2);
-                if (sents.length) return naturalize(`${sents.join(' ')} (Nguồn: ${best.url})`);
-            }
-            return naturalize(`${best.text.slice(0, 150)}... Xem thêm tại: ${best.url}`);
-        }
-
-        return naturalize(`Xin chào! Em là trợ lý ảo của ${CFG.brand}. Anh/chị cần thuê xe số, xe ga hay xe điện ạ?`);
-    }
-
-    function formatPriceMsg(type, qty) {
-        if (!type) type = 'xe số';
-        if (!qty) return naturalize(`Anh/chị thuê ${type} bao nhiêu ngày để em báo giá chính xác ạ?`);
-        
-        const base = baseFor(type, qty.unit);
-        if (!base) return naturalize(`Dạ giá thuê ${type} theo ${qty.unit} anh/chị vui lòng liên hệ Zalo ${CFG.phone} ạ.`);
-        
-        const total = base * qty.n;
-        return naturalize(`Giá thuê ${type} ${qty.n} ${qty.unit} khoảng ${nfVND(total)}đ. Anh/chị nhắn Zalo để em chốt xe nhé!`);
-    }
-
-    // ==========================================
-    // 4. UI LAYER (Modern Shell)
-    // ==========================================
-    const UI = {
-        isOpen: false,
-        root: null,
-        
-        init() {
-            this.injectCSS();
-            this.renderHTML();
-            this.bindEvents();
-            this.restoreSession();
-            this.autoTheme();
-        },
-
-        injectCSS() {
-            const style = document.createElement('style');
-            style.textContent = `
-            :root {
-                --mt-primary: ${CFG.themeColor};
-                --mt-bg: #ffffff;
-                --mt-surface: #f4f6f8;
-                --mt-text: #0b1221;
-                --mt-text-sub: #65676b;
-                --mt-input-bg: #eff2f5;
-                --mt-shadow: 0 4px 24px rgba(0,0,0,0.12);
-                --mt-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-                --safe-bottom: env(safe-area-inset-bottom, 20px);
-            }
-            @media (prefers-color-scheme: dark) {
-                :root {
-                    --mt-bg: #18191a;
-                    --mt-surface: #242526;
-                    --mt-text: #e4e6eb;
-                    --mt-text-sub: #b0b3b8;
-                    --mt-input-bg: #3a3b3c;
-                    --mt-shadow: 0 4px 24px rgba(0,0,0,0.4);
-                }
-            }
-            #mt-root * { box-sizing: border-box; outline: none; }
-            #mt-root { font-family: var(--mt-font); z-index: 2147483647; position: fixed; bottom: 0; right: 0; }
-            
-            /* Launcher */
-            #mt-btn {
-                position: fixed; bottom: calc(20px + var(--safe-bottom)); right: 20px;
-                width: 56px; height: 56px; border-radius: 50%;
-                background: var(--mt-primary); border: none; cursor: pointer;
-                box-shadow: 0 8px 24px rgba(0,132,255,0.3);
-                display: flex; align-items: center; justify-content: center;
-                transition: transform 0.2s; z-index: 2147483647;
-            }
-            #mt-btn:hover { transform: scale(1.05); }
-            #mt-btn svg { width: 28px; height: 28px; fill: #fff; }
-
-            /* Main Widget */
-            #mt-widget {
-                position: fixed; bottom: calc(20px + var(--safe-bottom)); right: 20px;
-                width: 380px; height: min(700px, 80vh);
-                background: var(--mt-bg); border-radius: 16px;
-                box-shadow: var(--mt-shadow);
-                display: flex; flex-direction: column;
-                transform: translateY(120%); transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-                overflow: hidden; opacity: 0; pointer-events: none;
-            }
-            #mt-widget.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
-
-            /* Header */
-            .mt-head {
-                padding: 16px; background: var(--mt-primary); color: #fff;
-                display: flex; align-items: center; justify-content: space-between;
-                box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-            }
-            .mt-title { font-weight: 600; font-size: 16px; }
-            .mt-sub { font-size: 12px; opacity: 0.9; }
-            .mt-close { background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; padding: 0 8px; }
-
-            /* Body */
-            #mt-body {
-                flex: 1; overflow-y: auto; padding: 16px;
-                background: var(--mt-surface); scroll-behavior: smooth;
-            }
-            .mt-msg {
-                max-width: 80%; padding: 10px 14px; margin-bottom: 10px; border-radius: 18px;
-                font-size: 15px; line-height: 1.4; word-wrap: break-word;
-            }
-            .mt-msg.bot { background: var(--mt-bg); color: var(--mt-text); border-bottom-left-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
-            .mt-msg.user { background: var(--mt-primary); color: #fff; margin-left: auto; border-bottom-right-radius: 4px; }
-            
-            /* Typing Indicator */
-            .mt-typing { display: flex; gap: 4px; padding: 12px; background: var(--mt-bg); width: fit-content; border-radius: 18px; margin-bottom: 10px; }
-            .mt-dot { width: 6px; height: 6px; background: #ccc; border-radius: 50%; animation: mt-bounce 1.4s infinite ease-in-out; }
-            .mt-dot:nth-child(1) { animation-delay: -0.32s; }
-            .mt-dot:nth-child(2) { animation-delay: -0.16s; }
-            @keyframes mt-bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
-
-            /* Quick Tags */
-            #mt-tags { 
-                padding: 8px 12px; white-space: nowrap; overflow-x: auto; 
-                background: var(--mt-bg); border-top: 1px solid rgba(0,0,0,0.05);
-                scrollbar-width: none;
-            }
-            #mt-tags::-webkit-scrollbar { display: none; }
-            .mt-tag {
-                display: inline-block; padding: 6px 12px; margin-right: 8px;
-                background: var(--mt-surface); color: var(--mt-primary);
-                border-radius: 16px; font-size: 13px; cursor: pointer; border: none;
-                font-weight: 500;
-            }
-
-            /* Footer / Input */
-            .mt-foot {
-                padding: 12px; background: var(--mt-bg);
-                border-top: 1px solid rgba(0,0,0,0.05);
-                display: flex; gap: 8px; align-items: center;
-            }
-            #mt-in {
-                flex: 1; height: 40px; border-radius: 20px; border: none;
-                background: var(--mt-input-bg); padding: 0 16px;
-                color: var(--mt-text); font-size: 16px; /* iOS No Zoom */
-            }
-            #mt-send {
-                width: 40px; height: 40px; border-radius: 50%; border: none;
-                background: var(--mt-primary); color: #fff; cursor: pointer;
-                display: flex; align-items: center; justify-content: center;
-            }
-            #mt-send svg { width: 18px; height: 18px; fill: #fff; margin-left: 2px; }
-
-            /* Mobile Overrides (Bottom Sheet) */
-            @media (max-width: 480px) {
-                #mt-widget {
-                    right: 0; left: 0; bottom: 0; width: 100%; height: 100%; max-height: 85vh;
-                    border-radius: 16px 16px 0 0;
-                    transform: translateY(100%);
-                }
-                #mt-btn { bottom: 20px; right: 16px; }
-            }
-            `;
-            document.head.appendChild(style);
-        },
-
-        renderHTML() {
-            const html = `
-            <div id="mt-root">
-                <button id="mt-btn" aria-label="Chat với ${CFG.brand}">
-                    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-                </button>
-                <div id="mt-widget" role="dialog" aria-modal="true" aria-label="Cửa sổ chat">
-                    <div class="mt-head">
-                        <div>
-                            <div class="mt-title">${CFG.brand}</div>
-                            <div class="mt-sub">⚡ Trả lời tự động</div>
-                        </div>
-                        <button class="mt-close" aria-label="Đóng chat">×</button>
-                    </div>
-                    <div id="mt-body" role="log" aria-live="polite"></div>
-                    <div id="mt-tags">
-                        <button class="mt-tag">💰 Giá thuê</button>
-                        <button class="mt-tag">🛵 Xe ga</button>
-                        <button class="mt-tag">🏍 Xe số</button>
-                        <button class="mt-tag">📄 Thủ tục</button>
-                        <button class="mt-tag">📞 Liên hệ</button>
-                    </div>
-                    <div class="mt-foot">
-                        <input id="mt-in" type="text" placeholder="Nhập tin nhắn..." autocomplete="off">
-                        <button id="mt-send" aria-label="Gửi">
-                            <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-                        </button>
-                    </div>
-                </div>
-            </div>`;
-            const div = document.createElement('div');
-            div.innerHTML = html;
-            document.body.appendChild(div.firstElementChild);
-            this.root = document.getElementById('mt-widget');
-        },
-
-        bindEvents() {
-            const $el = (id) => document.getElementById(id);
-            
-            // Open/Close
-            $el('mt-btn').onclick = () => this.toggle(true);
-            $el('mt-widget').querySelector('.mt-close').onclick = () => this.toggle(false);
-
-            // Send
-            const send = () => {
-                const inp = $el('mt-in');
-                const val = inp.value.trim();
-                if (val) {
-                    this.addMsg('user', val);
-                    inp.value = '';
-                    this.process(val);
-                }
-            };
-            $el('mt-send').onclick = send;
-            $el('mt-in').onkeydown = (e) => { if (e.key === 'Enter') send(); };
-
-            // Tags
-            document.querySelectorAll('.mt-tag').forEach(btn => {
-                btn.onclick = () => {
-                    const txt = btn.textContent.replace(/^[^\w\s]+/, '').trim(); // Remove emoji
-                    this.addMsg('user', txt);
-                    this.process(txt);
-                };
-            });
-
-            // iOS VisualViewport Handler (Fix Keyboard covering input)
-            if (window.visualViewport) {
-                const handleResize = () => {
-                    if (!this.isOpen) return;
-                    const widget = $el('mt-widget');
-                    // Tính toán chiều cao khả dụng khi bàn phím mở
-                    const h = window.visualViewport.height;
-                    const offset = window.innerHeight - h;
-                    
-                    if (offset > 100) { // Keyboard open
-                        widget.style.height = `${h - 20}px`;
-                        widget.style.bottom = `${offset}px`; 
-                        widget.style.borderRadius = "0"; // Full screen feel
-                    } else {
-                        widget.style.height = 'min(700px, 80vh)';
-                        widget.style.bottom = 'calc(20px + var(--safe-bottom))';
-                        widget.style.borderRadius = "16px";
-                    }
-                    this.scrollToBottom();
-                };
-                window.visualViewport.addEventListener('resize', handleResize);
-                window.visualViewport.addEventListener('scroll', handleResize);
-            }
-        },
-
-        toggle(state) {
-            this.isOpen = state;
-            const w = document.getElementById('mt-widget');
-            const b = document.getElementById('mt-btn');
-            
-            if (state) {
-                w.classList.add('open');
-                b.style.transform = 'scale(0)';
-                setTimeout(() => document.getElementById('mt-in').focus(), 300);
-            } else {
-                w.classList.remove('open');
-                b.style.transform = 'scale(1)';
-            }
-        },
-
-        addMsg(role, text) {
-            const div = document.createElement('div');
-            div.className = `mt-msg ${role}`;
-            div.innerHTML = text.replace(/\n/g, '<br>'); // Basic sanitization + formatting
-            document.getElementById('mt-body').appendChild(div);
-            this.scrollToBottom();
-            
-            // Save Session
-            const s = safe(localStorage.getItem(K.sess)) || [];
-            s.push({ role, text, t: Date.now() });
-            localStorage.setItem(K.sess, JSON.stringify(s.slice(-20)));
-        },
-
-        showTyping() {
-            const div = document.createElement('div');
-            div.className = 'mt-typing';
-            div.id = 'mt-typing-ind';
-            div.innerHTML = '<div class="mt-dot"></div><div class="mt-dot"></div><div class="mt-dot"></div>';
-            document.getElementById('mt-body').appendChild(div);
-            this.scrollToBottom();
-        },
-
-        hideTyping() {
-            const el = document.getElementById('mt-typing-ind');
-            if (el) el.remove();
-        },
-
-        scrollToBottom() {
-            const b = document.getElementById('mt-body');
-            b.scrollTop = b.scrollHeight;
-        },
-
-        async process(text) {
-            // Update Context
-            const ctx = safe(localStorage.getItem(K.ctx)) || { turns: [] };
-            ctx.turns.push({ role: 'user', type: detectType(text), qty: detectQty(text) });
-            ctx.turns = ctx.turns.slice(-CFG.maxContextTurns);
-            localStorage.setItem(K.ctx, JSON.stringify(ctx));
-
-            this.showTyping();
-            // Simulate reading delay
-            await sleep(600 + Math.random() * 500);
-            
-            const ans = await deepAnswer(text);
-            this.hideTyping();
-            this.addMsg('bot', ans);
-        },
-
-        restoreSession() {
-            const s = safe(localStorage.getItem(K.sess)) || [];
-            if (s.length) {
-                s.forEach(m => {
-                    const div = document.createElement('div');
-                    div.className = `mt-msg ${m.role}`;
-                    div.innerHTML = m.text;
-                    document.getElementById('mt-body').appendChild(div);
-                });
-            } else {
-                this.addMsg('bot', `Xin chào 👋! Mình có thể giúp gì cho bạn về việc thuê xe máy ạ?`);
-            }
-        },
-        
-        autoTheme() {
-            // CSS media query handles this, but we ensure class hooks if needed later
-        }
+  function bindEvents(){
+    $("#mta-bubble").onclick = openChat;
+    $("#mta-close").onclick = closeChat;
+    $("#mta-backdrop").onclick = closeChat;
+    
+    $("#mta-send").onclick = ()=>{ const i=$("#mta-in"); sendUser(i.value); };
+    $("#mta-in").onkeydown = (e)=>{ 
+      if(e.key==="Enter" && !e.shiftKey){ e.preventDefault(); sendUser(e.target.value); } 
     };
 
-    // ==========================================
-    // 5. BOOTSTRAP
-    // ==========================================
-    (async function boot() {
-        UI.init();
-        mergeAutoPrices();
-        
-        // Auto Clean
-        const lastClean = parseInt(localStorage.getItem(K.clean) || 0);
-        if (Date.now() - lastClean > 604800000) { // 7 days
-            localStorage.removeItem(K.ctx);
-            localStorage.setItem(K.clean, Date.now());
-        }
+    document.querySelectorAll(".m-tag").forEach(b => {
+      b.onclick = function(){ 
+        const inp=$("#mta-in"); inp.value = this.dataset.q; 
+        sendUser(this.dataset.q); 
+      }
+    });
+  }
 
-        // Auto Learn
-        if (CFG.autolearn) {
-            const last = parseInt(localStorage.getItem(K.stamp) || 0);
-            if (Date.now() - last >= CFG.refreshHours * 3600000) {
-                if (CFG.debug) console.log("MotoAI: Starting background learning...");
-                await learnSites([location.origin, ...CFG.extraSites], false);
-                if (CFG.debug) console.log("MotoAI: Learning complete.");
-            }
-        }
-    })();
+  /* ================= INIT ================= */
+  function init(){
+    // Inject CSS & HTML
+    const div = document.createElement("div"); div.innerHTML = HTML; document.body.appendChild(div);
+    const sty = document.createElement("style"); sty.textContent = CSS; document.head.appendChild(sty);
+    
+    bindEvents();
+    mergeAutoPrices(); // Load saved prices to table
 
-    // ==========================================
-    // 6. PUBLIC API
-    // ==========================================
-    window.MotoAI_v39 = {
-        open: () => UI.toggle(true),
-        close: () => UI.toggle(false),
-        send: (text) => { UI.toggle(true); UI.addMsg('user', text); UI.process(text); },
-        learnNow: async (sites) => learnSites(sites || [location.origin], true),
-        debug: () => console.table(safe(localStorage.getItem(K.dbg))),
-        clear: () => { localStorage.clear(); location.reload(); }
-    };
+    // AutoLearn Trigger
+    if(CFG.autolearn){
+      const last = parseInt(localStorage.getItem(K.stamp)||0);
+      if(!last || (Date.now()-last) >= CFG.refreshHours*3600*1000){
+        setTimeout(()=>{ learnSites([location.origin, ...CFG.extraSites], false); }, 2000);
+      }
+    }
+  }
+
+  if(document.readyState==="complete") init();
+  else window.addEventListener("load", init);
+
+  /* Public API */
+  window.MotoAI_v38 = {
+    open: openChat, close: closeChat,
+    send: sendUser,
+    learnNow: (s)=> learnSites(s||[location.origin], true),
+    clearCache: ()=> { try{localStorage.removeItem(K.learn); localStorage.removeItem(K.autoprices);}catch{} }
+  };
 
 })();
