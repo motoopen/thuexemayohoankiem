@@ -4,12 +4,14 @@
       + VisualViewport Logic (Chống bàn phím che input chính xác 100%)
       + Auto Dark/Light Mode (System aware)
       + Bottom Sheet Animation (Mobile friendly)
-      + Strip Markdown Integrated (Fixed in addMsg)
+      + Strip Markdown Integrated (Fixed in addMsg logic)
+
+   ✅ LOGIC FIX: v38.3.2
+      + Fix: Critical Session Duplication (Split appendMsgDOM vs addMsg)
+      + Fix: Hardening localStorage (Private Mode support)
+      + Fix: autoAvoid null safety check
 
    ✅ LOGIC KEEP: v38.1 (BM25 + Extractive QA + Auto-Price Learn + Multi-site)
-   - AutoLearn: ưu tiên moto_sitemap.json; fallback sitemap.xml / crawl nông
-   - Debug: counters, console.table API
-   - Fix: searchIndex sorting bug
 */
 
 (function(){
@@ -303,29 +305,37 @@
   function getSess(){ const arr = safe(localStorage.getItem(K.sess))||[]; return Array.isArray(arr)?arr:[]; }
   function saveSess(a){ try{ localStorage.setItem(K.sess, JSON.stringify(a.slice(-MAX_MSG))); }catch{} }
   
-  // 🔹 UPDATED: Tự động stripMarkdown nếu role là bot
-  function addMsg(role,text){
+  // 🔹 FIX 1: Tách logic DOM ra khỏi logic lưu trữ
+  function appendMsgDOM(role, text) {
     if(!text) return;
     const body=$("#mta-body"); if(!body) return;
     const el=document.createElement("div");
     el.className="m-msg "+(role==="user"?"user":"bot");
-    
-    // Nếu là bot thì làm sạch Markdown luôn tại đây
+    // Nếu là bot thì làm sạch Markdown
     const out = (role === "bot") ? stripMarkdown(String(text)) : String(text);
     el.textContent = out;
-    
-    body.appendChild(el); body.scrollTop=body.scrollHeight;
-    
-    // Lưu session vẫn lưu text gốc để khi reload, logic addMsg chạy lại sẽ tự clean lại
-    const arr=getSess(); arr.push({role,text,t:Date.now()}); saveSess(arr);
+    body.appendChild(el); 
+    body.scrollTop=body.scrollHeight;
+  }
+
+  function addMsg(role, text) {
+    // 1. Render UI
+    appendMsgDOM(role, text);
+    // 2. Lưu vào Storage (chỉ gọi khi có tin mới)
+    const arr=getSess();
+    arr.push({role,text,t:Date.now()});
+    saveSess(arr);
   }
 
   function renderSess(){
     const body=$("#mta-body"); body.innerHTML="";
     const arr=getSess();
-    if(arr.length) arr.forEach(m=> addMsg(m.role,m.text));
+    // Render lại từ history -> Chỉ gọi appendMsgDOM, KHÔNG gọi addMsg
+    if(arr.length) arr.forEach(m=> appendMsgDOM(m.role,m.text));
+    // Nếu chưa có tin nào -> thêm tin chào (vừa render vừa lưu)
     else addMsg("bot", naturalize(`Xin chào 👋, em là nhân viên hỗ trợ của ${CFG.brand}. Anh/chị cần thuê xe số, xe ga hay theo tháng?`));
   }
+
   function getCtx(){ return safe(localStorage.getItem(K.ctx)) || {turns:[]}; }
   function pushCtx(delta){
     try{
@@ -628,7 +638,8 @@
       }catch{}
     }
     try{ saveLearn(cache); }catch{}
-    localStorage.setItem(K.stamp, Date.now());
+    // 🔹 FIX 2: Bọc try/catch cho setItem
+    try{ localStorage.setItem(K.stamp, Date.now()); }catch{}
     return results;
   }
 
@@ -710,7 +721,7 @@
     const body=$("#mta-body"); if(body) body.scrollTop = body.scrollHeight;
   }
 
-  // 🔹 UPDATED: Simplified sendUser (addMsg handles stripping)
+  // Simplified sendUser (addMsg handles stripping)
   async function sendUser(text){
     if(sending) return;
     const v=(text||"").trim(); if(!v) return;
@@ -749,6 +760,9 @@
   function autoAvoid(){
     if (!isOpen) return;
     const card = $("#mta-card");
+    // 🔹 FIX 3: Safety Check
+    if (!card) return;
+
     // Chỉ chạy logic này trên mobile khi bàn phím mở (visualViewport.height < innerHeight)
     if (window.visualViewport && window.innerWidth < 600) {
       const vh = window.visualViewport.height;
@@ -802,7 +816,9 @@
     // Cleaning
     const lastClean = parseInt(localStorage.getItem(K.clean)||0);
     if(!lastClean || (Date.now()-lastClean) > 7*24*3600*1000){
-      localStorage.removeItem(K.ctx); localStorage.setItem(K.clean, Date.now());
+      localStorage.removeItem(K.ctx); 
+      // 🔹 FIX 2: Hardening
+      try{ localStorage.setItem(K.clean, Date.now()); }catch{}
     }
 
     // Inject UI
