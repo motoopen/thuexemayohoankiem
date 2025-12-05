@@ -1,3 +1,4 @@
+html
 <!DOCTYPE html>
 <html lang="vi" data-theme="light">
 <head>
@@ -718,25 +719,34 @@
             box-shadow: var(--shadow-xs);
         }
 
+        /* --- UPDATED FORM STYLES (CALCULATOR) --- */
         .mini-form {
             background-color: var(--c-bg-card);
             border-radius: var(--radius);
             box-shadow: var(--shadow-md);
             padding: 1.5rem;
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto;
             text-align: left;
+            border: 1px solid var(--c-border);
         }
         .mini-form h3 {
             font-size: 1.25rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 1.5rem;
             text-align: center;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
+        
         .form-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1rem;
+            gap: 1.25rem;
+            align-items: end;
         }
         .form-group {
             display: flex;
@@ -744,39 +754,57 @@
         }
         .form-group label {
             font-size: 0.9rem;
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 0.5rem;
+            color: var(--c-text-muted);
         }
-        .form-group input, .form-group button {
+        .form-group select, .form-group input {
             padding: 0.75rem 1rem;
             font-size: 1rem;
             border-radius: var(--radius-sm);
             border: 1px solid var(--c-border);
             background-color: var(--c-bg);
             color: var(--c-text);
+            transition: all 0.2s;
+            width: 100%;
         }
-        .form-group input:focus {
+        .form-group select:focus, .form-group input:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.2);
+            box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.15);
         }
         .form-group button {
             background-color: var(--accent);
             color: #ffffff;
             border: none;
             cursor: pointer;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            height: 48px; 
+            transition: background 0.3s;
+        }
+        .form-group button:hover {
+            background-color: var(--accent-dark);
         }
 
-        @media (min-width: 640px) {
-            .hero h2 { font-size: 3rem; }
-            .form-grid { grid-template-columns: repeat(2, 1fr); }
-            .form-group-full { grid-column: 1 / -1; }
+        .price-result-box {
+            background-color: var(--c-bg);
+            border: 1px dashed var(--accent);
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 80px;
         }
+        .price-label { font-size: 0.85rem; color: var(--c-text-muted); }
+        .price-value { font-size: 1.5rem; font-weight: 800; color: var(--accent); line-height: 1.2; }
+        
         @media (min-width: 768px) {
-            .form-grid { grid-template-columns: 1fr 1fr 1fr auto; }
-            .form-group-full { grid-column: auto; }
-            .form-group { margin-bottom: 0; }
-            .form-group button { align-self: end; height: 100%; }
+            .form-grid { grid-template-columns: 2fr 1fr 1fr 1.5fr; }
+            .hero h2 { font-size: 3rem; }
         }
 
         /* 7. CARDS & SECTIONS */
@@ -1090,7 +1118,7 @@
         }
 
         /* ========================================= */
-        /* [NEW] AI TERMINAL LOCATION STYLES         */
+        /* [UPDATED] AI TERMINAL LOCATION STYLES     */
         /* ========================================= */
         .ai-terminal-window {
             background-color: var(--ai-terminal-bg);
@@ -1132,6 +1160,7 @@
             padding: 20px;
             min-height: 400px;
             position: relative;
+            background: linear-gradient(180deg, rgba(13,17,23,0.9) 0%, rgba(13,17,23,1) 100%);
         }
 
         .scan-line {
@@ -1140,9 +1169,9 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: rgba(88, 166, 255, 0.5);
-            box-shadow: 0 0 10px rgba(88, 166, 255, 0.8);
-            animation: scan 3s linear infinite;
+            background: rgba(88, 166, 255, 0.8);
+            box-shadow: 0 0 15px rgba(88, 166, 255, 1);
+            animation: scan 2s linear infinite;
             z-index: 5;
             pointer-events: none;
             display: none; /* JS will toggle */
@@ -1159,6 +1188,7 @@
             font-size: 0.9rem;
             margin-bottom: 20px;
             color: var(--ai-terminal-text);
+            font-family: 'Fira Code', monospace;
         }
         .cmd-line { display: block; margin-bottom: 5px; }
         .cmd-cursor {
@@ -1180,20 +1210,26 @@
         .ai-loc-grid.visible { opacity: 1; }
         
         .ai-loc-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--ai-terminal-border);
-            border-radius: 8px;
+            background: rgba(33, 38, 45, 0.6);
+            border: 1px solid rgba(48, 54, 61, 0.7);
+            border-radius: 12px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             transform: translateY(20px);
             opacity: 0;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(5px);
+        }
+        .ai-loc-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .ai-loc-card.revealed { transform: translateY(0); opacity: 1; }
         
         .ai-loc-img-wrap {
-            height: 200px;
+            height: 180px;
             overflow: hidden;
             position: relative;
         }
@@ -1201,21 +1237,35 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(80%);
-            transition: filter 0.3s, transform 0.5s;
+            transition: transform 0.6s ease;
         }
-        .ai-loc-card:hover .ai-loc-img { filter: grayscale(0%); transform: scale(1.05); }
+        .ai-loc-card:hover .ai-loc-img { transform: scale(1.1); }
         
         .ai-loc-info { padding: 15px; }
         .ai-loc-title {
             color: #fff;
-            font-weight: 600;
-            margin-bottom: 5px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 8px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
-        .ai-loc-dist { font-size: 0.8rem; color: #2ea44f; border: 1px solid #2ea44f; padding: 2px 6px; border-radius: 4px; }
-        .ai-loc-desc { font-size: 0.85rem; color: #8b949e; line-height: 1.5; min-height: 40px; }
+        .ai-loc-dist { 
+            font-size: 0.75rem; 
+            color: #2ea44f; 
+            background: rgba(46, 164, 79, 0.1);
+            border: 1px solid rgba(46, 164, 79, 0.3); 
+            padding: 2px 8px; 
+            border-radius: 99px; 
+            font-family: 'Fira Code', monospace;
+        }
+        .ai-loc-desc { 
+            font-size: 0.85rem; 
+            color: #8b949e; 
+            line-height: 1.5; 
+            font-family: 'Inter', sans-serif;
+        }
         
         @media (min-width: 768px) {
             .ai-loc-grid { grid-template-columns: repeat(3, 1fr); }
@@ -1866,28 +1916,36 @@
                     <span class="chip">🛵 Xe ga/xe số mới</span>
                     <span class="chip">🚚 Giao tận khách sạn</span>
                 </div>
-                <form class="mini-form animate-on-scroll" data-delay="400" id="quote-form" aria-labelledby="form-title">
-                    <h3 id="form-title">🧭 Bạn cần xe đi đâu?</h3>
+                
+                <!-- === UPDATED FORM: PRICE CALCULATOR === -->
+                <form class="mini-form animate-on-scroll" data-delay="400" id="price-calculator" aria-labelledby="form-title">
+                    <h3 id="form-title"><span class="material-symbols-rounded">calculate</span> Tính Tiền Thuê Xe Tự Động</h3>
                     <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="opacity: 0; position: absolute; top: 0; left: 0; height: 0; width: 0; z-index: -1;">
                     
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="destination">Điểm đến</label>
-                            <input type="text" id="destination" placeholder="Ví dụ: Phố cổ, Ba Vì..." required>
+                            <label for="calc-bike-type">Chọn loại xe</label>
+                            <select id="calc-bike-type" required>
+                                <option value="150000">Xe Số (Wave/Sirius) - 150k</option>
+                                <option value="200000" selected>Xe Ga (Vision/AirBlade) - 200k</option>
+                                <option value="350000">Xe Côn Tay (Winner/Exciter) - 350k</option>
+                                <option value="180000">Xe Điện (VinFast) - 180k</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="budget">Loại xe mong muốn</label>
-                            <input type="text" id="budget" placeholder="Ví dụ: Vision, Wave...">
+                            <label for="calc-days">Số ngày thuê</label>
+                            <input type="number" id="calc-days" value="1" min="1" max="365" required>
                         </div>
                         <div class="form-group">
-                            <label for="days">Số ngày thuê</label>
-                            <input type="number" id="days" placeholder="2" min="1" required>
+                            <button type="button" id="btn-calculate" class="btn btn-primary w-100">Tính Tiền</button>
                         </div>
-                        <div class="form-group form-group-full">
-                            <button type="submit" class="btn btn-primary w-100">Nhận Báo Giá Ngay</button>
+                        <div class="price-result-box">
+                            <span class="price-label">Tổng tạm tính:</span>
+                            <span class="price-value" id="price-total">200.000đ</span>
                         </div>
                     </div>
                 </form>
+
             </div>
         </section>
 
@@ -2083,7 +2141,7 @@
         </section>
         
         <!-- =========================
-             AI LOCATION TERMINAL UPGRADE
+             [UPDATED] AI LOCATION TERMINAL
              ========================= -->
         <section id="locations" class="section" aria-labelledby="locations-title">
             <div class="container">
@@ -2332,9 +2390,36 @@
             const lightboxClose = document.getElementById('lightbox-close');
             const ultraWrapper = document.getElementById('quick-call-ultra');
             const ultraToggleBtn = document.getElementById('ultra-toggle-btn');
-            const quoteForm = document.getElementById('quote-form');
+            
+            // --- NEW: CALCULATOR ELEMENTS ---
+            const btnCalculate = document.getElementById('btn-calculate');
+            const calcBikeType = document.getElementById('calc-bike-type');
+            const calcDays = document.getElementById('calc-days');
+            const priceTotalDisplay = document.getElementById('price-total');
 
-            // --- 1. AI LOCATION TERMINAL LOGIC ---
+            // --- 1. HERO CALCULATOR LOGIC ---
+            if(btnCalculate && calcBikeType && calcDays && priceTotalDisplay) {
+                const calculateTotal = () => {
+                    const pricePerDay = parseInt(calcBikeType.value, 10);
+                    let days = parseInt(calcDays.value, 10);
+                    if(isNaN(days) || days < 1) days = 1;
+                    
+                    const total = pricePerDay * days;
+                    // Format currency Vietnamese style
+                    priceTotalDisplay.textContent = total.toLocaleString('vi-VN') + 'đ';
+                    
+                    // Add animation effect
+                    priceTotalDisplay.style.transform = "scale(1.1)";
+                    setTimeout(() => priceTotalDisplay.style.transform = "scale(1)", 200);
+                };
+
+                btnCalculate.addEventListener('click', calculateTotal);
+                // Also calculate when inputs change
+                calcBikeType.addEventListener('change', calculateTotal);
+                calcDays.addEventListener('input', calculateTotal);
+            }
+
+            // --- 2. AI LOCATION TERMINAL LOGIC ---
             const locTerminal = document.getElementById('ai-loc-terminal');
             const locLogOutput = document.getElementById('ai-log-output');
             const locGrid = document.getElementById('ai-loc-results');
@@ -2345,21 +2430,21 @@
             const locationsDB = [
                 {
                     title: "Phố Cổ Hà Nội",
-                    img: "https://placehold.co/600x400/D83B01/FFFFFF?text=Phố+Cổ+Hà+Nội",
+                    img: "https://thuexemaynguyentu.com/wp-content/uploads/2025/09/Cho-thue-xe-may-Ba-Dinh.jpg", // Dùng ảnh thực tế từ gallery
                     dist: "0.5 km",
-                    desc: "Khu vực sầm uất với 36 phố phường. Thích hợp đi xe máy lượn lách các ngõ nhỏ."
+                    desc: "Khu vực 36 phố phường sầm uất. Thích hợp đi xe máy lượn lách các ngõ nhỏ, thưởng thức ẩm thực đường phố."
                 },
                 {
                     title: "Hồ Hoàn Kiếm",
-                    img: "https://placehold.co/600x400/107C10/FFFFFF?text=Hồ+Hoàn+Kiếm",
+                    img: "https://thuexemaynguyentu.com/wp-content/uploads/2025/09/Dia-chi-cho-thue-xe-may-ha-noi.jpg", // Dùng ảnh thực tế
                     dist: "1.2 km",
-                    desc: "Trái tim của thủ đô. Cuối tuần có phố đi bộ, nên gửi xe bên ngoài và đi bộ vào."
+                    desc: "Trái tim của thủ đô. Cuối tuần có phố đi bộ, bạn nên gửi xe bên ngoài và đi bộ vào để tận hưởng không khí."
                 },
                 {
-                    title: "Hoàng Thành Thăng Long",
-                    img: "https://placehold.co/600x400/515151/FFFFFF?text=Hoàng+Thành",
-                    dist: "3.5 km",
-                    desc: "Di sản văn hóa thế giới. Không gian thoáng đãng, nhiều góc check-in lịch sử."
+                    title: "Cầu Long Biên",
+                    img: "https://thuexemaynguyentu.com/wp-content/uploads/2025/09/Muon-xe-may-Ha-Noi.jpg", // Dùng ảnh thực tế
+                    dist: "2.0 km",
+                    desc: "Chứng nhân lịch sử. Đi xe máy lên cầu vào buổi chiều tà để ngắm hoàng hôn sông Hồng cực đẹp."
                 }
             ];
 
@@ -2371,7 +2456,6 @@
                         if (i < text.length) {
                             element.innerHTML += text.charAt(i);
                             i++;
-                            // Auto scroll to bottom of log
                             element.scrollTop = element.scrollHeight;
                         } else {
                             clearInterval(timer);
@@ -2392,8 +2476,8 @@
                 terminalWindow.classList.add('scanning');
 
                 await typeLog("connect secure_server...", locLogOutput);
-                await typeLog("downloading images packets...", locLogOutput, 10);
-                await typeLog("rendering map data...", locLogOutput, 10);
+                await typeLog("downloading map data...", locLogOutput, 10);
+                await typeLog("optimizing routes...", locLogOutput, 10);
                 
                 terminalWindow.classList.remove('scanning');
                 locGrid.classList.add('visible');
@@ -2428,12 +2512,12 @@
                             descEl.textContent += loc.desc.charAt(d);
                             d++;
                         } else clearInterval(descTimer);
-                    }, 15);
+                    }, 10);
                     
                     await new Promise(r => setTimeout(r, 600)); // Delay between cards
                 }
                 
-                await typeLog("scan complete. 3 results found.", locLogOutput);
+                await typeLog("scan complete. 3 top locations found.", locLogOutput);
                 isScanning = false;
             };
 
@@ -2450,7 +2534,7 @@
             if(scanBtn) scanBtn.addEventListener('click', runTerminalScan);
 
 
-            // --- 2. AI CHAT FAQ LOGIC ---
+            // --- 3. AI CHAT FAQ LOGIC ---
             const chatWindow = document.getElementById('chat-window');
             const chipsContainer = document.getElementById('suggestion-chips');
             
@@ -2502,12 +2586,12 @@
                             if(faqData[key]) {
                                 addMessage(faqData[key], 'bot');
                             }
-                        }, 1000 + Math.random() * 500); // Random delay 1-1.5s
+                        }, 800 + Math.random() * 500); 
                     }
                 });
             }
 
-            // --- 3. EXISTING FUNCTIONALITY (Mobile Menu, Theme, Slider, etc.) ---
+            // --- 4. EXISTING FUNCTIONALITY (Mobile Menu, Theme, Slider, etc.) ---
             
             // AI Greeting (Top Menu)
             const initAISmartMenu = () => {
@@ -2563,7 +2647,7 @@
             const updateShopStatus = () => {
                 const now = new Date();
                 const currentHour = now.getHours();
-                const isOpen = currentHour >= 8 && currentHour < 18;
+                const isOpen = currentHour >= 8 && currentHour < 22; // Mở đến 10h tối
                 const desktopStatus = document.getElementById('shop-status-desktop');
                 if (desktopStatus) {
                     desktopStatus.textContent = isOpen ? "ĐANG MỞ CỬA" : "ĐÃ ĐÓNG CỬA";
@@ -2713,13 +2797,6 @@
             if(mediaQueryMobile.matches) initFooter();
             mediaQueryMobile.addListener(e => { if(e.matches) initFooter(); });
 
-            // Form
-            if(quoteForm) {
-                quoteForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    alert("Cảm ơn! Chúng tôi sẽ liên hệ lại sớm.");
-                });
-            }
             if(currentYearEl) currentYearEl.textContent = new Date().getFullYear();
 
             // Quick Call Ultra Toggle
