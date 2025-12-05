@@ -31,7 +31,7 @@
     <!-- === PRECONNECT & FONTS === -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
     
     <!-- Font Awesome -->
@@ -65,6 +65,13 @@
             --ai-glass: rgba(255, 255, 255, 0.7);
             --ai-glass-border: rgba(255, 255, 255, 0.5);
             --ai-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+
+            /* AI Simulation Colors */
+            --ai-terminal-bg: #0D1117;
+            --ai-terminal-text: #58a6ff;
+            --ai-terminal-border: #30363d;
+            --ai-chat-bubble-user: #0078D4;
+            --ai-chat-bubble-bot: #f1f8ff;
             
             /* Status Indicators */
             --status-open-bg: rgba(46, 164, 79, 0.15);
@@ -92,6 +99,8 @@
             --ai-glass: rgba(13, 17, 23, 0.7);
             --ai-glass-border: rgba(255, 255, 255, 0.1);
             --ai-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            
+            --ai-chat-bubble-bot: #161b22;
 
             --status-open-bg: rgba(63, 185, 80, 0.2);
             --status-open-text: #3fb950;
@@ -1061,13 +1070,6 @@
         }
 
         /* Bonus Sections & Checklist */
-        .bonus-grid-3 {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-        @media (min-width: 768px) { .bonus-grid-3 { grid-template-columns: repeat(3, 1fr); } }
-        
         #commitment { background-color: var(--c-bg-card); }
         html[data-theme="dark"] #commitment { background-color: var(--c-bg); }
         
@@ -1086,76 +1088,263 @@
             font-weight: 600;
             user-select: none;
         }
-        
-        .location-card {
-            position: relative;
+
+        /* ========================================= */
+        /* [NEW] AI TERMINAL LOCATION STYLES         */
+        /* ========================================= */
+        .ai-terminal-window {
+            background-color: var(--ai-terminal-bg);
+            border: 1px solid var(--ai-terminal-border);
+            border-radius: var(--radius);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            font-family: 'Fira Code', monospace;
             overflow: hidden;
+            color: #e6edf3;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
         }
-        .location-card img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            transition: transform 0.4s ease;
+        
+        .terminal-header {
+            background-color: #161b22;
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--ai-terminal-border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .location-card:hover img { transform: scale(1.05); }
-        .location-card .content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        .terminal-dots {
+            display: flex;
+            gap: 6px;
         }
-        .location-card h3 {
-            color: #ffffff;
-            font-size: 1.25rem;
-            margin-bottom: 0;
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+        .terminal-title {
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 0.85rem;
+            opacity: 0.7;
         }
 
-        /* FAQ */
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-            border: 1px solid var(--c-border);
-            border-radius: var(--radius);
-            overflow: hidden;
+        .terminal-body {
+            padding: 20px;
+            min-height: 400px;
+            position: relative;
         }
-        .faq-item { border-bottom: 1px solid var(--c-border); }
-        .faq-item:last-child { border-bottom: none; }
-        .faq-question {
+
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            background: var(--c-bg-card);
-            border: none;
-            padding: 1.25rem 1.5rem;
-            font-size: 1.1rem;
+            height: 2px;
+            background: rgba(88, 166, 255, 0.5);
+            box-shadow: 0 0 10px rgba(88, 166, 255, 0.8);
+            animation: scan 3s linear infinite;
+            z-index: 5;
+            pointer-events: none;
+            display: none; /* JS will toggle */
+        }
+        .ai-terminal-window.scanning .scan-line { display: block; }
+        @keyframes scan {
+            0% { top: 0; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        .terminal-log {
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            color: var(--ai-terminal-text);
+        }
+        .cmd-line { display: block; margin-bottom: 5px; }
+        .cmd-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 15px;
+            background: var(--ai-terminal-text);
+            animation: blink 1s infinite;
+            vertical-align: text-bottom;
+        }
+
+        .ai-loc-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .ai-loc-grid.visible { opacity: 1; }
+        
+        .ai-loc-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--ai-terminal-border);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        .ai-loc-card.revealed { transform: translateY(0); opacity: 1; }
+        
+        .ai-loc-img-wrap {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        .ai-loc-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(80%);
+            transition: filter 0.3s, transform 0.5s;
+        }
+        .ai-loc-card:hover .ai-loc-img { filter: grayscale(0%); transform: scale(1.05); }
+        
+        .ai-loc-info { padding: 15px; }
+        .ai-loc-title {
+            color: #fff;
             font-weight: 600;
-            color: var(--c-text);
-            cursor: pointer;
-            text-align: left;
+            margin-bottom: 5px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
         }
-        .faq-question:hover { background-color: var(--c-bg); }
-        .faq-question .icon {
-            font-family: 'Material Symbols Rounded';
-            font-size: 1.5rem;
-            transition: transform var(--transition-speed) ease;
+        .ai-loc-dist { font-size: 0.8rem; color: #2ea44f; border: 1px solid #2ea44f; padding: 2px 6px; border-radius: 4px; }
+        .ai-loc-desc { font-size: 0.85rem; color: #8b949e; line-height: 1.5; min-height: 40px; }
+        
+        @media (min-width: 768px) {
+            .ai-loc-grid { grid-template-columns: repeat(3, 1fr); }
         }
-        .faq-answer {
-            display: grid;
-            grid-template-rows: 0fr;
+
+        /* ========================================= */
+        /* [NEW] AI CHAT FAQ STYLES                  */
+        /* ========================================= */
+        .ai-chat-interface {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--c-bg-card);
+            border: 1px solid var(--c-border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            height: 600px;
             overflow: hidden;
-            transition: grid-template-rows var(--transition-speed) ease;
         }
-        .faq-answer > div { min-height: 0; }
-        .faq-answer p {
-            padding: 0 1.5rem 1.5rem;
-            color: var(--c-text-muted);
-            line-height: 1.7;
+        
+        .chat-header {
+            padding: 15px 20px;
+            background: var(--c-bg);
+            border-bottom: 1px solid var(--c-border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .faq-item.active .faq-question .icon { transform: rotate(180deg); }
-        .faq-item.active .faq-answer { grid-template-rows: 1fr; }
+        .bot-avatar {
+            width: 36px;
+            height: 36px;
+            background: var(--ai-gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        .chat-status { font-size: 0.8rem; color: var(--status-open-text); display: flex; align-items: center; gap: 4px; }
+        .chat-status::before { content:''; display:inline-block; width:6px; height:6px; border-radius:50%; background:currentColor; }
+
+        .chat-window {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background-color: var(--c-bg-card);
+        }
+
+        .chat-msg {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            position: relative;
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes popIn { from{transform:scale(0.8); opacity:0;} to{transform:scale(1); opacity:1;} }
+        
+        .chat-msg.bot {
+            background-color: var(--ai-chat-bubble-bot);
+            color: var(--c-text);
+            border-bottom-left-radius: 4px;
+            align-self: flex-start;
+        }
+        
+        .chat-msg.user {
+            background-color: var(--ai-chat-bubble-user);
+            color: #fff;
+            border-bottom-right-radius: 4px;
+            align-self: flex-end;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+            padding: 10px 14px;
+            background: var(--ai-chat-bubble-bot);
+            border-radius: 18px;
+            border-bottom-left-radius: 4px;
+            width: fit-content;
+            align-self: flex-start;
+        }
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: #aaa;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        .chat-controls {
+            padding: 15px;
+            border-top: 1px solid var(--c-border);
+            background: var(--c-bg);
+        }
+        .suggestion-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        .chip-btn {
+            background: var(--c-bg-card);
+            border: 1px solid var(--c-border);
+            color: var(--accent);
+            padding: 8px 16px;
+            border-radius: 99px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .chip-btn:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
 
         /* 8. FOOTER */
         .main-footer {
@@ -1320,25 +1509,18 @@
             position: absolute;
             bottom: 75px;
             left: 50px;
-            
-            /* --- FIX: DARK MODE COLOR --- */
-            background: var(--c-bg-card); /* Đã thay đổi từ rgba(255,255,255,0.95) sang biến hệ thống */
-            color: var(--c-text);         /* Đã thêm biến màu chữ */
-            border: 1px solid var(--c-border); /* Thêm viền để rõ hơn trong dark mode */
-            
+            background: var(--c-bg-card); 
+            color: var(--c-text);         
+            border: 1px solid var(--c-border); 
             backdrop-filter: blur(10px);
             padding: 10px 15px;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             font-size: 0.85rem;
-            
-            /* FIX 1: Allow wrapping for long text */
             white-space: normal; 
             line-height: 1.4;
             width: max-content;
-            /* FIX 2: Constrain width so it doesn't overflow screen */
             max-width: 200px; 
-            
             display: flex;
             align-items: center;
             gap: 8px;
@@ -1364,8 +1546,8 @@
             width: 12px;
             height: 12px;
             background: inherit;
-            border-bottom: 1px solid var(--c-border); /* Đồng bộ viền */
-            border-right: 1px solid var(--c-border);  /* Đồng bộ viền */
+            border-bottom: 1px solid var(--c-border); 
+            border-right: 1px solid var(--c-border); 
             transform: rotate(45deg);
         }
 
@@ -1381,15 +1563,11 @@
             color: white;
             box-shadow: 0 2px 6px rgba(0, 120, 212, 0.4);
             animation: pulse-ai 2s infinite;
-            /* Prevent avatar from shrinking when text wraps */
             flex-shrink: 0; 
         }
         
-        .ai-text {
-            font-weight: 500;
-        }
+        .ai-text { font-weight: 500; }
 
-        /* Main Button with Ripple Core */
         .ultra-main-btn {
             width: 65px;
             height: 65px;
@@ -1421,10 +1599,7 @@
             z-index: -1;
             opacity: 0;
         }
-        
-        .quick-call-ultra-wrapper:not(.active) .ultra-ripple {
-            animation-play-state: running;
-        }
+        .quick-call-ultra-wrapper:not(.active) .ultra-ripple { animation-play-state: running; }
         
         @keyframes ripple-out {
             0% { width: 100%; height: 100%; opacity: 0.8; }
@@ -1495,8 +1670,6 @@
         }
         .quick-call-ultra-wrapper.active .ultra-menu { pointer-events: auto; }
 
-        /* --- FIX: COMPACT MODE COORDINATES --- */
-        /* Đã tính toán lại toạ độ translateY để xếp khít nhau hơn */
         .quick-call-ultra-wrapper.active .ultra-item:nth-child(1) { transform: translateY(-60px) scale(1); opacity: 1; transition-delay: 0.05s; }
         .quick-call-ultra-wrapper.active .ultra-item:nth-child(2) { transform: translateY(-115px) scale(1); opacity: 1; transition-delay: 0.1s; }
         .quick-call-ultra-wrapper.active .ultra-item:nth-child(3) { transform: translateY(-170px) scale(1); opacity: 1; transition-delay: 0.15s; }
@@ -1615,10 +1788,8 @@
                     <div class="smart-icon-box bg-gradient-green"><span class="material-symbols-rounded" aria-hidden="true">call</span></div>
                     <span>Gọi Ngay</span>
                 </a>
-                <!-- Zalo Button with SVG Fix -->
                 <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" class="smart-icon-btn" aria-label="Chat Zalo">
                     <div class="smart-icon-box bg-gradient-blue">
-                         <!-- Zalo SVG Icon Inline -->
                          <svg viewBox="0 0 100 100" class="icon-zalo-svg">
                              <path d="M85.4 34.6c-1.5-6.6-6-12-12.4-14.8-19.4-8.5-44.5-2.7-56 14.6-9.1 13.8-6.1 33 6.9 43.1 3.5 2.7 7.5 4.6 11.7 5.6L32.2 92c-.3 1.2.9 2.1 1.9 1.4l14.2-9.6c4 .7 8.2.7 12.2-.1 13.2-2.6 23.3-12.5 24.9-25.9.6-5.1.5-10.2-.1-15.3l.1-7.9z" style="fill:white;"/>
                          </svg>
@@ -1684,7 +1855,6 @@
                         <span class="material-symbols-rounded" aria-hidden="true">call</span>
                         Gọi ngay 0942467674
                     </a>
-                    <!-- Zalo Text Badge Version for Buttons -->
                     <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
                         <span style="font-weight: 800; font-family: sans-serif; border: 2px solid currentColor; padding: 0 4px; border-radius: 4px; font-size: 0.8em; line-height: 1.2;">Zalo</span>
                         Chat Zalo
@@ -1912,84 +2082,81 @@
             </div>
         </section>
         
+        <!-- =========================
+             AI LOCATION TERMINAL UPGRADE
+             ========================= -->
         <section id="locations" class="section" aria-labelledby="locations-title">
             <div class="container">
-                <h2 id="locations-title" class="section-title animate-on-scroll">🌆 Gợi Ý Địa Điểm Phượt Quanh Hà Nội</h2>
-                <div class="bonus-grid-3">
-                    <div class="card location-card animate-on-scroll">
-                        <img loading="lazy" decoding="async" src="https://placehold.co/600x400/D83B01/FFFFFF?text=Phố+Cổ+Hà+Nội" alt="Khám phá Phố Cổ Hà Nội bằng xe máy">
-                        <div class="content">
-                            <h3>Phố Cổ Hà Nội</h3>
+                <h2 id="locations-title" class="section-title animate-on-scroll">🤖 AI Travel Assistant: Gợi Ý Điểm Đến</h2>
+                
+                <div class="ai-terminal-window animate-on-scroll">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
                         </div>
+                        <div class="terminal-title">user@hanoi-travel-bot:~</div>
                     </div>
-                    <div class="card location-card animate-on-scroll" data-delay="100">
-                        <img loading="lazy" decoding="async" src="https://placehold.co/600x400/107C10/FFFFFF?text=Hồ+Hoàn+Kiếm" alt="Hồ Hoàn Kiếm">
-                        <div class="content">
-                            <h3>Hồ Hoàn Kiếm</h3>
+                    <div class="terminal-body" id="ai-loc-terminal">
+                        <div class="scan-line"></div>
+                        <div class="terminal-log">
+                            <span class="cmd-line">> init_travel_protocol.exe</span>
+                            <span class="cmd-line">> analyzing user location... OK</span>
+                            <span class="cmd-line">> scanning database [hanoi_places]...</span>
+                            <span id="ai-log-output"></span><span class="cmd-cursor"></span>
                         </div>
-                    </div>
-                    <div class="card location-card animate-on-scroll" data-delay="200">
-                        <img loading="lazy" decoding="async" src="https://placehold.co/600x400/515151/FFFFFF?text=Hoàng+Thành" alt="Hoàng Thành Thăng Long">
-                        <div class="content">
-                            <h3>Hoàng Thành Thăng Long - Ba Đình</h3>
+                        
+                        <!-- Dynamic Content will be injected here -->
+                        <div class="ai-loc-grid" id="ai-loc-results">
+                            <!-- Cards inserted via JS -->
                         </div>
                     </div>
                 </div>
+                
                 <div style="text-align: center; margin-top: 1.5rem;">
-                    <a href="diadiem.html" class="btn btn-secondary">Xem thêm địa điểm</a>
+                    <button class="btn btn-primary" id="ai-scan-btn">
+                        <span class="material-symbols-rounded">radar</span> Quét lại dữ liệu
+                    </button>
+                    <a href="diadiem.html" class="btn btn-secondary" style="margin-left: 10px;">Xem toàn bộ</a>
                 </div>
             </div>
         </section>
         
+        <!-- =========================
+             AI CHAT FAQ UPGRADE
+             ========================= -->
         <section id="faq" class="section" aria-labelledby="faq-title">
             <div class="container animate-on-scroll">
-                <h2 id="faq-title" class="section-title">💬 Câu Hỏi Thường Gặp (FAQ)</h2>
-                <div class="faq-container" id="faq-container">
-                    <div class="faq-item">
-                        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
-                            <span>Thuê xe cần những giấy tờ gì?</span>
-                            <span class="material-symbols-rounded icon" aria-hidden="true">expand_more</span>
-                        </button>
-                        <div class="faq-answer" id="faq-answer-1">
-                            <div>
-                                <p>Bạn chỉ cần Căn cước công dân (CCCD) gốc hoặc Hộ chiếu (Passport) gốc. Chúng tôi sẽ chụp ảnh lại và có thể giữ hoặc không tùy trường hợp.</p>
-                            </div>
+                <h2 id="faq-title" class="section-title">💬 Chat Với Trợ Lý Ảo Nguyễn Hào</h2>
+                
+                <div class="ai-chat-interface">
+                    <div class="chat-header">
+                        <div class="bot-avatar"><i class="fa-solid fa-robot"></i></div>
+                        <div>
+                            <div style="font-weight:600;">CSKH Tự Động</div>
+                            <div class="chat-status">Trực tuyến</div>
                         </div>
                     </div>
-                    <div class="faq-item">
-                        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
-                            <span>Tôi có cần đặt cọc tiền không?</span>
-                            <span class="material-symbols-rounded icon" aria-hidden="true">expand_more</span>
-                        </button>
-                        <div class="faq-answer" id="faq-answer-2">
-                            <div>
-                                <p>Đa số trường hợp tại Nguyễn Hào không cần đặt cọc tiền nếu bạn có đầy đủ giấy tờ tùy thân. Nếu thiếu giấy tờ, bạn có thể cọc một khoản nhỏ.</p>
-                            </div>
+                    
+                    <div class="chat-window" id="chat-window">
+                        <!-- Messages start here -->
+                        <div class="chat-msg bot">
+                            Xin chào! Tôi là trợ lý ảo của Nguyễn Hào. Bạn cần giải đáp thắc mắc gì về dịch vụ thuê xe không?
                         </div>
                     </div>
-                    <div class="faq-item">
-                        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
-                            <span>Xe có được giao tận nơi không?</span>
-                            <span class="material-symbols-rounded icon" aria-hidden="true">expand_more</span>
-                        </button>
-                        <div class="faq-answer" id="faq-answer-3">
-                            <div>
-                                <p>Có. Chúng tôi giao xe miễn phí hoặc phí rất rẻ (tùy khoảng cách) tại khu vực Phố Cổ, Hoàn Kiếm, Ba Đình trong vòng 20-30 phút.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
-                            <span>Nếu xe hỏng giữa đường thì sao?</span>
-                            <span class="material-symbols-rounded icon" aria-hidden="true">expand_more</span>
-                        </button>
-                        <div class="faq-answer" id="faq-answer-4">
-                            <div>
-                                <p>Hãy gọi ngay hotline 0942.467.674. Chúng tôi sẽ cử nhân viên đến hỗ trợ hoặc đổi xe khác cho bạn ngay lập tức.</p>
-                            </div>
+                    
+                    <div class="chat-controls">
+                        <div class="suggestion-chips" id="suggestion-chips">
+                            <button class="chip-btn" data-q="docs">Thuê xe cần giấy tờ gì?</button>
+                            <button class="chip-btn" data-q="deposit">Có cần đặt cọc không?</button>
+                            <button class="chip-btn" data-q="delivery">Có giao xe tận nơi không?</button>
+                            <button class="chip-btn" data-q="breakdown">Xe hỏng thì sao?</button>
+                            <button class="chip-btn" data-q="contact">Liên hệ trực tiếp</button>
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
 
@@ -2079,7 +2246,6 @@
                     <h4>🌐 Mạng Xã Hội</h4>
                     <div class="social-links">
                         <a href="https://m.facebook.com/chothuexemay0857255868/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook" aria-hidden="true"></i></a>
-                        <!-- Zalo Footer Link -->
                         <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" aria-label="Chat Zalo">
                              <div style="display:inline-flex; align-items:center; border: 1px solid currentColor; padding: 0 4px; border-radius: 4px; font-size: 0.6em; font-weight: bold; font-family: sans-serif; height: 26px; vertical-align: middle;">
                                 Zalo
@@ -2102,7 +2268,6 @@
     <!-- === QUICK CALL ULTRA APP (AI MODE) === -->
     <div class="quick-call-ultra-wrapper" id="quick-call-ultra">
         
-        <!-- AI Smart Context Bubble -->
         <div class="ultra-ai-bubble" id="ultra-ai-bubble">
             <div class="ai-avatar">🤖</div>
             <div class="ai-text" id="ultra-ai-text">...</div>
@@ -2113,7 +2278,6 @@
                 <span class="material-symbols-rounded" aria-hidden="true">call</span>
                 <span class="sr-only">Gọi ngay</span>
             </a>
-            <!-- Zalo Round Button SVG Fix -->
              <a href="https://zalo.me/0942467674" target="_blank" rel="noopener noreferrer" class="ultra-item zalo" data-label="Chat Zalo">
                 <svg viewBox="0 0 100 100" class="icon-zalo-svg">
                      <path d="M85.4 34.6c-1.5-6.6-6-12-12.4-14.8-19.4-8.5-44.5-2.7-56 14.6-9.1 13.8-6.1 33 6.9 43.1 3.5 2.7 7.5 4.6 11.7 5.6L32.2 92c-.3 1.2.9 2.1 1.9 1.4l14.2-9.6c4 .7 8.2.7 12.2-.1 13.2-2.6 23.3-12.5 24.9-25.9.6-5.1.5-10.2-.1-15.3l.1-7.9z" style="fill:white;"/>
@@ -2160,7 +2324,6 @@
             const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
             const backToTop = document.getElementById('back-to-top');
             const currentYearEl = document.getElementById('current-year');
-            const faqContainer = document.getElementById('faq-container');
             const sliderTrack = document.getElementById('slider-track');
             const sliderDotsContainer = document.getElementById('slider-dots');
             const galleryGrid = document.getElementById('gallery-grid');
@@ -2171,7 +2334,182 @@
             const ultraToggleBtn = document.getElementById('ultra-toggle-btn');
             const quoteForm = document.getElementById('quote-form');
 
-            // --- 1. AI GREETING LOGIC ---
+            // --- 1. AI LOCATION TERMINAL LOGIC ---
+            const locTerminal = document.getElementById('ai-loc-terminal');
+            const locLogOutput = document.getElementById('ai-log-output');
+            const locGrid = document.getElementById('ai-loc-results');
+            const scanBtn = document.getElementById('ai-scan-btn');
+            const terminalWindow = document.querySelector('.ai-terminal-window');
+            let isScanning = false;
+
+            const locationsDB = [
+                {
+                    title: "Phố Cổ Hà Nội",
+                    img: "https://placehold.co/600x400/D83B01/FFFFFF?text=Phố+Cổ+Hà+Nội",
+                    dist: "0.5 km",
+                    desc: "Khu vực sầm uất với 36 phố phường. Thích hợp đi xe máy lượn lách các ngõ nhỏ."
+                },
+                {
+                    title: "Hồ Hoàn Kiếm",
+                    img: "https://placehold.co/600x400/107C10/FFFFFF?text=Hồ+Hoàn+Kiếm",
+                    dist: "1.2 km",
+                    desc: "Trái tim của thủ đô. Cuối tuần có phố đi bộ, nên gửi xe bên ngoài và đi bộ vào."
+                },
+                {
+                    title: "Hoàng Thành Thăng Long",
+                    img: "https://placehold.co/600x400/515151/FFFFFF?text=Hoàng+Thành",
+                    dist: "3.5 km",
+                    desc: "Di sản văn hóa thế giới. Không gian thoáng đãng, nhiều góc check-in lịch sử."
+                }
+            ];
+
+            const typeLog = (text, element, speed = 20) => {
+                return new Promise(resolve => {
+                    let i = 0;
+                    element.innerHTML += '<br>> ';
+                    const timer = setInterval(() => {
+                        if (i < text.length) {
+                            element.innerHTML += text.charAt(i);
+                            i++;
+                            // Auto scroll to bottom of log
+                            element.scrollTop = element.scrollHeight;
+                        } else {
+                            clearInterval(timer);
+                            resolve();
+                        }
+                    }, speed);
+                });
+            };
+
+            const runTerminalScan = async () => {
+                if (isScanning) return;
+                isScanning = true;
+                
+                // Reset UI
+                locGrid.innerHTML = '';
+                locGrid.classList.remove('visible');
+                locLogOutput.innerHTML = '';
+                terminalWindow.classList.add('scanning');
+
+                await typeLog("connect secure_server...", locLogOutput);
+                await typeLog("downloading images packets...", locLogOutput, 10);
+                await typeLog("rendering map data...", locLogOutput, 10);
+                
+                terminalWindow.classList.remove('scanning');
+                locGrid.classList.add('visible');
+
+                // Render cards one by one
+                for (let i = 0; i < locationsDB.length; i++) {
+                    const loc = locationsDB[i];
+                    const card = document.createElement('div');
+                    card.className = 'ai-loc-card';
+                    card.innerHTML = `
+                        <div class="ai-loc-img-wrap">
+                            <img src="${loc.img}" alt="${loc.title}" class="ai-loc-img" loading="lazy">
+                        </div>
+                        <div class="ai-loc-info">
+                            <div class="ai-loc-title">
+                                ${loc.title}
+                                <span class="ai-loc-dist">${loc.dist}</span>
+                            </div>
+                            <div class="ai-loc-desc" id="desc-${i}"></div>
+                        </div>
+                    `;
+                    locGrid.appendChild(card);
+                    
+                    // Trigger reflow for animation
+                    setTimeout(() => card.classList.add('revealed'), 50);
+                    
+                    // Type description
+                    const descEl = card.querySelector(`#desc-${i}`);
+                    let d = 0;
+                    const descTimer = setInterval(() => {
+                        if(d < loc.desc.length) {
+                            descEl.textContent += loc.desc.charAt(d);
+                            d++;
+                        } else clearInterval(descTimer);
+                    }, 15);
+                    
+                    await new Promise(r => setTimeout(r, 600)); // Delay between cards
+                }
+                
+                await typeLog("scan complete. 3 results found.", locLogOutput);
+                isScanning = false;
+            };
+
+            // Observer to start scan when visible
+            const termObserver = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting && !locGrid.hasChildNodes()) {
+                        runTerminalScan();
+                    }
+                });
+            }, { threshold: 0.3 });
+            if(terminalWindow) termObserver.observe(terminalWindow);
+
+            if(scanBtn) scanBtn.addEventListener('click', runTerminalScan);
+
+
+            // --- 2. AI CHAT FAQ LOGIC ---
+            const chatWindow = document.getElementById('chat-window');
+            const chipsContainer = document.getElementById('suggestion-chips');
+            
+            const faqData = {
+                'docs': "Bạn chỉ cần **CCCD gắn chip** hoặc **Hộ chiếu (Passport)** bản gốc. Chúng tôi sẽ chụp ảnh lại và có thể giữ giấy tờ tùy trường hợp.",
+                'deposit': "Đa số trường hợp **KHÔNG CẦN ĐẶT CỌC** nếu bạn có đầy đủ giấy tờ. Nếu thiếu, khoản cọc sẽ từ 1-2 triệu đồng.",
+                'delivery': "Có nha! Bên mình **giao xe tận nơi miễn phí** hoặc phí rất rẻ trong khu vực Phố Cổ, Hoàn Kiếm, Ba Đình (khoảng 20 phút).",
+                'breakdown': "Đừng lo! Hãy gọi hotline **0942.467.674**. Đội cứu hộ sẽ đến xử lý hoặc **đổi xe khác** cho bạn ngay lập tức.",
+                'contact': "Bạn có thể gọi hotline **0942.467.674** hoặc chat Zalo qua nút bên dưới màn hình nhé."
+            };
+
+            const addMessage = (text, type) => {
+                const msg = document.createElement('div');
+                msg.className = `chat-msg ${type}`;
+                // Convert simple markdown bold to html
+                msg.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                chatWindow.appendChild(msg);
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            };
+
+            const showTyping = () => {
+                const dots = document.createElement('div');
+                dots.className = 'typing-dots';
+                dots.id = 'ai-typing-indicator';
+                dots.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+                chatWindow.appendChild(dots);
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            };
+
+            const removeTyping = () => {
+                const dots = document.getElementById('ai-typing-indicator');
+                if(dots) dots.remove();
+            };
+
+            if(chipsContainer) {
+                chipsContainer.addEventListener('click', (e) => {
+                    if(e.target.classList.contains('chip-btn')) {
+                        const key = e.target.dataset.q;
+                        const questionText = e.target.textContent;
+                        
+                        // User message
+                        addMessage(questionText, 'user');
+                        
+                        // Simulate thinking
+                        showTyping();
+                        
+                        setTimeout(() => {
+                            removeTyping();
+                            if(faqData[key]) {
+                                addMessage(faqData[key], 'bot');
+                            }
+                        }, 1000 + Math.random() * 500); // Random delay 1-1.5s
+                    }
+                });
+            }
+
+            // --- 3. EXISTING FUNCTIONALITY (Mobile Menu, Theme, Slider, etc.) ---
+            
+            // AI Greeting (Top Menu)
             const initAISmartMenu = () => {
                 const aiGreetingTime = document.getElementById('ai-greeting-time');
                 const aiTypewriterText = document.getElementById('ai-typewriter-text');
@@ -2221,12 +2559,11 @@
             };
             initAISmartMenu();
 
-            // --- 2. SHOP STATUS AUTO UPDATE ---
+            // Shop Status
             const updateShopStatus = () => {
                 const now = new Date();
                 const currentHour = now.getHours();
                 const isOpen = currentHour >= 8 && currentHour < 18;
-                
                 const desktopStatus = document.getElementById('shop-status-desktop');
                 if (desktopStatus) {
                     desktopStatus.textContent = isOpen ? "ĐANG MỞ CỬA" : "ĐÃ ĐÓNG CỬA";
@@ -2237,7 +2574,7 @@
             updateShopStatus();
             setInterval(updateShopStatus, 60000);
 
-            // --- 3. THEME SWITCHER ---
+            // Theme Switcher
             if (themeSwitcher) {
                 const initTheme = () => {
                     const savedTheme = localStorage.getItem('theme');
@@ -2254,139 +2591,32 @@
                 initTheme();
             }
 
-            // --- 4. MOBILE MENU (FOCUS TRAP FIXED) ---
+            // Mobile Menu
             if (mobileMenuToggle && mobileNavPanel && mobileNavClose && mobileNavOverlay) {
                 const toggleMobileNav = (show) => {
-                    const isActive = show;
-                    
-                    mobileNavPanel.classList.toggle('active', isActive);
-                    mobileNavOverlay.classList.toggle('active', isActive);
-                    mobileMenuToggle.setAttribute('aria-expanded', isActive);
-                    
-                    if (isActive) {
-                        mobileNavPanel.setAttribute('role', 'dialog');
-                        mobileNavPanel.setAttribute('aria-modal', 'true');
-                        mobileNavPanel.removeAttribute('aria-hidden');
-                        document.body.style.overflow = 'hidden';
-                        mobileNavClose.focus();
-                    } else {
-                        mobileNavPanel.removeAttribute('role');
-                        mobileNavPanel.removeAttribute('aria-modal');
-                        mobileNavPanel.setAttribute('aria-hidden', 'true');
-                        document.body.style.overflow = '';
-                        mobileMenuToggle.focus();
-                    }
+                    mobileNavPanel.classList.toggle('active', show);
+                    mobileNavOverlay.classList.toggle('active', show);
+                    mobileMenuToggle.setAttribute('aria-expanded', show);
+                    if (show) mobileNavClose.focus();
+                    else mobileMenuToggle.focus();
                 };
-
-                // Focus Trap Safe Check
-                mobileNavPanel.addEventListener('keydown', (e) => {
-                    if (e.key === 'Tab') {
-                        const focusableElements = mobileNavPanel.querySelectorAll('a[href], button:not([disabled]), textarea, input, select');
-                        if (!focusableElements.length) return; // FIX: Defensive check
-
-                        const firstElement = focusableElements[0];
-                        const lastElement = focusableElements[focusableElements.length - 1];
-
-                        if (e.shiftKey) {
-                            if (document.activeElement === firstElement) {
-                                lastElement.focus();
-                                e.preventDefault();
-                            }
-                        } else {
-                            if (document.activeElement === lastElement) {
-                                firstElement.focus();
-                                e.preventDefault();
-                            }
-                        }
-                    }
-                    if (e.key === 'Escape') toggleMobileNav(false);
-                });
-                
                 mobileMenuToggle.addEventListener('click', () => toggleMobileNav(true));
                 mobileNavClose.addEventListener('click', () => toggleMobileNav(false));
                 mobileNavOverlay.addEventListener('click', () => toggleMobileNav(false));
                 
-                // Mobile Submenu
                 mobileNavPanel.addEventListener('click', (e) => {
                     const toggleBtn = e.target.closest('.mobile-dropdown-toggle');
                     if (toggleBtn) {
                         e.preventDefault();
                         const dropdown = toggleBtn.parentElement;
                         const submenu = dropdown.querySelector('.mobile-submenu');
-                        const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-                        
                         dropdown.classList.toggle('active');
-                        toggleBtn.setAttribute('aria-expanded', !isExpanded);
-                        submenu.style.maxHeight = !isExpanded ? submenu.scrollHeight + 'px' : null;
+                        submenu.style.maxHeight = dropdown.classList.contains('active') ? submenu.scrollHeight + 'px' : null;
                     }
                 });
             }
 
-            // --- 5. DESKTOP DROPDOWN ---
-            document.querySelectorAll('.nav-dropdown-toggle').forEach(toggle => {
-                toggle.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const dropdownItem = toggle.closest('.nav-item-dropdown');
-                    const isOpen = dropdownItem.classList.contains('is-open');
-                    
-                    document.querySelectorAll('.nav-item-dropdown.is-open').forEach(item => {
-                        if (item !== dropdownItem) {
-                            item.classList.remove('is-open');
-                            item.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'false');
-                        }
-                    });
-
-                    dropdownItem.classList.toggle('is-open');
-                    toggle.setAttribute('aria-expanded', !isOpen);
-                });
-            });
-
-            document.addEventListener('click', (e) => {
-                if (!e.target.closest('.nav-item-dropdown')) {
-                    document.querySelectorAll('.nav-item-dropdown.is-open').forEach(item => {
-                        item.classList.remove('is-open');
-                        item.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', 'false');
-                    });
-                }
-            });
-
-            // --- 6. FORM & GENERAL ---
-            if (quoteForm) {
-                quoteForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    alert('Cảm ơn! Chúng tôi sẽ sớm liên hệ tư vấn lịch trình cho bạn.');
-                });
-            }
-            if (currentYearEl) currentYearEl.textContent = new Date().getFullYear();
-            if (backToTop) {
-                backToTop.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            }
-
-            // --- 7. FAQ ACCORDION ---
-            if (faqContainer) {
-                const faqItems = faqContainer.querySelectorAll('.faq-item');
-                if(faqItems[0]) {
-                    faqItems[0].classList.add('active');
-                    faqItems[0].querySelector('.faq-question').setAttribute('aria-expanded', 'true');
-                }
-                
-                faqContainer.addEventListener('click', (e) => {
-                    const questionButton = e.target.closest('.faq-question');
-                    if (!questionButton) return;
-                    
-                    const faqItem = questionButton.parentElement;
-                    const isActive = faqItem.classList.contains('active');
-                    
-                    faqItem.classList.toggle('active', !isActive);
-                    questionButton.setAttribute('aria-expanded', !isActive);
-                });
-            }
-
-            // --- 8. SLIDER ---
+            // Slider
             if (sliderTrack && sliderDotsContainer) {
                 const slides = sliderTrack.children;
                 const slideCount = slides.length;
@@ -2397,9 +2627,6 @@
                     for (let i = 0; i < slideCount; i++) {
                         const dot = document.createElement('button');
                         dot.className = `slider-dot ${i === 0 ? 'active' : ''}`;
-                        dot.setAttribute('role', 'tab');
-                        dot.setAttribute('aria-label', `Xem đánh giá ${i + 1}`);
-                        dot.setAttribute('aria-selected', i === 0);
                         dot.dataset.index = i;
                         sliderDotsContainer.appendChild(dot);
                     }
@@ -2408,7 +2635,6 @@
                         sliderTrack.style.transform = `translateX(-${index * 100}%)`;
                         Array.from(sliderDotsContainer.children).forEach((dot, idx) => {
                             dot.classList.toggle('active', idx === index);
-                            dot.setAttribute('aria-selected', idx === index);
                         });
                         currentIndex = index;
                     };
@@ -2419,51 +2645,37 @@
                             updateSlider((currentIndex + 1) % slideCount);
                         }, 5000);
                     };
-
-                    const stopAutoPlay = () => {
-                        clearInterval(intervalId);
-                        intervalId = null;
-                    };
+                    startAutoPlay();
 
                     sliderDotsContainer.addEventListener('click', (e) => {
                         const dot = e.target.closest('.slider-dot');
                         if (dot) updateSlider(parseInt(dot.dataset.index, 10));
                     });
-
-                    const sliderArea = document.querySelector('.testimonial-slider');
-                    if (sliderArea) {
-                        sliderArea.addEventListener('mouseenter', stopAutoPlay);
-                        sliderArea.addEventListener('mouseleave', startAutoPlay);
-                        sliderArea.addEventListener('focusin', stopAutoPlay);
-                        sliderArea.addEventListener('focusout', startAutoPlay);
-                    }
-
-                    startAutoPlay();
                 }
             }
 
-            // --- 9. TILT EFFECT ---
-            const tiltSection = document.querySelector('[data-tilt="true"]');
-            if (tiltSection && window.matchMedia('(min-width: 1024px)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                const tiltCards = tiltSection.querySelectorAll('.service-card');
-                tiltCards.forEach(card => {
-                    card.addEventListener('mousemove', (e) => {
-                        const rect = card.getBoundingClientRect();
-                        const x = e.clientX - rect.left;
-                        const y = e.clientY - rect.top;
-                        const rotateX = (y - rect.height / 2) / (rect.height / 2) * -5;
-                        const rotateY = (x - rect.width / 2) / (rect.width / 2) * 5; 
-                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
-                    });
-                    card.addEventListener('mouseleave', () => {
-                        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-                    });
+            // Lightbox
+            if (galleryGrid && lightbox && lightboxImg) {
+                const openLightbox = (src) => {
+                    lightboxImg.src = src;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                };
+                const closeLightbox = () => {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                };
+                galleryGrid.addEventListener('click', (e) => {
+                    const img = e.target.closest('img');
+                    if (img) openLightbox(img.src);
                 });
+                lightboxClose.addEventListener('click', closeLightbox);
+                lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
             }
 
-            // --- 10. SCROLL ANIMATION ---
+            // Animation Observer
             const animatedElements = document.querySelectorAll('.animate-on-scroll');
-            if (animatedElements.length > 0 && 'IntersectionObserver' in window) {
+            if ('IntersectionObserver' in window) {
                 const observer = new IntersectionObserver((entries, obs) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
@@ -2476,148 +2688,52 @@
                 }, { threshold: 0.1 });
                 animatedElements.forEach(el => observer.observe(el));
             }
-
-            // --- 11. LIGHTBOX (ARIA FIX) ---
-            if (galleryGrid && lightbox && lightboxImg) {
-                const openLightbox = (src) => {
-                    lightboxImg.src = src;
-                    lightbox.classList.add('active');
-                    // ARIA Update
-                    lightbox.setAttribute('aria-hidden', 'false');
-                    lightbox.setAttribute('aria-modal', 'true');
-                    lightboxClose.focus();
-                    document.body.style.overflow = 'hidden';
-                };
-                const closeLightbox = () => {
-                    lightbox.classList.remove('active');
-                    // ARIA Revert
-                    lightbox.setAttribute('aria-hidden', 'true');
-                    lightbox.removeAttribute('aria-modal');
-                    document.body.style.overflow = '';
-                };
-
-                galleryGrid.addEventListener('click', (e) => {
-                    const img = e.target.closest('img');
-                    if (img) openLightbox(img.src);
-                });
-                lightboxClose.addEventListener('click', closeLightbox);
-                lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-                document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
-            }
-
-            // --- 12. QUICK CALL ULTRA (AI UPGRADE) ---
-            if (ultraToggleBtn && ultraWrapper) {
-                let aiTyped = false;
-                const aiBubbleText = document.getElementById('ultra-ai-text');
-
-                const activateAIUltra = (isActive) => {
-                    if (isActive && !aiTyped && aiBubbleText) {
-                        const now = new Date();
-                        const hour = now.getHours();
-                        let msg = "Nguyễn Hào đây! Cần xe gấp không ạ?"; // Default
-                        
-                        if(hour >= 22 || hour < 5) msg = "Đêm muộn rồi, bạn cần cứu hộ xe không?";
-                        else if(hour >= 7 && hour < 9) msg = "Chào ngày mới! Cần xe đi làm ngay không?";
-                        else if(hour >= 11 && hour < 14) msg = "Trưa rồi, bạn cần giao xe tận nơi không?";
-                        
-                        // Typewriter logic for AI Bubble
-                        aiBubbleText.textContent = "";
-                        let i = 0;
-                        const type = () => {
-                            if(i < msg.length) {
-                                aiBubbleText.textContent += msg.charAt(i);
-                                i++;
-                                setTimeout(type, 40);
-                            }
-                        };
-                        setTimeout(type, 300);
-                        aiTyped = true; 
-                    }
-                };
-
-                ultraToggleBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const isActive = ultraWrapper.classList.toggle('active');
-                    ultraToggleBtn.setAttribute('aria-expanded', isActive);
-                    activateAIUltra(isActive);
-                });
-                
-                document.addEventListener('click', (e) => {
-                    if (ultraWrapper.classList.contains('active') && !ultraWrapper.contains(e.target)) {
-                        ultraWrapper.classList.remove('active');
-                        ultraToggleBtn.setAttribute('aria-expanded', 'false');
-                        // Reset AI typing so it types again next time opened? 
-                        // Or keep it static. Let's keep it static for session feeling or reset:
-                        // aiTyped = false; 
-                    }
-                });
-                const initialHeight = window.innerHeight;
-                window.addEventListener('resize', () => {
-                    if (window.innerHeight < initialHeight * 0.8) document.body.classList.add('keyboard-visible');
-                    else document.body.classList.remove('keyboard-visible');
-                });
-            }
-
-            // --- 13. FOOTER ACCORDION (ADD EVENT LISTENER FIX) ---
+            
+            // Footer Accordion
             const mediaQueryMobile = window.matchMedia('(max-width: 767px)');
-            let footerInitialized = false;
-
             const initFooter = () => {
-                if (footerInitialized) return;
                 const cols = document.querySelectorAll('.main-footer .footer-col');
                 cols.forEach((col, index) => {
                     const heading = col.querySelector('h4');
-                    const content = col.querySelector('ul, p, .footer-contact');
-                    if (!heading || !content) return;
-
+                    if (!heading) return;
                     if (!col.querySelector('.footer-toggle-icon')) {
                         const icon = document.createElement('span');
                         icon.className = 'material-symbols-rounded footer-toggle-icon';
-                        icon.setAttribute('aria-hidden', 'true');
                         icon.textContent = 'expand_more';
                         heading.appendChild(icon);
                     }
-
-                    heading.addEventListener('click', () => {
+                    heading.onclick = () => {
                         const isOpen = col.classList.contains('is-open');
                         cols.forEach(c => c.classList.remove('is-open'));
                         if (!isOpen) col.classList.add('is-open');
-                    });
-
+                    };
                     if (index === 0) col.classList.add('is-open');
                 });
-                footerInitialized = true;
             };
+            if(mediaQueryMobile.matches) initFooter();
+            mediaQueryMobile.addListener(e => { if(e.matches) initFooter(); });
 
-            const destroyFooter = () => {
-                if (!footerInitialized) return;
-                const cols = document.querySelectorAll('.main-footer .footer-col');
-                cols.forEach(col => {
-                    col.classList.remove('is-open');
-                    const icon = col.querySelector('.footer-toggle-icon');
-                    if (icon) icon.remove();
-                    const heading = col.querySelector('h4');
-                    if (heading) {
-                        const newHeading = heading.cloneNode(true);
-                        heading.parentNode.replaceChild(newHeading, heading);
+            // Form
+            if(quoteForm) {
+                quoteForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert("Cảm ơn! Chúng tôi sẽ liên hệ lại sớm.");
+                });
+            }
+            if(currentYearEl) currentYearEl.textContent = new Date().getFullYear();
+
+            // Quick Call Ultra Toggle
+            if (ultraToggleBtn && ultraWrapper) {
+                ultraToggleBtn.addEventListener('click', () => {
+                    const isActive = ultraWrapper.classList.toggle('active');
+                    if(isActive) {
+                         const aiText = document.getElementById('ultra-ai-text');
+                         if(aiText && aiText.innerText === '...') {
+                            aiText.innerText = "Cần xe gấp không?";
+                         }
                     }
                 });
-                footerInitialized = false;
-            };
-
-            const handleFooterResponsive = (e) => {
-                if (e.matches) initFooter();
-                else destroyFooter();
-            };
-
-            // FIX: Using modern addEventListener instead of addListener
-            try {
-                mediaQueryMobile.addEventListener('change', handleFooterResponsive);
-            } catch (e) {
-                // Fallback for very old browsers if necessary, though addEventListener is widely supported now
-                mediaQueryMobile.addListener(handleFooterResponsive);
             }
-            handleFooterResponsive(mediaQueryMobile);
 
         });
     })();
