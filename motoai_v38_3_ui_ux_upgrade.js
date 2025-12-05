@@ -4,6 +4,7 @@
       + VisualViewport Logic (Chống bàn phím che input chính xác 100%)
       + Auto Dark/Light Mode (System aware)
       + Bottom Sheet Animation (Mobile friendly)
+      + Strip Markdown (New: v38.3.1) - Clean output text
 
    ✅ LOGIC KEEP: v38.1 (BM25 + Extractive QA + Auto-Price Learn + Multi-site)
    - AutoLearn: ưu tiên moto_sitemap.json; fallback sitemap.xml / crawl nông
@@ -60,12 +61,36 @@
   const nfVND = n => (n||0).toLocaleString('vi-VN');
   const clamp = (n,min,max)=> Math.max(min, Math.min(max,n));
   const sameHost = (u, origin)=> { try{ return new URL(u).host.replace(/^www\./,'') === new URL(origin).host.replace(/^www\./,''); }catch{ return false; } };
+  
   function naturalize(t){
     if(!t) return t;
     let s = " "+t+" ";
     s = s.replace(/\s+ạ([.!?,\s]|$)/gi, "$1").replace(/\s+nhé([.!?,\s]|$)/gi, "$1").replace(/\s+nha([.!?,\s]|$)/gi, "$1");
     s = s.replace(/\s{2,}/g," ").trim(); if(!/[.!?]$/.test(s)) s+="."; return s.replace(/\.\./g,".");
   }
+
+  // 🔹 NEW: Hàm làm sạch Markdown
+  function stripMarkdown(s){
+    if(!s) return s;
+    let o = String(s);
+    // **bold**, __bold__
+    o = o.replace(/\*\*(.*?)\*\*/g, '$1');
+    o = o.replace(/__(.*?)__/g, '$1');
+    // inline code `code`
+    o = o.replace(/`([^`]+)`/g, '$1');
+    // tiêu đề markdown: #, ##, ###
+    o = o.replace(/^\s{0,3}#{1,6}\s+/gm, '');
+    // bullet "- " hoặc "* " đầu dòng
+    o = o.replace(/^\s{0,3}[-*+]\s+/gm, '');
+    // image ![alt](url) → bỏ luôn
+    o = o.replace(/!\[[^\]]*]\([^)]+\)/g, '');
+    // link [text](url) → "text - url"
+    o = o.replace(/\[([^\]]+)]\(([^)]+)\)/g, '$1 - $2');
+    // dọn khoảng trắng
+    o = o.replace(/\s{2,}/g, ' ').trim();
+    return o;
+  }
+
   function looksVN(s){
     if(/[ăâêôơưđà-ỹ]/i.test(s)) return true;
     const hits = (s.match(/\b(xe|thuê|giá|liên hệ|hà nội|cọc|giấy tờ)\b/gi)||[]).length;
@@ -671,6 +696,7 @@
     const body=$("#mta-body"); if(body) body.scrollTop = body.scrollHeight;
   }
 
+  // 🔹 UPDATE: v38.3.1 Clean Markdown Output
   async function sendUser(text){
     if(sending) return;
     const v=(text||"").trim(); if(!v) return;
@@ -678,11 +704,18 @@
     pushCtx({from:"user", raw:v, type:detectType(v), qty:detectQty(v)});
     const isMobile = window.innerWidth < 480; const wait = (isMobile? 1600 + Math.random()*1200 : 2400 + Math.random()*2200);
     showTyping(); await sleep(wait);
-    const ans = await deepAnswer(v);
-    hideTyping(); addMsg("bot", ans); pushCtx({from:"bot", raw:ans});
+    
+    // Gọi deepAnswer lấy text thô
+    const rawAns = await deepAnswer(v);
+    
+    hideTyping();
+    // 🔹 Làm sạch Markdown trước khi in ra
+    const ans = stripMarkdown(rawAns);
+    
+    addMsg("bot", ans); pushCtx({from:"bot", raw:ans});
     sending=false;
   }
-  
+   
   function openChat(){
     if(isOpen) return;
     $("#mta-card").classList.add("open");
