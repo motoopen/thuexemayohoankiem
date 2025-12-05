@@ -821,7 +821,8 @@
         .service-card { overflow: hidden; }
         .service-card img {
             width: 100%;
-            height: 200px;
+            /* === TỐI ƯU ẢNH VUÔNG (SQUARE) === */
+            aspect-ratio: 1 / 1;
             object-fit: cover;
             border-radius: var(--radius-sm) var(--radius-sm) 0 0;
             margin-bottom: 1.5rem;
@@ -840,8 +841,15 @@
             font-weight: 600;
             color: var(--accent);
         }
-        @media (min-width: 640px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
+        /* Mobile: 1 cột (đã có ở trên) */
+        @media (min-width: 640px) { 
+            /* Tablet: 2 cột */
+            .services-grid { grid-template-columns: repeat(2, 1fr); } 
+        }
+        @media (min-width: 1024px) { 
+            /* PC: 4 cột cho 4 xe */
+            .services-grid { grid-template-columns: repeat(4, 1fr); } 
+        }
 
         /* Deals */
         .deal-highlight {
@@ -1768,23 +1776,23 @@
                 <h2 id="services-title" class="section-title animate-on-scroll">Dịch Vụ Cho Thuê Xe Máy Nổi Bật</h2>
                 <div class="services-grid">
                     <div class="card service-card animate-on-scroll">
-                        <img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_0491.jpeg" alt="Cho thuê xe ga Vision Hà Nội" width="600" height="200">
-                        <h3>Cho Thuê Xe Ga (Vision/Lead)</h3>
+                        <img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_0491.jpeg" alt="Cho thuê xe ga Vision Air Blade Hà Nội">
+                        <h3>Cho Thuê Xe Ga (Vision/Air Blade)</h3>
                         <p>Dòng xe ga cốp rộng, chạy êm, tiết kiệm xăng, rất phù hợp để dạo quanh Phố Cổ và West Lake.</p>
                         <div class="price">Từ 200.000đ / ngày</div>
                         <br>
                         <a href="loaixe.html" class="btn btn-secondary w-100">Xem chi tiết</a>
                     </div>
                     <div class="card service-card animate-on-scroll" data-delay="100">
-                        <img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_0490.jpeg" alt="Cho thuê xe số Wave Hà Nội" width="600" height="200">
+                        <img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_0490.jpeg" alt="Cho thuê xe số Wave Hà Nội">
                         <h3>Cho Thuê Xe Số (Wave/Sirius)</h3>
-                        <p>Xe số khỏe, leo dốc tốt, bền bỉ. Lựa chọn số 1 cho các bạn sinh viên hoặc đi phượt Ba Vì.</p>
+                        <p>Xe số khỏe, leo dốc tốt, bền bỉ. Lựa chọn số 1 cho các bạn sinh viên hoặc đi phượt.</p>
                         <div class="price">Từ 150.000đ / ngày</div>
                         <br>
                         <a href="loaixe.html" class="btn btn-secondary w-100">Xem chi tiết</a>
                     </div>
                     <div class="card service-card animate-on-scroll" data-delay="200">
-                        <img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_0493.jpeg" alt="Cho thuê xe côn tay Winner Hà Nội" width="600" height="200">
+                        <img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_0493.jpeg" alt="Cho thuê xe côn tay Winner Hà Nội">
                         <h3>Cho Thuê Xe Côn Tay (Winner)</h3>
                         <p>Trải nghiệm cảm giác lái thể thao, chinh phục mọi cung đường với xe côn tay phân khối nhỏ.</p>
                         <div class="price">Từ 350.000đ / ngày</div>
@@ -1792,7 +1800,7 @@
                         <a href="loaixe.html" class="btn btn-secondary w-100">Xem chi tiết</a>
                     </div>
                     <div class="card service-card animate-on-scroll" data-delay="300">
-                        <img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_0492.jpeg" alt="Cho thuê xe điện Hà Nội" width="600" height="200">
+                        <img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_0492.jpeg" alt="Cho thuê xe điện Hà Nội">
                         <h3>Cho Thuê Xe Điện</h3>
                         <p>Xe điện vinfast, xe điện mini nhỏ gọn, thân thiện môi trường, phù hợp di chuyển quãng ngắn trong phố.</p>
                         <div class="price">Từ 180.000đ / ngày</div>
@@ -1915,15 +1923,15 @@
                         </div>
                     </div>
                     <div class="card location-card animate-on-scroll" data-delay="100">
-                        <img loading="lazy" decoding="async" src="https://placehold.co/600x400/107C10/FFFFFF?text=Vườn+Quốc+Gia+Ba+Vì" alt="Phượt xe máy Vườn Quốc Gia Ba Vì">
+                        <img loading="lazy" decoding="async" src="https://placehold.co/600x400/107C10/FFFFFF?text=Hồ+Hoàn+Kiếm" alt="Hồ Hoàn Kiếm">
                         <div class="content">
-                            <h3>Vườn Quốc Gia Ba Vì</h3>
+                            <h3>Hồ Hoàn Kiếm</h3>
                         </div>
                     </div>
                     <div class="card location-card animate-on-scroll" data-delay="200">
-                        <img loading="lazy" decoding="async" src="https://placehold.co/600x400/515151/FFFFFF?text=Làng+Gốm+Bát+Tràng" alt="Du lịch xe máy Bát Tràng">
+                        <img loading="lazy" decoding="async" src="https://placehold.co/600x400/515151/FFFFFF?text=Hoàng+Thành" alt="Hoàng Thành Thăng Long">
                         <div class="content">
-                            <h3>Làng Gốm Bát Tràng</h3>
+                            <h3>Hoàng Thành Thăng Long - Ba Đình</h3>
                         </div>
                     </div>
                 </div>
