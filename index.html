@@ -1,4 +1,3 @@
-html
 <!DOCTYPE html>
 <html lang="vi" data-theme="light">
 <head>
@@ -1395,6 +1394,12 @@ html
             border-color: var(--accent);
             transform: translateY(-2px);
         }
+        /* Style for disabled buttons during bot reply */
+        .chip-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
 
         /* 8. FOOTER */
         .main-footer {
@@ -1918,7 +1923,8 @@ html
                 </div>
                 
                 <!-- === UPDATED FORM: PRICE CALCULATOR === -->
-                <form class="mini-form animate-on-scroll" data-delay="400" id="price-calculator" aria-labelledby="form-title">
+                <!-- FIX B: Added onsubmit="event.preventDefault()" to prevent page reload on Enter -->
+                <form class="mini-form animate-on-scroll" data-delay="400" id="price-calculator" aria-labelledby="form-title" onsubmit="event.preventDefault()">
                     <h3 id="form-title"><span class="material-symbols-rounded">calculate</span> Tính Tiền Thuê Xe Tự Động</h3>
                     <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="opacity: 0; position: absolute; top: 0; left: 0; height: 0; width: 0; z-index: -1;">
                     
@@ -2402,7 +2408,12 @@ html
                 const calculateTotal = () => {
                     const pricePerDay = parseInt(calcBikeType.value, 10);
                     let days = parseInt(calcDays.value, 10);
-                    if(isNaN(days) || days < 1) days = 1;
+                    
+                    // FIX 2.B: Update logic to fix invalid input visual
+                    if(isNaN(days) || days < 1) {
+                        days = 1;
+                        calcDays.value = 1; // Update input field visually
+                    }
                     
                     const total = pricePerDay * days;
                     // Format currency Vietnamese style
@@ -2572,6 +2583,10 @@ html
             if(chipsContainer) {
                 chipsContainer.addEventListener('click', (e) => {
                     if(e.target.classList.contains('chip-btn')) {
+                        // FIX C: Race condition - Disable buttons immediately
+                        const allChips = document.querySelectorAll('.chip-btn');
+                        allChips.forEach(btn => btn.disabled = true);
+
                         const key = e.target.dataset.q;
                         const questionText = e.target.textContent;
                         
@@ -2586,6 +2601,8 @@ html
                             if(faqData[key]) {
                                 addMessage(faqData[key], 'bot');
                             }
+                            // FIX C: Re-enable buttons after reply
+                            allChips.forEach(btn => btn.disabled = false);
                         }, 800 + Math.random() * 500); 
                     }
                 });
@@ -2681,6 +2698,10 @@ html
                     mobileNavPanel.classList.toggle('active', show);
                     mobileNavOverlay.classList.toggle('active', show);
                     mobileMenuToggle.setAttribute('aria-expanded', show);
+                    
+                    // FIX 2.A: Prevent body scroll when menu is open
+                    document.body.style.overflow = show ? 'hidden' : '';
+
                     if (show) mobileNavClose.focus();
                     else mobileMenuToggle.focus();
                 };
