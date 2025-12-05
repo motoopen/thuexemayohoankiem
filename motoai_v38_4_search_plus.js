@@ -2,9 +2,13 @@
    ✅ SEARCH UPGRADE:
       + Query Expansion: Domain "Thuê xe máy" (xe ga -> vision, ab...)
       + Algo: BM25+ (Improved scoring for long/short docs)
+      + Fix Crash Regex: Fallback regex cho trình duyệt cũ
+      + Logic: expandQuery tích hợp vào bestSentences
    
-   ✅ UI/UX: v38.3 (System DarkMode, iOS 16px, BottomSheet, VisualViewport)
-   ✅ LOGIC: v38.3.2 (Fix Session Dup, Private Mode, Safety Checks)
+   ✅ UI/UX UPGRADE:
+      + Link Handling: Strict filter (.txt, .xml...) & HTML Anchor rendering
+      + Core UI: innerHTML support for clickable links
+      + Mobile: VisualViewport Logic, BottomSheet
 */
 
 (function(){
@@ -80,7 +84,7 @@
     o = o.replace(/^\s{0,3}[-*+]\s+/gm, '');
     // image ![alt](url) → bỏ luôn
     o = o.replace(/!\[[^\]]*]\([^)]+\)/g, '');
-    // link [text](url) → "text - url"
+    // link [text](url) → "text - url" (Chỉ xử lý link MD, giữ nguyên thẻ HTML <a>)
     o = o.replace(/\[([^\]]+)]\(([^)]+)\)/g, '$1 - $2');
     // dọn khoảng trắng
     o = o.replace(/\s{2,}/g, ' ').trim();
@@ -137,6 +141,10 @@
       --m-bot-bd: rgba(255,255,255,0.08);
     }
   }
+  
+  /* Link Styling in Dark/Light */
+  .m-msg a { color: var(--m-blue); text-decoration: underline; font-weight: 500; }
+  .m-msg.user a { color: #fff; }
 
   #mta-root {
     position: fixed; right: 20px; bottom: 20px; z-index: var(--mta-z);
@@ -298,13 +306,15 @@
   function getSess(){ const arr = safe(localStorage.getItem(K.sess))||[]; return Array.isArray(arr)?arr:[]; }
   function saveSess(a){ try{ localStorage.setItem(K.sess, JSON.stringify(a.slice(-MAX_MSG))); }catch{} }
   
+  // 🔹 CORE: Render Message DOM (Updated to innerHTML for Anchors)
   function appendMsgDOM(role, text) {
     if(!text) return;
     const body=$("#mta-body"); if(!body) return;
     const el=document.createElement("div");
     el.className="m-msg "+(role==="user"?"user":"bot");
+    // stripMarkdown cho text, nhưng giữ lại các tag HTML hợp lệ (anchor)
     const out = (role === "bot") ? stripMarkdown(String(text)) : String(text);
-    el.textContent = out;
+    el.innerHTML = out; // 👈 Changed to innerHTML to support <a href>
     body.appendChild(el); 
     body.scrollTop=body.scrollHeight;
   }
@@ -404,70 +414,36 @@
   }
 
   /* ====== SIMPLE INDEX + BM25+ & QUERY EXPANSION ====== */
-  function tk(s){ return (s||"").toLowerCase().normalize('NFC').replace(/[^\p{L}\p{N}\s]+/gu,' ').split(/\s+/).filter(Boolean); }
+  // 🔹 FIX 1: Fix Crash Regex with Try/Catch Fallback
+  function tk(s){
+    const str = (s||"").toLowerCase().normalize('NFC');
+    try {
+      return str.replace(/[^\p{L}\p{N}\s]+/gu,' ').split(/\s+/).filter(Boolean);
+    } catch(e) {
+      // Fallback cho trình duyệt cũ (Regex cơ bản a-z0-9 và tiếng Việt phổ thông)
+      return str.replace(/[^\w\sà-ỹ]+/g, ' ').split(/\s+/).filter(Boolean);
+    }
+  }
 
   // 1️⃣ QUERY EXPANSION (Domain Thuê Xe Máy)
   const QUERY_EXPANSION_RULES = [
-    {
-      // Xe ga nói chung
-      re: /\b(xe ga|tay ga|scooter)\b/i,
-      add: ["vision","air blade","airblade","lead","vespa","liberty","scooter","tay ga"]
-    },
-    {
-      // Xe số
-      re: /\b(xe số|số sàn|underbone)\b/i,
-      add: ["wave","sirius","blade","jupiter","future","dream","underbone","xe so"]
-    },
-    {
-      // 50cc
-      re: /\b(50\s*cc|50cc|xe 50)\b/i,
-      add: ["xe 50cc","học sinh","sinh viên","không cần bằng lái"]
-    },
-    {
-      // Air Blade
-      re: /\b(air\s*blade|airblade|ab\b)\b/i,
-      add: ["xe ga","honda","ab 125","ab 150"]
-    },
-    {
-      // Vision
-      re: /\bvision\b/i,
-      add: ["honda vision","xe ga","xe ga nhỏ gọn"]
-    },
-    {
-      // Xe điện
-      re: /\b(xe điện|vinfast|yadea|dibao|klara|gogo)\b/i,
-      add: ["xe điện","electric scooter","vinfast","yadea","dibao","klara"]
-    },
-    {
-      // Côn tay
-      re: /\b(côn tay|tay côn|exciter|winner)\b/i,
-      add: ["xe côn tay","exciter","winner","underbone thể thao"]
-    },
-    {
-      // Giá / thuê / bảng giá
-      re: /\b(giá|bao nhiêu|thuê|price|cost|bảng giá)\b/i,
-      add: ["bảng giá thuê xe","giá thuê theo ngày","giá thuê theo tuần","giá thuê theo tháng"]
-    },
-    {
-      // Địa chỉ / map
-      re: /\b(địa chỉ|ở đâu|map|bản đồ|chỉ đường|location)\b/i,
-      add: ["địa chỉ cửa hàng","bản đồ google maps","chỉ đường đến cửa hàng"]
-    }
+    { re: /\b(xe ga|tay ga|scooter)\b/i, add: ["vision","air blade","airblade","lead","vespa","liberty","scooter","tay ga"] },
+    { re: /\b(xe số|số sàn|underbone)\b/i, add: ["wave","sirius","blade","jupiter","future","dream","underbone","xe so"] },
+    { re: /\b(50\s*cc|50cc|xe 50)\b/i, add: ["xe 50cc","học sinh","sinh viên","không cần bằng lái"] },
+    { re: /\b(air\s*blade|airblade|ab\b)\b/i, add: ["xe ga","honda","ab 125","ab 150"] },
+    { re: /\bvision\b/i, add: ["honda vision","xe ga","xe ga nhỏ gọn"] },
+    { re: /\b(xe điện|vinfast|yadea|dibao|klara|gogo)\b/i, add: ["xe điện","electric scooter","vinfast","yadea","dibao","klara"] },
+    { re: /\b(côn tay|tay côn|exciter|winner)\b/i, add: ["xe côn tay","exciter","winner","underbone thể thao"] },
+    { re: /\b(giá|bao nhiêu|thuê|price|cost|bảng giá)\b/i, add: ["bảng giá thuê xe","giá thuê theo ngày","giá thuê theo tuần","giá thuê theo tháng"] },
+    { re: /\b(địa chỉ|ở đâu|map|bản đồ|chỉ đường|location)\b/i, add: ["địa chỉ cửa hàng","bản đồ google maps","chỉ đường đến cửa hàng"] }
   ];
 
   function expandQuery(q){
     const base = String(q || "");
     const lower = base.toLowerCase();
     const extra = new Set();
-
-    QUERY_EXPANSION_RULES.forEach(rule => {
-      if (rule.re.test(lower)) {
-        (rule.add || []).forEach(w => extra.add(w));
-      }
-    });
-
+    QUERY_EXPANSION_RULES.forEach(rule => { if (rule.re.test(lower)) { (rule.add || []).forEach(w => extra.add(w)); } });
     if (!extra.size) return base;
-    // Ghép thêm synonyms phía sau query gốc
     return base + " " + Array.from(extra).join(" ");
   }
 
@@ -479,103 +455,53 @@
     return out;
   }
 
-  // 2️⃣ BM25+ (nâng cấp từ BM25 thường)
+  // 2️⃣ BM25+
   function buildBM25(docs){
-    const k1 = 1.5;
-    const b  = 0.75;
-    const delta = 0.5; // BM25+ offset giúp không "dìm" tài liệu ít term
-    const df = new Map();
-    const tf = new Map();
-    let totalLen = 0;
-
-    // 1) Tính tf, df
+    const k1 = 1.5; const b = 0.75; const delta = 0.5;
+    const df = new Map(); const tf = new Map(); let totalLen = 0;
     docs.forEach(d => {
-      const toks = tk(d.text);
-      totalLen += toks.length;
-      const fmap = new Map();
-      toks.forEach(t => fmap.set(t, (fmap.get(t) || 0) + 1));
-      tf.set(d.id, fmap);
-      const uniq = new Set(toks);
-      uniq.forEach(t => df.set(t, (df.get(t) || 0) + 1));
+      const toks = tk(d.text); totalLen += toks.length;
+      const fmap = new Map(); toks.forEach(t => fmap.set(t, (fmap.get(t) || 0) + 1));
+      tf.set(d.id, fmap); new Set(toks).forEach(t => df.set(t, (df.get(t) || 0) + 1));
     });
-
-    const N = docs.length || 1;
-    const avgdl = totalLen / Math.max(1, N);
-
-    // 2) Tính idf theo BM25 classic
+    const N = docs.length || 1; const avgdl = totalLen / Math.max(1, N);
     const idf = new Map();
-    df.forEach((c, t) => {
-      // idf(t) = ln( (N - c + 0.5) / (c + 0.5) + 1 )
-      const val = Math.log( (N - c + 0.5) / (c + 0.5) + 1 );
-      idf.set(t, val > 0 ? val : 0);
-    });
-
+    df.forEach((c, t) => { const val = Math.log( (N - c + 0.5) / (c + 0.5) + 1 ); idf.set(t, val > 0 ? val : 0); });
     function score(query, docId, docLen){
-      const qToks = new Set(tk(query));
-      const fmap = tf.get(docId) || new Map();
-      let s = 0;
+      const qToks = new Set(tk(query)); const fmap = tf.get(docId) || new Map(); let s = 0;
       qToks.forEach(t => {
-        const f = fmap.get(t) || 0;
-        if (!f) return;
-        const idfv = idf.get(t) || 0;
-        if (!idfv) return;
-        const denom = f + k1 * (1 - b + b * (docLen / avgdl));
-        const core  = (f * (k1 + 1)) / denom;
-        // BM25+: thêm delta
-        s += idfv * (core + delta);
+        const f = fmap.get(t) || 0; if (!f) return; const idfv = idf.get(t) || 0; if (!idfv) return;
+        const denom = f + k1 * (1 - b + b * (docLen / avgdl)); s += idfv * ((f * (k1 + 1)) / denom + delta);
       });
       return s;
     }
-
     return { score, tf, avgdl };
   }
 
-  // 3️⃣ SEARCH INDEX (Integrate Expansion + BM25+)
+  // 3️⃣ SEARCH INDEX
   function searchIndex(query, k=3){
-    const idx = getIndexFlat();
-    if (!idx.length) return [];
-
-    // 🔹 Query Expansion: mở rộng trước khi đưa vào BM25+
+    const idx = getIndexFlat(); if (!idx.length) return [];
     const qExpanded = expandQuery(query || "");
-
-    const docs = idx.map((it, i) => ({
-      id: String(i),
-      text: ((it.title || "") + " " + (it.text || "")),
-      meta: it
-    }));
-
+    const docs = idx.map((it, i) => ({ id: String(i), text: ((it.title || "") + " " + (it.text || "")), meta: it }));
     const bm = CFG.smart.semanticSearch ? buildBM25(docs) : null;
-
     if (bm) {
-      const scored = docs
-        .map(d => ({
-          score: bm.score(qExpanded, d.id, tk(d.text).length || 1),
-          meta: d.meta
-        }))
-        .filter(x => x.score > 0)
-        .sort((a, b) => b.score - a.score)
-        .slice(0, k)
-        .map(x => x.meta);
-      return scored;
+      return docs.map(d => ({ score: bm.score(qExpanded, d.id, tk(d.text).length || 1), meta: d.meta }))
+        .filter(x => x.score > 0).sort((a, b) => b.score - a.score).slice(0, k).map(x => x.meta);
     } else {
-      // Fallback: keyword overlap + expansion
       const qTokens = tk(qExpanded);
-      const scored = idx
-        .map(it => {
-          const docTokens = tk((it.title || "") + " " + (it.text || ""));
-          const hits = docTokens.filter(t => qTokens.includes(t)).length;
+      return idx.map(it => {
+          const hits = tk((it.title || "") + " " + (it.text || "")).filter(t => qTokens.includes(t)).length;
           return Object.assign({ score: hits }, it);
-        })
-        .filter(x => x.score > 0)
-        .sort((a, b) => b.score - a.score)
-        .slice(0, k);
-      return scored;
+        }).filter(x => x.score > 0).sort((a, b) => b.score - a.score).slice(0, k);
     }
   }
 
+  // 🔹 FIX 2: bestSentences gọi expandQuery
   function bestSentences(text, query, k=2){
+    const expanded = expandQuery(query); // Mở rộng query trước khi quét câu
     const sents = String(text||'').replace(/\s+/g,' ').split(/(?<=[\.\!\?])\s+/).slice(0,80);
-    const qToks=new Set(tk(query)); const scored = sents.map(s=>{
+    const qToks=new Set(tk(expanded));
+    const scored = sents.map(s=>{
       const toks=tk(s); let hit=0; qToks.forEach(t=>{ if(toks.includes(t)) hit++; });
       const lenp = Math.max(0.5, 12/Math.max(12, toks.length));
       return {s, score: hit*lenp};
@@ -789,7 +715,8 @@
         if(type && qty) break;
       }
     }
-    if(intents.needContact) return polite(`anh/chị gọi ${CFG.phone} hoặc Zalo ${CFG.zalo||CFG.phone} là có người nhận ngay.`);
+    // 🔹 FIX 3: Zalo Link Formatting
+    if(intents.needContact) return polite(`anh/chị gọi ${CFG.phone} hoặc <a href="${CFG.zalo||CFG.phone}" target="_blank">Zalo (nhắn tại đây)</a> là có người nhận ngay.`);
     if(intents.needDocs)    return polite(`thủ tục gọn: CCCD/hộ chiếu + cọc theo xe. Có phương án giảm cọc khi đủ giấy tờ.`);
     if(intents.needPolicy)  return polite(`đặt cọc tham khảo: xe số 2–3 triệu; xe ga 2–5 triệu; 50cc khoảng 4 triệu. Liên hệ Zalo ${CFG.phone} để chốt theo mẫu xe.`);
     if(intents.needDelivery)return polite(`thuê 1–4 ngày vui lòng đến cửa hàng chọn xe; thuê tuần/tháng em giao tận nơi. Phí nội thành 20–100k tuỳ quận. Nhắn Zalo ${CFG.phone} để em set lịch.`);
@@ -798,13 +725,18 @@
     try{
       const top = searchIndex(q, 3);
       if(top && top.length){
-        const t0 = top[0];
-        if(CFG.smart.extractiveQA){
-          const sn = bestSentences((t0.title? (t0.title+'. ') : '') + (t0.text||''), q, 2).join(' ');
-          if(sn) return naturalize(`${sn} — Xem thêm: ${t0.url}`);
+        // 🔹 FIX 3: Strict Link Management (Ignore .txt, .json, moto_sitemap)
+        const validTop = top.find(t => !/\.(txt|json|xml)$|moto_sitemap/i.test(t.url));
+        if(validTop){
+           const t0 = validTop;
+           const linkHtml = `<a href="${t0.url}" target="_blank">Xem thêm tại đây</a>`;
+           if(CFG.smart.extractiveQA){
+              const sn = bestSentences((t0.title? (t0.title+'. ') : '') + (t0.text||''), q, 2).join(' ');
+              if(sn) return naturalize(`${sn} — ${linkHtml}`);
+           }
+           const fallback = ((t0.title? (t0.title+' — ') : '') + (t0.text||'')).slice(0,180);
+           return polite(`${fallback} ... ${linkHtml}`);
         }
-        const fallback = ((t0.title? (t0.title+' — ') : '') + (t0.text||'')).slice(0,180);
-        return polite(`${fallback} ... Xem thêm: ${t0.url}`);
       }
     }catch(e){}
     if(/(chào|xin chào|hello|hi|alo)/i.test(q)) return polite(`em là nhân viên hỗ trợ của ${CFG.brand}. Anh/chị muốn xem 🏍️ Xe số, 🛵 Xe ga, ⚡ Xe điện hay 📄 Thủ tục thuê xe?`);
@@ -837,7 +769,6 @@
     const body=$("#mta-body"); if(body) body.scrollTop = body.scrollHeight;
   }
 
-  // Simplified sendUser (addMsg handles stripping)
   async function sendUser(text){
     if(sending) return;
     const v=(text||"").trim(); if(!v) return;
@@ -846,11 +777,10 @@
     const isMobile = window.innerWidth < 480; const wait = (isMobile? 1600 + Math.random()*1200 : 2400 + Math.random()*2200);
     showTyping(); await sleep(wait);
     
-    // Gọi deepAnswer lấy text thô
+    // Gọi deepAnswer lấy text (có thể chứa HTML anchor)
     const rawAns = await deepAnswer(v);
     
     hideTyping();
-    // Không cần tự strip nữa, addMsg sẽ làm
     addMsg("bot", rawAns);
     pushCtx({from:"bot", raw:rawAns});
     sending=false;
@@ -878,22 +808,18 @@
     const card = $("#mta-card");
     if (!card) return;
 
-    // Chỉ chạy logic này trên mobile khi bàn phím mở (visualViewport.height < innerHeight)
     if (window.visualViewport && window.innerWidth < 600) {
       const vh = window.visualViewport.height;
       const offsetTop = window.visualViewport.offsetTop;
-      // Tính toán bottom thực tế để card nằm ngay trên bàn phím
       const bottom = window.innerHeight - (vh + offsetTop);
       
-      // Nếu bàn phím mở (vh nhỏ hơn hẳn window.innerHeight)
       if (vh < window.innerHeight - 100) {
         card.style.bottom = `${Math.max(0, bottom)}px`;
-        card.style.height = `${vh}px`; // Thu gọn chiều cao card cho vừa khung nhìn
-        card.style.borderRadius = "0"; // Vuông góc cho gọn
+        card.style.height = `${vh}px`; 
+        card.style.borderRadius = "0"; 
       } else {
-        // Reset về trạng thái bình thường
         card.style.bottom = "0";
-        card.style.height = "85vh"; // Chiều cao mặc định mobile
+        card.style.height = "85vh"; 
         card.style.borderRadius = "20px 20px 0 0";
       }
     }
@@ -917,7 +843,6 @@
     const track=$("#mta-tags");
     if(track){ track.querySelectorAll("button").forEach(btn=> btn.addEventListener("click", ()=> sendUser(btn.dataset.q||btn.textContent))); }
 
-    // VisualViewport Events
     if(window.visualViewport){
       window.visualViewport.addEventListener("resize", autoAvoid);
       window.visualViewport.addEventListener("scroll", autoAvoid);
