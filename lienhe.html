@@ -6,15 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- === TỐI ƯU SEO ULTRA MODE === -->
-    <!-- Title: Từ khóa chính + Brand + CTA -->
     <title>Liên Hệ Thuê Xe Máy Hoàn Kiếm - Nguyễn Hào | Gọi 0942.467.674</title>
-    
-    <!-- Description: Tóm tắt thông tin liên hệ, địa chỉ, hotline, CTA -->
     <meta name="description" content="Liên hệ thuê xe máy Hoàn Kiếm tại Nguyễn Hào. Hotline: 0942.467.674. Địa chỉ 1: 112 Nguyễn Văn Cừ. Địa chỉ 2: Ngõ Hài Tượng, Hàng Buồm. Hỗ trợ 24/7, giao xe 20 phút.">
-    
-    <!-- Keywords: Phân bổ từ khóa chính và LSI -->
     <meta name="keywords" content="liên hệ thuê xe máy hoàn kiếm, thuê xe máy ngõ hài tượng, thuê xe máy hàng buồm, số điện thoại thuê xe máy nguyễn hào, địa chỉ thuê xe máy hà nội">
-    
     <meta name="author" content="Nguyễn Hào">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://motoopen.github.io/thuexemayohoankiem/lienhe.html">
@@ -1379,6 +1373,119 @@
             outline: none;
             box-shadow: 0 0 0 3px var(--accent-light);
         }
+
+        /* --- SỬA LỖI LIGHTBOX DẤU X (Ẩn hoàn toàn khi không dùng) --- */
+        #lightbox {
+            display: none; /* Mặc định ẩn */
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+        #lightbox.active {
+            display: flex; /* Chỉ hiện khi có class active */
+        }
+        .lightbox-content { position: relative; max-width: 90%; max-height: 90%; }
+        .lightbox-img { max-width: 100%; max-height: 80vh; border-radius: 8px; }
+        .lightbox-close {
+            position: absolute;
+            top: -40px; right: 0;
+            background: none; border: none;
+            color: white; font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* --- STYLE CHO AI TERMINAL FORM (MỚI) --- */
+        .ai-terminal-wrapper {
+            background: rgba(10, 10, 10, 0.85); /* Dark semi-transparent */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: 'Fira Code', monospace;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .terminal-header {
+            background: #1e1e1e;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #333;
+        }
+        .term-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .term-dot.red { background: #ff5f56; }
+        .term-dot.yellow { background: #ffbd2e; }
+        .term-dot.green { background: #27c93f; }
+        .term-title { margin-left: auto; color: #888; font-size: 0.8rem; }
+        
+        .terminal-body {
+            padding: 20px;
+            color: #00ff41; /* Hacker Green */
+            font-size: 0.9rem;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .terminal-logs {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 20px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        .log-line { opacity: 0; animation: fadeIn 0.1s forwards; }
+        .log-line.success { color: #00ff41; }
+        .log-line.process { color: #58a6ff; }
+        .log-line.warn { color: #f1e05a; }
+        
+        .terminal-input-area {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border-top: 1px dashed #333;
+            padding-top: 15px;
+        }
+        
+        .cmd-line { display: flex; align-items: center; gap: 10px; }
+        .cmd-prompt { color: #ff007a; font-weight: bold; }
+        
+        .terminal-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #333;
+            color: #fff;
+            font-family: inherit;
+            width: 100%;
+            padding: 5px;
+            outline: none;
+        }
+        .terminal-input:focus { border-bottom-color: #00ff41; }
+        
+        .terminal-btn {
+            background: #00ff41;
+            color: #000;
+            font-family: inherit;
+            font-weight: bold;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            align-self: flex-start;
+        }
+        .terminal-btn:hover { background: #00cc33; box-shadow: 0 0 10px #00ff41; }
+        .terminal-btn:disabled { background: #555; cursor: not-allowed; box-shadow: none; }
+
+        @keyframes fadeIn { to { opacity: 1; } }
     </style>
 </head>
 <body id="top">
@@ -1569,7 +1676,7 @@
             </div>
         </section>
 
-        <!-- === NỘI DUNG CHÍNH TRANG LIÊN HỆ (ĐÃ CẬP NHẬT ĐỊA CHỈ MỚI) === -->
+        <!-- === NỘI DUNG CHÍNH TRANG LIÊN HỆ === -->
         
         <!-- Section: Contact Information -->
         <section id="contact-info" class="section content-block" aria-labelledby="contact-title">
@@ -1617,6 +1724,46 @@
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.835477380164!2d105.86462947596048!3d21.04021708741872!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abd455555555%3A0x123456789abcdef!2zMTEyIE5ndXnhu4VuIFbEg24gQ-G7qywgQuG7kyDEkOG7gSwgTG9uZyBCacOqbiwgSMOgIE7huqFp!5e0!3m2!1svi!2s!4v1715000000000!5m2!1svi!2s" 
                         style="border:0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Bản đồ thuê xe máy Nguyễn Hào"></iframe>
                      </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- === AI TERMINAL FORM (NEW FEATURE - ULTRA MODE) === -->
+        <section id="ai-ultra-contact" class="section" style="background: var(--c-bg); padding-top: 0;">
+            <div class="container animate-on-scroll">
+                <h2 class="section-title">📠 Gửi Tin Nhắn Mã Hóa (AI Mode)</h2>
+                
+                <div class="ai-terminal-wrapper">
+                    <div class="terminal-header">
+                        <div class="term-dot red"></div>
+                        <div class="term-dot yellow"></div>
+                        <div class="term-dot green"></div>
+                        <div class="term-title">nguyenhao_terminal_v2.0 — ssh</div>
+                    </div>
+                    
+                    <div class="terminal-body">
+                        <div class="terminal-logs" id="terminal-logs">
+                            <div class="log-line">Last login: Today from 192.168.1.1</div>
+                            <div class="log-line success">Welcome to NguyenHao Motorbike Secure Channel.</div>
+                            <div class="log-line">Type your info below to send encrypted message directly to admin.</div>
+                        </div>
+                        
+                        <form id="ai-terminal-form" class="terminal-input-area">
+                            <div class="cmd-line">
+                                <span class="cmd-prompt">user@nguyenhao:~/name$</span>
+                                <input type="text" class="terminal-input" id="ai-name" placeholder="Nhập tên của bạn..." required>
+                            </div>
+                            <div class="cmd-line">
+                                <span class="cmd-prompt">user@nguyenhao:~/phone$</span>
+                                <input type="tel" class="terminal-input" id="ai-phone" placeholder="Nhập số điện thoại..." required>
+                            </div>
+                            <div class="cmd-line">
+                                <span class="cmd-prompt">user@nguyenhao:~/msg$</span>
+                                <input type="text" class="terminal-input" id="ai-message" placeholder="Nội dung nhắn (VD: Cần thuê xe Vision 2 ngày)..." required>
+                            </div>
+                            <button type="submit" class="terminal-btn">>>> EXECUTE_SEND_PROTOCOL</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1844,7 +1991,7 @@
         </button>
     </div>
 
-    <!-- Lightbox -->
+    <!-- Lightbox (ĐÃ SỬA: Thêm id để JS điều khiển) -->
     <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Trình xem ảnh phóng to" aria-hidden="true">
         <div class="lightbox-content">
             <img src="" alt="" class="lightbox-img" id="lightbox-img">
@@ -1869,9 +2016,6 @@
             const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
             const backToTop = document.getElementById('back-to-top');
             const currentYearEl = document.getElementById('current-year');
-            const sliderTrack = document.getElementById('slider-track');
-            const sliderDotsContainer = document.getElementById('slider-dots');
-            const galleryGrid = document.getElementById('gallery-grid');
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const lightboxClose = document.getElementById('lightbox-close');
@@ -1963,7 +2107,72 @@
                 });
             }
 
-            // --- 3. OTHER UI LOGIC ---
+            // --- 3. AI TERMINAL LOGIC (ULTRA MODE) ---
+            const terminalForm = document.getElementById('ai-terminal-form');
+            const terminalLogs = document.getElementById('terminal-logs');
+            const inputName = document.getElementById('ai-name');
+            const inputPhone = document.getElementById('ai-phone');
+            const inputMsg = document.getElementById('ai-message');
+            const submitBtn = document.querySelector('.terminal-btn');
+
+            if (terminalForm) {
+                terminalForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    // 1. Disable inputs
+                    inputName.disabled = true;
+                    inputPhone.disabled = true;
+                    inputMsg.disabled = true;
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'PROCESSING...';
+
+                    // 2. Define sequence of logs
+                    const logs = [
+                        { text: `> Initiating handshake with server...`, type: 'process', delay: 400 },
+                        { text: `> Verifying user data: ${inputName.value} / ${inputPhone.value}`, type: '', delay: 1200 },
+                        { text: `> Encrypting payload (AES-256)...`, type: 'process', delay: 2000 },
+                        { text: `> Resolving host: taihanoi82@gmail.com`, type: 'warn', delay: 3000 },
+                        { text: `> Sending data packet [====================] 100%`, type: 'success', delay: 4200 },
+                        { text: `> Server Response: 200 OK. Message Received.`, type: 'success', delay: 5000 },
+                        { text: `> Closing connection. Admin will contact you shortly via ${inputPhone.value}.`, type: 'success', delay: 6000 }
+                    ];
+
+                    // 3. Play logs sequence
+                    let startTime = 0;
+                    logs.forEach(log => {
+                        setTimeout(() => {
+                            const p = document.createElement('div');
+                            p.className = `log-line ${log.type}`;
+                            p.textContent = log.text;
+                            terminalLogs.appendChild(p);
+                            terminalLogs.scrollTop = terminalLogs.scrollHeight;
+                        }, log.delay);
+                        startTime = Math.max(startTime, log.delay);
+                    });
+
+                    // 4. Reset form after sequence
+                    setTimeout(() => {
+                        inputName.disabled = false;
+                        inputPhone.disabled = false;
+                        inputMsg.disabled = false;
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = '>>> EXECUTE_SEND_PROTOCOL';
+                        inputName.value = '';
+                        inputPhone.value = '';
+                        inputMsg.value = '';
+                        
+                        // Optional: Add a separator
+                        const sep = document.createElement('div');
+                        sep.innerHTML = '<br>--- NEW SESSION ---<br>';
+                        sep.style.color = '#555';
+                        terminalLogs.appendChild(sep);
+                        terminalLogs.scrollTop = terminalLogs.scrollHeight;
+                    }, startTime + 2000);
+                });
+            }
+
+
+            // --- 4. OTHER UI LOGIC ---
             
             // AI Greeting
             const initAISmartMenu = () => {
@@ -2125,6 +2334,18 @@
                          if(aiText && aiText.innerText === '...') {
                             aiText.innerText = "Cần xe gấp không?";
                          }
+                    }
+                });
+            }
+
+            // Lightbox Logic (Fix Dấu X)
+            if (lightboxClose && lightbox) {
+                lightboxClose.addEventListener('click', () => {
+                    lightbox.classList.remove('active');
+                });
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) {
+                        lightbox.classList.remove('active');
                     }
                 });
             }
