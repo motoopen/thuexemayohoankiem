@@ -10,10 +10,10 @@
     <title>Liên Hệ Thuê Xe Máy Hoàn Kiếm - Nguyễn Hào | Gọi 0942.467.674</title>
     
     <!-- Description: Tóm tắt thông tin liên hệ, địa chỉ, hotline, CTA -->
-    <meta name="description" content="Liên hệ thuê xe máy Hoàn Kiếm tại Nguyễn Hào. Hotline/Zalo: 0942.467.674. Địa chỉ: 112 Nguyễn Văn Cừ & Phố Cổ. Hỗ trợ 24/7, giao xe tận nơi sau 20 phút.">
+    <meta name="description" content="Liên hệ thuê xe máy Hoàn Kiếm tại Nguyễn Hào. Hotline: 0942.467.674. Địa chỉ 1: 112 Nguyễn Văn Cừ. Địa chỉ 2: Ngõ Hài Tượng, Hàng Buồm. Hỗ trợ 24/7, giao xe 20 phút.">
     
     <!-- Keywords: Phân bổ từ khóa chính và LSI -->
-    <meta name="keywords" content="liên hệ thuê xe máy hoàn kiếm, số điện thoại thuê xe máy nguyễn hào, địa chỉ thuê xe máy hà nội, hotline thuê xe máy, đường đi thuê xe máy long biên">
+    <meta name="keywords" content="liên hệ thuê xe máy hoàn kiếm, thuê xe máy ngõ hài tượng, thuê xe máy hàng buồm, số điện thoại thuê xe máy nguyễn hào, địa chỉ thuê xe máy hà nội">
     
     <meta name="author" content="Nguyễn Hào">
     <meta name="robots" content="index, follow">
@@ -22,7 +22,7 @@
     <!-- OPEN GRAPH / FACEBOOK -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Liên Hệ Thuê Xe Máy Hoàn Kiếm - Nguyễn Hào | Gọi 0942.467.674">
-    <meta property="og:description" content="Cần thuê xe máy gấp tại Hà Nội? Liên hệ ngay Nguyễn Hào 0942.467.674. Giao xe Phố Cổ, Long Biên, Gia Lâm trong 20 phút. Hỗ trợ sự cố 24/7.">
+    <meta property="og:description" content="Cần thuê xe máy gấp tại Hà Nội? Liên hệ ngay Nguyễn Hào 0942.467.674. Giao xe Phố Cổ (Hàng Buồm), Long Biên, Gia Lâm trong 20 phút.">
     <meta property="og:image" content="https://thuexemaynguyentu.com/wp-content/uploads/2025/09/BANNER-THUE-XE-MAY-1.png">
     <meta property="og:site_name" content="Cho thuê xe máy Nguyễn Hào">
     
@@ -34,7 +34,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-    <!-- CSS (COPY NGUYÊN BẢN TỪ FILE GỐC) -->
+    <!-- CSS -->
     <style>
         /* ========================================= */
         /* 1. CORE UTILITIES & RESET */
@@ -385,7 +385,7 @@
         .mobile-nav-panel {
             position: fixed;
             top: 0;
-            right: -120%; /* Hidden by default */
+            right: -120%;
             width: 85vw;
             max-width: 400px;
             height: 100vh;
@@ -740,7 +740,7 @@
             box-shadow: var(--shadow-xs);
         }
 
-        /* --- UPDATED FORM STYLES (CALCULATOR) --- */
+        /* --- FORM STYLES (CALCULATOR) --- */
         .mini-form {
             background-color: var(--c-bg-card);
             border-radius: var(--radius);
@@ -840,8 +840,6 @@
             box-shadow: var(--shadow-lg);
         }
 
-        #why-us { background-color: var(--c-bg-card); }
-        html[data-theme="dark"] #why-us { background-color: var(--c-bg); }
         .benefits-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -868,260 +866,10 @@
             color: var(--c-text-muted);
         }
         @media (min-width: 640px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 1024px) { .benefits-grid { grid-template-columns: repeat(3, 1fr); } }
+        /* CẬP NHẬT GRID ĐỂ CHỨA 4 CỘT (Cho 4 thẻ liên hệ) */
+        @media (min-width: 1024px) { .benefits-grid { grid-template-columns: repeat(4, 1fr); } }
 
-        /* Services */
-        .services-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-        .service-card { overflow: hidden; }
-        .service-card img {
-            width: 100%;
-            /* === TỐI ƯU ẢNH VUÔNG (SQUARE) === */
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-            margin-bottom: 1.5rem;
-        }
-        .service-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        .service-card p {
-            color: var(--c-text-muted);
-            margin-bottom: 1rem;
-        }
-        .service-card .price {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--accent);
-        }
-        /* Mobile: 1 cột (đã có ở trên) */
-        @media (min-width: 640px) { 
-            /* Tablet: 2 cột */
-            .services-grid { grid-template-columns: repeat(2, 1fr); } 
-        }
-        @media (min-width: 1024px) { 
-            /* PC: 4 cột cho 4 xe */
-            .services-grid { grid-template-columns: repeat(4, 1fr); } 
-        }
-
-        /* Deals */
-        .deal-highlight {
-            background: linear-gradient(135deg, var(--accent), var(--accent-light));
-            border-radius: var(--radius);
-            padding: 2.5rem;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            box-shadow: var(--shadow-lg);
-        }
-        .deal-highlight h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        .deal-highlight p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            opacity: 0.9;
-        }
-        .deal-highlight .btn {
-            background-color: #ffffff;
-            color: var(--accent);
-            font-weight: 700;
-        }
-        .deal-highlight .btn:hover {
-            background-color: #f0f0f0;
-            color: var(--accent-dark);
-        }
-
-        /* Process */
-        .process-steps {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            position: relative;
-        }
-        .process-step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 1.5rem;
-        }
-        .step-number {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--accent);
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            box-shadow: var(--shadow-fluent);
-        }
-        .process-step h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        .process-step p { color: var(--c-text-muted); }
-        
-        @media (min-width: 768px) {
-            .process-steps { grid-template-columns: repeat(4, 1fr); }
-            .process-step { position: relative; }
-            .process-step:not(:last-child)::after {
-                content: '';
-                position: absolute;
-                top: 25px;
-                right: -50%;
-                width: 100%;
-                height: 2px;
-                background: linear-gradient(to right, var(--accent), var(--accent-light));
-                opacity: 0.5;
-                transform: translateX(50%);
-                z-index: -1;
-            }
-        }
-
-        /* Gallery */
-        #gallery { background-color: var(--c-bg-card); }
-        html[data-theme="dark"] #gallery { background-color: var(--c-bg); }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            transition: transform var(--transition-speed) ease, opacity var(--transition-speed) ease;
-        }
-        .gallery-item img:hover {
-            transform: scale(1.03);
-            opacity: 0.9;
-        }
-        @media (min-width: 768px) {
-            .gallery-grid { grid-template-columns: repeat(4, 1fr); }
-            .gallery-item:first-child, .gallery-item:last-child {
-                grid-column: span 2;
-                height: 400px;
-            }
-            .gallery-item:first-child img, .gallery-item:last-child img { height: 100%; }
-        }
-
-        /* Lightbox */
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(5px);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease;
-        }
-        .lightbox.active { opacity: 1; visibility: visible; }
-        .lightbox-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-            display: flex;
-            justify-content: center;
-        }
-        .lightbox-img {
-            max-width: 100%;
-            max-height: 90vh;
-            border-radius: var(--radius-sm);
-        }
-        .lightbox-close {
-            position: absolute;
-            top: -2.5rem;
-            right: -1rem;
-            background: none;
-            border: none;
-            color: #ffffff;
-            cursor: pointer;
-            padding: 5px;
-        }
-        .lightbox-close .material-symbols-rounded {
-            font-size: 2.5rem;
-            display: block;
-        }
-
-        /* Testimonials */
-        .testimonial-slider {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-        .slider-track {
-            display: flex;
-            transition: transform var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-        .testimonial-card {
-            flex: 0 0 100%;
-            padding: 2rem;
-            text-align: center;
-        }
-        .testimonial-card blockquote {
-            font-size: 1.15rem;
-            font-style: italic;
-            color: var(--c-text-muted);
-            margin-bottom: 1rem;
-            border: none;
-        }
-        .testimonial-card .author {
-            font-weight: 600;
-            color: var(--c-text);
-        }
-        .testimonial-card .stars {
-            color: #FFC107;
-            margin-bottom: 1rem;
-        }
-        .slider-dots {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-        }
-        .slider-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: var(--c-border);
-            border: none;
-            cursor: pointer;
-            transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
-        }
-        .slider-dot.active {
-            background-color: var(--accent);
-            transform: scale(1.2);
-        }
-
-        /* Bonus Sections & Checklist */
-        #commitment { background-color: var(--c-bg-card); }
-        html[data-theme="dark"] #commitment { background-color: var(--c-bg); }
-        
+        /* Checklist */
         .checklist { list-style: none; padding-left: 0; }
         .checklist li {
             position: relative;
@@ -1139,161 +887,7 @@
         }
 
         /* ========================================= */
-        /* [UPDATED] AI TERMINAL LOCATION STYLES     */
-        /* ========================================= */
-        .ai-terminal-window {
-            background-color: var(--ai-terminal-bg);
-            border: 1px solid var(--ai-terminal-border);
-            border-radius: var(--radius);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-            font-family: 'Fira Code', monospace;
-            overflow: hidden;
-            color: #e6edf3;
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .terminal-header {
-            background-color: #161b22;
-            padding: 10px 15px;
-            border-bottom: 1px solid var(--ai-terminal-border);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .terminal-dots {
-            display: flex;
-            gap: 6px;
-        }
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
-        .dot.red { background: #ff5f56; }
-        .dot.yellow { background: #ffbd2e; }
-        .dot.green { background: #27c93f; }
-        .terminal-title {
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 0.85rem;
-            opacity: 0.7;
-        }
-
-        .terminal-body {
-            padding: 20px;
-            min-height: 400px;
-            position: relative;
-            background: linear-gradient(180deg, rgba(13,17,23,0.9) 0%, rgba(13,17,23,1) 100%);
-        }
-
-        .scan-line {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: rgba(88, 166, 255, 0.8);
-            box-shadow: 0 0 15px rgba(88, 166, 255, 1);
-            animation: scan 2s linear infinite;
-            z-index: 5;
-            pointer-events: none;
-            display: none; /* JS will toggle */
-        }
-        .ai-terminal-window.scanning .scan-line { display: block; }
-        @keyframes scan {
-            0% { top: 0; opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { top: 100%; opacity: 0; }
-        }
-
-        .terminal-log {
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            color: var(--ai-terminal-text);
-            font-family: 'Fira Code', monospace;
-        }
-        .cmd-line { display: block; margin-bottom: 5px; }
-        .cmd-cursor {
-            display: inline-block;
-            width: 8px;
-            height: 15px;
-            background: var(--ai-terminal-text);
-            animation: blink 1s infinite;
-            vertical-align: text-bottom;
-        }
-
-        .ai-loc-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        .ai-loc-grid.visible { opacity: 1; }
-        
-        .ai-loc-card {
-            background: rgba(33, 38, 45, 0.6);
-            border: 1px solid rgba(48, 54, 61, 0.7);
-            border-radius: 12px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            backdrop-filter: blur(5px);
-        }
-        .ai-loc-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .ai-loc-card.revealed { transform: translateY(0); opacity: 1; }
-        
-        .ai-loc-img-wrap {
-            height: 180px;
-            overflow: hidden;
-            position: relative;
-        }
-        .ai-loc-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-        .ai-loc-card:hover .ai-loc-img { transform: scale(1.1); }
-        
-        .ai-loc-info { padding: 15px; }
-        .ai-loc-title {
-            color: #fff;
-            font-weight: 700;
-            font-family: 'Inter', sans-serif;
-            margin-bottom: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .ai-loc-dist { 
-            font-size: 0.75rem; 
-            color: #2ea44f; 
-            background: rgba(46, 164, 79, 0.1);
-            border: 1px solid rgba(46, 164, 79, 0.3); 
-            padding: 2px 8px; 
-            border-radius: 99px; 
-            font-family: 'Fira Code', monospace;
-        }
-        .ai-loc-desc { 
-            font-size: 0.85rem; 
-            color: #8b949e; 
-            line-height: 1.5; 
-            font-family: 'Inter', sans-serif;
-        }
-        
-        @media (min-width: 768px) {
-            .ai-loc-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        /* ========================================= */
-        /* [NEW] AI CHAT FAQ STYLES                  */
+        /* AI CHAT FAQ STYLES                        */
         /* ========================================= */
         .ai-chat-interface {
             max-width: 900px;
@@ -1416,7 +1010,6 @@
             border-color: var(--accent);
             transform: translateY(-2px);
         }
-        /* Style for disabled buttons during bot reply */
         .chip-btn:disabled {
             opacity: 0.6;
             cursor: not-allowed;
@@ -1790,13 +1383,14 @@
 </head>
 <body id="top">
 
-    <!-- === HEADER (Giữ nguyên) === -->
+    <!-- === HEADER (ĐÃ SỬA: Đổi H1 thành Span để chuẩn SEO) === -->
     <header class="main-header">
         <div class="container">
             <nav class="main-nav">
                 <a href="https://motoopen.github.io/thuexemayohoankiem/" class="logo">
                     <img src="https://raw.githubusercontent.com/motoopen/thuexemayohoankiem/refs/heads/main/IMG_0477.jpeg" alt="Logo Nguyễn Hào">
-                    <h1 class="sr-only">Cho thuê xe máy Hoàn Kiếm, Hà Nội - Nguyễn Hào</h1>
+                    <!-- H1 cũ đã được đổi thành SPAN -->
+                    <span class="sr-only">Cho thuê xe máy Hoàn Kiếm, Hà Nội - Nguyễn Hào</span>
                     <span aria-hidden="true">Nguyễn Hào</span>
                 </a>
                 
@@ -1924,7 +1518,7 @@
         <!-- === HERO SECTION === -->
         <section class="hero" aria-labelledby="hero-title">
             <div class="container">
-                <!-- Tối ưu H1 chứa từ khóa chính cho trang LIÊN HỆ -->
+                <!-- GIỮ LẠI H1 DUY NHẤT Ở ĐÂY CHO SEO -->
                 <h1 id="hero-title" class="animate-on-scroll">Liên Hệ Thuê Xe Máy Hoàn Kiếm – Nguyễn Hào (Hỗ Trợ 24/7)</h1>
                 <p class="subtitle animate-on-scroll" data-delay="100">
                     📍 Cần thuê xe máy gấp? Gọi ngay hotline để được giao xe tận nơi tại Hoàn Kiếm, Long Biên chỉ sau 20 phút.
@@ -1946,7 +1540,7 @@
                     <span class="chip">🛠️ Cứu hộ nhanh chóng</span>
                 </div>
                 
-                <!-- PRICE CALCULATOR (Giữ nguyên tính năng theo yêu cầu) -->
+                <!-- PRICE CALCULATOR -->
                 <form class="mini-form animate-on-scroll" data-delay="400" id="price-calculator" aria-labelledby="form-title" onsubmit="event.preventDefault()">
                     <h3 id="form-title"><span class="material-symbols-rounded">calculate</span> Tính Tiền Thuê Xe Tự Động</h3>
                     <div class="form-grid">
@@ -1975,7 +1569,7 @@
             </div>
         </section>
 
-        <!-- === NỘI DUNG CHÍNH TRANG LIÊN HỆ (SEO ULTRA MODE) === -->
+        <!-- === NỘI DUNG CHÍNH TRANG LIÊN HỆ (ĐÃ CẬP NHẬT ĐỊA CHỈ MỚI) === -->
         
         <!-- Section: Contact Information -->
         <section id="contact-info" class="section content-block" aria-labelledby="contact-title">
@@ -1999,12 +1593,20 @@
                         <a href="https://zalo.me/0942467674" target="_blank" style="font-size: 1.2rem; font-weight: 700; color: var(--zalo-blue);">Chat Zalo Ngay</a>
                     </div>
                     
-                    <!-- Contact Card 3 -->
+                    <!-- Contact Card 3 (Cơ sở 1) -->
                     <div class="card animate-on-scroll" data-delay="200">
                         <span class="material-symbols-rounded icon" aria-hidden="true" style="font-size: 2.5rem; color: #EA4335;">storefront</span>
-                        <h3 style="margin-top: 1rem;">Cơ Sở Chính</h3>
+                        <h3 style="margin-top: 1rem;">Cơ Sở 1 (Long Biên)</h3>
                         <p>112 Nguyễn Văn Cừ, Bồ Đề, Long Biên, Hà Nội. (Ngay gần cầu Chương Dương).</p>
                         <a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc" target="_blank" style="font-size: 1.1rem; font-weight: 700; color: #EA4335;">Xem Bản Đồ</a>
+                    </div>
+
+                    <!-- Contact Card 4 (MỚI: Cơ sở 2 Phố Cổ) -->
+                    <div class="card animate-on-scroll" data-delay="300">
+                        <span class="material-symbols-rounded icon" aria-hidden="true" style="font-size: 2.5rem; color: #D83B01;">location_on</span>
+                        <h3 style="margin-top: 1rem;">Cơ Sở 2 (Phố Cổ)</h3>
+                        <p>Ngõ Hài Tượng, Hàng Buồm, Hoàn Kiếm, Hà Nội (Gần Tạ Hiện).</p>
+                        <a href="https://maps.app.goo.gl/SR1hcwnCQjPkAvDh7?g_st=ipc" target="_blank" style="font-size: 1.1rem; font-weight: 700; color: #D83B01;">Xem Chỉ Đường</a>
                     </div>
                 </div>
 
@@ -2024,12 +1626,12 @@
             <div class="container content-block animate-on-scroll">
                 <h2>Hướng Dẫn Di Chuyển Đến Địa Điểm Thuê Xe Máy Nguyễn Hào</h2>
                 <p>
-                    Nguyễn Hào tọa lạc tại vị trí đắc địa ngay đầu cầu Chương Dương, là điểm giao thoa giữa quận Long Biên và quận Hoàn Kiếm. Điều này giúp việc giao nhận xe cực kỳ thuận lợi cho cả khách du lịch Phố Cổ và khách đi phượt các tỉnh phía Bắc.
+                    Nguyễn Hào tọa lạc tại vị trí đắc địa ngay đầu cầu Chương Dương, là điểm giao thoa giữa quận Long Biên và quận Hoàn Kiếm. Ngoài ra, chúng tôi có điểm hỗ trợ tại <strong>Ngõ Hài Tượng, Hàng Buồm</strong> ngay trung tâm Phố Cổ.
                 </p>
 
                 <h3>1. Từ Phố Cổ Hà Nội (Hoàn Kiếm)</h3>
                 <p>
-                    Nếu bạn đang ở khu vực Bờ Hồ, Hàng Bạc, Hàng Bè..., bạn chỉ mất khoảng **5-10 phút** đi qua cầu Chương Dương là tới ngay cửa hàng tại 112 Nguyễn Văn Cừ. Tuy nhiên, tiện lợi nhất là hãy sử dụng dịch vụ **giao xe tận nơi** của chúng tôi. Bạn chỉ cần gửi vị trí qua Zalo, nhân viên sẽ mang xe đến sảnh khách sạn cho bạn. Xem thêm tại <a href="diadiem.html">Địa điểm giao xe</a>.
+                    Nếu bạn đang ở khu vực Bờ Hồ, Hàng Bạc, Tạ Hiện... bạn có thể ghé qua địa chỉ <strong>Ngõ Hài Tượng, Hàng Buồm</strong> để nhận xe trực tiếp. Hoặc tiện lợi nhất là sử dụng dịch vụ **giao xe tận nơi**. Chỉ cần gửi vị trí qua Zalo, nhân viên sẽ mang xe đến sảnh khách sạn cho bạn sau 15 phút.
                 </p>
 
                 <h3>2. Từ Sân Bay Nội Bài</h3>
@@ -2097,7 +1699,7 @@
 
     </main>
 
-    <!-- === FOOTER (Giữ nguyên) === -->
+    <!-- === FOOTER (ĐÃ SỬA: Đảm bảo địa chỉ hiển thị rõ) === -->
     <footer class="main-footer" aria-labelledby="footer-title">
         <div class="container">
             <h2 id="footer-title" class="sr-only">Thông tin liên hệ Nguyễn Hào</h2>
