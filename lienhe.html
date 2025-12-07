@@ -2150,7 +2150,12 @@
                         startTime = Math.max(startTime, log.delay);
                     });
 
-                    // 4. Reset form after sequence
+                    // 4. Redirect to Zalo after success
+                    setTimeout(() => {
+                        window.location.href = "https://zalo.me/0942467674";
+                    }, startTime + 1000);
+
+                    // 5. Reset form (incase user comes back)
                     setTimeout(() => {
                         inputName.disabled = false;
                         inputPhone.disabled = false;
@@ -2160,13 +2165,6 @@
                         inputName.value = '';
                         inputPhone.value = '';
                         inputMsg.value = '';
-                        
-                        // Optional: Add a separator
-                        const sep = document.createElement('div');
-                        sep.innerHTML = '<br>--- NEW SESSION ---<br>';
-                        sep.style.color = '#555';
-                        terminalLogs.appendChild(sep);
-                        terminalLogs.scrollTop = terminalLogs.scrollHeight;
                     }, startTime + 2000);
                 });
             }
