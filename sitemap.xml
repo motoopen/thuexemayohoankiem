@@ -1,142 +1,135 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Home -->
   <url>
     <loc>https://motoopen.github.io/thuexemayohoankiem/</loc>
-    <lastmod>2025-11-01</lastmod>
+    <lastmod>2025-12-08</lastmod>
     <changefreq>daily</changefreq>
-    <priority>1.00</priority>
+    <priority>1.0</priority>
   </url>
 
-  <!-- Core pages -->
   <url>
     <loc>https://motoopen.github.io/thuexemayohoankiem/gioithieu.html</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
-  </url>
-
-  <url>
-    <loc>https://motoopen.github.io/thuexemayohoankiem/thutuc.html</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-
-  <url>
-    <loc>https://motoopen.github.io/thuexemayohoankiem/loaixe.html</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-
-  <url>
-    <loc>https://motoopen.github.io/thuexemayohoankiem/kinhnghiem.html</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-
-  <url>
-    <loc>https://motoopen.github.io/thuexemayohoankiem/diadiem.html</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-
-  <url>
-    <loc>https://motoopen.github.io/thuexemayohoankiem/quytrinh.html</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
-  </url>
-
-  <!-- Blog / promos -->
-  <url>
-    <loc>https://motoopen.github.io/thuexemayohoankiem/blog.html</loc>
-    <lastmod>2025-11-01</lastmod>
+    <lastmod>2025-12-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.60</priority>
-  </url>
-
-  <url>
-    <loc>https://motoopen.github.io/thuexemayohoankiem/uudai.html</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.65</priority>
-  </url>
-
-  <url>
-    <loc>https://motoopen.github.io/thuexemayohoankiem/giamgia.html</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.60</priority>
-  </url>
-
-  <!-- Rental durations -->
-  <url>
-    <loc>https://motoopen.github.io/thuexemayohoankiem/ngay.html</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://motoopen.github.io/thuexemayohoankiem/tuan.html</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <url>
-    <loc>https://motoopen.github.io/thuexemayohoankiem/thang.html</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.50</priority>
-  </url>
-
-  <!-- Support / legal / FAQ -->
-  <url>
-    <loc>https://motoopen.github.io/thuexemayohoankiem/faq.html</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.50</priority>
+    <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://motoopen.github.io/thuexemayohoankiem/banggia.html</loc>
-    <lastmod>2025-11-01</lastmod>
+    <lastmod>2025-12-08</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://motoopen.github.io/thuexemayohoankiem/lienhe.html</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
+    <loc>https://motoopen.github.io/thuexemayohoankiem/thutuc.html</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://motoopen.github.io/thuexemayohoankiem/loaixe.html</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://motoopen.github.io/thuexemayohoankiem/quytrinh.html</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://motoopen.github.io/thuexemayohoankiem/ngay.html</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://motoopen.github.io/thuexemayohoankiem/tuan.html</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://motoopen.github.io/thuexemayohoankiem/thang.html</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://motoopen.github.io/thuexemayohoankiem/uudai.html</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://motoopen.github.io/thuexemayohoankiem/giamgia.html</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://motoopen.github.io/thuexemayohoankiem/blog.html</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://motoopen.github.io/thuexemayohoankiem/kinhnghiem.html</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://motoopen.github.io/thuexemayohoankiem/diadiem.html</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://motoopen.github.io/thuexemayohoankiem/chinhsach.html</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.30</priority>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 
   <url>
     <loc>https://motoopen.github.io/thuexemayohoankiem/chinhsachbaomat.html</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.30</priority>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 
   <url>
     <loc>https://motoopen.github.io/thuexemayohoankiem/dieukhoansudung.html</loc>
-    <lastmod>2025-11-01</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.30</priority>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 
+  <url>
+    <loc>https://motoopen.github.io/thuexemayohoankiem/faq.html</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://motoopen.github.io/thuexemayohoankiem/social.html</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
