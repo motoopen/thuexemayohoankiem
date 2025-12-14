@@ -869,6 +869,131 @@
             .hero h1 { font-size: 3rem; }
         }
 
+        /* === NEW SOCIAL HUB SECTION STYLES (UPDATED & OPTIMIZED) === */
+        .social-hub-section {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+            background-color: var(--c-bg);
+        }
+        .social-hub-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--c-text);
+        }
+        .social-hub-title span {
+            color: var(--accent);
+        }
+
+        .social-grid {
+            display: grid;
+            gap: 1rem;
+            /* Mobile Default: 2 Columns - Spacing Optimized */
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        /* iPad / Tablet Portrait: 3 Columns - Better balance */
+        @media (min-width: 600px) {
+            .social-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.25rem;
+            }
+        }
+
+        /* Tablet Landscape / Small Laptop: 4 Columns */
+        @media (min-width: 900px) {
+            .social-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1.25rem;
+            }
+        }
+
+        /* Desktop: 6 Columns - Full Width Usage */
+        @media (min-width: 1200px) {
+            .social-grid {
+                grid-template-columns: repeat(6, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
+        .social-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--c-bg-card);
+            padding: 1.25rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--c-border);
+            /* Add shadow to fix "weak button" feel */
+            box-shadow: var(--shadow-sm); 
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            gap: 0.75rem;
+            height: 100%;
+            color: var(--c-text);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            /* Prevent text selection */
+            user-select: none;
+            -webkit-user-select: none;
+            cursor: pointer;
+        }
+
+        /* Hover State - Stronger Visual Feedback */
+        .social-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent);
+            color: var(--accent);
+            background-color: rgba(0, 120, 212, 0.04); /* Subtle tint */
+            z-index: 2;
+        }
+
+        /* Active State - Click Feedback */
+        .social-card:active {
+            transform: scale(0.96);
+            box-shadow: var(--shadow-xs);
+            transition: transform 0.1s;
+        }
+
+        .social-card i {
+            font-size: 2.2rem; /* Slightly larger icon */
+            transition: transform 0.3s ease;
+            background: linear-gradient(135deg, var(--c-text), var(--c-text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .social-card:hover i {
+            transform: scale(1.15);
+            background: var(--ai-gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Brand Colors for Icons on Hover */
+        .social-card:hover i.fa-facebook { background: unset; -webkit-text-fill-color: #1877F2; }
+        .social-card:hover i.fa-tiktok { background: unset; -webkit-text-fill-color: #000000; }
+        html[data-theme="dark"] .social-card:hover i.fa-tiktok { -webkit-text-fill-color: #ffffff; }
+        .social-card:hover i.fa-youtube { background: unset; -webkit-text-fill-color: #FF0000; }
+        .social-card:hover i.fa-instagram { background: unset; -webkit-text-fill-color: #E4405F; }
+        .social-card:hover i.fa-pinterest { background: unset; -webkit-text-fill-color: #BD081C; }
+        .social-card:hover i.fa-twitter, .social-card:hover i.fa-x-twitter { background: unset; -webkit-text-fill-color: #1DA1F2; }
+        .social-card:hover i.fa-reddit { background: unset; -webkit-text-fill-color: #FF4500; }
+        .social-card:hover i.fa-linkedin { background: unset; -webkit-text-fill-color: #0A66C2; }
+
+        .social-name {
+            font-weight: 600;
+            font-size: 0.95rem; /* Slightly larger text */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+
         /* 8. FOOTER */
         .main-footer {
             background-color: var(--c-bg-card);
@@ -1421,7 +1546,7 @@
             </div>
         </section>
 
-        <!-- === NỘI DUNG CHÍNH (SEO CONTENT - 1000 TỪ) === -->
+        <!-- === NỘI DUNG CHÍNH (SEO CONTENT - 1500 TỪ) === -->
         <div class="container animate-on-scroll">
             <article class="seo-content">
                 <p>Trong thời đại công nghệ số 4.0, việc tìm kiếm và đặt dịch vụ trực tuyến đã trở thành xu hướng tất yếu. Nắm bắt được nhu cầu đó, <strong>App thuê xe máy Hà Nội Nguyễn Hào</strong> (nền tảng đặt xe trực tuyến) ra đời nhằm mang đến giải pháp di chuyển thông minh, tiện lợi và tiết kiệm nhất cho du khách và người dân thủ đô. Không cần tải ứng dụng nặng máy, chỉ cần truy cập website của chúng tôi trên điện thoại, bạn đã sở hữu ngay "chìa khóa" khám phá Hà Nội trong tầm tay.</p>
@@ -1494,6 +1619,171 @@
                 </div>
             </article>
         </div>
+
+        <!-- === NEW: SOCIAL NETWORK HUB SECTION === -->
+        <section class="social-hub-section" id="social-network">
+            <div class="container">
+                <h2 class="social-hub-title">Kết Nối Với <span>Nguyễn Hào</span></h2>
+                <div class="social-grid">
+                    <!-- TikTok -->
+                    <a href="https://www.tiktok.com/@thuexemaynguyenhao" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-brands fa-tiktok"></i>
+                        <span class="social-name">TikTok</span>
+                    </a>
+                    <!-- Facebook -->
+                    <a href="https://www.facebook.com/thuexemayohoankiem/" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-brands fa-facebook"></i>
+                        <span class="social-name">Facebook</span>
+                    </a>
+                    <!-- About.me -->
+                    <a href="https://about.me/thuexemayhoankiem" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-solid fa-address-card"></i>
+                        <span class="social-name">About.me</span>
+                    </a>
+                    <!-- YouTube -->
+                    <a href="https://youtube.com/@thuexemaynguyenhao" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-brands fa-youtube"></i>
+                        <span class="social-name">YouTube</span>
+                    </a>
+                    <!-- Pinterest -->
+                    <a href="https://www.pinterest.com/thuexemaynguyenhao/" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-brands fa-pinterest"></i>
+                        <span class="social-name">Pinterest</span>
+                    </a>
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/thuexemaynguyenhao" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-brands fa-instagram"></i>
+                        <span class="social-name">Instagram</span>
+                    </a>
+                    <!-- X (Twitter) -->
+                    <a href="https://x.com/thuexemayhao" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-brands fa-x-twitter"></i>
+                        <span class="social-name">X (Twitter)</span>
+                    </a>
+                    <!-- 500px -->
+                    <a href="https://500px.com/p/thuexemaynguyenhao" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-brands fa-500px"></i>
+                        <span class="social-name">500px</span>
+                    </a>
+                    <!-- Letterboxd -->
+                    <a href="https://letterboxd.com/thuexemayhao/" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-solid fa-film"></i>
+                        <span class="social-name">Letterboxd</span>
+                    </a>
+                    <!-- GitLab -->
+                    <a href="https://gitlab.com/thuexemaynguyenhao" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-brands fa-gitlab"></i>
+                        <span class="social-name">GitLab</span>
+                    </a>
+                    <!-- Sketchfab -->
+                    <a href="https://sketchfab.com/thuexemaynguyenhao" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-solid fa-cube"></i>
+                        <span class="social-name">Sketchfab</span>
+                    </a>
+                    <!-- Reddit -->
+                    <a href="https://www.reddit.com/u/thuexemaynguyenhao/" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-brands fa-reddit"></i>
+                        <span class="social-name">Reddit</span>
+                    </a>
+                    <!-- Flickr -->
+                    <a href="https://www.flickr.com/people/thuexemaynguyenhao/" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-brands fa-flickr"></i>
+                        <span class="social-name">Flickr</span>
+                    </a>
+                    <!-- Behance -->
+                    <a href="https://www.behance.net/thuexemaynguyenhao" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-brands fa-behance"></i>
+                        <span class="social-name">Behance</span>
+                    </a>
+                    <!-- Twitch -->
+                    <a href="https://m.twitch.tv/thuexemaynguyenhao/" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-brands fa-twitch"></i>
+                        <span class="social-name">Twitch</span>
+                    </a>
+                    <!-- SlideShare -->
+                    <a href="https://www.slideshare.net/taihanoi82" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-brands fa-slideshare"></i>
+                        <span class="social-name">SlideShare</span>
+                    </a>
+                    <!-- VSCO -->
+                    <a href="https://vsco.co/thuexemaynguyenhao/" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-solid fa-camera-retro"></i>
+                        <span class="social-name">VSCO</span>
+                    </a>
+                    <!-- ProductHunt -->
+                    <a href="https://www.producthunt.com/@thuexemaynguyenhao" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-brands fa-product-hunt"></i>
+                        <span class="social-name">ProductHunt</span>
+                    </a>
+                    <!-- Flipboard -->
+                    <a href="https://flipboard.com/@thuexenguyenhao" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-brands fa-flipboard"></i>
+                        <span class="social-name">Flipboard</span>
+                    </a>
+                    <!-- Bluesky -->
+                    <a href="https://bsky.app/profile/thuexemaynguyenhao.bsky.social" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-solid fa-cloud"></i>
+                        <span class="social-name">Bluesky</span>
+                    </a>
+                    <!-- DeviantArt -->
+                    <a href="https://www.deviantart.com/thuexemaynguyenhao" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-brands fa-deviantart"></i>
+                        <span class="social-name">DeviantArt</span>
+                    </a>
+                    <!-- Linktree -->
+                    <a href="https://linktr.ee/thuexemaynguyenhao" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-solid fa-link"></i>
+                        <span class="social-name">Linktree</span>
+                    </a>
+                    <!-- Mastodon -->
+                    <a href="https://mastodon.social/@nguyentu" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-brands fa-mastodon"></i>
+                        <span class="social-name">Mastodon</span>
+                    </a>
+                    <!-- Mixcloud -->
+                    <a href="https://www.mixcloud.com/chothuexemaycongtan/" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-brands fa-mixcloud"></i>
+                        <span class="social-name">Mixcloud</span>
+                    </a>
+                    <!-- Qiita -->
+                    <a href="https://qiita.com/thuexemaynguyenhao" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-solid fa-code"></i>
+                        <span class="social-name">Qiita</span>
+                    </a>
+                    <!-- Coolors -->
+                    <a href="https://coolors.co/u/thuexemaynguyenhao" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-solid fa-palette"></i>
+                        <span class="social-name">Coolors</span>
+                    </a>
+                    <!-- Issuu -->
+                    <a href="https://issuu.com/thuexemaynguyenhao" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-solid fa-book-open"></i>
+                        <span class="social-name">Issuu</span>
+                    </a>
+                    <!-- Gravatar -->
+                    <a href="https://gravatar.com/thuexemaynguyenhao" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-solid fa-user-circle"></i>
+                        <span class="social-name">Gravatar</span>
+                    </a>
+                    <!-- Tapas -->
+                    <a href="https://m.tapas.io/thuexemaynguyenhao" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-solid fa-book"></i>
+                        <span class="social-name">Tapas</span>
+                    </a>
+                    <!-- Devpost -->
+                    <a href="https://devpost.com/thuexemaynguyenhao" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-solid fa-terminal"></i>
+                        <span class="social-name">Devpost</span>
+                    </a>
+                    <!-- Dev.to -->
+                    <a href="https://dev.to/thuexemaynguyenhao" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <i class="fa-brands fa-dev"></i>
+                        <span class="social-name">Dev.to</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- === FOOTER === -->
