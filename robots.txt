@@ -72,3 +72,4 @@ Allow: /
 # --- Sitemap references ---
 Sitemap: https://motoopen.github.io/thuexemayohoankiem/sitemap.xml
 Sitemap: https://motoopen.github.io/thuexemayohoankiem/sitemap-social.xml
+Sitemap: https://motoopen.github.io/thuexemayohoankiem/mangxahoi-sitemap.xml
